@@ -1,0 +1,135 @@
+<div class="modal_title  col-lg-12 col-md-12 col-sm-12 col-xs-12   deskmargin-25 " ng-if="(user.id == ResponseData.owner.id) && (!ResponseData.isreject)">
+    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12  no-padding ">
+        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12  no-padding flex-align">
+            <div class="col-md-12 col-xs-12  no-padding subjecttitle"><span ng-if="ResponseData.commisionitem.productdetails.type == 'Service'">YOU’VE HAVE BEEN COMMISSIONED</span><span ng-if="ResponseData.commisionitem.productdetails.type == 'Shop'">SOMEONE WOULD LIKE TO PURCHASE YOUR ITEM</span><span ng-if="ResponseData.commisionitem.productdetails.type == 'Event'">SOMEONE WOULD LIKE TO REGISTER FOR YOUR EVENT</span>
+                <span
+                    ng-if="ResponseData.commisionitem.productdetails.type == 'Rental'">SOMEONE MADE A BOOKING</span>
+                    <div ng-if="currentdevice == 'desktop'" class="float-rt closeb color-gray" ng-click="closepopoverItem();"><i class="fa fa-minus-square-o" aria-hidden="true"></i></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="modal_title  col-lg-12 col-md-12 col-sm-12 col-xs-12   deskmargin-25 bargain" ng-if="(user.id == ResponseData.buyer.id) && (!ResponseData.isreject)">
+    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12  no-padding ">
+
+        <div class=" col-md-12 nopadding">
+
+            <div class="col-md-12 col-xs-12  no-padding subjecttitle bargain"> SELLER REPLIED
+                <div class="float-rt closeb " ng-click="closepopoverItem();" ng-if="currentdevice == 'desktop'"><i class="fa fa-minus-square-o" aria-hidden="true"></i></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding deskmargin-25 mmargintop10">
+    <div class="subjectsubtitle " ng-if="(user.id == ResponseData.owner.id) && (!ResponseData.isreject)"> <a class="uppercase">{{ResponseData.buyer.username}}</a> HAS REQUESTED FOR YOUR SERVICE</div>
+    <div class="subjectsubtitle col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding" ng-if="(user.id == ResponseData.buyer.id) && (!ResponseData.isreject)"> <a class="uppercase">{{ResponseData.owner.username}}</a> HAS BARGAINED FOR YOUR REQUEST</div>
+</div>
+<div class="lettercontainer">
+    <div class="letterdetailscontainer letterdetailscontainernew col-lg-12 col-md-12 col-sm-12 col-xs-12 mobile-no-padding">
+
+        <div class="lettercontainer">
+            <div class="letterinnercontainer" ng-if="!ResponseData.showdetails">
+                <p><b class="bold">Hello {{ResponseData.owner.username}}</b><br><br> You have been commisioned for your services by {{ResponseData.buyer.username}}. Please accept this job offer if you agree to the <a>Tripartite Standard Agreement</a> to
+                    protect both parties against any issues in the future. Read for more info <a>here.</a>
+                    <br><br> If you have any questions, please visit the seller page or chat with him/her directly. We offer detailed questions and answers for buyers and sellers, along with the ability to submit support tickets if needed.
+                    <br><br> Please acknowledge all the following items to continue:
+                    <div class="pretty p-image p-plain mobile-no-margin-right">
+                        <input type="checkbox" name="showmap" ng-true-value="1" ng-false-value="0" ng-model="ResponseData.agreeterms" class="ng-pristine ng-untouched ng-valid" tabindex="0" aria-checked="false" aria-invalid="false">
+                        <div class="state">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            <label>You have the understood the tripartite agreement according to the country laws
+                     </label>
+                        </div>
+                    </div>
+                    <div class="pretty p-image p-plain">
+                        <input type="checkbox" name="showmap" ng-true-value="1" ng-false-value="0" ng-model="ResponseData.agreeinvoice" class="ng-pristine ng-untouched ng-valid" tabindex="0" aria-checked="false" aria-invalid="false">
+                        <div class="state">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            <label>The quotation or invoice send by seller is a written contracts acknowledged by both parties
+                     </label>
+                        </div>
+                    </div>
+                    <div class="pretty p-image p-plain">
+                        <input type="checkbox" name="showmap" ng-true-value="1" ng-false-value="0" ng-model="ResponseData.agreenegotiation" class="ng-pristine ng-untouched ng-valid" tabindex="0" aria-checked="false" aria-invalid="false">
+                        <div class="state">
+                            <img class="image" src="img/check.png">
+                            <label>Buyer and seller has the rights to amend or negotiate the quotation before the deal is made.
+                     </label>
+                        </div>
+                    </div>
+                    <div tooltip="You Need to agree tripartite agreement !" tooltip-enable="!ResponseData.agreeterms" tooltip-trigger="mouseenter" tooltip-placement="right" tooltip-class="requesterror">
+                        <button class="viewdetails" type="button" ng-disabled="!ResponseData.agreeterms" ng-click="ResponseData.showdetails = !ResponseData.showdetails">View full details</button>
+                    </div>
+                </p>
+            </div>
+            <div data-ng-include="'tpl/blocks/modalcontent/productinfo.html'" ng-if="ResponseData.showdetails">
+            </div>
+
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding margintop10">
+        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-right no-padding-right button_right" ng-if="currentdevice == 'desktop'"> <button class="accept collabro_btn button-width-100" ng-click="proceedRequest()" ng-if="!ResponseData.status" ng-disabled="!ResponseData.iscounter && !ResponseData.isreject && !ResponseData.isacceptoffer">Proceed </button>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-left no-padding-right button_right " ng-if="currentdevice == 'desktop'">
+            <div class="btn-group dropdown dropup col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+                <button class="reject collabro_btn button-width-100" ng-click="cancelRequest()" ng-if="ResponseData.status == 0 && (ResponseData.iscounter || ResponseData.isreject || ResponseData.isacceptoffer)">Cancel </button>
+                <button class="collabro_btn gradient-button button-width-100" data-toggle="dropdown" aria-expanded="false" ng-if="ResponseData.status == 0 && !ResponseData.iscounter && !ResponseData.isreject && !ResponseData.isacceptoffer && ResponseData.isnew" tooltip="You Need to agree TSA Protection rules!"
+                    tooltip-trigger="click" tooltip-class="responseagreementerror" tooltip-placement="right" tooltip-enable="!ResponseData.isaccept">Action <i class="fa fa-angle-down marginleft5" aria-hidden="true"></i></button>
+                <!-- <button class="btn btn-default" ><span class="caret"></span></button> -->
+                <ul class="dropdown-menu" ng-if="ResponseData.status == 0 && !ResponseData.iscounter && !ResponseData.isreject && !ResponseData.isacceptoffer">
+                    <li ng-if="!ResponseData.isreject && !ResponseData.iscounter && !ResponseData.isacceptoffer"><a><button ng-disabled="!ResponseData.isaccept" type="button" class="collabro_btn accept button-width-100" ng-click="ResponseData.isacceptoffer = !ResponseData.isacceptoffer">Accept Offer</button></a></li>
+                    <!-- <li ng-if="ResponseData.iscounter"><a ><button type="button" class="collabro_btn accept button-width-100" ng-disabled="!ResponseData.isaccept" ng-click="proceedBargain()">Proceed</button></a></li> -->
+                    <li ng-if="user.id == ResponseData.commisionitem.productdetails.ownerid"><a><button type="button" class="collabro_btn reject button-width-100" ng-click="rejectOffer();" ng-disabled="!ResponseData.isaccept">Reject Offer</button></a></li>
+                    <li ng-if="!ResponseData.isreject && !ResponseData.commisionitem.productdetails.hasbargain&&!ResponseData.iscounter"><a><button type="button" class="collabro_btn counter  button-width-100" ng-click="ResponseData.iscounter = !ResponseData.iscounter" ng-disabled="!ResponseData.isaccept">Counter Offer</button></a></li>
+                </ul>
+
+                <!-- <button class="accept collabro_btn button-width-100" ng-if="ResponseData.iscounter" ng-click="proceedBargain()">Proceed </button> -->
+
+                <button class="accept collabro_btn button-width-100" ng-if="ResponseData.status > 0" ng-click="closepopoverItem();">Close </button>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-left no-padding-right button_right" ng-if="currentdevice == 'desktop'">
+            <button class="collabro_btn border-chat button-width-100" ng-click="gotoChat(ResponseData.productid)"><i class="fa fa-phone-square marginright5" aria-hidden="true"></i>CHAT</button>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-left no-padding-right " ng-if="currentdevice == 'mobile'">
+            <button class="collabro_btn border-chat button-width-100" ng-click="gotoChat(ResponseData.productid)"><i class="fa fa-phone-square marginright5" aria-hidden="true"></i>CHAT</button>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-right no-padding-right  " ng-if="currentdevice == 'mobile'">
+            <div class="btn-group dropdown dropup col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+                <button class="reject collabro_btn button-width-100" ng-click="cancelRequest()" ng-if="ResponseData.status == 0 && (ResponseData.iscounter || ResponseData.isreject || ResponseData.isacceptoffer)">Cancel </button>
+                <button class="collabro_btn gradient-button button-width-100" data-toggle="dropdown" aria-expanded="false" ng-if="ResponseData.status == 0 && !ResponseData.iscounter && !ResponseData.isreject && !ResponseData.isacceptoffer && ResponseData.isnew" tooltip="You Need to agree TSA Protection rules!"
+                    tooltip-trigger="click" tooltip-class="responseagreementerror" tooltip-placement="right" tooltip-enable="!ResponseData.isaccept">Action <i class="fa fa-angle-down marginleft5" aria-hidden="true"></i></button>
+                <!-- <button class="btn btn-default" ><span class="caret"></span></button> -->
+                <ul class="dropdown-menu" ng-if="ResponseData.status == 0 && !ResponseData.iscounter && !ResponseData.isreject && !ResponseData.isacceptoffer">
+                    <li ng-if="!ResponseData.isreject && !ResponseData.iscounter && !ResponseData.isacceptoffer"><a><button ng-disabled="!ResponseData.isaccept" type="button" class="collabro_btn accept button-width-100" ng-click="ResponseData.isacceptoffer = !ResponseData.isacceptoffer">Accept Offer</button></a></li>
+                    <!-- <li ng-if="ResponseData.iscounter"><a ><button type="button" class="collabro_btn accept button-width-100" ng-disabled="!ResponseData.isaccept" ng-click="proceedBargain()">Proceed</button></a></li> -->
+                    <li ng-if="user.id == ResponseData.commisionitem.productdetails.ownerid"><a><button type="button" class="collabro_btn reject button-width-100" ng-click="rejectOffer();" ng-disabled="!ResponseData.isaccept">Reject Offer</button></a></li>
+                    <li ng-if="!ResponseData.isreject && !ResponseData.commisionitem.productdetails.hasbargain&&!ResponseData.iscounter"><a><button type="button" class="collabro_btn counter  button-width-100" ng-click="ResponseData.iscounter = !ResponseData.iscounter" ng-disabled="!ResponseData.isaccept">Counter Offer</button></a></li>
+                </ul>
+
+                <!-- <button class="accept collabro_btn button-width-100" ng-if="ResponseData.iscounter" ng-click="proceedBargain()">Proceed </button> -->
+
+                <button class="accept collabro_btn button-width-100" ng-if="ResponseData.status > 0" ng-click="closepopoverItem();">Close </button>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 mobile-no-padding no-padding-right button_right margintop10" ng-if="currentdevice == 'mobile' && ResponseData.status == 0 && !ResponseData.iscounter && !ResponseData.isreject && !ResponseData.isacceptoffer && ResponseData.isnew">
+        <button class="accept collabro_btn button-width-100" ng-click="proceedRequest()" tooltip="You Need to agree TSA Protection rules!" ng-disabled="!ResponseData.iscounter && !ResponseData.isreject && !ResponseData.isacceptoffer" ng-if="!ResponseData.status">Proceed </button>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 mobile-no-padding no-padding button_right mmargintop10" ng-if="currentdevice == 'desktop'">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mobile-no-padding no-padding button_right mmargintop10" ng-if="currentdevice == 'desktop'">
+            <span class="submitcontent">*By confirming it means you agree with Collabro’s <a>terms and conditions.</a> Alternatively you can check with the seller first.</span>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 mobile-no-padding no-padding-left button_right mmargintop10 bgF4F4F4 " ng-if="currentdevice == 'mobile'">
+            <div class="col-xs-10 mobile-no-padding-right"><span class="submitcontent margintopbottom15">*By confirming it means you agree with Collabro’s <a>terms and conditions.</a> Alternatively you can check with the seller first.</span> </div>
+            <div class="col-xs-2 mobile-no-padding-left">
+                <div class="float-rt closeb margintopbottom15" ng-click="closepopoverItem();"><i class="fa fa-minus-square-o" aria-hidden="true"></i></div>
+            </div>
+        </div>
+    </div>
+</div>

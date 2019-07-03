@@ -1,0 +1,234 @@
+<div ng-controller="ViewUserCtrl">
+   <div class="wthree-dot" ng-if="!formLoading">
+      <div class="container">
+         <div class="row">
+            <!-- Left Menu Here  -->
+            <div class="col-md-2 col-lg-2 col-sm-2 nopadding leftSidebar" data-ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+            <div class="col-md-10 col-lg-10 col-sm-10 nopadding " >
+               <div class="col-md-12 col-lg-12 col-sm-12 col-lg-12 col-cm-12  mypadding">
+                  <div class="col-md-12 col-lg-12 col-sm-12 col-lg-12 col-cm-12 backgroundwhite nopadding">
+                     <div class="col-md-12 col-lg-12 col-sm-12 nopadding">
+                        <div class="col-md-12 col-lg-12 col-sm-12 topinfo">
+                           <div class="col-md-2 col-lg-2 col-sm-2 col-5">
+                              <div class="topsubtext">Collection Items</div>
+                              <div class="bottomtext">{{userData.totalproducts}}</div>
+                           </div>
+                           <div class="col-md-2 col-lg-2 col-sm-2 col-5">
+                              <div class="topsubtext">Completed Projects</div>
+                              <div class="bottomtext">0</div>
+                           </div>
+                           <div class="col-md-3 col-lg-3 col-sm-3 col-5">
+                              <div class="topsubtext">Viewers</div>
+                              <div class="bottomtext">{{userData.totalviewers}}</div>
+                           </div>
+                           <div class="col-md-3 col-lg-3 col-sm-3 col-5">
+                              <div class="topsubtext"> Your Followers </div>
+                              <div class="bottomtext">{{userData.followers}}</div>
+                           </div>
+                           <div class="col-md-2 col-lg-2 col-sm-2 col-5 noborder">
+                              <div class="topsubtext">You Follow</div>
+                              <div class="bottomtext">{{userData.following}}</div>
+                           </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12 col-sm-12 topcontainer margin-bottom">
+                           <div class="col-md-6 col-lg-6 col-sm-6 cursor" ng-class="{'active':activetab=='profile'}" ng-click="setactivetab('profile');">PROFILE</div>
+                           <div class="col-md-6 col-lg-6 col-sm-6 cursor" ng-class="{'active':activetab=='address'}" ng-click="setactivetab('address');">ADDRESS</div>
+                        </div>
+                        <div class="profile_conatainer" ng-if="activetab=='profile'">
+                           <div class="col-lg-12 col-md-12 col-lg-12 col-sm-12 col-sm-12 nopadding margin-bottom">
+                              <div class="col-md-2 col-lg-2 col-sm-2 nopadd">
+                                 <div class="userimageholder" background-image="{{IMGURL}}{{userData.avatar}}"></div>
+                              </div>
+                              <div class="col-md-10 col-lg-10 col-sm-10">
+                                 <div class="col-md-12 col-lg-12 col-sm-12 nopadding mt15">
+                                    <div class="col-md-12 col-lg-9 col-sm-12 nopadding">
+                                       <div class="col-md-8 col-lg-8 col-sm-8 ">
+                                          <div class="col-md-12 col-lg-12 col-sm-12 mypadding">
+                                             <div class="col-md-3 col-lg-3 col-sm-3 nopadding">
+                                                <div class="leftlabel"></div>
+                                             </div>
+                                             <div class="col-md-9 col-lg-9 col-sm-9 ">
+                                                <div class="righttext">
+                                                   <div class="usertitle">{{userData.username}}</div>
+                                                   <div class="companytitle" ng-if="userData.iscompany">{{user.organisation ? user.organisation : 'COMPANY NAME (Optional)'}}</div>
+                                                   <div class="companytitle noborder" ng-if="userData.iscompany">{{user.company_uen ? user.company_uen : 'COMPANY UEN NO. (Optional)'}}</div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-12 col-lg-12 col-sm-12 mypadding">
+                                             <div class="col-md-3 col-lg-3 col-sm-3 nopadding">
+                                                <div class="leftlabel">WEBSITE</div>
+                                             </div>
+                                             <div class="col-md-9 col-lg-9 col-sm-9 ">
+                                                <div class="rightlabel">{{userData.website}}
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-12 col-lg-12 col-sm-12 mypadding">
+                                             <div class="col-md-3 col-lg-3 col-sm-3 nopadding">
+                                                <div class="leftlabel">SKILLS</div>
+                                             </div>
+                                             <div class="col-md-9 col-lg-9 col-sm-9 ">
+                                                <div class="righttext">{{userData.profession}}</div>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-12 col-lg-12 col-sm-12 mypadding">
+                                             <div class="col-md-3 col-lg-3 col-sm-3 nopadding">
+                                                <div class="leftlabel">WHO AM I?</div>
+                                             </div>
+                                             <div class="col-md-9 col-lg-9 col-sm-9 ">
+                                                <div class="righttext">{{userData.aboutme ? userData.aboutme : 'This is where I insert my own statement to describe about what i do and my insipiration to be an entrepeneur. Do not hesitate to poke me anytime!'}}</div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-4 col-lg-4 col-sm-4 nopadding">
+                                          <div class="userphone"><span class="std">{{user.countrycode}}</span>{{userData.phonenumber}}</div>
+                                          <div class="clear"></div>
+                                          <div class="companytitle noborder"><i class="fa fa-map-marker map-marker" aria-hidden="true"></i> <span class="country">{{userData.country}}</span></div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="profile_conatainer" ng-if="activetab=='address'">
+                           <div class="col-md-12 col-lg-12 col-sm-12 nopadding mt15">
+                              <div class="col-md-6 col-lg-6 col-sm-6">
+                                 <div class="conta ">
+                                    <div class="labeltext">Address</div>
+                                    <div class="txt_holder">
+                                       <textarea name="address" ng-model="userData.address" required ng-disabled="!addressedit"></textarea>
+                                    </div>
+                                 </div>
+                                 <div class="conta ">
+                                    <div class="labeltext">Postal Code</div>
+                                    <div class="txt_holder">
+                                       <input type="text" name="postalcode" ng-model="userData.postalcode" required class="width-50" numbers-only ng-disabled="!addressedit">
+                                    </div>
+                                 </div>
+                                 <div class="conta" ng-if="user.iscompany">
+                                    <div class="labeltext">Organisation</div>
+                                    <div class="txt_holder">
+                                       <input type="text" name="organisation" ng-model="userData.organisation" ng-disabled="!addressedit">
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-6 col-lg-6 col-sm-6 ">
+                                 <div class="conta margin-bottom">
+                                    <div class="labeltext">Business Email</div>
+                                    <div class="txt_holder margin-bottom">
+                                       <input type="email" name="email" ng-model="userData.email" required ng-disabled="!addressedit">
+                                    </div>
+                                    <div class="margin-top">&nbsp;</div>
+                                 </div>
+                                 <div class="conta margin-top30">
+                                    <div class="labeltext">Contact No</div>
+                                    <div class="txt_holder">
+                                       <input type="text" ng-model="userData.countrycode" name="countrycode" required class="width-15"  ng-disabled="!addressedit">
+                                       <input type="text" required ng-model="userData.phonenumber" name="phonenumber" class="width-60" ng-disabled="!addressedit">
+                                    </div>
+                                 </div>
+                                 <div class="conta " ng-if="user.iscompany">
+                                    <div class="labeltext">Company UEN No.</div>
+                                    <div class="txt_holder">
+                                       <input type="text" ng-model="userData.company_uen" name="company_uen" ng-disabled="!addressedit">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="clear"></div>
+                     <div class="statisticsholder">
+                        <div class="statistics"><i class="fa fa-bar-chart"></i>PERFORMANCE STATISTIC</div>
+                        <div class="statisticsinner col-md-12 col-sm-12 col-lg-12">
+                           <div class="col-md-8 col-sm-8 col-lg-8 margin-bottom" >
+                              <div class="col-md-4 col-sm-4 col-lg-4 smallpadd">
+                                 <div class="charttitle">XP EARNING</div>
+                                 <div class="col-md-2 col-sm-2 col-lg-2 nopadd cursor" ng-repeat="(key,data) in chartData.xpData">
+                                    <div class="progress progress-bar-vertical" tooltip="{{data.currenttotal}}" tooltip-trigger="mouseenter" tooltip-placement="top">
+                                       <div class="progress-bar chart1bg" role="progressbar" aria-valuenow="{{data.percentage}}" aria-valuemin="0" aria-valuemax="100" ng-style="{height: data.percentage + '%'}">
+                                       </div>
+                                    </div>
+                                    <span class="monthlabel">{{data.monthname | cut:true:3:'' }}</span>
+                                 </div>
+                              </div>
+                              <div class="col-md-4 col-sm-4 col-lg-4 smallpadd">
+                                 <div class="charttitle">REACH VIEWERS</div>
+                                 <div class="col-md-2 col-sm-2 col-lg-2 nopadd cursor" ng-repeat="(key,data) in chartData.reachViewersData">
+                                    <div class="progress progress-bar-vertical" tooltip="{{data.currenttotal}}" tooltip-trigger="mouseenter" tooltip-placement="top">
+                                       <div class="progress-bar chart2bg" role="progressbar" aria-valuenow="{{data.percentage}}" aria-valuemin="0" aria-valuemax="100" ng-style="{height: data.percentage + '%'}">
+                                       </div>
+                                    </div>
+                                    <span class="monthlabel">{{data.monthname | cut:true:3:'' }}</span>
+                                 </div>
+                              </div>
+                              <div class="col-md-4 col-sm-4 col-lg-4 smallpadd">
+                                 <div class="charttitle">IMPRESSIONS</div>
+                                 <div class="col-md-2 col-sm-2 col-lg-2 nopadd cursor" ng-repeat="(key,data) in chartData.impressionData">
+                                    <div class="progress progress-bar-vertical" tooltip="{{data.currenttotal}}" tooltip-trigger="mouseenter" tooltip-placement="top">
+                                       <div class="progress-bar chart3bg" role="progressbar" aria-valuenow="{{data.percentage}}" aria-valuemin="0" aria-valuemax="100" ng-style="{height: data.percentage + '%'}">
+                                       </div>
+                                    </div>
+                                    <span class="monthlabel">{{data.lable}}</span>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-4 col-sm-4 col-lg-4 nopadding">
+                              <div class="rightinfover smallpadd">
+                                 <div class="col-md-12 col-sm-12 col-lg-12 nopadding">
+                                    <div class="col-md-8 col-sm-8 col-lg-8 lt nopadding">MUTUAL FRIENDS</div>
+                                    <div class="col-md-4 col-sm-4 col-lg-4 rt nopadding">{{chartData.mutualFriends}}</div>
+                                 </div>
+                                 <div class="col-md-12 col-sm-12 col-lg-12 nopadding">
+                                    <div class="col-md-8 col-sm-8 col-lg-8 lt nopadding">APPRECIATIONS</div>
+                                    <div class="col-md-4 col-sm-4 col-lg-4 rt nopadding"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></div>
+                                 </div>
+                                 <div class="col-md-12 col-sm-12 col-lg-12 nopadding">
+                                    <div>
+                                       <div class="col-md-8 col-sm-8 col-lg-8 lt nopadding">LIKES</div>
+                                       <div class="col-md-4 col-sm-4 col-lg-4 rt nopadding">{{chartData.totallikes}}</div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="projectholder col-md-12 col-lg-12 col-sm-12">
+                        <div class="col-md-12 col-lg-12 col-sm-12 topcontainer">
+                           <div class="col-md-4 col-lg-4 col-sm-4 active">USER LISTINGS</div>
+                        </div>
+                        <div class="projectlisting col-md-12 col-lg-12 col-sm-12" dir-paginate="(key,data) in userProducts.data | itemsPerPage: totalPerPage" total-items="userProducts.total" current-page="pagination.current">
+                           <div class="col-md-2 col-lg-2 col-sm-2 cursor" ui-sref="app.viewitem({'id':data.id})">
+                              <div class="pro-thumb" background-image="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1"></div>
+                              <div class="pro-thumb" background-image="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"></div>
+                           </div>
+                           <div class="col-md-5 col-lg-5 col-sm-5">
+                              <div class="projtitle cursor" ui-sref="app.viewitem({'id':data.id})">{{data.title}}</div>
+                              <div class="projinfo">Last Update: {{convertDate(data.updated_at) | dateToISO | date:'dd MMMM yyyy'}} </div>
+                           </div>
+                           <div class="col-md-3 col-lg-3 col-sm-3">
+                              <div class="projtitle">{{data.price ? (data.price | currency): 'Free'}} SGD</div>
+                              <div class="projinfo" ng-if="data.price > 0 && data.type != 'Shop'">Per {{data.periodtype}}</div>
+                           </div>
+                           <div class="col-md-1 col-lg-1 col-sm-1 text-center">
+                              <div class="projtitle">{{data.wishcount}}</div>
+                              <div class="projinfo"><i class="fa fa-heart"></i></div>
+                           </div>
+                           <div class="col-md-1 col-lg-1 col-sm-1 text-center">
+                              <div class="projtitle">{{data.noofviews}}</div>
+                              <div class="projinfo"><i class="fa fa-eye"></i></div>
+                           </div>
+                        </div>
+                        <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
+                     </div>
+                     <div class="clear"></div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-2 col-lg-2 col-sm-2 nopadding rightSidebar" data-ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
+         </div>
+      </div>
+   </div>
+</div>
+

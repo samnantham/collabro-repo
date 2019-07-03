@@ -1,0 +1,103 @@
+/*---------------- [1. Styles for devices(>1200px)] */
+ @media (min-width: 1201px){
+     .w100{
+         width:100%;
+    }
+     .service_container .categories_c{
+         width:100%;
+         max-height: 250px;
+         min-height: 250px;
+    }
+}
+/*---------------- [2. Styles for devices(>=993px and <=1200px)] */
+ @media (min-width: 993px) and (max-width: 1200px) {
+     .w100{
+         width:100%;
+    }
+     .service_container .categories_c{
+         width:100%;
+         max-height: 250px;
+         min-height: 250px;
+    }
+}
+/*-------------------- [3. Styles for devices(>=768px and <=992px)] */
+ @media (min-width: 768px) and (max-width: 992px) {
+     .w100{
+         width:100%;
+    }
+     .service_container .products{
+/*         width:45%;
+         max-height: 290px;
+         min-height: 290px;*/
+    }
+     .service_container .categories_c{
+         width:100%;
+/*         max-height: 290px;
+         min-height: 290px;*/
+    }
+}
+/*-------------------- [3. Styles for devices(>=481px and <=767px)] */
+ @media (min-width: 481px) and (max-width: 767px) {
+     .gray_back h2 {
+         color: #333;
+         font-size: 1rem;
+         padding-top: 1.5rem;
+         text-align: center;
+    }
+     .block-payment ul.list-logo>li{
+         padding-right: 20px;
+         padding-left: 0;
+    }
+     .block-shop-phone{
+         float: left;
+    }
+     .footer-social{
+         border-bottom:none;
+    }
+     .service_container .products{
+         width:45%;
+         max-height: 260px;
+         min-height: 260px;
+    }
+     .service_container .categories_c{
+         width:100%;
+         max-height: 260px;
+         min-height: 260px;
+    }
+}
+/*-------------------- [5. Styles for devices(<=480px)] */
+ @media (max-width: 480px) {
+     .gray_back h2 {
+         color: #333;
+         font-size: 1rem;
+         padding-top: 1.3rem;
+         text-align: center;
+    }
+     .block-payment{
+         float: left;
+         margin-top: 10px;
+    }
+     .block-payment ul.list-logo>li{
+         padding-right: 20px;
+         padding-left: 0;
+    }
+     .block-shop-phone{
+         float: left;
+    }
+     .footer-social{
+         border-bottom:none;
+    }
+     .service_container .products{
+         width:45%;
+         max-height: 275px;
+         min-height: 275px;
+    }
+     .service_container .categories_c{
+         width:95%;
+         max-height: 250px;
+         min-height: 250px;
+    }
+     .service_container {
+         margin-left: 20px;
+    }
+}

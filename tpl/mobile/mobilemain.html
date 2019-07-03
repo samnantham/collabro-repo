@@ -1,0 +1,34 @@
+<div class="HomeCtrl" ng-controller="HomeCtrl" id="hometop">
+    <div class="col-md-12 text-center">
+        <h3 class='headertitlenew'><span class="cspan"> create. </span> • <span class="cspan"> engage. </span> •<span class="cspan">  inspire.</span></h3>
+    </div>
+    <div class="w3ls-subscribe text-center">
+        <h4 class="text-left">SIGN IN</h4>
+        <form name="loginForm" novalidate ng-submit="login(loginForm)">
+            <span class="details"> Email Address <span ng-if="loginerrors.message" class="text-danger">{{loginerrors.message[0]}}</span> <span ng-messages="loginForm.email.$error" role="alert"><span class="text-danger" ng-message="required">Email Required</span>
+            <span
+                class="text-danger" ng-message="email">Not valid email.</span>
+                </span>
+                </span><input type="email" name="email" placeholder="Email" ng-model="userData.email" required>
+                <span class="details">Password <span ng-messages="loginForm.password.$error" role="alert"><span class="text-danger" ng-message="required">Password Required</span><span class="text-danger" ng-message="minlength">Atleast 8 characters long.</span></span>
+                </span><input type="password" name="password" placeholder="Password" required ng-model="userData.password" minlength="8">
+                <button id="sign-in" class="btn margintop sign-in" type="submit" button-spinner="loginloading" spinning-icon="fa fa-circle-o-notch fa-spin" ng-disabled="loading">SIGN IN</button>
+        </form>
+    </div>
+    <div class="col-md-12 text-center buttoncontainer">
+        <button id="facebook" class="btn sign-in" type="submit" button-spinner="facebookloading" spinning-icon="fa fa-circle-o-notch fa-spin" ng-disabled="loading" ng-click="facebooklogin();">SIGN IN WITH FACEBOOK</button>
+
+        <button id="google" class="btn sign-in marginbottom" type="submit" button-spinner="googleloading" spinning-icon="fa fa-circle-o-notch fa-spin" ng-disabled="loading" ng-click="googleLogin();">SIGN IN WITH GOOGLE</button>
+
+        <button id="create" class="btn sign-in" type="submit" ng-disabled="loading" ui-sref="app.signup">CREATE ACCOUNT for FREE</button>
+    </div>
+    <div class="col-md-12 footercont text-center"> By joining, you agree to Collabro’s <span class="terms" ng-click="showAModal()">Terms of Service</span></div>
+</div>
+
+<style type="text/css">
+    body{
+        background: #fff !important;
+    }
+</style>
+
+<!-- Mobile home2 end -->

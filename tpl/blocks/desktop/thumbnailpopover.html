@@ -1,0 +1,17 @@
+<span class="icoholder">
+	<!-- <i class="fa fa-eye" aria-hidden="true" ng-click="viewThumb();"></i> -->
+	<i class="fa fa-pencil-square-o" aria-hidden="true" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="1" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="replaceImage($files,selectedKey);" ng-if="viewingThumb.filetype == 1"></i>
+   <i class="fa fa-pencil-square-o" aria-hidden="true" ng-if="viewingThumb.filetype == 2" ng-click="changeVideo(selectedKey)"></i>
+	<i class="fa fa-trash" aria-hidden="true" ng-click="removefileItem();"></i>
+	<!-- <i class="fa fa-picture-o" aria-hidden="true" ng-click="setThumb();"></i></span> -->
+<style type="text/css">
+   .icoholder i
+   {
+   margin: 0px 10px;
+   font-size: 20px;
+   cursor: pointer;
+   }
+   .popover-content {
+   padding: 9px 0px;
+   }
+</style>

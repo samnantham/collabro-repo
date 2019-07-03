@@ -1,0 +1,44 @@
+<div ng-controller="ProjectDetailCtrl " >
+   <div class="col-xs-12 serviceheader">
+      <div class="col-xs-1 servicelefticon" ng-click="goback()"><i class="fa fa-angle-left"></i></div>
+      <div class="col-xs-5 servicename chathead">
+         <div class="userholder cursor" ><img ng-src="{{IMGURL}}{{projectData.owner.avatar}}" class="userimage" ui-sref="app.viewuser({'id':projectData.owner.id})">
+            <span class="userinfo"> {{projectData.owner.username}}<br>
+            <span class="status"><i class="fa fa-circle margin-top8" ng-class="projectData.owner.onlinestatus == 1 ? 'statusactive':'statusinactive'"></i> {{projectData.owner.onlinestatus == 1 ? 'Online':'Offline'}}</span></span>
+         </div>
+      </div>
+      <div class="col-xs-6 servicerighticon">
+         <div class="product-button  product-newbutton col-xs-12 text-right nopadding">
+            <a class="btn-add-wishlist" title="Add to Wishlist"><img src="img/add-friend.png"></a>    
+         </div>
+      </div>
+   </div>
+   <div class="col-xs-12  chatholder nopadding">
+      <div class="chatbody"  id="GroupChat">
+         <div class="col-md-12 col-sm-12 col-lg-12 chatmessagecontainer"  data-simplebar id="chatbody" ng-class="{'nocontentchat':chatData.length == 0 }">
+            <div class="chatinnerbody" ng-if="chatData.length == 0">You didn't start your chat yet!</div>
+            <div class="chatinnerbody" ng-repeat="message in chatData">
+               <img ng-if="message.user_id != user.id" ng-src="{{IMGURL}}{{message.avatar}}" class="userimg">
+               <div class="chatsender newchat" ng-class="user.id == message.user_id ? 'right':'left'">
+                  <span class="chat-msgcontent">
+                     <span ng-if="!message.isfile">{{message.message}}</span>
+                     <div class="text-center col-md-12 col-sm-12 col-lg-12" ng-if="message.isfile">
+                        <span class="chatimg" ng-if="message.isfile" background-image="{{IMGURL}}{{message.fileurl}}" ng-click="viewChatImg(message);"></span>
+                     </div>
+                  </span>
+                  <span class="chatdate">{{message.created_at | date:'dd-MMM-yy'}} </span><span class="chattime">{{message.created_at | date:'hh:mm a'}} </span><span class="chatname" ng-if="message.user_id != user.id">{{message.username}}</span>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="clear"></div>
+    <div class="col-xs-12 text-center">
+            <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 relativechat newpadding relativetop" >
+               <i class="fa fa-smile-o chatsmile" aria-hidden="true"></i>
+               <input type="text" name="chat" class="chater" placeholder="Write a reply" ng-model="chatMessage.message" my-enter="sendReplymessage()">
+               <i class="fa fa-paperclip chatattach" aria-hidden="true" ngf-select ngf-drop ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="sendattachment($files);"></i>
+               <i class="fa fa-paper-plane chatsend" aria-hidden="true" ng-click="sendReplymessage()"></i>
+            </div>
+         </div>
+   </div>
+</div>

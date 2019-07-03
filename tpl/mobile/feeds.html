@@ -1,0 +1,98 @@
+<link href="css/mobile/projectlist.css" rel="stylesheet" type="text/css" media="all"/>
+<div ng-controller="FeedCtrl" >
+   <div class="col-xs-12 serviceheader" >
+      <div class="col-xs-1 servicelefticon" ng-click="goback()"><i class="fa fa-angle-left"></i></div>
+      <div class="col-xs-7 servicename"><i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp;LIST OF FEEDS</div>
+      <div class="col-xs-4 servicename">
+      </div>
+   </div>
+   <div class="col-xs-12 newpadding">
+                        <div class="cate-name ng-scope">
+                            <a role="button" class="pull-left">{{activetab == 'myfeed' ? 'My Feeds':'Wished Feeds'}}</a>
+                            <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Filter By</a>
+                            <ul class="dropdown-menu">
+                                <li><a ng-click="setactivetab('myfeed')">My Feeds</a></li>
+                                <li><a ng-click="setactivetab('wishedfeed')">Wished Feeds</a></li>
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+   <div class="col-xs-12 newpadding ">
+      <div class=""  ng-if="activetab == 'myfeed'">
+         <div class="col-xs-12  nopadding  boot_list text-center" ng-if="myfeeds.total == 0">
+            <span class="user-subhead font-size18">Currently no Feeds</span>
+         </div>
+         <div class="col-xs-12  border-with-shade  boot_list" dir-paginate="(key,data) in myfeeds.data | itemsPerPage: totalPerPage" total-items="myfeeds.total" current-page="myfeedpagination.current">
+            <div class="col-xs-8 nopadding">
+               <div class="col-xs-3 nopadding cursor">
+                  <img class="boot_img" ng-src="{{data.files[0].filetype == 1 ? IMGURL : ''}}{{data.files[0].thumbnail}}" alt="">
+               </div>
+               <div class="col-xs-9 newpadding">
+                  <a class="boot_user_link" cursor>{{data.title}}</a>
+                  <span class="user-subhead">  {{convertDate(data.created_at) | dateToISO | date:'dd MMM yyyy'}}</span>
+                  <div>
+                  </div>
+               </div>
+            </div>
+
+
+            <div class="col-xs-4 nopadding">
+               <!--<a class="boot_user_link_new">{{data.totalcost | currency}} SGD</a>
+               <span class="user-subhead">  {{convertDate(data.created_at) | dateToISO | date:'dd MMM yyyy'}}</span>-->
+            <div class="product-button">
+           
+                 <a class="btn-add-comparre" title="Share to Earn" ng-click="sharefeedtosocial(data)" ><i class="fa fa-share"></i></a>
+
+                <a class="com_section btn-add-comparre cursor" ng-click="removefeed(key,data.id)"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
+                 
+
+                <!--  <li><a class="btn-add-comparre promes-img" title="Message to" ng-click="gotofeedchat(data.id)" ><img class="ico-chat promes-img" src="img/promes.png"></a></li> -->
+            
+                 </div>
+            </div>
+
+
+          
+            <div class="col-xs-2 nopadding text-right">
+               <div></div>
+            </div>
+         </div>
+         <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
+      </div>
+       <div class=""  ng-if="activetab == 'wishedfeed'">
+         <div class="col-xs-12  nopadding  boot_list text-center" ng-if="wishedfeeds.total == 0">
+            <span class="user-subhead font-size18">Currently no Feeds</span>
+         </div>
+         <div class="col-xs-12  border-with-shade  boot_list" dir-paginate="(key,data) in wishedfeeds.data | itemsPerPage: totalPerPage" total-items="wishedfeeds.total" current-page="wishedfeedpagination.current">
+            <div class="col-xs-8 nopadding">
+               <div class="col-xs-4 nopadding cursor">
+                  <img class="boot_img" ng-src="{{data.files[0].filetype == 1 ? IMGURL : ''}}{{data.files[0].thumbnail}}" alt="">
+               </div>
+               <div class="col-xs-8 newpadding">
+                  <a class="boot_user_link" cursor>{{data.title}}</a>
+                  <span class="user-subhead">{{data.owner.username}}</span>
+                  <div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-xs-4 nopadding">
+               <!--<a class="boot_user_link_new">{{data.totalcost | currency}} SGD</a>
+               <span class="user-subhead">  {{convertDate(data.created_at) | dateToISO | date:'dd MMM yyyy'}}</span>-->
+            <div class="product-button ">
+                 <a class="btn-add-wishlist" title="Add to Wishlist" ng-click="updatefeedwish(data)"><i class="fa fa-heart wished"></i></a>
+                 <a class="btn-add-comparre" title="Share to Earn" ng-click="sharefeedtosocial(data)" ><i class="fa fa-share"></i></a>
+                 <a  class="btn-add-comparre button-chat-mobile" title="Message to" ng-click="gotofeedchat(data.id)"><img class="ico-chat" src="img/promes.png"></a>
+
+
+                <!--  <li><a class="btn-add-comparre promes-img" title="Message to" ng-click="gotofeedchat(data.id)" ><img class="ico-chat promes-img" src="img/promes.png"></a></li> -->
+             </ul>
+                 </div>
+            </div>
+            <!-- <div class="col-xs-2 nopadding text-right">
+               <div class="com_section cursor" ><a class="btn-add-comparre"><i class="fa fa-minus-circle" aria-hidden="true"></i></a></div>
+            </div> -->
+         </div>
+         <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
+      </div>
+   </div>
+</div>

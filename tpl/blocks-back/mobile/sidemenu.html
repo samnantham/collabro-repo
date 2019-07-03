@@ -1,0 +1,57 @@
+<!-- <div class="modal-header">
+    <h3 class="modal-title">Collabro</h3>
+</div> -->
+<style type="text/css">
+  .ng-aside.horizontal .modal-dialog .modal-content {
+     padding-top: 0px;
+}
+</style>
+<div class="modal-body">
+	<div class="corpcontmenu">
+       <img class="pfimg" ng-src="{{IMGURL}}{{user.avatar}}"><span data-toggle="dropdown"><span class="pfname ellipsis" style="color:#77869A;height: 19px;">{{user.username}}</span>
+       <div>
+       <!--   <span class="texthead">MY TOTAL EARNING</span> -->
+      <!--<span class="textcontent">{{user.experiencepoints | currency}}</span>-->
+      <span class="textcontent">$80,890</span>
+       </div>
+   </div>
+
+	 <div class="corpcontstatus">
+      <i class="fa fa-power-off gcolor" ng-class="{'offline-icon': !user.onlinestatus}"></i><span class='statusstext'>{{user.onlinestatus ? 'ONLINE ':'OFFLINE'}}</span>
+      <label class="switch" ng-class="{'offline': !user.onlinestatus}">
+      <input type="checkbox" ng-model="user.onlinestatus" ng-true-value="1" ng-false-value="0" ng-change="updatestatus(user.onlinestatus);">
+      <span class="slider round"></span>
+      </label>
+   </div>
+	<div class="corpcontmenu">
+      <div class="corpmenuitem" ui-sref="app.mydashboard"><span class="fa-icon"><i class="fa fa-dashboard"></i></span><span class=''> MY DASHBOARD</span></div>
+   </div>
+	   <div class="corpcontmenu">
+      <div class="corpmenuitem" ui-sref="app.wishlist"><span class="fa-icon"><i class="fa fa-list-alt"></i></span><span class=''> MY WISHLIST</span></div>
+   </div>
+   <div class="corpcontmenu">
+      <div class="corpmenuitem" ui-sref="app.projectlist"><span class="fa-icon"><i class="fa fa-list-ol"></i></span><span class=''> PROJECTS</span></div>
+   </div>
+   <div class="corpcontmenu">
+      <div class="corpmenuitem" ui-sref="app.myfriends"><span class="fa-icon"><i class="fa fa-user-plus"></i></span><span class=''> MY FRIENDS</span></div>
+   </div>
+    <div class="corpcontmenu">
+      <div class="corpmenuitem" ui-sref="app.feeds"><span class="fa-icon"><i class="fa  fa-th-list"></i></span><span class=''> FEEDS</span></div>
+   </div> 
+   <div class="corpcontmenu">
+      <div class="corpmenuitem"><span class="fa-icon"><i class="fa fa-lightbulb-o"></i></span><span class=''> HOW IT WORKS</span></div>
+   </div>
+   <div class="corpcontmenu">
+      <div class="corpmenuitem"><span class="fa-icon"><i class="fa fa-trophy"></i></span><span class=''> REWARDS & BENEFITS</span></div>
+   </div>
+   <div class="corpcontmenu">
+      <div class="corpmenuitem"><span class="fa-icon"><i class="fa fa-gear"></i></span><span class=''> SETTINGS</span></div>
+   </div>
+ <div class="corpcontmenu">
+      <div class="corpmenuitem" ng-click="logout();"><i class="fa fa-reply"></i><span class=''> LOGOUT</span></div>
+   </div>
+</div>
+<!-- <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok($event)">OK</button>
+    <button class="btn btn-warning" ng-click="cancel($event)">Cancel</button>
+</div> -->

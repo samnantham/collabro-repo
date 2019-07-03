@@ -1,0 +1,381 @@
+<div ng-controller="MainPageCtrl" class="mainpagewhole">
+   <div class="wthree-dot" ng-if="!formLoading">
+      <div class="container">
+         <div class="row" id="mainpagetop" >
+            <div class="gray_back">
+               <h2>The Platform for Entrepreneur to Collaborate and Do Business</h2>
+            </div>
+            <div class="black_back navmen">
+               <ul class="nav navbar-new">
+                  <li><a>SERVICES</a>
+                  </li>
+                  <li><a>PRODUCTS</a>
+                  </li>
+                  <li><a>RENTALS</a>
+                  </li>
+                  <li><a>EVENTS</a>
+                  </li>
+               </ul>
+            </div>
+            <div class="popover" ng-if="formData.title" data-ng-include="'tpl/blocks/desktop/productpopover.html'"></div>
+            <div class="service_container main_container">
+               <!--list 1-->
+               <div class="col-sm-12 col-md-12 col-lg-12 nopadding">
+                  <div class="col-sm-3 col-md-3 col-lg-3 catpadding">
+                     <div class="categories_c">
+                        <div class="cate-container">
+                           <div class="cate-left">
+                              <div class="cate-name-left">
+                                 <a data-toggle="dropdown" role="button" class=" noti_btn_b no_trans float-lt">Service Types</a>
+                                 <ul class="dropdown-menu">
+                                    <li ng-repeat="(key,data) in professions" ng-click="sortproduct('Service','updated_at','desc')"><a>{{data}}</a></li>
+                                 </ul>
+                              </div>
+                              <div class="cate-name cate-name-right">
+                                 <!-- <a class="no_trans float-lt">WEDDING</a> -->
+                                 <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Sort By</a>
+                                 <ul class="dropdown-menu">
+                                    <li><a ng-click="sortproduct('Service','noofviews','desc')"><i class="fa fa-star"></i> Popular</a></li>
+                                    <li><a ng-click="sortproduct('Service','created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+                                    <li><a ng-click="sortproduct('Service','price','asc')"><i class="fa fa-sort-amount-asc"></i> Price L-H</a></li>
+                                    <li><a ng-click="sortproduct('Service','price','desc')"><i class="fa fa-sort-amount-desc"></i> Price H-L</a></li>
+                                 </ul>
+                              </div>
+                              <div class="clear"></div>
+                              <div class="cate-thumb">
+                                 <a class="cate-img">
+                                    <img src="img/services/1.jpg" alt="category">
+                                    <div class="cimg_text">SERVICES</div>
+                                 </a>
+                              </div>
+                           </div>
+                           <div class="cate-right">
+                              <div class="cate-box float-lt">
+                                 <span class="cate_like">
+                                 {{products.serviceviews | shortNumber}}
+                                 <i class="fa fa-eye"></i>
+                                 </span>
+                                 <span class="cate_like">
+                                 184
+                                 <span class="cate_small">Followers</span>
+                                 </span>
+                              </div>
+                              <div class="cate-button float-rt">
+                                 <a class="btn-add-heart"><i class="fa fa-heart"></i></a>
+                                 <br>
+                                 <span class="cate_small">Love this</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-9 col-md-9 col-lg-9 product-slider nopadding ">
+                     <slick ng-if="!formLoading" init-onload="true" data="products.service" slides-to-show="4" slides-to-scroll="1" dots="false" infinite="true">
+                        <div class="products item" ng-repeat="(key,data) in products.service">
+                           <div class="product-container" ng-click="showItem(data)">
+                              <div class="product-left">
+                                 <div class="product-thumb">
+                                    <a class="product-img">
+                                       <div class="imgholder" background-image="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1"></div>
+                                       <div class="imgholder" background-image="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"></div>
+                                    </a>
+                                 </div>
+                                 <!-- <div class="product-thumb" ng-if="data.filetype==2"  style="position: relative;">
+                                    <div class="videooverlay"></div>
+                                    <a class="product-img">
+                                       <anguvideo ng-model="data.videourl" width="100%" height="465" class="m-t-sm" ng-if="data.videourl&&!data.videourl.includes('soundcloud')"></anguvideo>
+                                       <sound-cloud-player url="{{data.videourl}}" class="m-t-sm" ng-if="data.videourl&&data.videourl.includes('soundcloud')"></sound-cloud-player>
+                                    </a>
+                                    </div> -->
+                              </div>
+                              <div class="product-right">
+                                 <div class="product-name">
+                                    <a class="no_trans">{{data.title}}</a>
+                                 </div>
+                                 <div class="price-box">
+                                    <span class="per_code">$</span>
+                                    <span class="per_price">{{data.price ? data.price: 'Free'}}</span>
+                                    <span class="per_time">Per {{data.periodtype}}</span>
+                                 </div>
+                                 <div class="product-button">
+                                    <a class="btn-add-wishlist" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+                                    <a class="btn-add-comparre" title="Add to Cart"><i class="fa fa-plus"></i></a>
+                                    <a class="btn-add-comparre" title="Share to Earn"><i class="fa fa-share"></i></a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </slick>
+                  </div>
+               </div>
+               <!--list2-->
+               <div class="col-sm-12 col-md-12 col-lg-12 nopadding">
+                  <div class="col-sm-3 col-md-3 col-lg-3 catpadding">
+                     <div class="categories_c">
+                        <div class="cate-container">
+                           <div class="cate-left">
+                              <div class="cate-name-left">
+                                 <a data-toggle="dropdown" role="button" class=" noti_btn_b no_trans float-lt">Product Types</a>
+                                 <ul class="dropdown-menu">
+                                    <li ng-repeat="(key,data) in categories" ng-click="sortproduct('Shop','category','desc')"><a>{{data.categoryname}}</a></li>
+                                 </ul>
+                              </div>
+                              <div class="cate-name cate-name-right">
+                                 <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Sort By</a>
+                                 <ul class="dropdown-menu">
+                                    <li><a ng-click="sortproduct('Shop','noofviews','desc')"><i class="fa fa-star"></i> Popular</a></li>
+                                    <li><a ng-click="sortproduct('Shop','created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+                                    <li><a ng-click="sortproduct('Shop','price','asc')"><i class="fa fa-sort-amount-asc"></i> Price L-H</a></li>
+                                    <li><a ng-click="sortproduct('Shop','price','desc')"><i class="fa fa-sort-amount-desc"></i> Price H-L</a></li>
+                                 </ul>
+                              </div>
+                               <div class="clear"></div>
+                              <div class="cate-thumb">
+                                 <a class="cate-img">
+                                    <img src="img/services/2.jpg" alt="category">
+                                    <div class="cimg_text">PRODUCTS</div>
+                                 </a>
+                              </div>
+                           </div>
+                           <div class="cate-right">
+                              <div class="cate-box float-lt">
+                                 <span class="cate_like">
+                                 {{products.shopviews | shortNumber}}
+                                 <i class="fa fa-eye"></i>
+                                 </span>
+                                 <span class="cate_like">
+                                 322k
+                                 <span class="cate_small">Followers</span>
+                                 </span>
+                              </div>
+                              <div class="cate-button float-rt">
+                                 <a class="btn-add-heart"><i class="fa fa-heart"></i></a>
+                                 <br>
+                                 <span class="cate_small">Love this</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-9 col-md-9 col-lg-9 product-slider nopadding">
+                     <slick ng-if="!formLoading" init-onload="true" data="products.shop" slides-to-show="4" slides-to-scroll="1" dots="false" infinite="true">
+                        <div class="products item" ng-repeat="(key,data) in products.shop">
+                           <div class="product-container" ng-click="showItem(data)">
+                              <div class="product-left">
+                                 <div class="product-thumb">
+                                    <a class="product-img">
+                                       <div class="imgholder" background-image="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1"></div>
+                                       <div class="imgholder" background-image="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"></div>
+                                    </a>
+                                 </div>
+                                 <!-- <div class="product-thumb" ng-if="data.images[0].filetype==2"  style="position: relative;">
+                                    <div class="videooverlay"></div>
+                                    <a class="product-img">
+                                       <anguvideo ng-model="data.images[0].file" width="100%" height="465" class="m-t-sm" ng-if="data.videourl&&!data.videourl.includes('soundcloud')"></anguvideo>
+                                       <sound-cloud-player url="{{data.images[0].file}}" class="m-t-sm" ng-if="data.images[0].file&&data.images[0].file.includes('soundcloud')"></sound-cloud-player>
+                                    </a>
+                                    </div> -->
+                              </div>
+                              <div class="product-right">
+                                 <div class="product-name">
+                                    <a class="no_trans">{{data.title}}</a>
+                                 </div>
+                                 <div class="price-box">
+                                    <span class="per_code">$</span>
+                                    <span class="per_price">{{data.price ? data.price: 'Free'}}</span>
+                                 </div>
+                                 <div class="product-button">
+                                    <a class="btn-add-wishlist" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+                                    <a class="btn-add-comparre" title="Add to Cart"><i class="fa fa-plus"></i></a>
+                                    <a class="btn-add-comparre" title="Share to Earn"><i class="fa fa-share"></i></a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </slick>
+                  </div>
+               </div>
+               <!--list2-->
+               <!--list3-->
+               <div class="col-sm-12 col-md-12 col-lg-12 nopadding">
+                  <div class="col-sm-3 col-md-3 col-lg-3 catpadding">
+                     <div class="categories_c">
+                        <div class="cate-container">
+                           <div class="cate-left">
+                                  <div class="cate-name-left">
+                                 <a data-toggle="dropdown" role="button" class=" noti_btn_b no_trans float-lt">Rental Types</a>
+                                 <ul class="dropdown-menu">
+                                    <li ng-repeat="(key,data) in rentaltypes" ng-click="sortproduct('Rental','updated_at','desc')"><a>{{data}}</a></li>
+                                 </ul>
+                              </div>
+                              <div class="cate-name cate-name-right">
+                                 <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Sort By</a>
+                                 <ul class="dropdown-menu">
+                                    <li><a ng-click="sortproduct('Rental','noofviews','desc')"><i class="fa fa-star"></i> Popular</a></li>
+                                    <li><a ng-click="sortproduct('Rental','created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+                                    <li><a ng-click="sortproduct('Rental','price','asc')"><i class="fa fa-sort-amount-asc"></i> Price L-H</a></li>
+                                    <li><a ng-click="sortproduct('Rental','price','desc')"><i class="fa fa-sort-amount-desc"></i> Price H-L</a></li>
+                                 </ul>
+                              </div>
+                               <div class="clear"></div>
+                              <div class="cate-thumb">
+                                 <a class="cate-img">
+                                    <img src="img/services/4.jpg" alt="category">
+                                    <div class="cimg_text">RENTAL</div>
+                                 </a>
+                              </div>
+                           </div>
+                           <div class="cate-right">
+                              <div class="cate-box float-lt">
+                                 <span class="cate_like">
+                                 {{products.rentalviews | shortNumber}}
+                                 <i class="fa fa-eye"></i>
+                                 </span>
+                                 <span class="cate_like">
+                                 18k
+                                 <span class="cate_small">Followers</span>
+                                 </span>
+                              </div>
+                              <div class="cate-button float-rt">
+                                 <a class="btn-add-heart"><i class="fa fa-heart"></i></a>
+                                 <br>
+                                 <span class="cate_small">Love this</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-9 col-md-9 col-lg-9 product-slider nopadding">
+                     <slick ng-if="!formLoading" init-onload="true" data="products.rental" slides-to-show="4" slides-to-scroll="1" dots="false" infinite="true">
+                        <div class="products item" ng-repeat="(key,data) in products.rental">
+                           <div class="product-container" ng-click="showItem(data)">
+                              <div class="product-left">
+                                 <div class="product-thumb">
+                                    <a class="product-img">
+                                       <div class="imgholder" background-image="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1"></div>
+                                       <div class="imgholder" background-image="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"></div>
+                                    </a>
+                                 </div>
+                                 <!-- <div class="product-thumb" ng-if="data.filetype==2"  style="position: relative;">
+                                    <div class="videooverlay"></div>
+                                    <a class="product-img">
+                                       <anguvideo ng-model="data.videourl" width="100%" height="465" class="m-t-sm" ng-if="data.videourl&&!data.videourl.includes('soundcloud')"></anguvideo>
+                                       <sound-cloud-player url="{{data.videourl}}" class="m-t-sm" ng-if="data.videourl&&data.videourl.includes('soundcloud')"></sound-cloud-player>
+                                    </a>
+                                    </div> -->
+                              </div>
+                              <div class="product-right">
+                                 <div class="product-name">
+                                    <a class="no_trans">{{data.title}}</a>
+                                 </div>
+                                 <div class="price-box">
+                                    <span class="per_code">$</span>
+                                    <span class="per_price">{{data.price ? data.price: 'Free'}}</span>
+                                    <span class="per_time">Per {{data.periodtype}}</span>
+                                 </div>
+                                 <div class="product-button">
+                                    <a class="btn-add-wishlist" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+                                    <a class="btn-add-comparre" title="Add to Cart"><i class="fa fa-plus"></i></a>
+                                    <a class="btn-add-comparre" title="Share to Earn"><i class="fa fa-share"></i></a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </slick>
+                  </div>
+               </div>
+               <!--list 3-->
+               <!--list4-->
+               <div class="col-sm-12 col-md-12 col-lg-12 nopadding">
+                  <div class="col-sm-3 col-md-3 col-lg-3 catpadding">
+                     <div class="categories_c">
+                        <div class="cate-container">
+                           <div class="cate-left">
+                               <div class="cate-name-left">
+                                 <a data-toggle="dropdown" role="button" class=" noti_btn_b no_trans float-lt">Event Types</a>
+                                 <ul class="dropdown-menu">
+                                    <li ng-repeat="(key,data) in eventtypes" ng-click="sortproduct('Event','updated_at','desc')"><a>{{data}}</a></li>
+                                 </ul>
+                              </div>
+                              <div class="cate-name cate-name-right">
+                                 <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Sort By</a>
+                                 <ul class="dropdown-menu">
+                                    <li><a ng-click="sortproduct('Event','noofviews','desc')"><i class="fa fa-star"></i> Popular</a></li>
+                                    <li><a ng-click="sortproduct('Event','created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+                                    <li><a ng-click="sortproduct('Event','price','asc')"><i class="fa fa-sort-amount-asc"></i> Price L-H</a></li>
+                                    <li><a ng-click="sortproduct('Event','price','desc')"><i class="fa fa-sort-amount-desc"></i> Price H-L</a></li>
+                                 </ul>
+                              </div>
+                               <div class="clear"></div>
+                              <div class="cate-thumb">
+                                 <a class="cate-img">
+                                    <img src="img/services/3.jpg" alt="category">
+                                    <div class="cimg_text">EVENTS</div>
+                                 </a>
+                              </div>
+                           </div>
+                           <div class="cate-right">
+                              <div class="cate-box float-lt">
+                                 <span class="cate_like">
+                                 {{products.eventviews | shortNumber}}
+                                 <i class="fa fa-eye"></i>
+                                 </span>
+                                 <span class="cate_like">
+                                 92k
+                                 <span class="cate_small">Followers</span>
+                                 </span>
+                              </div>
+                              <div class="cate-button float-rt">
+                                 <a class="btn-add-heart"><i class="fa fa-heart"></i></a>
+                                 <br>
+                                 <span class="cate_small">Love this</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-9 col-md-9 col-lg-9 product-slider nopadding">
+                     <slick ng-if="!formLoading" init-onload="true" data="products.event" slides-to-show="4" slides-to-scroll="1" dots="false" infinite="true">
+                        <div class="products item" style="width:244px!important" ng-repeat="(key,data) in products.event">
+                           <div class="product-container" ng-click="showItem(data)">
+                              <div class="product-left">
+                                 <div class="product-thumb">
+                                    <a class="product-img">
+                                       <div class="imgholder" background-image="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1"></div>
+                                       <div class="imgholder" background-image="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"></div>
+                                    </a>
+                                 </div>
+                                 <!-- <div class="product-thumb" ng-if="data.filetype==2"  style="position: relative;">
+                                    <div class="videooverlay"></div>
+                                    <a class="product-img">
+                                       <anguvideo ng-model="data.videourl" width="100%" height="465" class="m-t-sm" ng-if="data.videourl&&!data.videourl.includes('soundcloud')"></anguvideo>
+                                       <sound-cloud-player url="{{data.videourl}}" class="m-t-sm" ng-if="data.videourl&&data.videourl.includes('soundcloud')"></sound-cloud-player>
+                                    </a>
+                                    </div> -->
+                              </div>
+                              <div class="product-right">
+                                 <div class="product-name">
+                                    <a class="no_trans">{{data.title}}</a>
+                                 </div>
+                                 <div class="price-box">
+                                    <span class="per_code" ng-if="data.price > 0">$</span>
+                                    <span class="per_price">{{data.price ? (data.price): 'Free'}}</span>
+                                    <span class="per_time" ng-if="data.price > 0">Per {{data.periodtype}}</span>
+                                 </div>
+                                 <div class="product-button">
+                                    <a class="btn-add-wishlist" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+                                    <a class="btn-add-comparre" title="Add to Cart"><i class="fa fa-plus"></i></a>
+                                    <a class="btn-add-comparre" title="Share to Earn"><i class="fa fa-share"></i></a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </slick>
+                  </div>
+               </div>
+               <!--list 4-->
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

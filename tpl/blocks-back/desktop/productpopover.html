@@ -1,0 +1,44 @@
+<link href="css/desktop/popover.css" rel="stylesheet" type="text/css"/>
+<slick data="formData.images" infinite="false" init-onload="true" settings="productslick" ng-if="!productLoading" class="slider-for">
+   <div class="imgcontainer" ng-repeat="(key,image) in formData.images">
+      <div class="imgcontainer" background-image="{{IMGURL}}{{image.file}}" ng-if="image.filetype == 1"></div>
+      <span ng-if="image.filetype == 2">
+         <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')"></anguvideo>
+         <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')"></sound-cloud-player>
+      </span>
+   </div>
+</slick>
+<div class="thumbslider">
+   <slick data="formData.images" infinite="false" init-onload="true" settings="productthumbslick" ng-if="!formLoading" class="slider-nav">
+      <div class="thumbholder" ng-repeat="(key,image) in formData.images" >
+         <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
+      </div>
+   </slick>
+</div>
+<div class="col-md-12 col-sm-12 col-lg-12 nopadding margin-top">
+   <div class="col-md-6 col-sm-6 col-lg-6 nopadding ">
+      <div class="titles">{{formData.title}} </div>
+      <div class="description paddingtopbottom margintop">{{formData.description | cut:true:100:''}}</div>
+      <div class="price-box col-md-7 nopadding">
+         <span class="per_price"><span ng-if="formData.price > 0">$ </span>{{formData.price ? formData.price: 'Free'}}</span>
+         <span class="per_time" ng-if="formData.price > 0 && formData.type !='Shop'">Per {{formData.periodtype}}</span>
+      </div>
+   </div>
+   <div class="col-md-6 col-sm-6 col-lg-6 nopadding">
+      <div class="col-md-6 col-sm-6 col-lg-6 nopadding border-right">
+         <div class="labe">Completed
+            Projects
+         </div>
+         <div class="contentr">0</div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-lg-6 ">
+         <div class="labe">Rank
+            Apprentice
+         </div>
+         <div class="contentr"><i class="fa fa-trophy" ng-class="{'bronze':((formData.owner.experiencepoints >= 100) && (formData.owner.experiencepoints < 200)),'silver':((formData.owner.experiencepoints >= 200) && (formData.owner.experiencepoints < 300)), 'gold':((formData.owner.experiencepoints >= 300) && (formData.owner.experiencepoints < 400)),'platinum': ((formData.owner.experiencepoints >= 400) && (formData.owner.experiencepoints < 500)),'diamond': formData.owner.experiencepoints >= 500}"></i></div>
+      </div>
+      <div class="col-md-12 col-sm-12 col-lg-12">
+         <p class="commission cursor" ng-click="logintoProduct(formData.id);">LOGIN TO VIEW</p>
+      </div>
+   </div>
+</div>

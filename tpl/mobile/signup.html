@@ -1,0 +1,37 @@
+<div class="HomeCtrl" ng-controller="HomeCtrl" id="hometop">
+    <div class="col-md-12 text-right topclass">
+        <img src="img/mobilelognew.png">
+    </div>
+    <div class="w3ls-subscribe registerForm">
+        <h4>SIGN UP</h4>
+        <form name="registerForm" novalidate ng-submit="register(registerForm)">
+            <span class="details">Username <span ng-if="registererrors.username" class="text-danger">{{registererrors.username[0]}}</span><span ng-messages="registerForm.username.$error" role="alert"><span class="text-danger" ng-message="required">Username Required</span>
+            <span
+                class="text-danger" ng-message="minlength">Atleast 4 characters long.</span>
+                </span>
+                </span><input type="text" name="username" placeholder="User Name" ng-model="registerModel.username" required>
+                <span class="details">Email Address <span ng-if="registererrors.email" class="text-danger">{{registererrors.email[0]}}</span><span ng-messages="registerForm.email.$error" role="alert"><span class="text-danger" ng-message="required">Email Required</span>
+                <span
+                    class="text-danger" ng-message="email">Not valid email.</span>
+                    </span>
+                    </span><input type="email" name="email" placeholder="Email" ng-model="registerModel.email" required>
+                    <span class="details">Password <span ng-messages="registerForm.password.$error" role="alert"><span class="text-danger" ng-message="required">Password Required</span><span class="text-danger" ng-message="minlength">Atleast 8 characters long.</span></span>
+                    </span><input type="password" name="password" placeholder="Password" ng-model="registerModel.password" required minlength="8">
+                    <span class="details">Who you are?</span>
+                    <select class="select" name="iscompany" ng-model="registerModel.iscompany" required>
+                        <option value='0'>Individual</option>
+                        <option value='1'>Company</option>
+                     </select>
+                    <button id="sign-up" class="btn sign-in" type="submit" button-spinner="registerloading" spinning-icon="fa fa-circle-o-notch fa-spin" ng-disabled="loading">PROCEED</button>
+        </form>
+        <p id="account">Create an account to buy and sell in our community! <br>If you already have an account <a ui-sref="app.mobilemain">Login in here</a></p>
+    </div>
+    <div class="col-md-12 footercont text-center"> By joining, you agree to Collabro’s <span class="terms" ng-click="showAModal()">Terms of Service</span></div>
+</div>
+
+<style type="text/css">
+    body{
+        background: url(img/backgrounds/background1.jpg)!important;
+        background: #fff !important;
+    }
+</style>

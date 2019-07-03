@@ -1,0 +1,32 @@
+.serviceheader{
+    margin-top: 0px !important;
+}
+
+.projectholder .followers{
+    padding: 10px;
+    margin: 0 !important;
+}
+
+.followtitle{
+    min-height: 35px;
+    margin-bottom: 15px !important;
+}
+
+.intrestarea{
+    padding: 10px 0 !important;
+}
+
+.skillset{
+    padding: 0 10px !important;
+    margin-top: 0px !important;
+    margin-bottom: 15px !important;
+}
+
+.actions i{
+    margin-left: 0px !important;
+    padding: 0 5px;
+}
+
+.product-button {   
+    float: right;
+}

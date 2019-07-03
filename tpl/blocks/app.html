@@ -1,0 +1,14 @@
+<!-- Header -->
+<div data-ng-include="'tpl/blocks/desktop/header.html'" id="pageheader" class="app-header" ng-if="currentdevice == 'desktop'"></div>
+<div data-ng-include="'tpl/blocks/mobile/header.html'" id="pageheader" class="app-header" ng-if="currentdevice == 'mobile'"></div>
+<!-- / Header -->
+<!-- content -->
+<div class="app-content">
+   <div class="app-content-body" ui-view></div>
+</div>
+<!-- /content -->
+<!-- footer -->
+<div data-ng-include="'tpl/blocks/desktop/footer.html'" id="pagefooter" class="app-footer navbar"  ng-if="currentdevice == 'desktop'"></div>
+<div class="footerabove" ng-if="currentdevice == 'mobile'">&nbsp;</div>
+<div data-ng-include="'tpl/blocks/mobile/footer.html'" id="pagefooter" class="app-footer"  ng-if="currentdevice == 'mobile'"></div>
+<!-- / footer -->

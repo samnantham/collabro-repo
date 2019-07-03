@@ -1,0 +1,229 @@
+<div class="clear"></div>
+<div class="bluebordercontainer" ng-if="currentdevice == 'mobile'"></div>
+<div class="letterdetailscontainer" ng-if="(ResponseData.showdetails || ResponseData.status == 1)&&!ResponseData.isreject">
+    <div class="leftimage">
+        <div class="col-lg-12 col-md-12  dottedborder" ng-if="ResponseData.status == 0 && !ResponseData.iscounter && !ResponseData.isreject && (user.id != ResponseData.commisionitem.userid)">
+            NOTE: The is a <a>Tripartite Standard Agreement</a> form to protect both parties against any issues in the future. Read for more info<a> here</a>.
+            <br><br>
+            <div class="bottomnewtext">Read and agreed to the TSA Protection Scheme</div>
+            <div class="pretty p-image p-plain floatleft ticker mobile-no-margin-right">
+                <input type="checkbox" name="isaccept" ng-true-value="1" ng-false-value="0" ng-model="ResponseData.isaccept" class="ng-pristine ng-untouched ng-valid" tabindex="0" aria-checked="false" aria-invalid="false">
+                <div class="state">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    <label>&nbsp;&nbsp;</label>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 nopadding" ng-class="{'margintop10':user.id != ResponseData.commisionitem.userid}">
+            <slick data="ResponseData.commisionitem.productdetails.images" infinite="false" init-onload="true" settings="productslick" ng-if="!formLoading" class="slider-for">
+                <div class="itemslider" ng-repeat="(key,image) in ResponseData.commisionitem.productdetails.images">
+                    <div class="preview-img" background-image="{{IMGURL}}{{image.file}}" ng-if="image.filetype == 1"></div>
+                    <span ng-if="image.filetype == 2">
+                  <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')"></anguvideo>
+                  <sound-cloud-player url="{{image.file}}" ng-if="image.file&&image.file.includes('soundcloud')"></sound-cloud-player>
+               </span>
+                </div>
+            </slick>
+        </div>
+        <div class="col-lg-12 col-md-12 nopadding">
+            <div class="thumbslider">
+                <slick data="ResponseData.commisionitem.productdetails.images" infinite="false" init-onload="true" settings="mobilethumbslick" ng-if="!formLoading" class="slider-nav">
+                    <div class="thumbholder" ng-repeat="(key,image) in ResponseData.commisionitem.productdetails.images">
+                        <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
+                    </div>
+                </slick>
+            </div>
+        </div>
+    </div>
+    <div class="rightimage">
+        <div class="infodiv">
+            <!-- info start -->
+            <div class="common-itmes">
+                <div class="col-lg-12 col-md-12 nopadding ">
+                    <div class=" detailstitle text-bold">{{ResponseData.commisionitem.productdetails.title}}</div>
+                </div>
+                <div class="col-lg-12 col-md-12 nopadding margintop10">
+                    <div class="details detailsdescription">{{ResponseData.commisionitem.productdetails.description}}
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12  no-padding margintop10" ng-if="(!ResponseData.iscounter) && (ResponseData.commisionitem.productdetails.type == 'Service' || ResponseData.commisionitem.productdetails.type == 'Shop')">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 mobile-no-padding-left no-padding-left " ng-if="ResponseData.commisionitem.productdetails.type == 'Service'">
+                        <div class="pjs">
+                            <div class="label-text marginbottom5">Profession</div>
+                            <div class="input-append date form_datetime relative">
+                                <div class="datediv pjsbutton">
+                                    <span class="add-onnew"><i class="fa fa-user"></i> {{ResponseData.commisionitem.productdetails.profession}}</span>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 mobile-no-padding-right no-padding-left " ng-if="ResponseData.commisionitem.productdetails.type == 'Service'">
+                        <div class="pjs">
+                            <div class="label-text marginbottom5">Location</div>
+                            <div class="input-append date form_datetime relative">
+                                <div class="datediv pjsbutton">
+                                    <span class="add-onnew"><i class="fa fa-map-marker "></i> {{ResponseData.commisionitem.productdetails.location}}</span>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 mobile-no-padding-left no-padding-left " ng-if="ResponseData.commisionitem.productdetails.type == 'Shop'">
+                        <div class="pjs">
+                            <div class="label-text marginbottom5">Product Category</div>
+                            <div class="input-append date form_datetime relative">
+                                <div class="datediv pjsbutton">
+                                    <span class="add-onnew"><i class="fa fa-suitcase "></i> {{ResponseData.commisionitem.productdetails.productcategory.categoryname}}</span>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-12 col-md-12 nopadding">
+               <div class="details detailslist" ng-if="!ResponseData.iscounter">
+                  <ul>
+                     <li ng-repeat="(key,feature) in ResponseData.commisionitem.productdetails.features" ng-if="feature.feature"><i class="fa fa-check-circle"></i> {{feature.feature}}</li>
+                  </ul>
+               </div>
+               <div class="listcontainer" ng-if="ResponseData.iscounter">
+                  <ul class="itemholder" style="height: 68px;overflow-y: auto;">
+                     <li class="checlistfont" ng-repeat="(no,feature) in ResponseData.commisionitem.productdetails.features" ng-if="feature.feature"><i class="green fa fa-check-circle"></i> {{feature.feature}} <i class="pink fa fa-minus-circle cursor" ng-click="removeresponseFeature(no)"></i></li>
+                  </ul>
+                  <div class="buttonholder">
+                     <input style="width: 84%;" type="text" name="feature" placeholder="Speacialization of your service" ng-model="ResponseData.featuretext" my-enter="addresponseFeature()" maxlength="35"><button type="button" ng-click="addresponseFeature()"> Add </button>
+                  </div>
+               </div>
+            </div> -->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding margintop10 " ng-class="{'mt-popup':ResponseData.iscounter}" ng-if="(!ResponseData.iscounter) && (ResponseData.commisionitem.productdetails.type == 'Event' || ResponseData.commisionitem.productdetails.type == 'Rental')">
+
+
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 no-padding-left mobile-no-padding-left margintop10" ng-if="(ResponseData.commisionitem.productdetails.startdate)&&(ResponseData.commisionitem.productdetails.startdate)">
+                        <div class="label-text marginbottom5">Start Date <span class="text-danger" ng-if="startdateerror"> (Required)</span></div>
+                        <div class="input-append date form_datetime relative">
+                            <div class="datediv pjsbutton">
+                                <span class="add-onnew"><i class="fa fa-calendar"></i> {{ResponseData.commisionitem.productdetails.startdate | date:"dd-MM-yyyy"}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 no-padding-right mobile-no-padding-right margintop10" ng-if="(ResponseData.commisionitem.productdetails.enddate)&&(ResponseData.commisionitem.productdetails.enddate)">
+                        <div class="label-text marginbottom5">End Date <span class="text-danger" ng-if="startdateerror"> (Required)</span></div>
+                        <div class="input-append date form_datetime relative">
+                            <div class="datediv pjsbutton">
+                                <span class="add-onnew"><i class="fa fa-calendar"></i> {{ResponseData.commisionitem.productdetails.enddate | date:"dd-MM-yyyy"}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 no-padding-left mobile-no-padding-right margintop10" ng-if="(ResponseData.commisionitem.productdetails.startdate)&&(ResponseData.commisionitem.productdetails.startdate)&&(!ResponseData.commisionitem.productdetails.enddate)&&(!ResponseData.commisionitem.productdetails.enddate)">
+                        <div class="label-text marginbottom5">End Date</div>
+                        <div class="input-append date relative form_datetime">
+                            <div class="datediv pjsbutton">
+                                <span class="add-onnew"><i class="fa fa-calendar"></i> 
+                                    Not Mention</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 no-padding-right mobile-no-padding-left margintop10" ng-if="ResponseData.commisionitem.productdetails.starttime">
+                        <div class="label-text marginbottom5">Start Time <span class="text-danger" ng-if="startdateerror"> (Required)</span></div>
+                        <div class="input-append date form_datetime relative">
+                            <div class="datediv pjsbutton1">
+                                <span class="add-onnew"><i class="fa fa-clock-o"></i> {{ResponseData.commisionitem.productdetails.starttime | date:"HH:MM"}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 no-padding-right mobile-no-padding-right margintop10" ng-if="ResponseData.commisionitem.productdetails.endtime">
+                        <div class="label-text marginbottom5">End Time <span class="text-danger" ng-if="startdateerror"> (Required)</span></div>
+                        <div class="input-append date form_datetime relative">
+                            <div class="datediv pjsbutton1">
+                                <span class="add-onnew"><i class="fa fa-clock-o"></i> {{ResponseData.commisionitem.productdetails.endtime | date:"HH:MM"}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding margintop10" ng-if="ResponseData.iscounter">
+                    <div class="event-items">
+                        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-6 no-padding-left mobile-no-padding-left " ng-if="(ResponseData.commisionitem.productdetails.type == 'Rentals' || ResponseData.commisionitem.productdetails.type == 'Events')">
+                            <div class="label-text marginbottom5">Start Date <span class="text-danger" ng-if="startdateerror"></span></div>
+                            <div class='add-on col-lg-12 nopadding date datepicker p_relative'>
+                                <div class="input-group-btn">
+                                    <button class="collabro_btn btn-default">
+                                 <i class="fa fa-calendar"></i>
+                                 </button>
+                                </div>
+                                <input type="text" date-picker size="16" ng-model="ResponseData.commisionitem.productdetails.productstartdate" placeholder="Start Date" name="startdate" ng-required="!ResponseData.commisionitem.productdetails.hasstartdate" readonly/>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-6 no-padding-left mobile-no-padding-left " ng-if="(ResponseData.commisionitem.productdetails.type == 'Rentals' || ResponseData.commisionitem.productdetails.type == 'Events')">
+                            <div class="label-text marginbottom5">End Date <span class="text-danger" ng-if="enddateerror"> (Required)</span></div>
+                            <div class='add-on col-lg-12 nopadding date datepicker p_relative'>
+                                <div class="input-group-btn">
+                                    <button class="collabro_btn btn-default">
+                                 <i class="fa fa-calendar"></i>
+                                 </button>
+                                </div>
+                                <input type="text" date-picker placeholder="End Date" name="enddate" required readonly ng-model='ResponseData.commisionitem.productdetails.productenddate' class="date-pick1" />
+                            </div>
+
+                        </div>
+                        <!-- <div class="location-price" style="float: left;" >
+                        <div style="float: left;margin-right: 20px;">
+                           <div>Location</div>
+                           <select style="width: 150px;" class="form-control" name="location" ng-model="ResponseData.commisionitem.productdetails.location" ng-options="location as location for location in locations">
+                           </select>
+                        </div>
+                        </div> -->
+                        <div class="col-md-4 col-sm-4 col-lg-4 col-xs-6 no-padding-left mobile-no-padding-left ">
+
+                            <div class="label-text marginbottom5">Price</div>
+
+                            <div class="rate_holder margintop5">
+                                <div class="rate_currency">$</div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding-left mobile-no-padding-left "> <input type="tex" class="collabro-text-box no-margin percost" placeholder="0.00" name="price" ng-model="ResponseData.commisionitem.productdetails.price" required class="percost price-decor" min="1" max="100000" limit-to-max
+                                        step="0.01" valid-number precision="2"></div>
+                                <div class="rate_price display col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding mobile-no-padding-right" ng-if="ResponseData.commisionitem.productdetails.type!='Shop'">
+                                    <ui-select name="periodtype" ng-model="ResponseData.commisionitem.productdetails.periodtype" theme="bootstrap" search-enabled="false" onkeypress="return false;" onfocus="blur();">
+                                        <ui-select-match allow-clear="true" class="selected-item float-lt">
+                                            <p>
+                                                <!-- <i class="fa fa-circle-o"></i>  -->{{ResponseData.commisionitem.productdetails.periodtype ? ResponseData.commisionitem.productdetails.periodtype : 'Select Period Type'}}
+                                            </p>
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="periodtype in periodtypes">
+                                            <span ng-bind-html="periodtype | highlight: $select.search"></span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding margintop10" ng-if="!ResponseData.iscounter">
+                    <div class="products nobox">
+                        <!-- <div>Budget</div> -->
+                        <div class="label-text marginbottom5">Rate</div>
+                        <div class="price-box1 ">
+
+                            <span class="per_price"> <span  ng-if="ResponseData.commisionitem.productdetails.price > 0">$</span>{{ResponseData.commisionitem.productdetails.price ? ResponseData.commisionitem.productdetails.price: 'Free'}}</span>
+                            <span class="per_time" ng-if="ResponseData.commisionitem.productdetails.price > 0 && ResponseData.commisionitem.productdetails.type!='Shop'">Per {{ResponseData.commisionitem.productdetails.periodtype}}</span>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<div class="bluebordercontainer" ng-if="currentdevice == 'mobile'"></div>

@@ -1,0 +1,174 @@
+<link href="css/mobile/addproject.css" rel="stylesheet" type="text/css" media="all"/>
+<div class="col-xs-12 newpadding"  ng-controller="ProductModalCtrl">
+   <form class="form-horizontal" name="addForm" novalidate ng-submit="createProject(addForm);">
+      <div class="titlecontainer add-proj">
+         <div class="leftercontainer">
+            <div class="colatitle">COLLABORATION PROJECT</div>
+            <label>Types of Service </label>
+            <ui-select ng-model="formData.type" theme="bootstrap" ng-change="resetProductItems()">
+               <ui-select-match allow-clear="true" class="selected-item float-lt">
+                  <p><i class="fa fa-circle-o"></i> {{formData.type ? formData.type : 'Select Category Post'}}</p>
+               </ui-select-match>
+               <ui-select-choices repeat="type in projecttypes | filter: $select.search track by $index">
+                  <img ng-src="{{IMG_URL}}{{type}}">
+                  <span ng-bind-html="type | highlight: $select.search"></span>
+               </ui-select-choices>
+            </ui-select>
+            <!-- <span class="text-danger cat-error float-lt" ng-if="!formData.type"> (Please Choose)</span> -->
+         </div>
+      </div>
+      <div class="clear"></div>
+      <div >
+         <div class="leftimage add-proj-left">
+            <div class="conta">
+               <div class="note-left">
+                  NOTE: The is a <a href="#">Tripartite Standard Agreement </a>form to protect both parties against any issues in the future. Read for more info <a href="#">here</a>. 
+                  <div class="bottomtext mt-10">Read and agreed to the TSA Protection Scheme</div>
+                  <div class="pretty p-image p-plain floatleft" style="width: 18px; float: left;margin-top: 10px;">
+                     <input type="checkbox" name="isaccept" ng-true-value="1" ng-false-value="0" ng-model="formData.isaccept" class="ng-pristine ng-untouched ng-valid" tabindex="0" aria-checked="false" aria-invalid="false">
+                     <div class="state">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        <label>&nbsp;&nbsp;</label>
+                     </div>
+                  </div>
+               </div>
+               <div>Add Images <span class="text-danger" ng-if="imageerror"> {{imageerrormsg}}</span></div>
+               <div class="preview-img" ng-if="viewingThumb.file" background-image="{{viewingThumb.isfile ? '' : IMGURL}}{{viewingThumb.isfile ? viewingThumb.base64 : viewingThumb.file}}">
+                  <anguvideo ng-model="viewingThumb.file" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && !viewingThumb.file.includes('soundcloud')"></anguvideo>
+                  <sound-cloud-player url="{{viewingThumb.file}}" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && viewingThumb.file.includes('soundcloud')"></sound-cloud-player>
+               </div>
+               <div ng-if="!viewingThumb.file" class="uploadcontainer show" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj"
+                  ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-disabled="!formData.type">
+                  <div class="uploadinnercontainer">
+                     <ul>
+                        <li class="borderright"><img src="img/u1.png"></li>
+                        <li class="borderright"><img src="img/u2.png"></li>
+                        <li><img src="img/u3.png"></li>
+                     </ul>
+                     <div class="clear"></div>
+                     <div class="uploadertext">Add images, video from the web or take photos to upload to your page
+                     </div>
+                  </div>
+               </div>
+               <input name="productfile" type="hidden" ng-model="formData.productfile" ng-required="formData.images.length == 0 && !formData.videourl">
+               <div><i class="fa fa-info-circle" aria-hidden="true"></i><span style="margin-left: 10px;">Up to 6 representative Image and video 640 x 360.</span> </div>
+            </div>
+            <div class="conta mt-10">
+               <label>Embed Video </label>
+               <div >
+                  <input type="text" name="videourl" ng-model="formData.embedvideo" placeholder="Youtube / Vimeo / Soundcloud" ng-required="formData.embedvideo" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/" ng-disabled="!formData.type||formData.images.length > 5" style="padding: 8px 6px;">
+                  <button type="button" ng-click="uploadvideo();" ng-disabled="!formData.embedvideo||!formData.type||formData.images.length > 5" style="padding: 8px 6px;"> Add </button>
+               </div>
+            </div>
+            <hr/>
+            <div class="conta">
+               <span class="imager" ng-class="{'activeborder' : key == formData.thumbimage}" ng-repeat="(key,data) in formData.images" ng-click="chooseItem(key);" popover-template="'thumbnail-popover.html'" data-toggle="popover" popover-trigger="focus" ng-if="formData.images.length > 0"
+                  popover-is-open="ismodalPopover && (key == selectedKey)">
+                  <div ng-if="data.filetype == 1 && data.isfile" background-image="{{data.base64}}"></div>
+                  <div ng-if="data.filetype == 1 && !data.isfile" background-image="{{IMGURL}}{{data.file}}"></div>
+                  <div ng-if="data.filetype == 2" background-image="{{data.thumbnail}}"></div>
+               </span>
+               <span class="imager_add" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6"
+                  ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="formData.images.length < 6" ng-disabled="!formData.type"><i class="fa fa-plus" aria-hidden="true"></i></span>
+               <div class="clear"></div>
+               <div class="mt-10"  ng-if="formData.images.length < 6" ><span style="color:#01B221;"><i class="fa fa-info-circle" aria-hidden="true"></i><span style="margin-left: 10px;">Select the item you want as featured from the added list</span> </span>
+               </div>
+            </div>
+         </div>
+         <div class="rightimage" ng-if="formData.type">
+            <ul class="cursor tab-con">
+               <li ng-class="{'borderact':activediv == 'info'}"><button type="button" class="toptabbutton" ng-click="changeactiveDiv('info');" ng-disabled="!formData.type">INFO</button></li>
+               <li ng-class="{'borderact':activediv == 'members'}"><button type="button" class="toptabbutton" ng-click="changeactiveDiv('members');" ng-disabled="!formData.type">MEMBERS</button></li>
+            </ul>
+            <div class="infodiv" ng-show="activediv =='info'">
+               <!-- info start -->
+               <div class="common-itmes">
+                  <div class="conta ">
+                     Type of Service / Title <span class="text-danger" ng-if="titleerror"> (Enter Service Title)</span>
+                     <input type="text" name="title" placeholder="e.g. Image of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required  maxlength="100" style="padding: 8px 6px;">
+                     <!-- <div class="pinklimit">{{formData.title.length ? formData.title.length : 0 }} / 100 Char</div> -->
+                  </div>
+                  <div class="conta ">
+                     Service Description <span class="text-danger" ng-if="descriptionerror"> (Enter Service Description)</span>
+                     <textarea row="10" name="description" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." style="height: 170px;" ng-model="formData.description" required ng-disabled="!formData.type" maxlength="1000"></textarea>
+                  </div>
+                  <!--   <div class="conta marginer">
+                     <input name="features" type="hidden"  ng-model="formData.featurelength" ng-required="formData.features.length == 0">
+                     Features / Offers / Specialisations <span class="text-danger" ng-if="featureerror"> (Add some project features)</span>
+                     <div class="listcontainer">
+                     <ul class="itemholder" style="height: 63px;overflow-y: auto;">
+                         <li class="checlistfont" ng-repeat="(no,feature) in formData.features" ng-if="feature.feature"><i class="green fa fa-check-circle"></i> {{feature.feature}} <i class="pink fa fa-minus-circle cursor" ng-click="removeFeature(no)"></i></li>
+                     </ul>
+                     <div class="buttonholder">
+                         <input style="width: 88%;" type="text" name="feature" placeholder="Speacialization of your service" ng-model="formData.featuretext" my-enter="addFeature()" maxlength="35" ng-disabled="!formData.type"><button type="button" ng-click="addFeature(feature)" ng-disabled="!formData.type"> Add </button>
+                     </div>
+                     </div>
+                     </div> -->
+               </div>
+               <!-- Service Info Start-->
+               <div class="service-items mt-10" >
+                  <div style="float: left; width: 48%;">
+                     <div>Location</div>
+                     <select style="width: 50%;padding: 6px;" class="form-control" name="location" ng-model="formData.location" ng-options="location as location for location in locations" required>
+                     </select>
+                  </div>
+                  <div style="float: right; width: 48%;">
+                     <div>Deadline <span class="text-danger" ng-if="deadlineerror"> (Required)</span></div>
+                     <div class="input-append date form_datetime" style="position: relative;">
+                        <input type="text"  size="16" date-picker placeholder="Deadline" name="deadline" required readonly ng-model='formData.projectdeadline' style="padding: 8px 6px 8px 20px;" >
+                        <span class="add-on" style="position: absolute;top:13px;left:5px"><i class="fa fa-calendar"></i></span>
+                     </div>
+                     <div class="clear"></div>
+                  </div>
+                  <!-- <div style="float: left;">
+                     <div style="position: relative;top: 14px;">
+                     Negotiate
+                     <div class="checktext">
+                         <div class="pretty p-image p-plain">
+                             <input <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="formData.isnegotiate"/>
+                             <div class="state">
+                                 <i class="fa fa-check" aria-hidden="true"></i>
+                                 <label class="yesorno">No</label>
+                             </div>
+                         </div>
+                     </div>
+                     </div>
+                     </div> -->
+               </div>
+            </div>
+            <div class="addressdiv" ng-show="activediv =='members' ">
+               <div class="conta ">
+                  Choose from Friendlist 
+                  <input type="text" name="friend" placeholder="Search Friends" ng-model="formData.friend" ng-change="complete(formData.friend)" class="form-control" />
+                  <ul class="list-group" ng-if="formData.friend.length > 0">
+                     <li class="list-group-item" ng-repeat="(key,friend) in friends" ng-click="addprojectfriend(key,friend)">{{friend.username}}</li>
+                  </ul>
+               </div>
+               <div class="conta mt-10">
+                  Added Project Members <span class="text-danger" ng-if="membererror"> (Please add project members)</span>
+                  <div class="friendslistholder marginer">
+                     <input name="members" type="hidden"  ng-model="formData.memberlength" ng-required="formData.projectmembers.length == 0">
+                     <div class="mt-10" ng-if="formData.projectmembers.length == 0"> Currently No Members added.</div>
+                     <div class="friendholder col-xs-4 nopadding" ng-repeat="(key,member) in formData.projectmembers">
+                        <i class=" fa fa-minus-circle cursor float-rt" ng-click="removeprojectfriend(key,member)"></i>
+                        <div>
+                           <img style="" class="friendimg" ng-src="{{IMGURL}}{{member.avatar}}">
+                        </div>
+                        <div class="amountallocated">{{member.username}}</div>
+                        <div class="amountallocated">Amount Allocated <span class="text-danger" ng-if="!member.price"> (Required)</span></div>
+                        <div class="amou"><span class="currencys">$</span><input type="text" class="amountholder" name="amount" ng-model="member.price" required valid-number></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+         <!--  <button type="button" class="btn btn-default cancel" ng-click="closeModal();">Cancel</button> -->
+         <div class="conta" style="margin-bottom: 8px;">
+            <button type="submit" class="btn btn-primary publish" ng-if="!isedit" button-spinner="loading" ng-disabled="loading||!formData.type">Proceed</button>
+            <button type="button" class="btn btn-danger m-cancel" ng-click="goback()">Cancel</button>
+            <button type="submit" class="btn btn-primary" ng-if="isedit" button-spinner="loading" ng-disabled="loading">Update</button>
+         </div>
+      </div>
+   </form>
+</div>

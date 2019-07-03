@@ -1,0 +1,50 @@
+<div ng-controller="NotificationCtrl" >
+   <div class="col-xs-12 serviceheader">
+      <div class="col-xs-1 servicelefticon text-center" ng-click="goback()"><i class="fa fa-angle-left"></i></div>
+      <div class="col-xs-9 servicename">NOTIFICATION</div>
+      <div class="col-xs-2 servicerighticon"></div>
+   </div>
+   <div class="col-xs-12 newpadding"  >
+      <div class="notificationlist" ng-if="notifications.length == 0" >
+         You don't have any notifications at this time
+      </div>
+      <div ng-class="{'mainunreaded':!data.status,'mainisreaded':data.status,'isaccordion':data.messages.length > 1, 'singlemessage':data.messages.length == 1}" ng-repeat="(key,data) in notifications" infinite-scroll="loadMoreRecords()" infinite-scroll-distance="0" infinite-scroll-disabled="((formLoading || notifications.length > 0) && (totalData == notifications.length))" infinite-scroll-use-document-bottom="true" class="notificationitem">
+         <div ng-class="{'isaccordion':data.messages.length > 1, 'singlemessage':data.messages.length == 1}">
+            <div class="msg-data" ng-class="{'notificationlist':data.messages.length == 1,'fromseller':data.notificationclass==1,'frombuyer':data.notificationclass==2,'iscollaborate':data.notificationclass==3,'rejected':data.notificationclass==4,'negotiated':data.notificationclass==5}">
+               <accordion close-others="oneAtATime" ng-if="data.messages.length > 1">
+                  <accordion-group is-open="data.isopen">
+                     <accordion-heading>
+                       <div class="col-xs-1 nopadding"> <i class="fa fa-check-circle"></i></div>
+                       <div class="col-xs-9 nopadding"> <span class="notificationtext">{{data.messages[0].message}} </span> </div>
+                       <div class="col-xs-2 nopadding">
+                        <span class="pull-right">
+                           <p  class="notificationtext pdesign">({{data.messages.length}})</p>
+                           <i class="pull-right fa fa-caret-down color-999" ng-class="{'fa-caret-up': data.isopen, 'fa-caret-down': !data.isopen}"></i>
+                        </span>
+                     </div>
+                     <div class="clear"></div>
+                     </accordion-heading>
+                     <div class="innernotifications" ng-repeat="(no,notification) in data.messages" ng-class="{'innerunreaded':!notification.status,'isreaded':notification.status}">
+                        <div nng-class="{'fromseller':data.notificationclass==1,'frombuyer':data.notificationclass==2,'iscollaborate':data.notificationclass==3,'rejected':data.notificationclass==4,'negotiated':data.notificationclass==5}"  class="notificationlist">
+                           <div class="col-xs-1 nopadding" ng-click="readmessage(notification,data.notificationtype,'accordion')"><i class="fa fa-check-circle"></i></div><div class="col-xs-10 nopadding"> <span class="notificationtext" >{{notification.message}} </span></div>
+                           <div class="col-xs-1 nopadding"><span><i class="fa fa-minus-circle float-rt color-999" ng-click="deletenotification(key,notification)"></i></span></div>
+                           <div class="clear"></div>
+                        </div>
+                     </div>
+                  </accordion-group>
+               </accordion>
+               <div class="flexalign" ng-if="data.messages.length == 1">
+                  <div class="col-xs-1 nopadding">
+                     <i class="fa fa-check-circle"></i>
+                  </div>
+                  <div class="col-xs-10 nopadding" ng-click="readmessage(data.messages[0],data.notificationtype,'single',key)">
+                   <span class="notificationtext" >{{data.messages[0].message}} </span>
+                  </div>
+                  <div class="col-xs-1 nopadding"><span><i class="fa fa-minus-circle float-rt color-999" ng-click="deletenotification(key,data.messages[0])"></i></span></div>
+                  <div class="clear"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

@@ -1,0 +1,8 @@
+RewriteEngine on
+RewriteRule ^index.htm/(.*)$ /$1 [L,R=301,QSA]
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+
+RewriteRule ^(.*) index.html [NC,L]

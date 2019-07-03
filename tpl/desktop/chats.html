@@ -1,0 +1,62 @@
+<div ng-controller="UserChatsCtrl">
+    <div class="wthree-dot" id="notificationtop" ng-if="!formLoading">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 col-sm-2 col-lg-2 nopadding leftSidebar" data-ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+                <div class="col-md-10 col-sm-10 col-lg-10 nopadding min800">
+                    <div class="col-md-12 col-sm-12 col-lg-12 mypadding">
+                        <div class="wishlistheader ">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <span class="wishlisttitle float-lt"><i class="fa fa-bell-o" aria-hidden="true"></i> &nbsp;LIST OF USER CHATS</span>
+
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12 nopadding" ng-if="chatusers.length > 0">
+                            <div class="cate-name">
+                                <a class="no_trans float-lt">Showing <b>1 </b> to <b> {{chatusers.length}} </b> of {{totalData}} Results. </a>
+                                <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Sort By</a>
+                                <ul class="dropdown-menu">
+                                    <li><a ng-click="filterchats(0)">All</a></li>
+                                    <li><a ng-click="filterchats(1)">Product chat</a></li>
+                                    <li><a ng-click="filterchats(2)">Group Chat</a></li>
+                                    <li><a ng-click="filterchats(3)">Feed Chat</a></li>
+                                    <li><a ng-click="filterchats(4)">Private Chat</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-lg-12 mypadding" infinite-scroll="loadMoreRecords()" infinite-scroll-distance="0" infinite-scroll-disabled="((formLoading || chatusers.length > 0) && (totalData == chatusers.length))" infinite-scroll-use-document-bottom="true">
+                        <div class="chatlist " ng-class="{'unreadchat':!data.status}" ng-repeat="(key,data) in chatusers">
+
+                            <div class="col-md-11 col-sm-11 col-lg-11" ng-click="gotochatpage(key,data)">
+                                <div>
+                                    <div class="chatuserimage"><img ng-src="{{IMGURL}}{{data.fromuser.avatar}}"></div>
+                                    <div class="projectinfo">
+                                        <div class="chatprojecttitle"><span ng-if="data.chattype == 1">{{data.product.title}}</span> <span ng-if="data.chattype == 2">(Group Chat)</span><span ng-if="data.chattype == 3">(Feed Chat)</span><span ng-if="data.chattype == 4">(Private Chat)</span></div>
+                                        <div class="chatusername">{{data.fromid == user.id ? 'Me' : data.fromuser.username}}| {{ convertDate(data.created_at) | dateToISO | date:'dd-MMM-yy hh:mm a' }}</div>
+                                        <div class="chatlastmesg">{{data.lastmessage | cut:true:150:'...'}}</div>
+                                    </div>
+                                    <div class="projectimage" ng-if="data.chattype == 1">
+                                        <img ng-src="{{IMGURL}}{{data.product.images[0].thumbnail}}" ng-if="data.product.images[0].filetype == 1">
+                                        <img ng-src="{{data.product.images[0].thumbnail}}" ng-if="data.product.images[0].filetype == 2">
+                                    </div>
+                                    <div class="projectimage" ng-if="data.chattype == 2">
+                                        <img ng-src="{{IMGURL}}{{data.product.files[0].thumbnail}}" ng-if="data.product.files[0].filetype == 1">
+                                        <img ng-src="{{data.product.files[0].thumbnail}}" ng-if="data.product.files[0].filetype == 2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1 col-sm-1 col-lg-1 text-right"><i class="fa fa-minus-circle color-999 closebuttons" ng-click="removechat(key,data)"></i></div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="notificationlist" ng-if="chatusers.length == 0">
+                            You don't have any chats at this time.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 col-lg-2 nopadding rightSidebar" data-ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>

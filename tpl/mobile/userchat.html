@@ -1,0 +1,132 @@
+<div ng-controller="PrivateChatsCtrl " class="feedchat">
+   <div class="col-xs-12 serviceheader" ng-if="isfeed == 0">
+      <div class="col-xs-1 servicelefticon" ng-click="goback()"><i class="fa fa-angle-left"></i></div>
+      <div class="col-xs-5 servicename chathead" >
+         <div class="userholder cursor"><img class="userimage" ng-src="{{IMGURL}}{{chatInfo.firstuserinfo.avatar}}"  ui-sref="app.viewuser({'id':chatInfo.firstuserinfo.id})"  ng-if="chatInfo.seconduser == user.id">
+            <img class="userimage" ng-src="{{IMGURL}}{{chatInfo.seconduserinfo.avatar}}" ui-sref="app.viewuser({'id':chatInfo.seconduserinfo.id})"  ng-if="chatInfo.firstuser == user.id">
+            <span class="userinfo" ng-if="chatInfo.seconduser == user.id" ui-sref="app.viewuser({'id':chatInfo.firstuserinfo.id})">{{chatInfo.firstuserinfo.username}}<br>
+            <span class="status"><i class="fa fa-circle margin-top8" ng-class="chatInfo.firstuserinfo.onlinestatus == 1 ? 'statusactive':'statusinactive'"></i> {{chatInfo.firstuserinfo.onlinestatus == 1 ? 'Online':'Offline'}}</span></span>
+            <span class="userinfo" ng-if="chatInfo.firstuser == user.id" ui-sref="app.viewuser({'id':chatInfo.seconduserinfo.id})">{{chatInfo.seconduserinfo.username}}<br><span class="status"><i class="fa fa-circle margin-top8" ng-class="chatInfo.seconduserinfo.onlinestatus == 1 ? 'statusactive':'statusinactive'"></i> {{chatInfo.seconduserinfo.onlinestatus == 1 ? 'Online':'Offline'}}</span></span>
+         </div>
+         
+      </div>
+      <div class="col-xs-6 servicerighticon">
+         <div class="product-button  product-newbutton col-xs-12 text-right nopadding">
+            <a class="btn-add-wishlist" title="User Products" ng-click="gotouserProducts();"><img src="img/power.png" class="positionrelat8"></a>
+            <a class="btn-add-wishlist" ng-click="changefollowstatus('private',chatInfo.isfollow);" ng-if="isfeed == 0"><i class="fa statusfollow font-size22" aria-hidden="true" ng-class="chatInfo.isfollow == 1 ? 'fa-user-times':'fa-user-plus'"  ></i></a>  
+            <a class="btn-add-wishlist" ng-click="changefollowstatus('feed',feedData.isfollow);" ng-if="isfeed == 1"><i class="fa statusfollow font-size22" aria-hidden="true" ng-class="feedData.isfollow == 1 ? 'fa-user-times':'fa-user-plus'"  ></i></a>      
+         </div>
+      </div>
+   </div>
+
+   <div class="col-xs-12 nopadding" ng-if="isfeed == 1">
+      <div class="chathead servicename col-xs-12 nopadding">
+         <accordion close-others="oneAtATime">
+                        <accordion-group  is-open="isOpen">
+                           <accordion-heading>
+                              <div class="col-xs-1 servicelefticon" ng-click="goback()"><i class="fa fa-angle-left margintop"></i></div>
+                              <div class="usernewholder col-md-7 col-sm-7 col-lg-7 col-xs-10 nopadding"><img class="userimage cursor" ui-sref="app.viewuser({'id':feedData.feed.owner.id})" ng-src="{{IMGURL}}{{feedData.feed.owner.avatar}}" popover-trigger="mouseenter" popover="{{feedData.feed.owner.username}}" ng-if="feedData.userid == user.id">
+                                 <img class="userimage cursor" ui-sref="app.viewuser({'id':feedData.userid})" ng-src="{{IMGURL}}{{feedData.user.avatar}}" popover-trigger="mouseenter" popover="{{feedData.user.username}}" ng-if="feedData.feed.owner.id == user.id">
+
+
+                                 <div class="userinfo" ng-if="feedData.feed.owner.id == user.id" ui-sref="app.viewuser({'id':feedData.userid})">{{feedData.user.username}}<br>
+            <span class="status"><i class="fa fa-circle margin-top8" ng-class="feedData.feed.user.onlinestatus == 1 ? 'statusactive':'statusinactive'"></i> {{feedData.feed.user.onlinestatus == 1 ? 'Online':'Offline'}}</span></div>
+             <div class="userinfo" ng-if="feedData.userid == user.id" ui-sref="app.viewuser({'id':feedData.feed.owner.id})">{{feedData.feed.owner.username}}<br>
+            <span class="status"><i class="fa fa-circle margin-top8" ng-class="feedData.feed.owner.onlinestatus == 1 ? 'statusactive':'statusinactive'"></i> {{feedData.feed.owner.onlinestatus == 1 ? 'Online':'Offline'}}</span></div>
+
+
+                                 
+                                 <span class="championship">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{feedData.feed.title}} </span>
+                                 
+                                 
+                                
+                              </div>
+                              
+                              <div class="col-md-2 col-sm-2 col-lg-1 col-xs-1 userholder nopadd ">
+                                  <span class="pull-right balancepadding margintop">
+                             <i class="pull-right fa fa-caret-down" ng-class="{'fa-caret-up': data.isopen, 'fa-caret-down': !data.isopen}"></i>
+                              </span>
+                              <!-- <div class="float-rt closeb" ng-click="goback();"><img src="img/closebutton.png"></div>
+                              -->
+                              </div>
+                              <div class="clear"></div>
+                              
+                           </accordion-heading>
+                           <div class="innernotifications">
+                              <div class="notifer_details">
+                                 <div class="col-md-12 nopadding text-left "></div>
+                                 <div class="col-md-12 nopadding">
+                                    <div class="col-md-12 nopadding descb" >{{feedData.feed.description}}</div>
+                                 </div>
+                                 <div class="col-md-12 nopadding flexdesign">
+                                    <div class="col-md-3 col-xs-5 nopadding"><i class="fa fa-calendar" ></i>{{convertDate(feedData.feed.created_at) | dateToISO | date:'dd.MM.yyyy'}}</div>
+                                    <div class="col-md-9 col-xs-7"><div class="product-button balancepadding">
+                                    <a class="btn-add-wishlist cursor" title="Add to Wishlist" ng-click="updatefeedwish()" ng-if="feedData.feed.owner.id!=user.id" tabindex="0"><i class="fa fa-heart" ng-class="{'wished': feedData.wishstatus == 1}"></i></a>
+                                    <a class="btn-add-comparre cursor" title="Share to Earn" ng-click="sharefeedtosocial(feedData.feed)" tabindex="0"><i class="fa fa-share"></i></a>
+                                 </div></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </accordion-group>
+                     </accordion>
+      </div>
+   </div>
+   <div class="col-xs-12  chatholder nopadding" ng-if="isfeed == 0">
+      <div class="chatbody">
+         <div class="col-md-12 col-sm-12 col-lg-12 chatmessagecontainer min-height380" data-simplebar id="chatbody" ng-class="{'nocontentchat':chatData.length == 0 }" >
+            <div class="col-xs-12">
+            <div class="chatinnerbody" ng-if="chatData.length == 0">You didn't start your chat yet!</div>
+            <div class="chatinnerbody" ng-repeat="message in chatData">
+               <img ng-if="message.user_id != user.id" ng-src="{{IMGURL}}{{message.avatar}}" class="userimg">
+               <div class="chatsender newchat" ng-class="user.id == message.user_id ? 'right':'left'">
+                  <span class="chat-msgcontent" ng-if="!message.isfile">{{message.message}}</span>
+                  <div class="text-center col-md-12 col-sm-12 col-lg-12" ng-if="message.isfile">
+                     <span class="chatimg" background-image="{{IMGURL}}{{message.fileurl}}" ng-click="viewChatImg(message);"></span>
+                  </div>
+                  <span class="chatdate">{{message.created_at | date:'dd-MMM-yy'}} </span>
+                  <span class="chattime">{{message.created_at | date:'hh:mm a'}} </span>
+               </div>
+            </div>
+         </div>
+      </div>
+      </div>
+      <div class="clear"></div>
+         <div class="col-xs-12 text-center">
+         <div class="col-md-12 col-sm-12 col-lg-12 relativechat relativechat newpadding relativetop">
+            <i class="fa fa-smile-o chatsmile" aria-hidden="true"></i>
+            <input type="text" name="chat" class="chater" placeholder="Write a reply" ng-model="chatMessage.message" my-enter="sendPrivateReplymessage()">
+            <i class="fa fa-paperclip chatattach" aria-hidden="true" ngf-select ngf-drop ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="senduserchatattachment($files);"></i>
+            <i class="fa fa-paper-plane chatsend" aria-hidden="true" ng-click="sendPrivateReplymessage()"></i>
+         </div>
+      </div>
+   </div>
+   <div class="col-xs-12 chatholder nopadding" ng-if="isfeed == 1">
+      <div class="chatbody">
+         <div class="col-md-12 col-sm-12 col-lg-12  chatmessagecontainer min-height380" id="chatbody" ng-class="{'nocontentchat':chatData.length == 0 }"  data-simplebar>
+            <div class="col-xs-12">
+            <div class="chatinnerbody" ng-if="chatData.length == 0">You didn't start your chat yet!</div>
+            <div class="chatinnerbody" ng-repeat="message in chatData">
+               <img ng-if="message.user_id != user.id" ng-src="{{IMGURL}}{{message.avatar}}" class="userimg"> 
+               <div class="chatsender newchat" ng-class="user.id == message.user_id ? 'right':'left'">
+                  <span ng-class="chat-msgcontent" ng-if="!message.isfile">{{message.message}}</span>
+                  <div class="text-center col-md-12 col-sm-12 col-lg-12" ng-if="message.isfile">
+                     <span class="chatimg" background-image="{{IMGURL}}{{message.fileurl}}" ng-click="viewChatImg(message);"></span>
+                  </div>
+                  <span class="chatdate">{{message.created_at | date:'dd-MMM-yy'}} </span>
+                  <span class="chattime">{{message.created_at | date:'hh:mm a'}} </span>
+               </div>
+            </div>
+         </div>
+         </div>
+      </div>
+      <div class="clear"></div>
+      <div class="col-xs-12 text-center">
+         <div class="col-md-12 col-sm-12 col-lg-12 relativechat relativechat newpadding relativetop">
+            <i class="fa fa-smile-o chatsmile" aria-hidden="true"></i>
+            <input type="text" name="chat" class="chater" placeholder="Write a reply" ng-model="chatMessage.message" my-enter="sendFeedReplymessage()">
+            <i class="fa fa-paperclip chatattach" aria-hidden="true" ngf-select ngf-drop ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="senduserchatattachment($files);"></i>
+            <i class="fa fa-paper-plane chatsend" aria-hidden="true" ng-click="sendFeedReplymessage()"></i>
+         </div>
+      </div>
+   </div>
+</div>

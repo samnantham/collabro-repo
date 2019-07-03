@@ -1,0 +1,174 @@
+<div class="cookieinfo" ng-if="showheader">We - and our partners - use cookies to deliver our services and to show you ads based on your interests. By using our website, you agree to the use of cookies as described in our Cookie Policy.<span class="rightclose" ng-click="closeheaderinfo()">X</span></div>
+<div ng-show="issignup">
+   <div class="content-main" id="SignUpBox">
+      <div class="w3ls-subscribe">
+         <h4>SIGN UP</h4>
+         <form name="registerForm" novalidate ng-submit="register(registerForm)">
+            <span class="details">Username <span ng-if="registererrors.username" class="text-danger">{{registererrors.username[0]}}</span><span ng-messages="registerForm.username.$error" role="alert"><span class="text-danger" ng-message="required">Username Required</span><span class="text-danger" ng-message="minlength">Atleast 4 characters long.</span> </span> </span><input type="text" name="username" placeholder="User Name" ng-model="registerModel.username" required minlength="4">
+            <span class="details">Email Address <span ng-if="registererrors.email" class="text-danger">{{registererrors.email[0]}}</span><span ng-messages="registerForm.email.$error" role="alert"><span class="text-danger" ng-message="required">Email Required</span><span class="text-danger" ng-message="email">Not valid email.</span> </span> </span><input type="email" name="email" placeholder="Email" ng-model="registerModel.email" required>
+            <span class="details">Password <span ng-messages="registerForm.password.$error" role="alert"><span class="text-danger" ng-message="required">Password Required</span><span class="text-danger"ng-message="minlength">Atleast 8 characters long.</span></span></span><input type="password" name="password" placeholder="Password" required ng-model="registerModel.password" minlength="8">
+            <span class="details">Who you are?</span>
+            <select class="select" name="iscompany" ng-model="registerModel.iscompany" required>
+               <option value='0'>Individual</option>
+               <option value='1'>Company</option>
+            </select>
+            <button id="sign-up" class="btn sign-in" type="submit" button-spinner="registerloading" spinning-icon="fa fa-circle-o-notch fa-spin" ng-disabled="loading||!registerForm.$valid">PROCEED</button>
+         </form>
+         <p id="account">Create an account to buy and sell in our community! <br>If you already have an account <a ng-click="showhidepopup('signin')" class="cursor">Login in here</a></p>
+      </div>
+   </div>
+</div>
+<div ng-show="issignin">
+   <div class="content-main" id="signinbox">
+      <div class="w3ls-subscribe">
+         <h4>SIGN IN</h4>
+         <form name="loginForm" novalidate ng-submit="login(loginForm)">
+            <span class="details">Email Address <span ng-if="loginerrors.message" class="text-danger">{{loginerrors.message[0]}}</span> <span ng-messages="loginForm.email.$error" role="alert"><span class="text-danger" ng-message="required">Email Required</span><span class="text-danger" ng-message="email">Not valid email.</span></span><input type="email" name="email" placeholder="Email" ng-model="userData.email" required>
+            <span class="details">Password <span ng-messages="loginForm.password.$error" role="alert"><span class="text-danger" ng-message="required">Password Required</span><span class="text-danger"ng-message="minlength">Atleast 8 characters long.</span></span></span><input type="password" name="password" placeholder="Password" required ng-model="userData.password" minlength="8">
+            <div id="remember" style=""><input type="checkbox" ng-model="userData.rememberme" name="remember_me"  ng-true-value="1" ng-false-value="0"> Remember me</div>
+            <div id="forgot"><a ng-click="showhidepopup('forgotpw')">Forgot Password?</a>
+            </div>
+            <button id="sign-in" class="btn sign-in" type="submit" button-spinner="loginloading" spinning-icon="fa fa-circle-o-notch fa-spin" ng-disabled="loading||!loginForm.$valid">SIGN IN</button>                    
+         </form>
+         <button id="facebook" class="btn sign-in" type="submit" button-spinner="facebookloading" spinning-icon="fa fa-circle-o-notch fa-spin" ng-disabled="loading" ng-click="facebooklogin();">SIGN IN WITH FACEBOOK</button>
+         <button id="google" class="btn sign-in" type="submit" button-spinner="googleloading" spinning-icon="fa fa-circle-o-notch fa-spin" ng-disabled="loading" ng-click="googleLogin();">SIGN IN WITH GOOGLE</button>
+         <button id="create" class="btn sign-in cursor" type="submit" ng-disabled="loading" ng-click="showhidepopup('signup')">CREATE ACCOUNT</button>
+         <p id="account">Create an account if you do not have an account yet</p>
+      </div>
+   </div>
+</div>
+<div ng-show="isforgotpw">
+   <div class="content-main" id="signinbox">
+      <div class="w3ls-subscribe">
+         <div class="clear">&nbsp;</div>
+         <h4 class="text-center">FORGOT PASSWORD</h4>
+         <form name="forgotForm" novalidate ng-submit="forgotpassword(forgotForm)" class="forgotform" style="    ">
+            <span class="details text-left" >Email Address <span ng-if="forgoterrors.errormsg" class="text-danger">{{forgoterrors.errormsg}}</span>
+            <span ng-if="forgoterrors.successmsg" class="text-success">{{forgoterrors.successmsg}}</span>
+            <span ng-if="forgoterrors.email" class="text-danger">{{forgoterrors.email[0]}}</span><span ng-messages="forgotForm.email.$error" role="alert"><span class="text-danger" ng-message="required">Email Required</span><span class="text-danger" ng-message="email">Not valid email.</span> </span> </span><input type="email" name="email" placeholder="Email" ng-model="forgotModel.email" required>
+            <button id="forgot-pw" class="btn sign-in" type="submit" button-spinner="forgotloading" spinning-icon="fa fa-circle-o-notch fa-spin" ng-disabled="loading||!forgotForm.$valid">PROCEED</button>
+            <button class="btn sign-in extra-btn-fpw cursor" type="submit" ng-disabled="loading" ng-click="showhidepopup('signup')">CREATE ACCOUNT</button>
+            <button class="btn sign-in extra-btn-fpw cursor" type="submit" ng-disabled="loading" ng-click="showhidepopup('signin')">GO TO SIGN IN</button>
+         </form>
+      </div>
+   </div>
+</div>
+<header id="header" ng-class="{'headernew': showheader}" ng-if="stateurl=='app.home'">
+   <toaster-container toaster-options="{'position-class': 'toast-top-center','time-out':3000, 'close-button':true}"></toaster-container>
+   <div class="container">
+      <div id="logo" class="pull-left">
+         <a ui-sref="app.home"><img src="img/home-logo.png" alt="" title=""></a>
+      </div>
+      <div class="search search-input">
+         <form novalidate name="searchform" ng-submit="gotosearch(searchData.keyword)" class="search-keyword-form">
+            <input type="text" placeholder="Search for any thing" placeholder="Search for any thing" ng-model="searchData.keyword" ng-change="searchedit()" typeahead="data as data for data in keywords | filter:$viewValue" typeahead-on-select="gotosearch(searchData.keyword)">
+            <input type="submit"  value="">
+         </form>
+      </div>
+      <nav id="nav-menu-container">
+         <ul class="nav-menu">
+            <li class="noti_btn"><a ng-click="changebg('aboutus')">About Us</a></li>
+            <li class="noti_btn"><a ng-click="changebg('features')">Features</a></li>
+            <li class="noti_btn"><a ng-click="changebg('benefits')">Benefits</a></li>
+            <li class="dropdown noti_btn"  dropdown is-open="menustatus.isopen">
+               <a ng-click="changebg('more')" class="ropdown-toggle" ng-mouseenter="menustatus.isopen = true" ng-mouseleave="menustatus.isopen = false">More <span class="caret"></span></a>
+               <ul class="dropdown-menu" ng-mouseenter="menustatus.isopen = true" ng-mouseleave="menustatus.isopen = false">
+                  <li><a ng-click="changebg('more')">Drop</a></li>
+               </ul>
+            </li>
+            <li> </li>
+         </ul>
+      </nav>
+      <div class="newauth absolute"><span class="authbtn marginr " id="Login"  ng-click="showhidepopup('signup')"
+         ng-click="showhidepopup('signin')"><a id="signup">Sign Up</a></span><span class="authbtn" id="Login"  ng-click="showhidepopup('signin')"
+         ng-click="showhidepopup('signin')"><a id="signin">Login</a></span></div>
+   </div>
+</header>
+<header id="header1" ng-if="stateurl!='app.home'">
+   <div class="container">
+      <!-- main header -->
+      <div class="row">
+         <div class="main-header">
+            <div class="row">
+               <div class="col-sm-2 col-md-2 col-lg-2">
+                  <div class="logo">
+                     <a ui-sref="app.home"  ng-if="!user.username"><img src="img/logo.png" alt="Logo"></a>
+                     <a ui-sref="app.usermain" ng-if="user.username"><img src="img/logo.png" alt="Logo"></a>
+                  </div>
+               </div>
+               <div class="col-sm-2 col-md-3 col-lg-4">
+                  <div class="advanced-search box-radius">
+                     <form class="form-inline search-keyword-form" novalidate name="searchform" ng-submit="gotosearch(searchData.keyword)">
+                        <div class="form-group search-input">
+                           <input type="text" placeholder="Search for any thing" ng-model="searchData.keyword" ng-change="searchedit()" typeahead="data as data for data in keywords | filter:$viewValue" typeahead-on-select="gotosearch(searchData.keyword)">
+                        </div>
+                        <button type="submit" class="btn-search"><i class="fa fa-search"></i></button>
+                     </form>
+                  </div>
+               </div>
+               <div class="col-sm-8 col-md-7 col-lg-6">
+                  <div class="wrap-block-cus">
+                     <div class="dropdown user-info">
+                        <div class="nologinmenu" ng-if="!user.username">
+                           <div class="col-sm-8 col-md-8 col-lg-8 nopadding">
+                           <a role="button" class="noti_btn">About Us</a>
+                           <a role="button" class="noti_btn">Features</a>
+                           <a role="button" class="noti_btn">Benifits</a>
+                           <a data-toggle="dropdown" role="button" class="my_account noti_btn">More</a>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4 nopadding mylog">
+                           <button type="submit" class="btn-head newauth" ng-click="showhidepopup('signup')">Sign Up</button>
+                           <button type="submit" class="btn-head" ng-click="showhidepopup('signin')">Login</button>
+                        </div>
+                        </div>
+                        <div ng-if="user.username" class="col-sm-9 col-md-9 col-lg-9">
+                           <a ng-click="openbroadcastModal();" class="btn btn-default btn-arrow orangebutton"><i class="fa fa-bolt"></i>BROADCAST</a> 
+                           <a ng-click="openModal();" class="btn btn-default btn-arrow postbutton">POST <i class="fa fa-plus-circle"></i></a>
+                           <a role="button" class="noti_newbtn notif_btnf" ui-sref="app.notification">
+                              <i class="fa fa-bell-o"></i>
+                              <div class="noticount" ng-if="user.notifications > 0">
+                                 {{user.notifications}} <!-- < 9 ? user.notifications : '9+'}} -->
+                              </div>
+                           </a>
+                           <a role="button" class="noti_newbtn notif_btn" ui-sref="app.chats">
+                              <img class="mesgbutton" src="img/message.png" >
+                              <div class="noticount" ng-if="user.chatmessages > 0" >
+                                 {{user.chatmessages}}<!--  > 0 ? user.chatmessages : '9+'}} -->
+                              </div>
+                           </a>
+                          <!--  <a role="button" class="noti_newbtn notif_btn"><i class="fa fa-calendar-check-o"></i></a> -->
+                        </div>
+                        <div class="pfcontent col-sm-3 col-md-3 col-lg-3" id="pfcontent"  ng-if="user.username">
+                           <div class="cate-name1">
+                              <img class="pfimg" ng-src="{{IMGURL}}{{user.avatar}}"><span data-toggle="dropdown"><span class="pfname ellipsis">{{user.username}}</span> <span class="pfdown"><i class="fa fa-sort-desc"></i></span></span>
+                              <ul class="dropdown-menu">
+                                 <li><a ng-click="logout();"><i class="fa fa-sign-out"></i> Sign Out</a>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- ./main header -->
+   </div>
+</header>
+<div class="pageloader" ng-if="formLoading">
+   <div class="loading">
+      <div class="js-loading-indicator triple"></div>
+   </div>
+</div>
+<!-- <div class="modal fade" id="ProductModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false" data-modalFade="true" ng-controller="ProductModalCtrl">
+   <div data-ng-include="'tpl/blocks/desktop/productmodal.html'"></div>
+</div>
+<div class="modal fade" id="BroadcastModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false" data-modalFade="true" ng-controller="ProductModalCtrl">
+   <div data-ng-include="'tpl/blocks/desktop/broadcastmodal.html'"></div>
+</div>
+<div class="modal fade" id="CollaborateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false" data-modalFade="true" ng-controller="ProductModalCtrl">
+   <link href="css/desktop/collaboratemodal.css" rel="stylesheet" type="text/css"/>
+   <div data-ng-include="'tpl/blocks/desktop/collaboratemodal.html'"></div>
+</div>
+<div class="popupoverlay" ng-if="((stateurl=='app.searchitems')&&(formData.title))||((stateurl=='app.viewproduct')&&(formData.title))" ng-click="closepopoverItem();" esc-key="closepopoverItem()"></div> -->

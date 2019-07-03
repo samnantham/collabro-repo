@@ -1,0 +1,14 @@
+<link href="css/otpmodal.css" rel="stylesheet" type="text/css"/>
+<link href="css/desktop/chats.css" rel="stylesheet" type="text/css"/>
+   <div class="chatlist" ng-repeat="(key,data) in chats">
+      <div class="col-md-11 col-sm-11 col-lg-11" ng-click="gotoproductchatpage(data.id)">
+         <div>
+            <div class="chatuserimage"><img ng-src="{{IMGURL}}{{data.user.avatar}}"></div>
+            <div class="projectinfo">
+               <div class="chatusername">{{data.user.username}}</div>
+               <div class="chatprojecttitle">{{data.chatdata.lastmessage}}</div>
+            </div>
+         </div>
+      </div>
+      <div class="clear"></div>
+</div>

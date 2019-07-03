@@ -1,0 +1,213 @@
+<div>
+      <link href="css/commisionmodal.css" rel="stylesheet" type="text/css"/>
+      <form class="form-horizontal" name="commisionForm" novalidate ng-submit="sendcommisionData();">
+         <div class="titlecontainer">
+            <div class="leftercontainer col-md-12 col-xs-12 nopadding">
+               <div class="col-md-11 col-xs-10 nopadding">
+               <div class="request col-md-4 col-xs-12">REQUEST FOR SERVICES</div>
+               <div class="col-md-4 padd col-xs-12"><span class="type">Types of Service</span><span class="innerinfo"><i class="fa fa-circle-o" aria-hidden="true"></i>{{commisionData.type}}</span></div>
+               <div class="padd col-md-3 text-right" ng-if="commisionData.profession"><span class="type">Category</span><span class="innerinfo">{{commisionData.profession}}</span></div>
+            </div>
+            <div class="col-md-1 col-xs-2 nopadding">
+               <div class="float-rt closeb" ng-click="closepopoverItem();"><span ><img src="img/closebutton.png"></span></div>
+            </div>
+            </div>
+         </div>
+         <div class="lettercontainer">
+            <div class="leftimage">
+               <div class="conta dottedborder marginer">
+                  NOTE: The is a <a>Tripartite Standard Agreement</a> form to protect both parties against any issues in the future. Read for more info<a> here</a>.
+                  <br><br>
+                  <div class="bottomtext">Read and agreed to the TSA Protection Scheme</div>
+                  <div class="pretty p-image p-plain floatleft commisionagree">
+                     <input type="checkbox" name="isaccept" ng-true-value="1" ng-false-value="0" ng-model="commisionData.isaccept" class="ng-pristine ng-untouched ng-valid" tabindex="0" aria-checked="false" aria-invalid="false">
+                     <div class="state">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        <label>&nbsp;&nbsp;</label>
+                     </div>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="conta">
+                  <div>Images</div>
+                  <slick data="commisionData.images" infinite="false" init-onload="true" settings="productslick" ng-if="!formLoading" class="slider-for">
+                     <div class="itemslider" ng-repeat="(key,image) in commisionData.images">
+                         <div class="preview-img" background-image="{{IMGURL}}{{image.file}}" ng-if="image.filetype == 1"></div>
+                         <span ng-if="image.filetype == 2">
+                        <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')"></anguvideo>
+                        <sound-cloud-player url="{{image.file}}" ng-if="image.file&&image.file.includes('soundcloud')"></sound-cloud-player>
+                     </span>
+                     </div>
+                 </slick>
+               </div>
+               <div class="conta" >
+                  <div class="thumbslider">
+                     <slick data="commisionData.images" infinite="false" init-onload="true" settings="mobilethumbslick" ng-if="!formLoading" class="slider-nav">
+                         <div class="thumbholder" ng-repeat="(key,image) in commisionData.images">
+                             <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
+                         </div>
+                     </slick>
+                 </div>
+               </div>
+            </div>
+            <div class="rightimage">
+               <div class="infodiv">
+                  <div class="common-itmes">
+                     <div class="conta ">
+                        Project / Product Title
+                        <div class="details">{{commisionData.title}}</div>
+                     </div>
+                     <div class="conta marginer">
+                        Project / Product Description
+                        <div class="details">{{commisionData.description | cut:true:100:''}}
+                        </div>
+                     </div>
+                     <!-- <div class="conta marginer">
+                        Project / Product Requirements
+                        <div class="details" ng-if="!commisionData.counteroffer">
+                           <ul>
+                              <li ng-repeat="(no,feature) in commisionData.features" ng-if="feature.feature"><i class="fa fa-check-circle" aria-hidden="true"></i> {{feature.feature | cut:true:45}}</li>
+                           </ul>
+                        </div>
+                        <div class="listcontainer" ng-if="commisionData.counteroffer">
+                           <ul class="itemholder" style="height: 63px;overflow-y: auto;">
+                              <li class="checlistfont" ng-repeat="(no,feature) in commisionData.features" ng-if="feature.feature"><i class="green fa fa-check-circle"></i> {{feature.feature}} <i class="pink fa fa-minus-circle cursor" ng-click="removecommisionFeature(no)"></i></li>
+                           </ul>
+                           <div class="buttonholder">
+                              <input style="width: 88%;" type="text" name="feature" placeholder="Speacialization of your service" ng-model="commisionData.featuretext" my-enter="addFeature()" maxlength="35"><button type="button" ng-click="addcommisionFeature()"> Add </button>
+                           </div>
+                        </div>
+                     </div> -->
+                     <div class="conta marginer">
+                        <div ng-if="!commisionData.counteroffer">
+                           <div class="datecontainer" ng-if="(commisionData.type == 'Rental' || commisionData.type == 'Event')&&(commisionData.startdate)">
+                              <div>Start Date</div>
+                              <div class="input-append date form_datetime">
+                                 <div class="datediv">
+                                    <span class="add-onnew"><i class="fa fa-calendar"></i> {{commisionData.startdate|date:'dd-MM-yyyy'}}</span>
+                                 </div>
+                              </div>
+                              <div class="clear"></div>
+                           </div>
+                           <div class="datecontainer" ng-if="(commisionData.type == 'Rental' || commisionData.type == 'Event')&&(commisionData.enddate)">
+                              <div>End Date</div>
+                              <div class="input-append date form_datetime">
+                                 <div class="datediv">
+                                    <span class="add-onnew"><i class="fa fa-calendar"></i> {{commisionData.enddate|date:'dd-MM-yyyy'}}</span>
+                                 </div>
+                              </div>
+                              <div class="clear"></div>
+                           </div>
+                           <div class="mobiledesigner"></div>
+                           <div class="timecontainer" ng-if="commisionData.type == 'Event'">
+                              <div>Start Time</div>
+                              <div class="input-append date form_datetime">
+                                 <div class="datediv">
+                                    <span class="add-onnew"><i class="fa  fa-clock-o"></i> {{commisionData.starttime}}</span>
+                                 </div>
+                              </div>
+                              <div class="clear"></div>
+                           </div>
+                           <div class="timecontainer" ng-if="commisionData.type == 'Event'">
+                              <div>End Time</div>
+                              <div class="input-append date form_datetime">
+                                 <div class="datediv">
+                                    <span class="add-onnew"><i class="fa  fa-clock-o"></i> {{commisionData.endtime}}</span>
+                                 </div>
+                              </div>
+                              <div class="clear"></div>
+                           </div>
+                           <div class="priceholder">
+                              Price
+                              <div class="products">
+                                 <div class="price-box">
+                                    <span class="per_code" ng-if="commisionData.price > 0">$ </span>
+                                    <span class="per_price">{{commisionData.price ? commisionData.price: 'Free'}}</span>
+                                    <span class="per_time" ng-if="commisionData.price > 0 && commisionData.type!='Shop'">Per {{commisionData.periodtype}}</span>
+                                 </div>
+                              </div>
+                              <div class="clear"></div>
+                           </div>
+                        </div>
+                        <div ng-if="commisionData.counteroffer">
+                           <div class="event-items">
+                              <div class="datecontainer" ng-if="(commisionData.type == 'Rental' || commisionData.type == 'Event')&&(commisionData.startdate)">
+                                 <div>Start Date <span class="text-danger" ng-if="startdateerror"></span></div>
+                                 <div class="input-append date form_datetime">
+                                    <input type="text" date-picker size="16" ng-model="commisionData.productstartdate" placeholder="Start Date" name="startdate" ng-required="!commisionData.hasstartdate" readonly style="position: absolute;width: 90px;padding-left: 19px;">
+                                    <span class="add-on" style="position: absolute;top:13px;left:5px"><i class="fa fa-calendar"></i></span>
+                                 </div>
+                                 <div class="clear"></div>
+                              </div>
+                              <div class="datecontainer" ng-if="(commisionData.type == 'Rental' || commisionData.type == 'Event')&&(commisionData.enddate)">
+                                 <div>End Date <span class="text-danger" ng-if="enddateerror"> (Required)</span></div>
+                                 <div class="input-append date form_datetime">
+                                    <input type="text" size="16" date-picker placeholder="End Date" name="enddate" required readonly ng-model='commisionData.productenddate' style="position: absolute;width: 108px;padding-left: 19px;">
+                                    <span class="add-on" style="position: absolute;top:13px;left:5px"><i class="fa fa-calendar"></i></span>
+                                 </div>
+                                 <div class="clear"></div>
+                              </div>
+                               <div class="mobiledesigner"></div>
+                              <div class="timecontainer" ng-if="commisionData.type == 'Event'">
+                                 <div>Start Time </div>
+                                 <div class="input-append date form_datetime">
+                                    <input type="text" size="16" ng-model="commisionData.starttime" placeholder="Start Time" readonly style="position: absolute;width: 90px;padding-left: 19px;">
+                                    <span class="add-on" style="position: absolute;top:13px;left:5px"><i class="fa fa-calendar"></i></span>
+                                 </div>
+                                 <div class="clear"></div>
+                              </div>
+                              <div class="timecontainer" ng-if="commisionData.type == 'Event'">
+                                 <div>End Time </div>
+                                 <div class="input-append date form_datetime">
+                                    <input type="text" size="16" ng-model="commisionData.endtime" placeholder="End Time" readonly style="position: absolute;width: 90px;padding-left: 19px;">
+                                    <span class="add-on" style="position: absolute;top:13px;left:5px"><i class="fa fa-calendar"></i></span>
+                                 </div>
+                                 <div class="clear"></div>
+                              </div>
+                              <!-- <div class="location-price" style="float: left;" >
+                                 <div style="float: left;margin-right: 20px;">
+                                    <div>Location</div>
+                                    <select style="width: 150px;" class="form-control" name="location" ng-model="commisionData.location" ng-options="location as location for location in locations">
+                                    </select>
+                                 </div>
+                              </div> -->
+                              <div class="mobiledesigner"></div>
+                              <div class="priceditholder">
+                                 <div>
+                                    Price<span class="float-rt">Currency</span>
+                                    <div></div>
+                                    <div class="rateholder">$</div>
+                                    <input placeholder="0.00" name="price" ng-model="commisionData.price" valid-number required class="percost" style="" type="text"><select class="rateselect no-border bg-light" ng-options="periodtype as periodtype for periodtype in periodtypes" ng-model="commisionData.periodtype" ng-if="commisionData.type!='Shop'">
+                                    </select>
+                                    <select  class="rateselect no-border bg-light" ng-options="currency as currency for currency in currencies" ng-model="commisionData.currency" ng-if="commisionData.type=='Shop'">
+                                    </select> 
+                                 </div>
+                              </div>
+                              <div class="clear"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="clear"></div>
+            <div class="modalfooter">
+               <span class="submitcontent">*By confirming it means you agree with Collabro’s <a>terms and conditions.</a> Alternatively you can check with the seller first.</span>
+               <span class="chatb" ng-click="gotoChat(commisionData.id)"><i class="fa fa-phone-square" aria-hidden="true"></i>CHAT</span>
+               <div class="btn-group dropdown dropup" ng-if="!commisionData.hasbargain&&!commisionData.counteroffer">
+                  <button class="actionb" data-toggle="dropdown" aria-expanded="false" type="button">Action <i class="fa fa-angle-down" aria-hidden="true"></i></button>
+                  <ul class="dropdown-menu">
+                     <li popover="You Need to agree TSA Protection rules!" popover-enable="!commisionData.isaccept" popover-trigger="mouseenter"><a ><button class="actionb accept" ng-disabled="!commisionData.isaccept" type="submit" ng-click="sendcommisionData()">Proceed</button></a></li>
+                     <li ng-if="!commisionData.hasbargain && !commisionData.counteroffer" ng-click="commisionData.counteroffer = !commisionData.counteroffer"><a ><button class="actionb counter" type="button">Counter Offer</button></a></li>
+                  </ul>
+               </div>
+               <div class="btn-group dropdown dropup" ng-if="commisionData.hasbargain" popover="You Need to agree TSA Protection rules!" popover-enable="!commisionData.isaccept" popover-trigger="mouseenter" popover-placement="right" popover-class="commisionerror">
+                  <button class="actionb" type="button"  ng-disabled="!commisionData.isaccept" ng-click="sendcommisionData()">Proceed </button>
+               </div>
+               <div class="btn-group dropdown dropup" ng-if="commisionData.counteroffer" popover="You Need to agree TSA Protection rules!" popover-enable="!commisionData.isaccept" popover-trigger="mouseenter" popover-placement="right" popover-class="commisionerror">
+                  <button class="actionb" type="button"  ng-disabled="!commisionData.isaccept" ng-click="sendcommisionData()">Proceed </button>
+               </div>
+            </div>
+         </div>
+      </form>
+   </div>

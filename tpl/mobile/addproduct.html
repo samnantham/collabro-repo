@@ -1,0 +1,456 @@
+<link href="css/mobile/addproduct.css" rel="stylesheet" type="text/css" media="all"/>
+<div class="col-xs-12 newpadding"  ng-controller="ProductModalCtrl">
+   <form class="form-horizontal" name="addForm" novalidate ng-submit="addData(addForm);">
+      <div class="titlecontainer">
+         <div class="leftercontainer">
+            <label>Category </label>
+            <ui-select ng-model="formData.type" theme="bootstrap" ng-change="resetProductItems()">
+               <ui-select-match allow-clear="true" class="selected-item float-lt">
+                  <p><i class="fa fa-circle-o"></i> {{formData.type ? formData.type : 'Select Category Post'}}</p>
+               </ui-select-match>
+               <ui-select-choices repeat="type in servicetypes | filter: $select.search">
+                  <img ng-src="{{IMG_URL}}{{type}}">
+                  <span ng-bind-html="type | highlight: $select.search"></span>
+               </ui-select-choices>
+            </ui-select>
+            <!-- <span class="text-danger cat-error float-lt" ng-if="!formData.type"> (Please Choose)</span> -->
+         </div>
+      </div>
+      <div class="clear"></div>
+      <div >
+         <div class="leftimage">
+            <div class="conta">
+               <div>Add Images <span class="text-danger" ng-if="imageerror"> {{imageerrormsg}}</span></div>
+               <div class="preview-img" ng-if="viewingThumb.file" background-image="{{viewingThumb.isfile ? '' : IMGURL}}{{viewingThumb.isfile ? viewingThumb.base64 : viewingThumb.file}}">
+                  <anguvideo ng-model="viewingThumb.file" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && !viewingThumb.file.includes('soundcloud')"></anguvideo>
+                  <sound-cloud-player url="{{viewingThumb.file}}" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && viewingThumb.file.includes('soundcloud')"></sound-cloud-player>
+               </div>
+               <div ng-if="!viewingThumb.file" class="uploadcontainer show" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj"
+                  ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-disabled="!formData.type">
+                  <div class="uploadinnercontainer">
+                     <ul>
+                        <li class="borderright"><img src="img/u1.png"></li>
+                        <li class="borderright"><img src="img/u2.png"></li>
+                        <li><img src="img/u3.png"></li>
+                     </ul>
+                     <div class="clear"></div>
+                     <div class="uploadertext">Add images, video from the web or take photos to upload to your page
+                     </div>
+                  </div>
+               </div>
+               <input name="productfile" type="hidden" ng-model="formData.productfile" ng-required="formData.images.length == 0 && !formData.videourl">
+               <div><i class="fa fa-info-circle" aria-hidden="true"></i><span style="margin-left: 10px;">Up to 6 representative Image and video 640 x 360.</span> </div>
+            </div>
+            <div class="conta mt-10">
+               <label>Embed Video </label>
+               <div >
+                  <input type="text" name="videourl" ng-model="formData.embedvideo" placeholder="Youtube / Vimeo / Soundcloud" ng-required="formData.embedvideo" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/" ng-disabled="!formData.type||formData.images.length > 5" style="padding: 8px 6px;">
+                  <button type="button" ng-click="uploadvideo();" ng-disabled="!formData.embedvideo||!formData.type||formData.images.length > 5" style="padding: 8px 6px;"> Add </button>
+               </div>
+            </div>
+            <hr/>
+            <div class="conta">
+               <span class="imager" ng-class="{'activeborder' : key == formData.thumbimage}" ng-repeat="(key,data) in formData.images" ng-click="chooseItem(key);" popover-template="'thumbnail-popover.html'" data-toggle="popover" popover-trigger="focus" ng-if="formData.images.length > 0"
+                  popover-is-open="ismodalPopover && (key == selectedKey)">
+                  <div ng-if="data.filetype == 1 && data.isfile" background-image="{{data.base64}}"></div>
+                  <div ng-if="data.filetype == 1 && !data.isfile" background-image="{{IMGURL}}{{data.file}}"></div>
+                  <div ng-if="data.filetype == 2" background-image="{{data.thumbnail}}"></div>
+               </span>
+               <span class="imager_add" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6"
+                  ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="formData.images.length < 6" ng-disabled="!formData.type"><i class="fa fa-plus" aria-hidden="true"></i></span>
+               <div class="clear"></div>
+               <div class="mt-10"  ng-if="formData.images.length < 6" ><span style="color:#01B221;"><i class="fa fa-info-circle" aria-hidden="true"></i><span style="margin-left: 10px;">Select the item you want as featured from the added list</span> </span>
+               </div>
+            </div>
+         </div>
+         <div class="rightimage">
+            <div class="infodiv" ng-show="activediv =='info'">
+               <!-- info start -->
+               <div class="common-itmes">
+               </div>
+               <!-- Service Info Start-->
+               <div class="service-items" ng-if="(formData.type=='Service')&&(activediv =='info')" >
+                  <div class="conta ">
+                     Type of Service / Title <span class="text-danger" ng-if="titleerror"> (Enter Service Title)</span>
+                     <input type="text" name="title" placeholder="e.g. Image of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required style="padding: 8px 6px;">
+                     <!-- <div class="pinklimit">{{formData.title.length ? formData.title.length : 0 }} / 100 Char</div> -->
+                  </div>
+                  <div class="conta ">
+                     Service Description <span class="text-danger" ng-if="descriptionerror"> (Enter Service Description)</span>
+                     <textarea row="10" name="description" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." style="height: 170px;" ng-model="formData.description" required ng-disabled="!formData.type"
+                        maxlength="1000"></textarea>
+                  </div>
+                  <!-- <div class="pinklimit">{{formData.description.length ? formData.description.length : 0 }} / 1000 Char</div>
+                     </div> -->
+                  <div class=" " >
+                     <div class="col-md-3 col-sm-3 col-lg-3 nopadding conta col-xs-6" style="padding-right: 6px !important;">
+                        <div>Location</div>
+                        <select class="form-control" name="location" ng-model="formData.location" ng-options="location as location for location in locations" required>
+                        </select>
+                     </div>
+                     <div class="col-md-3 col-sm-3 col-lg-4 nopadding conta col-xs-6">
+                        <div>Skills Area <span class="text-danger" ng-if="skillerror"> (Choose Skill)</span></div>
+                        <select class="form-control" name="profession" ng-model="formData.profession" ng-options="profession as profession for profession in professions" ng-required="formData.type=='Service'">
+                           <option value="">Skill</option>
+                        </select>
+                     </div>
+                     <div class="col-md-6 col-sm-6 col-lg-5 nopadding conta ratecontainer">
+                        <div >
+                           <div>Rate <span class="text-danger" ng-if="priceerror"> (Rate Required)</span></div>
+                           <div>
+                              <div class="rateholder">$</div>
+                              <input type="text" placeholder="0.00" name="price" ng-model="formData.price" required class="percost" style="float: left; width:43%;font-size: 24px !important;" min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type">
+                              <select
+                                 class="rateselect no-border bg-light" ng-options="periodtype as periodtype for periodtype in periodtypes" ng-model="formData.periodtype" ng-disabled="!formData.type">
+                              </select>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="clear"></div>
+                  <div class="conta " style="margin-top: 0px;"    >
+                     <div>
+                        <div style="float:left;margin-top:8px;margin-right: 5px;">Negotiable</div>
+                        <div style="float:left;margin-top:8px;">
+                           <div class="checktext">
+                              <div class="pretty p-image p-plain">
+                                 <input ng-disabled="!formData.type" type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="formData.hasbargain" />
+                                 <div class="state">
+                                    <label class="yesorno">&nbsp;&nbsp;</label>
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- Service Info End-->
+               <!-- Shop Info Start -->
+               <div class="shop-items" ng-if="(formData.type=='Shop')&&(activediv =='info')">
+                  <div class="conta ">
+                     Product Title <span class="text-danger" ng-if="titleerror"> (Enter Product Title)</span>
+                     <input type="text" name="title" placeholder="e.g. Image of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-disabled="!formData.type" maxlength="100" style="padding: 8px 6px;">
+                     <!-- <div class="pinklimit">{{formData.title.length ? formData.title.length : 0 }} / 100 Char</div> -->
+                  </div>
+                  <div class="conta ">
+                     Product Description <span class="text-danger" ng-if="descriptionerror"> (Enter Product Description)</span>
+                     <textarea row="10" name="description" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." style="height: 170px;" ng-model="formData.description" required ng-disabled="!formData.type"
+                        maxlength="1000"></textarea>
+                  </div>
+                  <div class=" ">
+                     <div class="conta">
+                        <div>Product Category <span class="text-danger" ng-if="categoryerror"> (Choose Type)</span></div>
+                        <select  class="form-control" name="category" ng-model="formData.category" ng-options="category.id as category.categoryname for category in categories" required>
+                           <option value="">Type</option>
+                        </select>
+                     </div>
+                     <!--      <div style="float: left;margin-right: 50px;">
+                        <div>Brand <span class="text-danger" ng-if="branderror"> (Choose Brand)</span></div>
+                        <select style="width: 150px;" class="form-control" name="brand" ng-model="formData.brand" ng-options="brand.id as brand.brandname for brand in brands" ng-disabled="!formData.category" ng-required="brands.length > 0">
+                        <option value="">Brand</option>
+                        </select>
+                        </div> -->
+                     <div class="conta">
+                        <div>Price <span class="text-danger" ng-if="priceerror"> (Rate Required)</span></div>
+                        <div class="ratecontainer">
+                           <div class="rateholder">$</div>
+                           <input placeholder="0.00" name="price" ng-model="formData.price" min="1" max="100000" limit-to-max required class="percost" style="float: left;width:43%;font-size: 24px !important;" type="text" step="0.01" valid-number precision="2">
+                           <select
+                              class="rateselect no-border bg-light" ng-options="currency as currency for currency in currencies" ng-model="formData.currency">
+                           </select>
+                        </div>
+                     </div>
+                     <div class="clear"></div>
+                     <div class="conta " ng-if="formData.type!='Service'">
+                        <div class="col-md-7 col-sm-7 col-lg-8 nopadding">
+                        </div>
+                        <div class="col-md-5 col-sm-5 col-lg-4 nopadding" style="">
+                           <div>Collection and Physical Store Address </div>
+                           <div style="margin-top: 5px;">
+                              <button type="button" class="toptabbutton" ng-click="changeactiveDiv('address');" ng-disabled="!formData.type" style="width: 100%;font-size: 15px;color: #344051;font-family: 'Roboto';font-weight: normal;">Insert Address?</button>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="clear"></div>
+                  </div>
+               </div>
+               <!-- Shop Info End -->
+               <!-- Rental Info Start -->
+               <div class="rental-items" ng-if="(formData.type=='Rental')&&(activediv =='info')">
+                  <div class="conta ">
+                     Type of Rental Services / Title <span class="text-danger" ng-if="titleerror"> (Enter Rental Title)</span>
+                     <input type="text" name="title" placeholder="e.g. Image of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-disabled="!formData.type" maxlength="100" style="padding: 8px 6px;">
+                     <!-- <div class="pinklimit">{{formData.title.length ? formData.title.length : 0 }} / 100 Char</div> -->
+                  </div>
+                  <div class="conta ">
+                     Product Description <span class="text-danger" ng-if="descriptionerror"> (Enter Rental Description)</span>
+                     <textarea row="10" name="description" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." style="height: 170px;" ng-model="formData.description" required ng-disabled="!formData.type"
+                        maxlength="1000"></textarea>
+                  </div>
+                  <!-- <div>Date Availability</div> -->
+                  <div class="conta ">
+                     <!--   <div style="float: left;margin-right: 70px;">
+                        <div>Start Date <span class="text-danger" ng-if="startdateerror"> (Required)</span></div>
+                        <div class="input-append date form_datetime" style="position: relative;">
+                            <input type="text" size="16" date-picker placeholder="Start Date" name="startdate" required readonly ng-model='formData.productstartdate' style="position: absolute;width: 108px;padding-left: 19px;">
+                            <span class="add-on" style="position: absolute;top:13px;left:5px"><i class="fa fa-calendar"></i></span>
+                        </div>
+                        <div class="clear"></div>
+                        </div>
+                        <div style="float: left;margin-right: 70px;">
+                        <div>End Date <span class="text-danger" ng-if="enddateerror"> (Required)</span></div>
+                        <div class="input-append date form_datetime" style="position: relative;">
+                            <input type="text" size="16" date-picker placeholder="End Date" name="enddate" required readonly ng-model='formData.productenddate' style="position: absolute;width: 108px;padding-left: 19px;">
+                            <span class="add-on" style="position: absolute;top:13px;left:5px"><i class="fa fa-calendar"></i></span>
+                        </div>
+                        <div class="clear"></div>
+                        </div> -->
+                     <div class="conta">
+                        <div>Location</div>
+                        <select class="form-control" name="location" ng-model="formData.location" ng-options="location as location for location in locations">
+                        </select>
+                     </div>
+                     <div class="location-price mt-10" >
+                        <div class="ratecontainer">
+                           <div>Price <span class="text-danger" ng-if="priceerror"> (Rate Required)</span></div>
+                           <div>
+                              <div class="rateholder">$</div>
+                              <input placeholder="0.00" name="price" ng-model="formData.price" min="1" max="100000" required class="percost" limit-to-max style="float: left;width:43%;font-size: 24px !important;" type="text" step="0.01" valid-number precision="2">
+                              <select
+                                 class="rateselect no-border bg-light" ng-options="periodtype as periodtype for periodtype in periodtypes" ng-model="formData.periodtype">
+                              </select>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="clear"></div>
+                  </div>
+                  <div class="conta " >
+                     <div class="col-md-8 col-sm-8 col-lg-8 nopadding" ng-if="formData.type!='Service'">
+                     </div>
+                     <div class="col-md-4 col-sm-4 col-lg-4 nopadding" >
+                        <div>Collection and Physical Store Address </div>
+                        <div style="margin-top: 5px;">
+                           <button type="button" class="toptabbutton" ng-click="changeactiveDiv('address');" ng-disabled="!formData.type" style="width: 100%;font-size: 15px;color: #344051;font-family: 'Roboto';font-weight: normal;">Insert Address?</button>
+                        </div>
+                     </div>
+                  </div>
+                  <!--   <div class="conta ">
+                     <div style="float: left;margin-right: 50px;">
+                     
+                         <div>All-time</div>
+                         <div class="pretty p-image p-plain">
+                             <input type="checkbox" name="alltime" ng-true-value="1" ng-false-value="0" ng-model="formData.alltime">
+                             <div class="state">
+                                 <i class="fa fa-check" aria-hidden="true"></i>
+                                 <label>&nbsp;</label>
+                             </div>
+                         </div>
+                     </div>
+                     </div> -->
+               </div>
+               <!-- Rental Info End -->
+               <!-- Event Info Start -->
+               <div class="event-items" ng-if="(formData.type=='Event')&&(activediv =='info')">
+                  <div class="conta ">
+                     Event Title <span class="text-danger" ng-if="titleerror"> (Enter Event Title)</span>
+                     <input type="text" name="title" placeholder="e.g. Image of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-disabled="!formData.type" maxlength="100" style="padding: 8px 6px;">
+                     <!-- <div class="pinklimit">{{formData.title.length ? formData.title.length : 0 }} / 100 Char</div> -->
+                  </div>
+                  <div class="conta ">
+                     Event Description <span class="text-danger" ng-if="descriptionerror"> (Enter Event Description)</span>
+                     <textarea row="10" name="description" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." style="height: 170px;" ng-model="formData.description" required ng-disabled="!formData.type"
+                        maxlength="1000"></textarea>
+                  </div>
+                  <div class="conta" style="width: 100%; float: left;">
+                     <div class="col-md-5 col-sm-5 col-lg-4 nopadding col-xs-6" style="min-height: 55px;">
+                        <div style="float: left;margin-right: 50px;">
+                           <div>Start Date <span class="text-danger" ng-if="startdateerror"> (Required)</span></div>
+                           <div class="input-append date form_datetime" style="position: relative;">
+                              <input type="text" date-picker size="16" ng-model="formData.productstartdate" placeholder="Start Date" name="startdate" ng-required="!formData.hasstartdate" readonly style="position: absolute;position: absolute;width: 110px; padding: 10px;">
+                              <span class="add-on" style="position: absolute;top:16px;left:5px"><i class="fa fa-calendar"></i></span>
+                           </div>
+                           <div class="clear"></div>
+                        </div>
+                        <div style="float: left; margin-left: 15px;">
+                           <div>NA</div>
+                           <div class="pretty p-image p-plain" style="margin-top: 17px;">
+                              <input type="checkbox" name="hasstartdate" ng-true-value="1" ng-false-value="0" ng-model="formData.hasstartdate" ng-change="clearDate('start',formData.hasstartdate);">
+                              <div class="state">
+                                 <i class="fa fa-check" aria-hidden="true"></i>
+                                 <label>&nbsp;&nbsp;</label>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-5 col-sm-5 col-lg-4 nopadding" style="min-height: 55px;">
+                        <div style="float: left;margin-right: 50px;">
+                           <div>End Date <span class="text-danger" ng-if="enddateerror"> (Required)</span></div>
+                           <div class="input-append date form_datetime" style="position: relative;">
+                              <input type="text" date-picker size="16" ng-model="formData.productenddate" placeholder="End Date" name="enddate" ng-required="!formData.hasenddate" readonly style="position: absolute;position: absolute;width: 110px; padding: 10px;">
+                              <span class="add-on" style="position: absolute;top:16px;left:5px"><i class="fa fa-calendar"></i></span>
+                           </div>
+                           <div class="clear"></div>
+                        </div>
+                        <div style="float: left; margin-left: 15px;">
+                           <div>NA</div>
+                           <div class="pretty p-image p-plain" style="margin-top: 17px;">
+                              <input type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="formData.hasenddate" ng-change="clearDate('end',formData.hasenddate);">
+                              <div class="state">
+                                 <i class="fa fa-check" aria-hidden="true"></i>
+                                 <label>&nbsp;&nbsp;</label>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="clear"></div>
+                  <div class="conta" style="width: 100%; float: left;">
+                     <div>Price</div>
+                     <div class="ratecontainer">
+                        <div class="rateholder">$</div>
+                        <input placeholder="0.00" name="price" ng-model="formData.price" min="1" max="100000" limit-to-max required class="percost" style="float: left;width:43%;font-size: 24px !important;" type="text" step="0.01" valid-number precision="2">
+                        <select
+                           class="rateselect no-border bg-light" ng-options="periodtype as periodtype for periodtype in periodtypes" ng-model="formData.periodtype">
+                        </select>
+                     </div>
+                  </div>
+                  <div class="clear"></div>
+                  <div class="conta  hidearrow">
+                     <div class="col-md-12 col-sm-12 col-lg-12 nopadding">
+                        <div class="col-md-1 col-sm-3 col-lg-1 col-xs-4 nopadding" style="margin-right: 10px;">
+                           <div>From</div>
+                           <select style="margin: 5px 0px;" class="timeselect no-border bg-light" ng-options="starttime as starttime for starttime in times" ng-model="formData.starttime" name="starttime">
+                           </select>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-lg-2 col-xs-4 nopadding">
+                           <div> to </div>
+                           <select style="margin: 5px 0px;" class="timeselect no-border bg-light" ng-options="starttime as starttime for starttime in times" ng-model="formData.endtime" name="enddtime">
+                           </select>
+                        </div>
+                        <div class="col-md-5 col-sm-5 col-lg-5 col-xs-3 mt-10">
+                           <div>&nbsp;</div>
+                           <div class="checktext " style="float: left;">
+                              <div class="pretty p-image p-plain">
+                                 <input type="checkbox" />
+                                 <div class="state">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                    <label>All day event</label>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="clear"></div>
+                     <div class="conta">
+                        <div class="col-md-4 col-sm-4 col-lg-4 nopadding" ng-if="formData.type!='Service'">
+                           <div>Collection and Physical Store Address </div>
+                           <div style="margin-top: 5px;">
+                              <button type="button" class="toptabbutton" ng-click="changeactiveDiv('address');" ng-disabled="!formData.type" style="width: 100%;font-size: 15px;color: #344051;font-family: 'Roboto';font-weight: normal;">Insert Address?</button>
+                           </div>
+                        </div>
+                     </div>
+                     <div style="margin-right: 50px;">
+                        <div>&nbsp;</div>
+                        <div class="pretty p-image p-plain">
+                           <input type="checkbox" />
+                           <div class="state">
+                              <i class="fa fa-check" aria-hidden="true"></i>
+                              <label>Save the date</label>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- Event Info End -->
+               <!-- info end -->
+            </div>
+            <div class="addressdiv" ng-show="activediv =='address'" >
+               <div class="conta ">
+                  <div style="float: left;margin-right: 10%;width: 45%">
+                     Address <span class="text-danger" ng-if="addresserror"> (Enter Address)</span>
+                     <textarea row="10" name="address" ng-model="formData.address" required placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." style="height: 70px;"></textarea>
+                  </div>
+                  <div style="float: left;width: 45%">
+                     Business Email <span class="text-danger" ng-if="emailerror"> (Enter a valid Email)</span>
+                     <input type="email" name="emailid" placeholder="email" ng-model="formData.email" required>
+                     <div class="checktext width50floatleft" style="margin-top: 7px;">
+                        <div class="pretty p-image p-plain">
+                           <input type="radio" name="isprivate" value="1" ng-model="formData.isprivate">
+                           <div class="state">
+                              <i class="fa fa-check" aria-hidden="true"></i>
+                              <label>Private</label>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="checktext width50floatleft" style="margin-top: 7px;">
+                        <div class="pretty p-image p-plain">
+                           <input type="radio" name="isprivate" value="0" ng-model="formData.isprivate">
+                           <div class="state">
+                              <i class="fa fa-check" aria-hidden="true"></i>
+                              <label>Public</label>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="conta ">
+                  <div style="float: left; width: 45%">
+                     Postal Code <span class="text-danger" ng-if="postalcodeerror"> (Enter Postal Code)</span>
+                     <input type="text" name="postalcode" ng-model="formData.postalcode" required numbers-only required style="width:148px;" required>
+                  </div>
+                  <div class="checktext" style=" float:  right; width: 45%; margin-top: 20px;">
+                     <div class="pretty p-image p-plain">
+                        <input type="checkbox" name="showmap" ng-true-value="1" ng-false-value="0" ng-model="formData.showmap">
+                        <div class="state">
+                           <i class="fa fa-check" aria-hidden="true"></i>
+                           <label>Show map</label>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="conta " ng-if="user.iscompany == 1">
+                  <div style="float: left;margin-right: 10%;width: 45%">
+                     Organisation <span class="text-danger" ng-if="organisationerror"> (Enter your Organization Name)</span>
+                     <input type="text" name="organisation" placeholder="Name of company or organiser" ng-model="formData.organisation" required>
+                  </div>
+                  <div style="float: left;width: 45%">
+                     Company UEN No. <span class="text-danger" ng-if="companyuenerror"> (Enter your Company UEN)</span>
+                     <input type="text" name="company_uen" placeholder="Company registrtion No." ng-model="formData.company_uen">
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="conta ">
+                  Order Link
+                  <input type="text" name="orderlink" placeholder="product order or booking link" ng-model="formData.orderlink" ng-required="formData.orderlink" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/">
+               </div>
+               <div class="conta ">
+                  <div>Contact No. <span class="text-danger" ng-if="phoneerror"> (Enter your Contact No)</span></div>
+                  <input type="text" placeholder="+65" ng-model="formData.countrycode" style="width:40px;float: left;margin-right: 10px;"><input type="text" name="phoneno" placeholder="2358 8070" style="width:100px;float: left;" ng-model="formData.phoneno"
+                     required numbers-only>
+               </div>
+               <div class="clear"></div>
+               <div class="conta " >
+                  <div class="col-md-8 col-sm-8 col-lg-8 nopadding">
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-lg-4 nopadding" >
+                     <div>Collection and Physical Store Address </div>
+                     <div style="margin-top: 5px;">
+                        <button type="button" class="toptabbutton" ng-click="changeactiveDiv('info');" ng-disabled="!formData.type" style="width: 100%;font-size: 15px;color: #344051;font-family: 'Roboto';font-weight: normal;">Back to Info</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+         <!--  <button type="button" class="btn btn-default cancel" ng-click="closeModal();">Cancel</button> -->
+         <div class="conta" style="margin-bottom: 8px;">
+            <button type="submit" class="btn btn-primary publish" ng-if="!isedit" button-spinner="loading" ng-disabled="loading||!formData.type">Publish Item</button>
+            <button type="button" class="btn btn-danger m-cancel" ng-click="goback()">Cancel</button>
+            <button type="submit" class="btn btn-primary" ng-if="isedit" button-spinner="loading" ng-disabled="loading">Update</button>
+         </div>
+      </div>
+   </form>
+</div>

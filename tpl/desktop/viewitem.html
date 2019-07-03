@@ -1,0 +1,287 @@
+<div ng-controller="ViewItemCtrl" class="viewitem">
+   <div class="wthree-dot" ng-if="!formLoading">
+      <div class="container" id="viewitemtop">
+         <div class="row">
+            <!-- Left Menu Here  -->
+            <div class="col-md-2 col-sm-2 col-lg-2 ol-sm-2 col-lg-2 nopadding leftSidebar" data-ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+            <div class="col-md-10 col-sm-10 col-lg-10 nopadding">
+               <div class="col-md-12 col-sm-12 col-lg-12 mypadding">
+                  <div class="wishlistheader ">
+                     <div class="col-sm-12 col-md-12 col-lg-12 nopadding flex-align">
+                        <div class="usernewholder col-md-5 col-sm-5 col-lg-4 nopadding"><img ng-src="{{IMGURL}}{{viewData.owner.avatar}}" class="userimage cursor" ui-sref="app.viewuser({'id':viewData.owner.id})"><span class="wishlisttitle"><span class="cursor" ui-sref="app.viewuser({'id':viewData.owner.id})">{{viewData.owner.username | cut:true:9:''}} &nbsp;&nbsp;|</span><span class="championship"> &nbsp;&nbsp;<i class="fa fa-trophy" ng-class="{'bronze':((viewData.owner.experiencepoints >= 100) && (viewData.owner.experiencepoints < 200)),'silver':((viewData.owner.experiencepoints >= 200) && (viewData.owner.experiencepoints < 300)), 'gold':((viewData.owner.experiencepoints >= 300) && (viewData.owner.experiencepoints < 400)),'platinum': ((viewData.owner.experiencepoints >= 400) && (viewData.owner.experiencepoints < 500)),'diamond': viewData.owner.experiencepoints >= 500}"></i>&nbsp;&nbsp;<span class="hidetext infostatus">&nbsp;&nbsp;Apprentice</span> </span></span></div>
+                        <div class=" col-md-2 col-sm-2 col-lg-2 infohold no-padding-right"><i class="fa fa-binoculars"></i> <span class="hidetext">Followers</span> | {{viewData.owner.followers}}</div>
+                        <div class=" col-md-2 col-sm-2 col-lg-2 infohold no-padding-right  "><i class="fa fa-user"></i> <span class="hidetext">Following</span> | {{viewData.owner.following}}</div>
+                        <div class=" col-md-2 col-sm-2 col-lg-2  infohold no-padding-right">
+                           <i class="fa fa-eye"></i> 
+                           <span class="hidetext">
+                              Deals <!-- Made -->
+                           </span>
+                           | {{viewData.owner.noofdeals}}
+                        </div>
+                        <div class=" col-md-1 col-sm-1 col-lg-2 infostatus text-right no-padding-right"><i class="fa fa-circle" ng-class="viewData.owner.onlinestatus == 1 ? 'statusactive':'statusinactive'"></i> <span class="hidetext">{{viewData.owner.onlinestatus == 1 ? 'Online':'Offline'}}</span></div>
+                        <div class="clear"></div>
+                        <div class="clear"></div>
+                     </div>
+                  </div>
+               </div>
+               <div class="clear"></div>
+               <div class="col-md-12 col-sm-12 col-lg-12 nopadding ">
+                  <div class="col-md-8 col-sm-8 col-lg-8 mypadding">
+                     <slick data="viewData.images" infinite="false" init-onload="true" settings="productslick" ng-if="!formLoading" class="slider-for">
+                        <div class="width100 sliderframer" ng-repeat="(key,image) in viewData.images">
+                           <div class="imgcontainer" background-image="{{IMGURL}}{{image.file}}" ng-if="image.filetype == 1"></div>
+                           <span ng-if="image.filetype == 2">
+                              <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')"></anguvideo>
+                              <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')"></sound-cloud-player>
+                           </span>
+                        </div>
+                     </slick>
+                     <div class="thumbslider">
+                        <slick data="viewData.images" infinite="false" init-onload="true" settings="productthumbslick" ng-if="!formLoading" class="slider-nav">
+                           <div class="thumbholder" ng-repeat="(key,image) in viewData.images" >
+                              <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
+                           </div>
+                        </slick>
+                     </div>
+                     <div class="col-md-12 col-sm-12 col-lg-12 backgroundwhite ">
+                        <div class="detailstitle margin-top">{{viewData.title}} </div>
+                        <div class="tracks" ng-if="viewData.type == 'Service'">{{viewData.profession?viewData.profession:'Photographer'}}: <span ng-if="viewData.type == 'Service'"> {{viewData.owner.username}}</span></div>
+                        <div class="detailsdescription no-padding  margin-top col-md-12 col-sm-12 col-lg-12 addholder">{{viewData.description}}</div>
+                        <div class="marginbottom15  margin-top col-md-12 col-sm-12 col-lg-12 no-padding" ng-if="viewData.type == 'Service'">
+                           <div class="col-md-3 col-sm-4 col-lg-3 no-padding-left">
+                              <div class="addholder">
+                                 <div class="label-text marginbottom5">Skills Area</div>
+                                  <div class="input-append date relative form_datetime">
+                                 <div class="datediv pjsbutton">
+                                    <span class="add-onnew"><i class="fa fa-user"></i> {{viewData.profession}}</span>
+                                 </div>
+                              </div>
+                               
+                              </div>
+                           </div>
+                           <div class="col-md-3 col-sm-4 col-lg-3 no-padding-left">
+                              <div class="addholder">
+                                 <div class="label-text marginbottom5">Location</div>
+                                 <div class="input-append date relative form_datetime">
+                                 <div class="datediv pjsbutton">
+                                    <span class="add-onnew"><i class="fa fa-map-marker "></i> {{viewData.location}}</span>
+                                 </div>
+                              </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="marginbottom15  margin-top col-md-12 col-sm-12 col-lg-12 no-padding" ng-if="viewData.type == 'Shop'">
+                           <div class="col-md-3 col-sm-4 col-lg-3 no-padding-left">
+                              <div class="addholder">
+                                 <div class="label-text marginbottom5">Product Type</div>
+                                  <div class="input-append date relative form_datetime">
+                                 <div class="datediv pjsbutton">
+                                    <span class="add-onnew"><i class="fa fa-suitcase"></i></i> {{viewData.productcategory.categoryname}}</span>
+                                 </div>
+                              </div>
+                              
+                              </div>
+                           </div>
+                           <!-- 
+                           <div class="col-md-3 col-sm-3 col-lg-3 no-padding-left">
+                              <div class="addholder">
+                                 <div class="label-text marginbottom5">Brand</div>
+                                 <div class="detailsdescription">{{viewData.productbrand.brandname}}</div>
+                              </div>
+                           </div>
+                           <div class="col-md-4 col-sm-4 col-lg-4 nopadding" ng-if="viewData.model">
+                              <div class="addholder">
+                                 <div class="addnewlabel">Model</div>
+                                 <div class="adddetail">{{viewData.location}}</div>
+                              </div>
+                              </div> -->
+                        </div>
+                        <div class="marginbottom15  margin-top col-md-12 col-sm-12 col-lg-12 no-padding" ng-if="viewData.type == 'Rental'">
+                           <div class="col-md-3 col-sm-4 col-lg-3 no-padding-left" ng-if="viewData.startdate">
+                              <div class="addholder">
+                                 <div class="label-text marginbottom5">Start Date</div>
+                                 <div class="input-append date relative form_datetime">
+                                    <div class="datediv pjsbutton">
+                                       <span class="add-onnew"><i class="fa fa-calendar"></i> 
+                                       {{viewData.startdate | date:"dd-MM-yyyy"}}</span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-3 col-sm-4 col-lg-3 no-padding-left" ng-if="viewData.enddate">
+                              <div class="addholder">
+                                 <div class="label-text marginbottom5">End Date</div>
+                                 <div class="input-append date relative form_datetime">
+                                    <div class="datediv pjsbutton">
+                                       <span class="add-onnew"><i class="fa fa-calendar"></i> 
+                                       {{viewData.enddate | date:"dd-MM-yyyy"}}</span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-3 col-sm-4 col-lg-3 no-padding-left">
+                              <div class="addholder">
+                                 <div class="label-text marginbottom5">Location</div>
+                                 <div class="input-append date relative form_datetime">
+                                    <div class="datediv pjsbutton">
+                                       <span class="add-onnew"><i class="fa fa-map-marker"></i> 
+                                       {{viewData.location}}</span>
+                                    </div>
+                                 </div>
+                                
+                              </div>
+                           </div>
+                        </div>
+                        <div class="marginbottom15  margin-top col-md-12 col-sm-12 col-lg-12 nopadding" ng-if="viewData.type == 'Event'">
+                           <div class="col-md-12 col-sm-12 col-lg-12 nopadding">
+                           <div class="col-md-3 col-sm-4 col-lg-3 no-padding-left">
+                              <div class="addholder">
+                                 <div class="label-text marginbottom5">Start Date</div>
+                                 <div class="input-append date relative form_datetime">
+                                    <div class="datediv pjsbutton">
+                                       <span class="add-onnew" ng-if="!viewData.alldayevent"><i class="fa fa-calendar"></i> 
+                                       {{viewData.startdate | date:"dd-MM-yyyy"}}</span>
+                                       <span class="add-onnew" ng-if="viewData.alldayevent"><i class="fa fa-calendar"></i> 
+                                       Every Day</span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-3 col-sm-4 col-lg-3 no-padding-left">
+                              <div class="addholder">
+                                 <div class="label-text marginbottom5">End Date</div>
+                                 <div class="input-append date relative form_datetime">
+                                    <div class="datediv pjsbutton">
+                                       <span class="add-onnew"  ng-if="!viewData.alldayevent"><i class="fa fa-calendar"></i> 
+                                       {{viewData.startdate | date:"dd-MM-yyyy"}}</span>
+                                       <span class="add-onnew" ng-if="viewData.alldayevent"><i class="fa fa-calendar"></i> 
+                                       Every Day</span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-3 col-sm-2 col-lg-3 no-padding-left">
+                              <div class="addholder">
+                                 <div class="label-text marginbottom5">Start Time</div>
+                                 <div class="input-append date relative form_datetime">
+                                    <div class="datediv pjsbutton">
+                                       <span class="add-onnew"><i class="fa fa-clock-o"></i> 
+                                       {{viewData.starttime}}</span>
+                                    </div>
+                                 </div>
+                                 
+                              </div>
+                           </div>
+                           <div class="col-md-3 col-sm-2 col-lg-3 no-padding-left">
+                              <div class="addholder">
+                                 <div class="label-text marginbottom5">End Time</div>
+                                 <div class="input-append date relative form_datetime">
+                                    <div class="datediv pjsbutton">
+                                       <span class="add-onnew"><i class="fa fa-clock-o"></i> 
+                                       {{viewData.endtime}}</span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-lg-12 nopadding">
+                           <div class="col-md-3 col-sm-4 col-lg-3 no-padding-left">
+                              <div class="addholder">
+                                 <div class="label-text marginbottom5">Location</div>
+                                 <div class="input-append date relative form_datetime">
+                                    <div class="datediv pjsbutton">
+                                       <span class="add-onnew"><i class="fa fa-map-marker"></i> 
+                                       {{viewData.location}}</span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12" style="max-height: 1px"><div class="detailstitle margin-top" ><i class="fa fa-caret-down pull-right" ng-class="viewData.showExtra ? 'fa-caret-up' : 'fa-caret-down'" ng-click="viewData.showExtra = !viewData.showExtra" ng-if="(viewData.type != 'Service')&&((!viewData.isprivate)||(viewData.showmap))"></i></div></div>
+                        <div class="extra-features slide-toggle-js" ng-if="viewData.showExtra">
+                           <!--<div class="col-md-12 nopadding margin-top marginbottomnew">
+                              <div class="abilitylist" ng-repeat="(no,feature) in viewData.features" ng-if="feature.feature"> <i class="fa fa-check-circle"></i> {{feature.feature}} </div>
+                              </div>-->
+                           <div class="col-md-12 col-sm-12 col-lg-10 nopadd margin-top" ng-if="!viewData.isprivate&&viewData.type!='Service'">
+                              <div class="col-md-6 col-sm-6 col-lg-8 nopadding">
+                                 <div class="addholder" ng-if="user.iscompany == 1&&viewData.organisation">
+                                    <div class="label-text marginbottom5">Organisation</div>
+                                    <div class="detailsdescription">{{viewData.organisation}}</div>
+                                 </div>
+                                 
+                                    <div class="addholder">
+                                       <div class="label-text marginbottom5">Address</div>
+                                       <div class="detailsdescription">{{viewData.address}}</div>
+                                    </div>
+                                
+                               
+                              </div>
+                              <div class="col-md-6 col-sm-6 col-lg-4 nopadding">
+                                 <div class="addholder padding-left-20"  ng-if="user.iscompany == 1">
+                                    <div class="label-text marginbottom5" ng-class="{'text-white': !viewData.company_uen }">Company UEN No.</div>
+                                    <div class="detailsdescription" ng-class="{'text-white': !viewData.company_uen }">{{viewData.company_uen ? viewData.company_uen : 'Not Provided'}}</div>
+                                 </div>
+                                 <div class="addiconholder" ng-if="!viewData.isprivate">
+                                    <div class="iconhold col-md-4 col-sm-4 col-lg-4 nopadding">
+                                       <div class="label-text marginbottom5"> Email</div>
+                                       <a href="mailto:{{viewData.email}}"><i class="fa fa-envelope-o"></i></a>
+                                    </div>
+                                    <div class="iconhold col-md-4 col-sm-4 col-lg-4 nopadding">
+                                       <div class="label-text marginbottom5"> Contact </div>
+                                       <a href="tel:{{viewData.phoneno}}"><i class="fa fa-phone-square"></i></a>
+                                    </div>
+                                    <div class="iconhold col-md-4 col-sm-4 col-lg-4 nopadding" ng-if="viewData.orderlink">
+                                       <div class="label-text marginbottom5">
+                                          Order Link
+                                       </div>
+                                       <a href="{{viewData.orderlink}}" target="_blank"><i class="fa fa-shopping-cart"></i></a>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="clear"></div>
+                           </div>
+                           <div class="col-md-12 col-sm-12 col-lg-12 nopadding" ng-if="viewData.showmap && viewData.type != 'Service'">
+                              <ng-map center="{{viewData.latitude}},{{viewData.longitude}}" zoom="17" class="height250">
+                                 <marker icon="{{customIcon}}" position="{{viewData.latitude}}, {{viewData.longitude}}"></marker>
+                              </ng-map>
+                           </div>
+                        </div>
+                        <div class=" margin-top col-md-11 col-sm-11 col-lg-11 footdetail nopadding"> <span class="label-text marginbottom5">Date Posted : {{convertDate(viewData.created_at) | dateToISO | date:'dd MMMM yyyy'}}</span></div>
+                        <div class="border-bottom margin-top col-md-12 col-sm-12 col-lg-12"></div>
+                        <div class="clear"></div>
+                        <div class="product-right flex-align margin-top marginbottom15 col-md-12 col-sm-12 col-lg-12 nopadding">
+                           <div class="price-box col-md-6 col-sm-6 col-lg-6 nopadding ">
+                              <span class="per_price"><span ng-if="viewData.price > 0">$</span>{{viewData.price ? viewData.price: 'Free'}}</span>
+                              <span class="per_time" ng-if="viewData.price > 0 && viewData.type!='Shop'">Per {{viewData.periodtype}}</span>
+                           </div>
+                           <div class="product-button  product-newbutton col-md-6 col-sm-6 col-lg-6 text-right nopadding">
+                              <a class="btn-add-wishlist" title="Add to Wishlist" ng-if="viewData.ownerid!=user.id" ng-click="updatewishstatus();"><i class="fa fa-heart" ng-class="{'wished': viewData.wishstatus == 1}"></i></a>
+                              <a class="btn-add-comparre" title="Add to Cart" ng-if="viewData.ownerid!=user.id" ng-click="addTocart(viewData.id)"><i class="fa fa-plus"></i></a>
+                              <a class="btn-add-comparre nomargin" title="Share to Earn" ng-click="sharetosocial(viewData)"><i class="fa fa-share"></i></a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-lg-4 mynewpadding-noleft ">
+                     <div class="col-md-12 col-sm-12 col-lg-12  backgroundwhite margin-bottom-7 cursor pro_listing" ng-repeat="(key,data) in viewData.ownerproducts" ui-sref="app.viewitem({id:data.id})">
+                        <div class="col-md-5 col-sm-4 col-lg-4 mypadding">
+                           <div class="imglister" background-image="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1"></div>
+                           <div class="imglister" background-image="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"></div>
+                           <!--   <img class="imglister" ng-src="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1">
+                              <img class="imglister" ng-src="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"> -->
+                        </div>
+                        <div ng-if="data.filetype == 2"></div>
+                        <div class="col-md-7 col-sm-8 col-lg-8 no-padding-left">
+                           <div class="listingtitle ellipsis">{{data.title}}</div>
+                           <div class="listingdescription"><span>{{data.type}}</span> &nbsp;|&nbsp; Last Update: {{convertDate(data.updated_at) | dateToISO | date:'dd MMM yyyy'}}</div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-lg-2 nopadding rightSidebar" data-ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
+         </div>
+      </div>
+   </div>
+</div>

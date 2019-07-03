@@ -1,0 +1,48 @@
+<link href="css/mobile/comparelist.css" rel="stylesheet" type="text/css" media="all"/>
+<div ng-controller="WishlistCtrl" >
+   <div class="col-xs-12 serviceheader">
+      <div class="col-xs-1 servicelefticon" ng-click="goback()"><i class="fa fa-angle-left"></i></div>
+      <div class="col-xs-11 servicename">COMPARE</div>
+   </div>
+   <div class="col-xs-12  mobilewishlist" style="margin-top: 10px;">
+      <div class="wishlistproductholder col-xs-12 nopadding" ng-repeat="(key,data) in comparedproducts">
+         <div class="productholder">
+            <div class="products">
+               <div class="product-container">
+                  <div class="miniholder text-right" ng-click="removecompared(data);"><i class="fa fa-minus-circle" aria-hidden="true"></i></div>
+                  <div class="product-left" ui-sref="app.viewitem({id:data.product.id})">
+                     <div class="product-thumb">
+                        <a class="product-img">
+                           <div class="imgholder" background-image="{{IMGURL}}{{data.product.images[0].thumbnail}}" ng-if="data.product.images[0].filetype == 1"></div>
+                           <div class="imgholder" background-image="{{data.product.images[0].thumbnail}}" ng-if="data.product.images[0].filetype == 2"></div>
+                        </a>
+                     </div>
+                  </div>
+                  <div class="product-right cursor" ui-sref="app.viewitem({id:data.product.id})">
+                     <div class="product-new-name">
+                        <a class="no_trans">{{data.product.title}}</a>
+                        <div class="sub-text">{{data.product.owner.username}}  |  Last Update:{{convertDate(data.product.created_at) | dateToISO | date:'dd MMM yyyy'}}</div>
+                     </div>
+                  </div>
+                  <div class="projectvalue">
+                     <div class="float-lt">
+                        <div class="rate"><span  ng-if="data.product.price > 0">$</span>{{data.product.price ? data.product.price: 'Free'}}</div>
+                        <span class="per_time" ng-if="data.product.price > 0">Per {{data.product.periodtype}}</span>
+                     </div>
+                     <div class="float-rt">  
+                        <i class="fa fa-heart-o activelike" aria-hidden="true"></i>                       
+                     </div>
+                  </div>
+                  <div class="product-right cursor">
+                     <div class="float-lt"><i class="fa fa-star activestar"></i><i class="fa fa-star activestar"></i><i class="fa fa-star activestar"></i><i class="fa fa-star activestar"></i><i class="fa fa-star"></i></div>
+                     <div class="float-rt">  
+                        <i class="fa fa-eye" aria-hidden="true"></i>{{data.product.noofviews | shortNumber}}                       
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="text-center checker"><i class="fa fa-check-circle activechecker"></i></div>
+         </div>
+      </div>
+   </div>
+</div>

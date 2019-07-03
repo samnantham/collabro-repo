@@ -1,0 +1,23 @@
+<div>
+   <form class="form-horizontal" name="addForm">
+      <div class="titlecontainer">
+         <div class="leftercontainer col-md-12 nopadding">
+            <div class="float-rt closeb" ng-click="closepopoverItem();"><img src="img/closebutton.png"></div>
+            <div class="subjecttitle"> REQUEST FOR COLLABORATION</div>
+            <div class="subjectsubtitle"> <a>{{notificationprojectData.owner.username}}</a> is want to collaborte with you!</div>
+         </div>
+      </div>
+      <div class="lettercontainer">
+         <div data-ng-include="'tpl/blocks/modalcontent/projectinfo.html'"></div>
+         <div class="clear"></div>
+      </div>
+      <div class="modalfooter">
+         <span class="submitcontent">*By confirming it means you agree with Collabro’s <a>terms and conditions.</a> Alternatively you can check with the seller first.</span>
+         <button class="chatb" ng-click="gotocollabchat();" ng-disabled="!notificationprojectData.member.status" ng-class="{'bgwhitebtn':notificationprojectData.member.status}"><i class="fa fa-phone-square" aria-hidden="true"></i>CHAT</button>
+         <div class="btn-group dropdown dropup">
+            <button class="actionb"  ng-if="!notificationprojectData.member.status" ng-click="acceptcollaboration()">Accept</button>
+            <button class="actionb" ng-if="notificationprojectData.member.status" ng-click="closepopoverItem();">Close </button>
+         </div>
+      </div>
+   </form>
+</div>

@@ -1,0 +1,153 @@
+<div class="letterdetailscontainer" ng-if="(ResponseData.showdetails || ResponseData.status == 1)&&!ResponseData.isreject">
+   <div class="leftimage">
+      <div class="conta dottedborder marginer" ng-if="ResponseData.status == 0 && !ResponseData.iscounter && !ResponseData.isreject">
+               NOTE: The is a <a>Tripartite Standard Agreement</a> form to protect both parties against any issues in the future. Read for more info<a> here</a>.
+               <br><br>
+               <div class="bottomnewtext">Read and agreed to the TSA Protection Scheme</div>
+               <div class="pretty p-image p-plain floatleft" style="width: 18px; float: left;margin-top: 0px;">
+                  <input type="checkbox" name="isaccept" ng-true-value="1" ng-false-value="0" ng-model="ResponseData.isaccept" class="ng-pristine ng-untouched ng-valid" tabindex="0" aria-checked="false" aria-invalid="false">
+                  <div class="state">
+                     <i class="fa fa-check" aria-hidden="true"></i>
+                     <label>&nbsp;&nbsp;</label>
+                  </div>
+               </div>
+               <div class="clear"></div>
+            </div>
+      <div class="conta">
+         <div class="preview-img"  ng-if="ResponseData.commisionitem.productdetails.images[ResponseData.commisionactive].filetype == 1">
+            <img src="{{IMGURL}}{{ResponseData.commisionitem.productdetails.images[ResponseData.commisionactive].file}}">
+         </div>
+         <div class="preview-img"  ng-if="ResponseData.commisionitem.productdetails.images[ResponseData.commisionactive].filetype == 2">
+            <anguvideo ng-model="ResponseData.commisionitem.productdetails.images[ResponseData.commisionactive].file" width="100%" height="auto" ng-if="!ResponseData.commisionitem.productdetails.images[ResponseData.commisionactive].file.includes('soundcloud')"></anguvideo>
+            <sound-cloud-player url="{{ResponseData.commisionitem.productdetails.images[ResponseData.commisionactive].file}}" class="m-t-sm" ng-if="ResponseData.commisionitem.productdetails.images[ResponseData.commisionactive].file.includes('soundcloud')"></sound-cloud-player>
+         </div>
+      </div>
+     <div class="conta" ng-if="ResponseData.commisionitem.productdetails.images.length > 1">
+         <span class="imager cursor" ng-repeat="(key,image) in ResponseData.commisionitem.productdetails.images" ng-click="setcommisionThumb(key);">
+         <img ng-src="{{IMGURL}}{{image.thumbnail}}" ng-class="{'activeopacity': key == activeslide}" ng-if="image.filetype == 1">
+         <img ng-src="{{image.thumbnail}}" ng-class="{'activeopacity': key == activeslide}" ng-if="image.filetype == 2">
+         </span>
+         <div class="clear"></div>
+      </div>
+   </div>
+   <div class="rightimage">
+      <div class="infodiv">
+         <!-- info start -->
+         <div class="common-itmes">
+            <div class="conta ">
+               <div class="details detailstitle text-bold">{{ResponseData.commisionitem.productdetails.title}}</div>
+            </div>
+            <div class="conta marginer">
+               <div class="details detailsdescription">{{ResponseData.commisionitem.productdetails.description}}
+               </div>
+            </div>
+            <div class="conta marginer">
+             <!--   <div class="details detailslist" ng-if="!ResponseData.iscounter">
+                  <ul>
+                     <li ng-repeat="(key,feature) in ResponseData.commisionitem.productdetails.features" ng-if="feature.feature"><i class="fa fa-check-circle"></i> {{feature.feature}}</li>
+                  </ul>
+               </div>
+               <div class="listcontainer" ng-if="ResponseData.iscounter">
+                  <ul class="itemholder" style="height: 68px;overflow-y: auto;">
+                     <li class="checlistfont" ng-repeat="(no,feature) in ResponseData.commisionitem.productdetails.features" ng-if="feature.feature"><i class="green fa fa-check-circle"></i> {{feature.feature}} <i class="pink fa fa-minus-circle cursor" ng-click="removeresponseFeature(no)"></i></li>
+                  </ul>
+                  <div class="buttonholder">
+                     <input style="width: 84%;" type="text" name="feature" placeholder="Speacialization of your service" ng-model="ResponseData.featuretext" my-enter="addresponseFeature()" maxlength="35"><button type="button" ng-click="addresponseFeature()"> Add </button>
+                  </div>
+               </div> -->
+            </div>
+            <div class="conta marginer" ng-class="{'mt-popup':ResponseData.iscounter}">
+               <div ng-if="(!ResponseData.iscounter) && (ResponseData.commisionitem.productdetails.type == 'Event' || ResponseData.commisionitem.productdetails.type == 'Rental')">
+                  <div class="datecontainer" ng-if="(ResponseData.commisionitem.productdetails.startdate)&&(ResponseData.commisionitem.productdetails.startdate)">
+                     <div>Start Date <span class="text-danger" ng-if="startdateerror"> (Required)</span></div>
+                     <div class="input-append date form_datetime" style="position: relative;">
+                        <div class="datediv" style="background: rgb(126, 142, 164);color:#fff;border: 0px;height: 30px;">
+                           <span class="add-onnew"><i class="fa fa-calendar"></i> {{ResponseData.commisionitem.productdetails.startdate | date:"dd-MM-yyyy"}}</span>
+                        </div>
+                     </div>
+                     <div class="clear"></div>
+                  </div>
+                  <div class="datecontainer" ng-if="(ResponseData.commisionitem.productdetails.enddate)&&(ResponseData.commisionitem.productdetails.enddate)">
+                     <div>End Date <span class="text-danger" ng-if="startdateerror"> (Required)</span></div>
+                     <div class="input-append date form_datetime" style="position: relative;">
+                        <div class="datediv" style="background: rgb(126, 142, 164);color:#fff;border: 0px;height: 30px;">
+                           <span class="add-onnew"><i class="fa fa-calendar"></i> {{ResponseData.commisionitem.productdetails.enddate | date:"dd-MM-yyyy"}}</span>
+                        </div>
+                     </div>
+                     <div class="clear"></div>
+                  </div>
+                  <div class="mobiledesigner"></div>
+                  <div class="timecontainer" ng-if="ResponseData.commisionitem.productdetails.starttime">
+                     <div>Start Time <span class="text-danger" ng-if="startdateerror"> (Required)</span></div>
+                     <div class="input-append date form_datetime" style="position: relative;">
+                        <div class="datediv" style="background: rgb(126, 142, 164);color:#fff;border: 0px;height: 30px;width:72px;">
+                           <span class="add-onnew"><i class="fa fa-clock-o"></i> {{ResponseData.commisionitem.productdetails.starttime | date:"HH:MM"}}</span>
+                        </div>
+                     </div>
+                     <div class="clear"></div>
+                  </div>
+                  <div class="timecontainer" ng-if="ResponseData.commisionitem.productdetails.endtime">
+                     <div>End Time <span class="text-danger" ng-if="startdateerror"> (Required)</span></div>
+                     <div class="input-append date form_datetime" style="position: relative;">
+                        <div class="datediv" style="background: rgb(126, 142, 164);color:#fff;border: 0px;height: 30px;width:72px;">
+                           <span class="add-onnew"><i class="fa fa-clock-o"></i> {{ResponseData.commisionitem.productdetails.endtime | date:"HH:MM"}}</span>
+                        </div>
+                     </div>
+                     <div class="clear"></div>
+                  </div>
+               </div>
+               <div ng-if="ResponseData.iscounter">
+                  <div class="event-items">
+                     <div class="datecontainer" ng-if="(ResponseData.commisionitem.productdetails.type == 'Rental' || ResponseData.commisionitem.productdetails.type == 'Event')">
+                        <div>Start Date <span class="text-danger" ng-if="startdateerror"></span></div>
+                        <div class="input-append date form_datetime" style="position: relative;">
+                           <input type="text" date-picker size="16" ng-model="ResponseData.commisionitem.productdetails.productstartdate" placeholder="Start Date" name="startdate" ng-required="!ResponseData.commisionitem.productdetails.hasstartdate" readonly style="position: absolute;width: 96px;padding-left: 19px;">
+                           <span class="add-on" style="position: absolute;top:13px;left:5px"><i class="fa fa-calendar"></i></span>
+                        </div>
+                        <div class="clear"></div>
+                     </div>
+                     <div class="datecontainer" ng-if="(ResponseData.commisionitem.productdetails.type == 'Rental' || ResponseData.commisionitem.productdetails.type == 'Event')">
+                        <div>End Date <span class="text-danger" ng-if="enddateerror"> (Required)</span></div>
+                        <div class="input-append date form_datetime" style="position: relative;">
+                           <input type="text" size="16" date-picker placeholder="End Date" name="enddate" required readonly ng-model='ResponseData.commisionitem.productdetails.productenddate' style="position: absolute;width: 96px;padding-left: 19px;">
+                           <span class="add-on" style="position: absolute;top:13px;left:5px"><i class="fa fa-calendar"></i></span>
+                        </div>
+                        <div class="clear"></div>
+                     </div>
+                     <!-- <div class="location-price" style="float: left;" >
+                        <div style="float: left;margin-right: 20px;">
+                           <div>Location</div>
+                           <select style="width: 150px;" class="form-control" name="location" ng-model="ResponseData.commisionitem.productdetails.location" ng-options="location as location for location in locations">
+                           </select>
+                        </div>
+                        </div> -->
+                     <div class="priceditholder" >
+                        <div>
+                           Price<span style="float: right;">Currency</span>
+                           <div></div>
+                           <div class="rateholder">$</div>
+                           <input placeholder="0.00" name="price" ng-model="ResponseData.commisionitem.productdetails.price" valid-number required class="percost" style="float: left;width:95px;height: 28px;" type="text"><select class="rateselect no-border bg-light" ng-options="periodtype as periodtype for periodtype in periodtypes" ng-model="ResponseData.commisionitem.productdetails.periodtype" ng-if="ResponseData.commisionitem.productdetails.type!='Shop'">
+                           </select>
+                           <select  class="rateselect no-border bg-light" ng-options="currency as currency for currency in currencies" ng-model="ResponseData.commisionitem.productdetails.currency" ng-if="ResponseData.commisionitem.productdetails.type=='Shop'">
+                           </select> 
+                        </div>
+                     </div>
+                     <div class="clear"></div>
+                  </div>
+               </div>
+               <div ng-class="{'pull-right': ResponseData.commisionitem.productdetails.type == 'Rental' || ResponseData.commisionitem.productdetails.type == 'Event'}" style="   margin-top: 15px;" ng-if="!ResponseData.iscounter">
+                  <div class="products">
+                     <!-- <div>Budget</div> -->
+                     <div class="price-box ">
+                        <span class="per_code" ng-if="ResponseData.commisionitem.productdetails.price > 0">$ </span>
+                        <span class="per_price">{{ResponseData.commisionitem.productdetails.price ? ResponseData.commisionitem.productdetails.price: 'Free'}}</span>
+                        <span class="per_time" ng-if="ResponseData.commisionitem.productdetails.price > 0 && ResponseData.commisionitem.productdetails.type!='Shop'">Per {{ResponseData.commisionitem.productdetails.periodtype}}</span>
+                     </div>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

@@ -1,0 +1,15 @@
+<link href="css/otpmodal.css" rel="stylesheet" type="text/css"/>
+<div class="form-group">
+<form name="otpform" class="form-horizontal" novalidate ng-submit="verifyotp(otpform);">
+   <div class="m-b-sm">
+      <h5 class="modal-title" id="exampleModalLabel">Verify Your OTP Here! <span ng-messages="otpform.otp.$error" role="alert" class="otp-errormsg"><span class="text-danger" ng-message="required">OTP Required</span><span class="text-danger"ng-message="minlength">Atleast 6 characters long.</span></span></h5>
+   </div>
+   <div class="m-b-sm">
+      <input type="text" class="form-control" id="user-otp" ng-model="otpData.otp" name="otp" numbers-only placeholder="Enter recevived OTP in your Mobile" required minlength="6" maxlength="6">
+   </div>
+   <div class="m-b-sm">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-disabled="otpLoading" ng-click="closepopoverItem()">Close</button>
+      <button type="submit" class="btn commision-button" button-spinner="otpLoading" spinning-icon="fa fa-circle-o-notch fa-spin" ng-disabled="otpLoading||!otpform.$valid">Verify</button>
+   </div>
+</form>
+</div>

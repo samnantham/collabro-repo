@@ -1,0 +1,36 @@
+body{
+    padding: 4.5em 0 !important;    
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+a:hover{
+    text-decoration: none;
+}
+
+#Login{
+    padding: 5px 10px !important;
+}
+
+#Login a{
+    line-height: normal;
+}
+
+#Login:hover{
+    color: #fff;
+    background: #32C6E4;
+    border: 1px solid #32C6E4;
+}
+
+.chatholder .titlecontainers {
+    float: left;
+}
+
+.leftercontainer .chatimageholder{
+    margin-left: auto;
+}
+
+.gallerys{
+    overflow: hidden;
+}

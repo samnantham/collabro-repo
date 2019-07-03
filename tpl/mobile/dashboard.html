@@ -1,0 +1,529 @@
+<div ng-controller="DashboardCtrl" class="dashboard">
+   <div class="col-xs-12 serviceheader">
+      <div class="col-xs-1 servicelefticon" ng-click="goback()"><i class="fa fa-angle-left"></i></div>
+      <div class="col-xs-9 servicename">MY DASHBOARD</div>
+      <div class="col-xs-2 servicerighticon"></div>
+   </div>
+   <div class="clear"></div>
+   <div class="col-xs-12  backgroundwhite" >
+      <div class="col-xs-12 topinfonew" >
+         <div class=" col-5 smallpadd">
+            <div class="topsubtext">Collection Items</div>
+            <div class="bottomtext">{{userData.totalproducts}}</div>
+         </div>
+         <div class="col-5 smallpadd">
+            <div class="topsubtext">Completed Projects</div>
+            <div class="bottomtext">0</div>
+         </div>
+         <div class=" col-5 smallpadd">
+            <div class="topsubtext">Viewers</div>
+            <div class="bottomtext">{{userData.totalviewers}}</div>
+         </div>
+         <div class=" col-5 smallpadd">
+            <div class="topsubtext"> Your Followers </div>
+            <div class="bottomtext">{{userData.followers}}</div>
+         </div>
+         <div class=" col-5 smallpadd noborder">
+            <div class="topsubtext">You Follow</div>
+            <div class="bottomtext">{{userData.following}}</div>
+         </div>
+      </div>
+   </div>
+
+   <div class="clear"></div>
+
+
+
+    <div class="col-xs-12  backgroundwhite">
+      <div class="col-xs-12 newpadding">
+   <div class="col-xs-12  topcontainer">
+      <div class="col-xs-4 nopadding cursor text-center" ng-class="{'active':activetab=='profile'}" ng-click="setactivetab('profile');">PROFILE</div>
+      <div class="col-xs-4 nopadding cursor text-center" ng-class="{'active':activetab=='address'}" ng-click="setactivetab('address');">ADDRESS</div>
+      <div class="col-xs-4 nopadding cursor text-center" ng-class="{'active':activetab=='account'}" ng-click="setactivetab('account');">MY ACCOUNT</div>
+   </div>
+</div>
+</div>
+   <div class="clear"></div>
+   <div class="col-xs-12  backgroundwhite">
+      <div class="profile_conatainer" ng-if="activetab=='profile'&&!profileedit" >
+         <div class="col-xs-12 detailscontainer">
+            <button type="button" class="editprofile" ng-click="showhideedit()">Edit Profile</button>
+         </div>
+         <div class="col-xs-12 newpadding">
+            <div class="col-xs-3 nopadding">
+               <div class="userimageholder" background-image="{{IMGURL}}{{userData.avatar}}"></div>
+            </div>
+            <div class="col-xs-9 nopadding">
+               <div class="col-xs-12 ">
+                  <div class="usertitle">{{userData.username}}</div>
+                  <div class="companytitle" ng-if="userData.organisation">{{user.organisation ? user.organisation : 'COMPANY NAME (Optional)'}}</div>
+                  <div class="companytitle noborder" ng-if="userData.company_uen">{{user.company_uen ? user.company_uen : 'COMPANY UEN NO. (Optional)'}}</div>
+               </div>
+               <div class="col-xs-12 nopadding padding-left-20">
+                  <div class="userphone"><span class="std">{{user.countrycode}}</span>{{userData.phonenumber}}</div>
+                  <div class="companytitle noborder" ng-if="!user.otpverified"> <button class="verifyphone" ng-if="!user.otpverified" ng-click="openOTPModal()" type="button">VERIFY</button></div>
+                  <div class="clear"></div>
+                  <div class="companytitle noborder"><i class="fa fa-map-marker map-marker" aria-hidden="true"></i> <span class="country">{{userData.country}}</span></div>
+               </div>
+            </div>
+         </div>
+         <div class="col-xs-12 mypadding">
+            <div class="col-xs-3 nopadding">
+               <div class="leftlabel">WEBSITE</div>
+            </div>
+            <div class="col-xs-9 ">
+               <div class="rightlabel">{{userData.website}}
+               </div>
+            </div>
+         </div>
+         <div class="col-xs-12 mypadding">
+            <div class="col-xs-3 nopadding">
+               <div class="leftlabel">SKILLS</div>
+            </div>
+            <div class="col-xs-9 ">
+               <div class="righttext">{{userData.profession}}</div>
+            </div>
+         </div>
+         <div class="col-xs-12 mypadding">
+            <div class="col-xs-3 nopadding">
+               <div class="leftlabel">WHO AM I?</div>
+            </div>
+            <div class="col-xs-9 ">
+               <div class="righttext">{{userData.aboutme ? userData.aboutme : 'This is where I insert my own statement to describe about what i do and my insipiration to be an entrepeneur. Do not hesitate to poke me anytime!'}}</div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-xs-12 backgroundwhite">
+      <div >
+         <div class="col-xs-12 newpadding">
+            <div class="profile_conatainer" ng-if="activetab=='profile'&&profileedit">
+               <form name="profileform" ng-submit="saveProfile(profileform)">
+                  <div class="detailscontainernew"></div>
+                  <div class="col-xs-12 ">
+                     <div class="col-xs-3 newpadding">
+                        <div class="userimageholder text-right"  ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid"
+                           ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="uploadProfileimg($files);"><img ng-src="{{IMGURL}}{{userData.avatar}}" ng-if="!editData.profileimg" class="userimageholder"><img ngf-src="editData.profileimg" ng-if="editData.profileimg" class="userimageholder"></div>
+                     </div>
+                     <div class="col-xs-9 newpaddingleft">
+
+                        <div class="col-xs-12 ">
+                           <div class="usertitle"><input class="profileedit" type="text" required ng-model="editData.username" name="username"></div>
+                           <div class="companytitle width90" ng-if="user.iscompany"><input class="profileedit width100" type="text" value="COMPANY NAME (Optional)" ng-model="editData.organisation" name="organisation"></div>
+                           <div class="companytitle noborder" ng-if="user.iscompany"><input class="profileedit" type="text" value="COMPANY UEN NO. (Optional)" ng-model="editData.company_uen" name="company_uen"></div>
+                        </div>
+                        <div class="col-xs-12 ">
+                           <div class="userphone"><span class=""><input class="profileedit phone2" type="text" ng-model="editData.countrycode" name="countrycode"></span><input class="profileedit phone1" type="text" required ng-model="editData.phonenumber" name="phonenumber"></div>
+                           <div class="companytitle noborder"> <button class="verifyphone" ng-if="!user.otpverified" type="button">VERIFY MOBILE NUMBER</button></div>
+                           <div class="clear"></div>
+                           <div class="companytitle noborder col-xs-12 nopadd" >
+                             
+                              <div class="col-xs-12 nopadd positionrelative margin-top8"><i class="fa fa-map-marker mapmark map-marker float-lt" aria-hidden="true"></i> <input class="profileedit paddingleft20" type="text" ng-model="editData.country"  name="country" required></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-xs-12 nopadding">
+                     <div class="col-xs-3 newpadding">
+                        <div class="leftlabel">WEBSITE</div>
+                     </div>
+                     <div class="col-xs-9 newpaddingleft ">
+                        <div class="rightlabel"><input class="profileedit width100" type="text" ng-model="editData.website"  name="website"></div>
+                     </div>
+                  </div>
+                  <div class="col-xs-12 nopadding">
+                     <div class="col-xs-3 newpadding">
+                        <div class="leftlabel">SKILLS</div>
+                     </div>
+                     <div class="col-xs-9 newpaddingleft">
+                        <div class="righttext"><input class="profileedit width100" type="text" ng-model="editData.profession" name="profession" required></div>
+                     </div>
+                  </div>
+                  <div class="col-xs-12 nopadding">
+                     <div class="col-xs-3 newpadding">
+                        <div class="leftlabel">WHO AM I?</div>
+                     </div>
+                     <div class="col-xs-9 newpaddingleft  ">
+                        <div class="righttext"><textarea class="profileedit width-100 height77"  row="3" ng-model="editData.aboutme" name="aboutme" placeholder="This is where I insert my own statement to describe about what i do and my insipiration to be an entrepeneur. Do not hesitate to poke me anytime!"></textarea></div>
+                     </div>
+                  </div>
+                   <div class="col-xs-12 ">
+                     <button type="submit" class="editprofile margin-left10" >Save Profile</button>
+                     <button type="button" class="editprofile" ng-click="showhideedit()">Cancel</button>
+                  </div>
+                  <div class="clear"></div>
+                  <div class="detailscontainernew"></div>
+               </form>
+            </div>
+            <div class="profile_conatainer" ng-if="activetab=='address'">
+               <form name="addressform" ng-submit="saveAddress(addressform)">
+                  <div class="col-xs-12 detailscontainer" ng-if="addressedit">
+                     <button type="submit" class="editprofile margin-left10" >Save Address</button>
+                     <button type="button" class="editprofile" ng-click="showhideedit()">Cancel</button>
+                  </div>
+                  <div class="col-xs-12 detailscontainer" ng-if="!addressedit">
+                     <button type="button" class="editprofile" ng-click="showhideedit()">Edit Address</button>
+                  </div>
+                  <div class="col-xs-12 nopadding">
+                     <div class="col-xs-6 nopadding">
+                        <div class="conta ">
+                           <div class="labeltext">Address</div>
+                           <div class="txt_holder">
+                              <textarea name="address" ng-model="userData.address" required ng-disabled="!addressedit"></textarea>
+                           </div>
+                        </div>
+                        <div class="conta ">
+                           <div class="labeltext">Postal Code</div>
+                           <div class="txt_holder">
+                              <input type="text" class="width50" name="postalcode" ng-model="userData.postalcode" required  numbers-only ng-disabled="!addressedit">
+                              <div class="pretty p-image p-plain margin-top8 " >
+                                 <input type="checkbox" name="showmap" ng-true-value="1" ng-false-value="0" ng-model="userData.showmap" ng-disabled="!addressedit">
+                                 <div class="state">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                    <label>Show map</label>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="conta" ng-if="user.iscompany">
+                           <div class="labeltext">Organisation</div>
+                           <div class="txt_holder">
+                              <input type="text" name="organisation" ng-model="userData.organisation" ng-disabled="!addressedit">
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-xs-6 nopaddingright">
+                        <div class="conta ">
+                           <div class="labeltext">Business Email</div>
+                           <div class="txt_holder">
+                              <input type="email" name="email" ng-model="userData.email" required ng-disabled="!addressedit">
+                           </div>
+                           <div class="txt_holder" ng-if="!addressedit">
+                              <div class="pretty p-image p-plain">
+                                 <input type="checkbox" ng-checked="userData.isprivate" ng-disabled="true">
+                                 <div class="state">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                    <label>Private</label>
+                                 </div>
+                              </div>
+                              <div class="pretty p-image p-plain">
+                                 <input type="checkbox" ng-checked="!userData.isprivate" ng-disabled="true">
+                                 <div class="state">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                    <label>Public</label>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="txt_holder" ng-if="addressedit">
+                              <div class="pretty p-image p-plain">
+                                 <input type="checkbox" name="isprivate" ng-true-value="1" ng-model="userData.isprivate" ng-checked="userData.isprivate">
+                                 <div class="state">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                    <label>Private</label>
+                                 </div>
+                              </div>
+                              <div class="pretty p-image p-plain">
+                                 <input type="checkbox" name="isprivate" ng-true-value="1" value="0" ng-model="userData.isprivate" ng-checked="!userData.isprivate">
+                                 <div class="state">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                    <label>Public</label>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="conta ">
+                           <div class="labeltext">Contact No</div>
+                           <div class="txt_holder">
+                              <input type="text" ng-model="userData.countrycode" name="countrycode" required style="width: 27%" ng-disabled="!addressedit">
+                              <input type="text" required ng-model="userData.phonenumber" name="phonenumber" style="width: 68%" ng-disabled="!addressedit">
+                           </div>
+                        </div>
+                        <div class="conta " ng-if="user.iscompany">
+                           <div class="labeltext">Company UEN No.</div>
+                           <div class="txt_holder">
+                              <input type="text" ng-model="userData.company_uen" name="company_uen" ng-disabled="!addressedit">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+         <div class="col-xs-12 borderbottom nopadding"></div>
+         <div class="col-xs-12 nopadding">
+            <div class="gallerys"      >
+               <div class="col-xs-12 topinfonew earnholder">
+                  <div class="col-xs-4 nopadding bottominfo">
+                     <div class="col-xs-12 nopadding">
+                     <div class="topsubtext text-left">TOTAL EARNING</div>
+                     <div class="bottomtext text-left">$80,890</div>
+                     </div>
+                        <div class="col-xs-12 nopadding text-left" style="margin-top: 1em;">
+                     <div class="topsubtext text-left baseline">Influencer</div>
+                     <div class="bottomtrophy text-left"><i class="fa fa-trophy" aria-hidden="true" ng-class="{'bronze':((user.experiencepoints >= 100) && (user.experiencepoints < 200)),'silver':((user.experiencepoints >= 200) && (user.experiencepoints < 300)), 'gold':((user.experiencepoints >= 300) && (user.experiencepoints < 400)),'platinum': ((user.experiencepoints >= 400) && (user.experiencepoints < 500)),'diamond': user.experiencepoints >= 500}"></i></div>
+                  </div>
+
+                  </div>
+                  <div class="col-xs-8  nopadding">
+                     <div class="col-xs-12 nopadding earntotinfo">
+                     <div class="col-xs-6  earninfo nopaddingleft">
+                        $74,217<i class="fa fa-sort-asc" aria-hidden="true"></i>
+                        <div class="earnbottomtext">Withdrawal</div>
+                     </div>
+                     <div class="col-xs-6 earninfo nopaddingright">
+                        $6673 <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                        <div class="earnbottomtext">Account Balance</div>
+                     </div>
+                  </div>
+                  <div class="col-xs-12 nopadding text-center earntotinfo">
+                     <div class="col-xs-6  earninfo nopaddingleft noborder" >
+                        <div class="borderdiv">
+                           $5423
+                           <div class="earnbottomtext">Withdrawal</div>
+                        </div>
+                     </div>
+                     <div class="col-xs-6 totalearning paddingtoponly noborder" >
+                        <div class="borderdiv" >
+                           $1250
+                           <div class="earnbottomtext">Account Balance</div>
+                        </div>
+                     </div>
+                  </div>
+                  </div>
+                  <!--  <div class="col-xs-6 nopadding text-center">
+                     <div class="topsubtext">Influencer</div>
+                     <div class="bottomtrophy"><i class="fa fa-trophy" aria-hidden="true" ng-class="{'bronze':((user.experiencepoints >= 100) && (user.experiencepoints < 200)),'silver':((user.experiencepoints >= 200) && (user.experiencepoints < 300)), 'gold':((user.experiencepoints >= 300) && (user.experiencepoints < 400)),'platinum': ((user.experiencepoints >= 400) && (user.experiencepoints < 500)),'diamond': user.experiencepoints >= 500}"></i></div>
+                     </div> -->
+               </div>
+            <div class="col-xs-12 borderbottom nopadding"></div>
+             <!--   <div class="col-xs-12 earntotinfo full nopadding">
+                  <div class="topsubgraph text-left">Withdrawal</div>
+            <div class="w3-light-grey">
+               <div class="w3-container w3-green w3-center" style="width:25%"></div>
+               <div class="w3-container w3-yellow w3-center" style="width:25%"></div>
+               <div class="w3-container w3-pink w3-center" style="width:25%"></div>
+               <div class="w3-container w3-blue w3-center" style="width:25%"></div>
+            </div>
+         </div> -->
+               <div class="col-xs-12 financial newpadding">
+                  <div class="col-xs-10  earninfo nopaddingleft ">
+                    <div class="earnbottomtext baseline" style="font-size: 14px;">Financial Distribution</div>
+                  </div>
+               </div>
+               <div class="col-xs-12 earntotinfo nomargin newpadding" style="">
+                  <div class="col-xs-2 hidetext"></div>
+                  <div class="col-xs-12 earninfo nopadd noborder" >
+                     <i class="fa fa-circle green font9" ></i> <span class="f-12 earnbottomtext">Experience Points<span class="text-right rightext">{{user.experiencepoints}}</span></span>
+                  </div>
+               </div>
+               <div class="col-xs-12 earntotinfo progressbottom" style="">
+                  <div class="col-xs-2 hidetext"></div>
+                  <div class="col-xs-12 earninfo nopadd noborder" >
+                     <div class="w3-light-grey">
+                        <div class="w3-container w3-green w3-center" ng-style="{width: ((user.experiencepoints*100)/user.allowedXP) + '%'}" tooltip="{{user.experiencepoints}}" tooltip-trigger="focus" tabindex="-1"></div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xs-12 earntotinfo nomargin newpadding" style="">
+                  <div class="col-xs-2 hidetext"></div>
+                  <div class="col-xs-12   earninfo nopadd noborder" >
+                     <i class="fa fa-circle yellow font9" ></i> <span class="f-12 earnbottomtext">Profit Earned<span class="text-right rightext">8452</span></span>
+                  </div>
+               </div>
+               <div class="col-xs-12 earntotinfo progressbottom">
+                  <div class="col-xs-2 hidetext"></div>
+                  <div class="col-xs-12   earninfo nopadd noborder" >
+                     <div class="w3-light-grey">
+                        <div class="w3-container w3-yellow w3-center" style="width:75%"></div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xs-12 earntotinfo nomargin newpadding" style="">
+                  <div class="col-xs-2 hidetext"></div>
+                  <div class="col-xs-12   earninfo nopadd noborder" >
+                     <i class="fa fa-circle blue font9" ></i> <span class="f-12 earnbottomtext">Advertisement Spent<span class="text-right rightext">8452</span></span>
+                  </div>
+               </div>
+               <div class="col-xs-12 earntotinfo  progressbottom">
+                  <div class="col-xs-2 hidetext"></div>
+                  <div class="col-xs-12   earninfo nopadd noborder" >
+                     <div class="w3-light-grey">
+                        <div class="w3-container w3-blue w3-center" style="width:25%"></div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xs-12 earntotinfo nomargin newpadding" style="">
+                  <div class="col-xs-2 hidetext"></div>
+                  <div class="col-xs-12 earninfo nopadd noborder" >
+                     <i class="fa fa-circle pinke font9" ></i> <span class="f-12 earnbottomtext">Rental Earned<span class="text-right rightext">8452</span></span>
+                  </div>
+               </div>
+               <div class="col-xs-12 earntotinfo progressbottom">
+                  <div class="col-xs-2 hidetext"></div>
+                  <div class="col-xs-12   earninfo nopadd noborder" >
+                     <div class="w3-light-grey">
+                        <div class="w3-container w3-pink w3-center" style="width:45%"></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+         <div class="col-xs-12 borderbottom nopadding"></div>
+         <div class="col-xs-12 newpadding">
+            <div class="rightinfover">
+               <div class="col-xs-4 nopadding">
+                  <div class="col-xs-12 lt nopadding">MUTUAL FRIENDS</div>
+                  <div class="col-xs-12 rt nopadding">{{chartData.mutualFriends}}</div>
+               </div>
+               <div class="col-xs-4 nopadding">
+                  <div>
+                     <div class="col-xs-12 lt nopadding">LIKES</div>
+                     <div class="col-xs-12 rt nopadding">{{chartData.totallikes}}</div>
+                  </div>
+               </div>
+               <div class="col-xs-4 nopadding">
+                  <div class="col-xs-12 lt nopadding">APPRECIATIONS</div>
+                  <div class="col-xs-12 rt nopadding"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></div>
+               </div>
+            </div>
+            <div class="col-xs-12 borderbottom nopadding "></div>
+            <div class="clear"></div>
+         </div>
+         <div class="clear"></div>
+         
+         <div class="col-xs-12 newpadding">
+         <div class="statisticsholder">
+            <div class="statistics"><i class="fa fa-bar-chart"></i>&nbsp;PERFORMANCE STATISTIC</div>
+            <div class="col-xs-12 topcontainer">
+               <div class="col-xs-4 cursor" ng-class="{'active':centeractivetab=='xpearning'}" ng-click="setcenteractivetab('xpearning');">XP EARNING</div>
+               <div class="col-xs-4 cursor" ng-class="{'active':centeractivetab=='reachviewers'}" ng-click="setcenteractivetab('reachviewers');">REACH VIEWERS</div>
+               <div class="col-xs-4 cursor" ng-class="{'active':centeractivetab=='impressions'}" ng-click="setcenteractivetab('impressions');">IMPRESSIONS</div>
+            </div>
+            <div class="statisticsinner col-xs-12">
+               <div class="col-xs-12 nopadding margin-bottom" ng-if="centeractivetab == 'xpearning'">
+                  <div class="col-xs-1"></div>
+                  <div class="col-xs-10 smallpadd">
+                     <div class="col-xs-2 nopadd cursor" ng-repeat="(key,data) in chartData.xpData" >
+                        <div class="progress progress-bar-vertical" tooltip="{{data.currenttotal}}" tooltip-trigger="focus" tabindex="-1">
+                           <div class="progress-bar chart1bg" role="progressbar" aria-valuenow="{{data.percentage}}" aria-valuemin="0" aria-valuemax="100" ng-style="{height: data.percentage + '%'}">
+                           </div>
+                        </div>
+                        <span class="monthlabel">{{data.monthname | cut:true:3:'' }}</span>
+                     </div>
+                  </div>
+                  <div class="col-xs-1 "></div>
+               </div>
+               <div class="col-xs-12 nopadding margin-bottom" ng-if="centeractivetab == 'reachviewers'">
+                  <div class="col-xs-1"></div>
+                  <div class="col-xs-10 smallpadd">
+                     <div class="col-xs-2 nopadd cursor" ng-repeat="(key,data) in chartData.reachViewersData"  >
+                        <div class="progress progress-bar-vertical" tooltip="{{data.currenttotal}}" tooltip-trigger="focus" tabindex="-1">
+                           <div class="progress-bar chart2bg" role="progressbar" aria-valuenow="{{data.percentage}}" aria-valuemin="0" aria-valuemax="100" ng-style="{height: data.percentage + '%'}">
+                           </div>
+                        </div>
+                        <span class="monthlabel">{{data.monthname | cut:true:3:'' }}</span>
+                     </div>
+                  </div>
+                  <div class="col-xs-1 "></div>
+               </div>
+               <div class="col-xs-12 nopadding margin-bottom"  ng-if="centeractivetab == 'impressions'">
+                  <div class="col-xs-2 "></div>
+                  <div class="col-xs-10 smallpadd">
+                     <div class="col-xs-2 nopadd text-center" ng-repeat="(key,data) in chartData.impressionData">
+                        <div class="progress progress-bar-vertical" tooltip="{{data.currenttotal}}" tooltip-trigger="focus" tabindex="-1">
+                           <div class="progress-bar chart3bg" role="progressbar" aria-valuenow="{{data.percentage}}" aria-valuemin="0" aria-valuemax="100" ng-style="{height: data.percentage + '%'}">
+                           </div>
+                        </div>
+                        <span class="monthlabel">{{data.lable}}</span>
+                     </div>
+                  </div>
+                  <div class="col-xs-2 "></div>
+               </div>
+               <div class="clear"></div>
+            </div>
+         </div>
+         <div class="projectholder col-xs-12 nopadding">
+            <div class="col-xs-12 topcontainer">
+               <div class="col-xs-4 cursor" ng-class="{'active':bottomactivetab=='followers'}" ng-click="setbottomactivetab('followers');">FOLLOWERS</div>
+               <div class="col-xs-4 cursor" ng-class="{'active':bottomactivetab=='interestarea'}" ng-click="setbottomactivetab('interestarea');">INTEREST AREA</div>
+               <div class="col-xs-4 cursor" ng-class="{'active':bottomactivetab=='mylistings'}" ng-click="setbottomactivetab('mylistings');">MY LISTINGS</div>
+            </div>
+            <div ng-if="bottomactivetab=='mylistings'">
+               <div class="projectlisting col-xs-12 mypadding" dir-paginate="(key,data) in myProducts.data | itemsPerPage: totalPerPage" total-items="myProducts.total" current-page="pagination.current">
+                  <div class="col-xs-2 newpadding cursor" ui-sref="app.viewitem({'id':data.id})">
+                     <div class="pro-thumb" background-image="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1"></div>
+                     <div class="pro-thumb" background-image="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"></div>
+                  </div>
+                  <div class="col-xs-4 newpadding-left">
+                     <div class="projtitle cursor" ui-sref="app.viewitem({'id':data.id})">{{data.title}}</div>
+                     <div class="projinfo">Last Update:<br> {{convertDate(data.updated_at) | dateToISO | date:'dd MMMM yyyy'}} </div>
+                  </div>
+                  <div class="col-xs-3 newpadding">
+                     <div class="col-xs-12 nopadding">
+                     <div class="projtitle">{{data.price ? (data.price | currency): 'Free'}} SGD</div>
+                     <div class="projinfo" ng-if="data.price > 0 && data.type != 'Shop'">Per {{data.periodtype}}</div>
+                  </div>
+                  <div class="col-xs-12 nopadding">
+                     <div class="col-xs-6 nopadding"><div class="projinfo"><i class="fa fa-heart"></i>&nbsp;&nbsp;{{data.wishcount}}</div></div>
+                     <div class="col-xs-6 nopadding"><div class="projinfo"><i class="fa fa-eye"></i>&nbsp;&nbsp;{{data.noofviews}}</div></div>
+                  </div>
+                  </div>
+                 <!--  <div class="col-xs-1 text-center">
+                     <div class="projtitle">{{data.wishcount}}</div>
+                     <div class="projinfo"><i class="fa fa-heart"></i></div>
+                  </div>
+                  <div class="col-xs-1 text-center">
+                     <div class="projtitle">{{data.noofviews}}</div>
+                     <div class="projinfo"><i class="fa fa-eye"></i></div>
+                  </div> -->
+                  <div class="col-xs-2">
+                     <div class="projmesg cursor" ng-click="openChatlistModal(data.chats)">
+                        <img src="img/projmessage.png">
+                        <span ng-if="data.chats.length > 0">{{data.chats.length}}</span>
+                     </div>
+                  </div>
+                  <div class="col-xs-1 text-right">
+                     <div class="projinfo cursor " ng-click="removeproduct(data)"><i class="fa fa-minus-circle redmark"></i></div>
+                  </div>
+               </div>
+               <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" max-size="5" class="pull-right pagination-ctrl"></dir-pagination-controls>
+            </div>
+            <div class="intrestarea col-xs-12 nopadding" ng-if="bottomactivetab=='interestarea'">
+               <div class="col-xs-6 skillset nopadding" ng-repeat="(key,data) in userData.interestarea">
+                  <div class="skillsettitle">{{data.name}}</div>
+                  <div class="pretty p-image p-plain">
+                     <input type="checkbox" ng-change="updateInterestarea(data)" ng-true-value="1" ng-false-value="0" ng-model="data.status">
+                     <div class="state">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        <label>&nbsp;</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="followers col-xs-12 nopadding" ng-if="bottomactivetab=='followers'">
+               <div class="col-xs-6 nopadding">
+                  <div class="followtitle">FOLLOWERS SKILLS AREA</div>
+                  <div class="col-xs-12  nopadding" ng-repeat="(key,data) in otherData.professiondata">
+                     <div class="followleft col-md-7 col-sm-7 col-lg-7 nopadding">{{data.profession}}</div>
+                     <div class="followright col-xs-3 nopadding">{{data.totalmembers}}</div>
+                  </div>
+               </div>
+               <div class="col-xs-6">
+                  <div class="followtitle">CATEGORY</div>
+
+                   <div class="col-xs-12 nopadding" ng-repeat="(key,data) in otherData.typesData">
+                     <div class="followleft col-md-7 col-sm-7 col-lg-7 nopadding">{{data.name}}</div>
+                     <div class="followright col-xs-3 nopadding">{{data.count}}</div>
+                  </div>
+                 
+               </div>
+            </div>
+         </div>
+            </div>
+       
+      </div>
+   </div>
+</div>
+</div>
+  <div class="clear"></div>

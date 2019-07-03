@@ -1,0 +1,12 @@
+<link href="css/imagepopover.css" rel="stylesheet" type="text/css"/>
+<div class="col-md-12 ">
+    <a>
+        <div class="col-md-1 float-rt closeb" ng-click="closepopoverItem();"><i class="fa fa-minus-square-o" aria-hidden="true"></i></div>
+    </a>
+    <a ng-href="{{IMGURL}}{{chatImages.fileurl}}" download="{{downloadfilename}}" target="_blank">
+        <div class="col-md-1 float-rt closeb"><i class="fa fa-download"></i></div>
+    </a>
+</div>
+<div class="share_container">
+    <img ng-src="{{IMGURL}}{{chatImages.fileurl}}">
+</div>

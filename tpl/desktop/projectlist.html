@@ -1,0 +1,81 @@
+<div ng-controller="ProjectListCtrl" >
+   <div class="wthree-dot" id="searchtop" ng-if="!formLoading">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-2 col-sm-2 col-lg-2 nopadding leftSidebar" data-ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+            <div class="col-md-10 col-sm-10 col-lg-10 nopadding">
+               <div class="col-md-12 col-sm-12 col-lg-12 mypadding">
+                  <div class="wishlistheader">
+                  <div class="col-sm-12 col-md-12 col-lg-12">
+                     <span class="wishlisttitle float-lt"><i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp;Project List</span>
+                     <div class="float-rt">
+                        <span class="countno" ">Total Projects</span> | <span class="counttext">{{projects.total}} Projects</span>  
+                     </div>
+                  </div>
+               </div>
+               <div class="col-sm-12 col-md-12 col-lg-12 nopadding">
+
+                  <div class="cate-name ng-scope">
+                           <a class="no_trans float-lt ng-binding">Active Projects<span> | </span>{{projects.total}} Projects</a>
+                           <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Sort By</a>
+                           <ul class="dropdown-menu">
+                                 <li><a ng-click="sortproject('created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+                                 <li><a ng-click="sortproject('deadline','asc')"><i class="fa fa-sort-amount-asc"></i> Expiry ASC</a></li>
+                                 <li><a ng-click="sortproject('deadline','desc')"><i class="fa fa-sort-amount-desc"></i> Expiry DESC</a></li>
+                              </ul>
+                        </div>
+                   <div class="clear"></div>
+               </div>
+              
+              
+               <div class="projectrows min800">
+                  <div class="col-md-12 col-sm-12 col-lg-12  boot_list text-center" ng-if="projects.total == 0">
+                     <span class="user-subhead"><h2>Currently no projects</h2></span>
+                  </div>
+                  <div class="col-md-12 col-sm-12 col-lg-12  boot_list" dir-paginate="(key,data) in projects.data | itemsPerPage: totalPerPage" total-items="projects.total" current-page="pagination.current" ui-sref="app.projectdetails({id:data.id})">
+                     <div class="col-md-6 col-sm-6 col-lg-6  nopadding">
+                        
+                           <div class="boot_img" background-image="{{data.files[0].filetype == 1 ? IMGURL : ''}}{{data.files[0].thumbnail}}"  alt="">&nbsp;</div>
+                        
+                        <div class="col-md-8 col-sm-7 col-lg-8 no-padding-left">
+                           <a class="boot_user_link" cursor>{{data.title}}</a>
+                           <span class="user-subhead">{{data.owner.username}}</span>
+                           <span class="user-subhead font_b"> | </span>
+                           <span class="user-subhead"><!-- Last Update: --> {{convertDate(data.updated_at) | dateToISO | date:'dd MMM yyyy'}}</span>
+                        </div>
+                     </div>
+
+                     <div class="col-md-2 col-sm-2 col-lg-2 no-padding">
+                        <a class="boot_user_link_new">{{data.totalcost | currency}} SGD</a>
+                        <span class="user-subhead">Budget</span>
+                        <span class="user-subhead font_b"> / </span>
+                        <span class="user-subhead">Salary</span>
+                     </div>
+                     <div class="col-md-3 col-sm-3 col-lg-3">
+                        <a class="boot_user_link_new">Early {{data.deadline | dateToISO | date:'MMM yyyy'}}</a>
+                        <span class="user-red">{{data.remainingdays}} Days Remaining</span>
+                     </div>
+                     <div class="col-md-1 col-sm-1 col-lg-1 flex-align">
+                        <a class="com_section cursor" ui-sref="app.projectdetails({id:data.id})"><img src="img/promes.png"></a>
+                     </div>
+                     <!-- <div class="col-md-2 col-sm-2 col-lg-2 ">
+                        <div class="dropdown pad10"> -->
+                     <!-- <button class="btn_cus btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Actions
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                           <li><a href="#">HTML</a></li>
+                           <li><a href="#">CSS</a></li>
+                        </ul> -->
+                     <!--  </div>
+                        </div> -->
+                  </div>
+                  <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
+
+               </div>
+            </div>
+         </div>
+            <div class="col-md-2 col-sm-2 col-lg-2 nopadding rightSidebar" data-ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
+         </div>
+      </div>
+   </div>
+</div>

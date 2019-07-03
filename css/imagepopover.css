@@ -1,0 +1,26 @@
+.share_container{
+     margin-top: 25px!important;
+     margin: auto;
+     padding: 10px;
+     text-align: center;
+}
+ i {
+     font-size: 25px;
+     color: grey;
+}
+ .modal {
+     text-align: center;
+     padding: 0!important;
+}
+ .modal::before {
+     content: '';
+     display: inline-block;
+     height: 100%;
+     vertical-align: middle;
+     margin-right: -4px;
+}
+ .modal-dialog {
+     display: inline-block;
+     text-align: left;
+     vertical-align: middle;
+}

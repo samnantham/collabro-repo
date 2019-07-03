@@ -1,0 +1,35 @@
+.collaborateerror{
+     top: 24px!important;
+     left: 688px!important;
+     background: red;
+     color: #fff;
+     width: 150px;
+}
+ .collaborateagreementerror{
+     background: red;
+     color: #fff;
+     width: 150px;
+     left:270px!important;
+     top:-485px!important;
+}
+ .responseagreementerror{
+     background: red;
+     color: #fff;
+     width: 150px;
+     left: -530px!important;
+     top: -350px!important;
+}
+ .collaborateerror> .arrow:after,.collaborateagreementerror > .arrow:after,.responseagreementerror > .arrow:after{
+     border-right-color:red !important;
+}
+ .popover-content {
+     font-size: 12px;
+}
+.toptabbutton{
+     margin-top: 10px;
+     color: #333;
+}
+
+.borderact .toptabbutton{
+     color: #ffc400;
+}

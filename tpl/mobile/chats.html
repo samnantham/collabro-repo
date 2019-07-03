@@ -1,0 +1,36 @@
+<div ng-controller="UserChatsCtrl" >
+   <div class="col-xs-12 serviceheader" >
+      <div class="col-xs-1 servicelefticon" ng-click="goback()"><i class="fa fa-angle-left"></i></div>
+      <div class="col-xs-5 servicename">MY CHAT LIST</div> 
+      <div class="col-xs-6 servicename">
+                  </div>
+   </div>
+   <div class="col-xs-12 newpadding" infinite-scroll="loadMoreRecords()" infinite-scroll-distance="0" infinite-scroll-disabled="((formLoading || chatusers.length > 0) && (totalData == chatusers.length))" infinite-scroll-use-document-bottom="true">
+                       <div class="cate-name">
+                           <a class="no_trans float-lt">Showing <b>1 </b> to <b> {{chatusers.length}} </b> of {{totalData}} Results. </a>
+                           <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Sort By</a>
+                            <ul class="dropdown-menu">
+                              <li><a ng-click="filterchats(0)">All</a></li>
+                              <li><a ng-click="filterchats(1)">Product chat</a></li>
+                              <li><a ng-click="filterchats(2)">Group Chat</a></li>
+                              <li><a ng-click="filterchats(3)">Feed Chat</a></li>
+                              <li><a ng-click="filterchats(4)">Private Chat</a></li>
+                           </ul>
+                        </div>
+      <div class="notificationlist" ng-if="chatusers.length == 0">
+         You don't have any notifications at this time
+      </div>
+      <div class="chatlist" ng-class="{'unreadchat':!data.status}" ng-repeat="(key,data) in chatusers">
+         <div class=" col-xs-12 nopadding">
+            <div class="chatuserimage col-xs-4" background-image="{{IMGURL}}{{data.fromuser.avatar}}" ng-click="gotochatpage(key,data)"></div>
+            <div class=" col-xs-8 " ng-click="gotochatpage(key,data)">
+               <div class="chatprojecttitle"><span ng-if="data.chattype == 1">{{data.product.title | cut:true:25:''}}</span> <span ng-if="data.chattype == 2">Group Chat</span><span ng-if="data.chattype == 3">Feed Chat</span><span ng-if="data.chattype == 4">Private Chat</span></div>
+               <div class="chatusername">{{data.fromuser.username}} | {{ convertDate(data.created_at) | dateToISO | date:'dd-MMM-yy hh:mm a' }}</div>
+               <div class="chatlastmesg">{{data.lastmessage}}</div>
+            </div>
+            <div class="col-xs-1"><i class="fa fa-minus-circle closebuttons" ng-click="removechat(key,data)"></i></div>
+         </div>
+         <div class="clear"></div>
+      </div>
+   </div>
+</div>

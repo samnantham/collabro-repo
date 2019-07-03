@@ -1,0 +1,359 @@
+<div ng-controller="UserMainCtrl" class="usermain">
+   <div class="bannercontaineer">
+      <slick data="user.cover.coverfiles" slides-to-show="1" slides-to-scroll="1" dots="false" infinite="false" autoplay="false" autoplaySpeed="2000" ng-if="!formLoading">
+         <div class="" ng-repeat="(key,image) in user.cover.coverfiles">
+            <div class="width100" background-image="{{IMGURL}}{{image.file}}" ng-if="image.filetype == 1"></div>
+
+            <anguvideo ng-model="image.file" width="100%" height="384px" ng-if="image.filetype == 2 && !image.file.includes('soundcloud')"></anguvideo>
+            <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.filetype == 2 && image.file.includes('soundcloud')"></sound-cloud-player>
+         </div>
+      </slick>
+      
+      <div class="bottomholder">
+         <p><i class="fa fa-eye" aria-hidden="true"></i>{{user.totalviewers}}</p>
+         <p><i class="fa fa-heart" aria-hidden="true"></i>{{user.totallikes}}</p>
+         <div><img src="img/live.png"><button class="chatnowbutton width120"><i class="fa fa-phone-square" aria-hidden="true"></i> CHAT NOW</button></div>
+      </div>
+   </div>
+   <div class="clear"></div>
+   <div class="col-md-12 col-sm-12 col-lg-12 nopadding">
+      <div class="black_back navmen">
+         <ul class="nav navbar-new">
+            <li class="cursor" ng-click="setactivetab('service')" ng-class="{'activetab':activetab=='service'}"><a >SERVICES</a>
+            </li>
+            <li class="cursor" ng-click="setactivetab('shop')" ng-class="{'activetab':activetab=='shop'}"><a >PRODUCTS</a>
+            </li>
+            <li class="cursor" ng-click="setactivetab('rental')" ng-class="{'activetab':activetab=='rental'}"><a >RENTALS</a>
+            </li>
+            <li class="cursor" ng-click="setactivetab('event')" ng-class="{'activetab':activetab=='event'}"><a >EVENTS</a>
+            </li>
+         </ul>
+      </div>
+      <div class="white_back">
+         <h2>The Platform for Entrepreneur to Collaborate and Do Business</h2>
+      </div>
+   </div>
+   <div class="profile_container service_container nopadding" ng-class="{'notall':activetab=='service'}" ng-if="activetab=='All'||activetab=='service'">
+      <div class="col-xs-12 newpadding">
+         <div class="col-sm-12 col-md-12 col-lg-12 nopadding product-slider">
+            <div class="cate-name" ng-if="!formLoading">
+               <a  class="no_trans float-lt">SERVICES</a>
+               <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Sort By</a>
+               <ul class="dropdown-menu">
+                  <li><a ng-click="sortproduct('service','noofviews','desc')"><i class="fa fa-star"></i> Popular</a></li>
+                  <li><a ng-click="sortproduct('service','created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+                  <li><a ng-click="sortproduct('service','price','asc')"><i class="fa fa-sort-amount-asc"></i> Price L-H</a></li>
+                  <li><a ng-click="sortproduct('service','price','desc')"><i class="fa fa-sort-amount-desc"></i> Price H-L</a></li>
+               </ul>
+            </div>
+            <div ng-if="activetab=='All'">
+               <slick ng-if="!formLoading" init-onload="true" data="products.service" settings="slickConfig"  dots="false" infinite="true">
+                  <div class="products" ng-class-even="'even-margin'" ng-repeat="(key,data) in products.service">
+                     <div class="product-container">
+                        <div class="product-left">
+                           <div class="product-thumb" ui-sref="app.viewitem({id:data.id})">
+                              <a class="product-img">
+                                 <div class="imgholder" background-image="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1"></div>
+                                 <div class="imgholder" background-image="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"></div>
+                              </a>
+                           </div>
+                        </div>
+                        <div class="product-right cursor">
+                           <div class="product-name" ui-sref="app.viewitem({id:data.id})">
+                              <a class="no_trans">{{data.title | cut:true:25:'..' }}</a>
+                           </div>
+                           <div class="price-holder col-xs-12 ">
+                           <div class="price-box">
+                             
+                              <span class="per_price" ng-class="{'price4digit': data.price > 999}"> <span  ng-if="data.price > 0">$</span>{{data.price ? data.displayprice: 'Free'}}</span>
+                              <span class="per_time" ng-if="data.price > 0">Per {{data.periodtype}}</span>
+                           </div>
+                           <div class="product-button">
+                              <a class="btn-add-wishlist" title="Add to Wishlist" ng-click="updatewishstatus(data,'service',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'wished': data.wishstatus == 1}"></i></a>
+                              <a class="btn-add-comparre" title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data.id)"><i class="fa fa-plus"></i></a>
+                              <a class="btn-add-comparre" title="Share to Earn" ng-click="sharetosocial(data)" ><i class="fa fa-share"></i></a>
+                           </div>
+                        </div>
+                        </div>
+                     </div>
+                  </div>
+               </slick>
+            </div>
+            <div class="activediv" ng-if="activetab=='service'">
+               <div class="products" dir-paginate="(key,data) in typeproductdata.data | itemsPerPage: typestotalPerPage" total-items="typeproductdata.total" current-page="pagination.current">
+                  <div class="product-container">
+                     <div class="product-left">
+                        <div class="product-thumb" ui-sref="app.viewitem({id:data.id})">
+                           <a class="product-img">
+                              <div class="imgholder" background-image="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1"></div>
+                              <div class="imgholder" background-image="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"></div>
+                           </a>
+                        </div>
+                     </div>
+                     <div class="product-right cursor">
+                        <div class="product-name" ui-sref="app.viewitem({id:data.id})">
+                           <a class="no_trans">{{data.title | cut:true:25:'..'}}</a>
+                        </div>
+                        <div class="price-holder col-xs-12 ">
+                        <div class="price-box">
+                           <span class="per_price" ng-class="{'price4digit': data.price > 999}"> <span  ng-if="data.price > 0">$</span>{{data.price ? data.displayprice: 'Free'}}</span>
+                           <span class="per_time" ng-if="data.price > 0">Per {{data.periodtype}}</span>
+                        </div>
+                        <div class="product-button">
+                           <a class="btn-add-wishlist" title="Add to Wishlist" ng-click="updatewishstatus(data,'service',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'wished': data.wishstatus == 1}"></i></a>
+                           <a class="btn-add-comparre" title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data.id)"><i class="fa fa-plus"></i></a>
+                           <a class="btn-add-comparre" title="Share to Earn" ng-click="sharetosocial(data)" ><i class="fa fa-share"></i></a>
+                        </div>
+                     </div>
+                     </div>
+                  </div>
+               </div>
+               <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="profile_container service_container nopadding" ng-class="{'notall':activetab=='shop'}" ng-if="activetab=='All'||activetab=='shop'">
+      <!--list 1-->
+      <div class="col-xs-12 newpadding">
+         <div class="col-sm-12 col-md-12 col-lg-12 nopadding product-slider">
+            <div class="cate-name" ng-if="!formLoading">
+               <a  class="no_trans float-lt">PRODUCT</a>
+               <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Sort By</a>
+               <ul class="dropdown-menu">
+                  <li><a ng-click="sortproduct('shop','noofviews','desc')"><i class="fa fa-star"></i> Popular</a></li>
+                  <li><a ng-click="sortproduct('shop','created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+                  <li><a ng-click="sortproduct('shop','price','asc')"><i class="fa fa-sort-amount-asc"></i> Price L-H</a></li>
+                  <li><a ng-click="sortproduct('shop','price','desc')"><i class="fa fa-sort-amount-desc"></i> Price H-L</a></li>
+               </ul>
+            </div>
+            <div ng-if="activetab=='All'">
+               <slick ng-if="!formLoading" init-onload="true" data="products.shop" settings="slickConfig" dots="false" infinite="true">
+                  <div class="products" ng-repeat="(key,data) in products.shop" ng-class-even="'even-margin'">
+                     <div class="product-container">
+                        <div class="product-left">
+                           <div class="product-thumb" ui-sref="app.viewitem({id:data.id})">
+                              <a class="product-img">
+                                 <div class="imgholder" background-image="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1"></div>
+                                 <div class="imgholder" background-image="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"></div>
+                              </a>
+                           </div>
+                        </div>
+                        <div class="product-right cursor">
+                           <div class="product-name" ui-sref="app.viewitem({id:data.id})">
+                              <a class="no_trans">{{data.title  | cut:true:25:'..' }}</a>
+                           </div>
+                           <div class="price-holder col-xs-12 ">
+                           <div class="price-box">
+                             
+                              <span class="per_price" ng-class="{'price4digit': data.price > 999}"> <span  ng-if="data.price > 0">$</span>{{data.price ? data.displayprice: 'Free'}}</span>
+                              <span class="per_time" ng-if="data.price > 0">Per Item</span>
+                           </div>
+                           <div class="product-button">
+                              <a class="btn-add-wishlist" title="Add to Wishlist" ng-click="updatewishstatus(data,'shop',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'wished': data.wishstatus == 1}"></i></a>
+                              <a class="btn-add-comparre" title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data.id)"><i class="fa fa-plus"></i></a>
+                              <a class="btn-add-comparre" title="Share to Earn" ng-click="sharetosocial(data)" ><i class="fa fa-share"></i></a>
+                           </div>
+                        </div>
+                        </div>
+                     </div>
+                  </div>
+               </slick>
+            </div>
+            <div class="activediv" ng-if="activetab=='shop'">
+               <div class="products" dir-paginate="(key,data) in typeproductdata.data | itemsPerPage: typestotalPerPage" total-items="typeproductdata.total" current-page="pagination.current">
+                  <div class="product-container">
+                     <div class="product-left">
+                        <div class="product-thumb" ui-sref="app.viewitem({id:data.id})">
+                           <a class="product-img">
+                              <div class="imgholder" background-image="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1"></div>
+                              <div class="imgholder" background-image="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"></div>
+                           </a>
+                        </div>
+                     </div>
+                     <div class="product-right cursor">
+                        <div class="product-name" ui-sref="app.viewitem({id:data.id})">
+                           <a class="no_trans">{{data.title | cut:true:25:'..' }}</a>
+                        </div>
+                        <div class="price-holder col-xs-12 ">
+                        <div class="price-box">
+                                               <span class="per_price" ng-class="{'price4digit': data.price > 999}"> <span  ng-if="data.price > 0">$</span>{{data.price ? data.displayprice: 'Free'}}</span>
+                           <!-- <span class="per_time" ng-if="data.price > 0">Per {{data.periodtype}}</span> -->
+                        </div>
+                        <div class="product-button">
+                           <a class="btn-add-wishlist" title="Add to Wishlist" ng-click="updatewishstatus(data,'service',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'wished': data.wishstatus == 1}"></i></a>
+                           <a class="btn-add-comparre" title="Add to Compare" ng-if="data.owner.id!=user.id"><i class="fa fa-plus"></i></a>
+                           <a class="btn-add-comparre" title="Share to Earn" ng-click="sharetosocial(data)" ><i class="fa fa-share"></i></a>
+                        </div>
+                     </div>
+                     </div>
+                  </div>
+               </div>
+               <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="profile_container service_container nopadding" ng-class="{'notall':activetab=='rental'}" ng-if="activetab=='All'||activetab=='rental'">
+      <!--list 1-->
+      <div class="col-xs-12 newpadding">
+         <div class="col-sm-12 col-md-12 col-lg-12 nopadding product-slider">
+            <div class="cate-name" ng-if="!formLoading">
+               <a  class="no_trans float-lt">RENTAL</a>
+               <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Sort By</a>
+               <ul class="dropdown-menu">
+                  <li><a ng-click="sortproduct('rental','noofviews','desc')"><i class="fa fa-star"></i> Popular</a></li>
+                  <li><a ng-click="sortproduct('rental','created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+                  <li><a ng-click="sortproduct('rental','price','asc')"><i class="fa fa-sort-amount-asc"></i> Price L-H</a></li>
+                  <li><a ng-click="sortproduct('rental','price','desc')"><i class="fa fa-sort-amount-desc"></i> Price H-L</a></li>
+               </ul>
+            </div>
+            <div ng-if="activetab=='All'">
+               <slick ng-if="!formLoading" init-onload="true" data="products.rental" settings="slickConfig"  dots="false" infinite="true">
+                  <div class="products" ng-repeat="(key,data) in products.rental" ng-class-even="'even-margin'">
+                     <div class="product-container">
+                        <div class="product-left">
+                           <div class="product-thumb" ui-sref="app.viewitem({id:data.id})">
+                              <a class="product-img">
+                                 <div class="imgholder" background-image="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1"></div>
+                                 <div class="imgholder" background-image="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"></div>
+                              </a>
+                           </div>
+                        </div>
+                        <div class="product-right cursor">
+                           <div class="product-name" ui-sref="app.viewitem({id:data.id})">
+                              <a class="no_trans">{{data.title | cut:true:25:'..'}}</a>
+                           </div>
+                           <div class="price-holder col-xs-12 ">
+                           <div class="price-box">
+                              <span class="per_price" ng-class="{'price4digit': data.price > 999}"> <span  ng-if="data.price > 0">$</span>{{data.price ? data.displayprice: 'Free'}}</span>
+                              <span class="per_time" ng-if="data.price > 0">Per {{data.periodtype}}</span>
+                           </div>
+                           <div class="product-button">
+                              <a class="btn-add-wishlist" title="Add to Wishlist" ng-click="updatewishstatus(data,'rental',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'wished': data.wishstatus == 1}"></i></a>
+                              <a class="btn-add-comparre" title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data.id)"><i class="fa fa-plus"></i></a>
+                              <a class="btn-add-comparre" title="Share to Earn" ng-click="sharetosocial(data)" ><i class="fa fa-share"></i></a>
+                           </div>
+                        </div>
+                        </div>
+                     </div>
+                  </div>
+               </slick>
+            </div>
+            <div class="activediv" ng-if="activetab=='rental'">
+               <div class="products" dir-paginate="(key,data) in typeproductdata.data | itemsPerPage: typestotalPerPage" total-items="typeproductdata.total" current-page="pagination.current">
+                  <div class="product-container">
+                     <div class="product-left">
+                        <div class="product-thumb" ui-sref="app.viewitem({id:data.id})">
+                           <a class="product-img">
+                              <div class="imgholder" background-image="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1"></div>
+                              <div class="imgholder" background-image="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"></div>
+                           </a>
+                        </div>
+                     </div>
+                     <div class="product-right cursor">
+                        <div class="product-name" ui-sref="app.viewitem({id:data.id})">
+                           <a class="no_trans">{{data.title | cut:true:25:'..'}}</a>
+                        </div>
+                        <div class="price-holder col-xs-12 ">
+                        <div class="price-box">
+                            <span class="per_price" ng-class="{'price4digit': data.price > 999}"> <span  ng-if="data.price > 0">$</span>{{data.price ? data.displayprice: 'Free'}}</span>
+                           <span class="per_time" ng-if="data.price > 0">Per {{data.periodtype}}</span>
+                        </div>
+                        <div class="product-button">
+                           <a class="btn-add-wishlist" title="Add to Wishlist" ng-click="updatewishstatus(data,'service',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'wished': data.wishstatus == 1}"></i></a>
+                           <a class="btn-add-comparre" title="Add to Compare" ng-if="data.owner.id!=user.id"><i class="fa fa-plus"></i></a>
+                           <a class="btn-add-comparre" title="Share to Earn" ng-click="sharetosocial(data)" ><i class="fa fa-share"></i></a>
+                        </div>
+                     </div>
+                     </div>
+                  </div>
+               </div>
+               <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="profile_container service_container newpadding" ng-class="{'notall':activetab=='event'}" ng-if="activetab=='All'||activetab=='event'">
+      <!--list 1-->
+      <div class="col-xs-12 nopadding">
+         <div class="col-sm-12 col-md-12 col-lg-12 nopadding product-slider">
+            <div class="cate-name" ng-if="!formLoading">
+               <a  class="no_trans float-lt">EVENTS</a>
+               <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Sort By</a>
+               <ul class="dropdown-menu">
+                  <li><a ng-click="sortproduct('event','noofviews','desc')"><i class="fa fa-star"></i> Popular</a></li>
+                  <li><a ng-click="sortproduct('event','created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+                  <li><a ng-click="sortproduct('event','price','asc')"><i class="fa fa-sort-amount-asc"></i> Price L-H</a></li>
+                  <li><a ng-click="sortproduct('event','price','desc')"><i class="fa fa-sort-amount-desc"></i> Price H-L</a></li>
+               </ul>
+            </div>
+            <div ng-if="activetab=='All'">
+               <slick ng-if="!formLoading" init-onload="true" data="products.event" settings="slickConfig" dots="false" infinite="true">
+                  <div class="products" ng-repeat="(key,data) in products.event" ng-class-even="'even-margin'">
+                     <div class="product-container">
+                        <div class="product-left">
+                           <div class="product-thumb" ui-sref="app.viewitem({id:data.id})">
+                              <a class="product-img">
+                                 <div class="imgholder" background-image="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1"></div>
+                                 <div class="imgholder" background-image="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"></div>
+                              </a>
+                           </div>
+                        </div>
+                        <div class="product-right cursor">
+                           <div class="product-name" ui-sref="app.viewitem({id:data.id})">
+                              <a class="no_trans">{{data.title | cut:true:25:'..'}}</a>
+                           </div>
+                           <div class="price-holder col-xs-12 ">
+                           <div class="price-box">
+                              <span class="per_price" ng-class="{'price4digit': data.price > 999}"> <span  ng-if="data.price > 0">$</span>{{data.price ? data.displayprice: 'Free'}}</span>
+                              <span class="per_time" ng-if="data.price > 0">Per {{data.periodtype}}</span>
+                           </div>
+                           <div class="product-button">
+                              <a class="btn-add-wishlist" title="Add to Wishlist" ng-click="updatewishstatus(data,'event',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'wished': data.wishstatus == 1}"></i></a>
+                              <a class="btn-add-comparre" title="Add to Compare" ng-if="data.owner.id!=user.id"><i class="fa fa-plus"></i></a>
+                              <a class="btn-add-comparre" title="Share to Earn" ng-click="sharetosocial(data)" ><i class="fa fa-share"></i></a>
+                           </div>
+                        </div>
+                        </div>
+                     </div>
+                  </div>
+               </slick>
+            </div>
+            <div class="activediv" ng-if="activetab=='event'">
+               <div class="products" dir-paginate="(key,data) in typeproductdata.data | itemsPerPage: typestotalPerPage" total-items="typeproductdata.total" current-page="pagination.current">
+                  <div class="product-container">
+                     <div class="product-left">
+                        <div class="product-thumb" ui-sref="app.viewitem({id:data.id})">
+                           <a class="product-img">
+                              <div class="imgholder" background-image="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1"></div>
+                              <div class="imgholder" background-image="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"></div>
+                           </a>
+                        </div>
+                     </div>
+                     <div class="product-right cursor">
+                        <div class="product-name" ui-sref="app.viewitem({id:data.id})">
+                           <a class="no_trans">{{data.title | cut:true:25:'..'}}</a>
+                        </div>
+                        <div class="price-holder col-xs-12 ">
+                        <div class="price-box">
+                           <span class="per_price" ng-class="{'price4digit': data.price > 999}"> <span  ng-if="data.price > 0">$</span>{{data.price ? data.displayprice: 'Free'}}</span>
+                           <span class="per_time" ng-if="data.price > 0">Per {{data.periodtype}}</span>
+                        </div>
+                        <div class="product-button">
+                           <a class="btn-add-wishlist" title="Add to Wishlist" ng-click="updatewishstatus(data,'event',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'wished': data.wishstatus == 1}"></i></a>
+                           <a class="btn-add-comparre" title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data.id)"><i class="fa fa-plus"></i></a>
+                           <a class="btn-add-comparre" title="Share to Earn" ng-click="sharetosocial(data)" ><i class="fa fa-share"></i></a>
+                        </div>
+                     </div>
+                     </div>
+                     </div>
+                  </div>
+               </div>
+               <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="clear"></div>
+</div>

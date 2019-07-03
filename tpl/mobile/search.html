@@ -1,0 +1,48 @@
+<div ng-controller="SearchCtrl" id="searchtop">
+   <div>
+      <div class="newgray_back" >
+         <h2>Results for “{{keyword}}"</h2>
+         <div class="text">{{products.total}} results available</div>
+      </div>
+      <div class="cate-name" ng-if="!formLoading">
+         <a  class="no_trans float-lt">Showing {{products.from}} to {{products.to}} of {{products.total}} Results.</a>
+         <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Sort By</a>
+         <ul class="dropdown-menu">
+            <li><a ng-click="searchsortproduct('noofviews','desc')"><i class="fa fa-star"></i> Popular</a></li>
+            <li><a ng-click="searchsortproduct('created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+            <li><a ng-click="searchsortproduct('price','asc')"><i class="fa fa-sort-amount-asc"></i> Price L-H</a></li>
+            <li><a ng-click="searchsortproduct('price','desc')"><i class="fa fa-sort-amount-desc"></i> Price H-L</a></li>
+         </ul>
+      </div>
+      <div class="col-sm-7 col-md-8 col-lg-12 product-container-holder newpadding notall">
+         <div class="products col-xs-5 nopadding" dir-paginate="(key,data) in products.data | itemsPerPage: totalPerPage" total-items="products.total" current-page="pagination.current">
+            <div class="product-container">
+               <div class="product-left" ui-sref="app.viewitem({id:data.id})">
+                  <div class="product-img">
+                     <div class="imgholder" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}">
+                     </div>
+                  </div>
+               </div>
+               <div class="product-right" ui-sref="app.viewitem({id:data.id})">
+                  <div class="product-name">
+                     <a class="no_trans">{{data.title | cut:true:25:''}}</a>
+                  </div>
+               </div>
+               <div class="product-bottom">
+                  <div class="price-box">
+                     <span class="per_code" ng-if="data.price > 0">$</span>
+                     <span class="per_price">{{data.price ? data.price: 'Free'}}</span>
+                     <span class="per_time" ng-if="data.price > 0 && data.type !='Shop'">Per {{data.periodtype}}</span>
+                  </div>
+                  <div class="product-button">
+                     <a class="btn-add-wishlist" title="Add to Wishlist" ng-click="updatewishstatus(data,'service',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'wished': data.wishstatus == 1}"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+         <dir-pagination-controls max-size="5" on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl" ></dir-pagination-controls>
+      </div>
+   </div>
+</div>
+<div class="clear"></div>

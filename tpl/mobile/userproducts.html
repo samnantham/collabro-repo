@@ -1,0 +1,50 @@
+<div ng-controller="ViewUserCtrl">
+   <div class="col-xs-12 serviceheader chathead">
+      <div class="col-xs-1 servicelefticon" ng-click="goback()"><i class="fa fa-angle-left"></i></div>
+      <div class="col-xs-5 servicename">
+         <div class="userholder">
+            <img ng-src="{{IMGURL}}{{userData.avatar}}" class="userimage">
+            <div class="userinfo"> {{userData.username | cut:true:8:''}}<br><span class="status">
+               <i class="fa fa-circle" ng-class="userData.onlinestatus == 1 ? 'statusactive':'statusinactive'"></i> {{userData.onlinestatus ? 'Online ':'Offline'}}</span>
+            </div>
+         </div>
+      </div>
+      <div class="col-xs-6 servicerighticon">
+         <div class="product-button  product-newbutton col-xs-12 text-right nopadding">
+            <a class="btn-add-wishlist" ng-click="changefollowstatus(userData.isfollow);"><i class="fa statusfollow font-size22" aria-hidden="true" ng-class="userData.isfollow == 1 ? 'fa-user-times':'fa-user-plus'" ></i></a>
+         </div>
+      </div>
+   </div>
+   <div class="col-xs-12 profile_container service_container  newpadding">
+      <div class="col-sm-7 col-md-8 col-lg-12 nopadding  notall">
+         <div class="products col-xs-5 nopadding" dir-paginate="(key,data) in userProducts.data | itemsPerPage: totalPerPage" total-items="userProducts.total" current-page="pagination.current">
+            <div class="product-container">
+               <div class="product-left">
+                  <div class="product-thumb" ui-sref="app.viewitem({id:data.id})">
+                     <a class="product-img">
+                        <div class="imgholder" background-image="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1"></div>
+                        <div class="imgholder" background-image="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"></div>
+                     </a>
+                  </div>
+               </div>
+               <div class="product-right cursor">
+                  <div class="product-name" ui-sref="app.viewitem({id:data.id})">
+                     <a class="no_trans">{{data.title  | cut:true:25:'..' }}</a>
+                  </div>
+                  <div class="price-box">
+                            <span class="per_price"><span  ng-if="data.price > 0">$</span>{{data.price ? data.displayprice: 'Free'}}</span>
+                  </div>
+                  <div class="product-button">
+                     <a class="btn-add-wishlist" title="Add to Wishlist" ng-click="updatewishstatus(data,'shop',key)" ng-if="data.owner.id!=user.id"><i class="fa fa-heart" ng-class="{'wished': data.wishstatus == 1}"></i></a>
+                     <a class="btn-add-comparre" title="Add to Cart" ng-if="data.owner.id!=user.id" ng-click="addTocart(data.id)"><i class="fa fa-plus"></i></a>
+                     <a class="btn-add-comparre" title="Share to Earn" ng-click="sharetosocial(data)" ><i class="fa fa-share"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+         <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
+		<div class="clear"></div>
+</div>

@@ -1,0 +1,25 @@
+<div id="wrap">
+    <div><span class="pull-left">
+      <button type="button" class="topmenu" ng-click="openAside('left', true)">
+      <span class="fa fa-bars"></span>
+        </button>
+        </span>
+    </div>
+    <img src="img/mobiletoplogo.png" ui-sref="app.usermain">
+    <div class=" ">
+        <form novalidate name="searchform" ng-submit="gotosearch(searchData.keyword)" class="search-keyword-form">
+            <input type="text" id="search" placeholder="Search for any thing" ng-model="searchData.keyword" ng-change="searchedit()" typeahead="data as data for data in keywords | filter:$viewValue" typeahead-on-select="gotosearch(searchData.keyword)">
+            <input type="submit" value="" ng-click="gotosearch(searchData.keyword)">
+        </form>
+    </div>
+</div>
+<div class="mobileloader" ng-if="formLoading">
+    <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<!-- <div class="popupoverlay" ng-if="(formData.title)||(shareData.title)||(shareData.username)||(chatImages.show)" ng-click="closepopoverItem();" esc-key="closepopoverItem()"></div> -->

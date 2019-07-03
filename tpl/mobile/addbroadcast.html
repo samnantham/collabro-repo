@@ -1,0 +1,40 @@
+<link href="css/mobile/addproject.css" rel="stylesheet" type="text/css" media="all" />
+<div class="col-xs-12 newpadding" ng-controller="ProductModalCtrl">
+    <form class="form-horizontal" name="broadcastForm" novalidate ng-submit="addbroadCast(broadcastForm);">
+        <div class="titlecontainer add-proj">
+            <div class="leftercontainer">
+                <div class="colatitle">BROADCAST</div>
+                <label>Types of Service </label>
+                <ui-select ng-model="broadcastData.category" theme="bootstrap" ng-change="resetFeedItems()">
+                    <ui-select-match allow-clear="true" class="selected-item float-lt">
+                        <p><i class="fa fa-circle-o"></i> {{broadcastData.category ? broadcastData.category : 'Select Category Feed'}}</p>
+                    </ui-select-match>
+                    <ui-select-choices repeat="type in servicetypes | filter: $select.search track by $index">
+                        <span ng-bind-html="type | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="rightimage">
+            <div class="infodiv">
+                <!-- info start -->
+                <div class="common-itmes">
+                    <div class="conta ">
+                        Type of Service / Title <span class="text-danger" ng-if="titleerror"> (Enter Service Title)</span>
+                        <input type="text" name="title" placeholder="e.g. Title of the feed that you want to send to your friends" ng-model="broadcastData.title" required maxlength="100" style="padding: 8px 6px;" ng-disabled="!broadcastData.category">
+                    </div>
+                    <div class="conta ">
+                        Feed Description <span class="text-danger" ng-if="descriptionerror"> (Enter Feed Description)</span>
+                        <textarea row="10" name="description" placeholder="This is where you can put a description of your feed." style="height: 170px;" ng-model="broadcastData.description" required ng-disabled="!broadcastData.category" maxlength="1000"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="conta" style="margin-bottom: 8px;">
+                <button type="submit" class="btn btn-primary publish" button-spinner="loading" ng-disabled="loading||!broadcastData.category">Proceed</button>
+                <button type="button" class="btn btn-danger m-cancel" ng-click="goback()" style="font-size: 14px;color: #fff;background: #d9534f;border-color: #d43f3a;padding: 5px 20px !important;margin: 10px 0px;">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,203 @@
+<div ng-controller="ProductChatCtrl" class="productchat">
+   <div class="wthree-dot" ng-if="!formLoading">
+      <div class="container" id="viewitemtop">
+         <div class="row">
+            <!-- Left Menu Here  -->
+            <div class="col-md-2 col-sm-2 col-lg-2 nopadding leftSidebar" data-ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+            <div class="col-md-10 col-sm-10 col-lg-10 nopadding">
+               <div class="col-sm-12 col-md-12 col-lg-12 mypadding" id="wishlist">
+                        <div class="wishlistheader">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <span class="wishlisttitle float-lt">Active Projects &nbsp;&nbsp;|&nbsp;&nbsp; 8 Projects</span>
+                              <div class="float-rt">
+                       <div class="closeb" ng-click="goback();"><i class="fa fa-minus-square-o" aria-hidden="true"></i></div>
+                     </div>
+                     <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+             
+               <div class="col-md-12 col-sm-12 col-lg-12 nopadding paddingtopbottom">
+                  <div class="col-md-8 col-sm-8 col-lg-8 mypadding">
+                     <slick data="ProductViewData.images" infinite="false" init-onload="true" settings="productslick" ng-if="!formLoading" class="slider-for">
+                        <div class="width100 sliderframer" ng-repeat="(key,image) in ProductViewData.images">
+                           <div class="imgcontainer" background-image="{{IMGURL}}{{image.file}}" ng-if="image.filetype == 1"></div>
+                           <span ng-if="image.filetype == 2">
+                              <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')"></anguvideo>
+                              <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')"></sound-cloud-player>
+                           </span>
+                        </div>
+                     </slick>
+                     <div class="thumbslider">
+                        <slick data="ProductViewData.images" infinite="false" init-onload="true" settings="productthumbslick" ng-if="!formLoading" class="slider-nav">
+                           <div class="thumbholder" ng-repeat="(key,image) in ProductViewData.images" >
+                              <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
+                           </div>
+                        </slick>
+                     </div>
+                     <div class="col-md-12 col-sm-12 col-lg-12 backgroundcream chatholder nopadding" ng-if="ProductViewData.ownerid != user.id">
+                        <div class="titlecontainers col-md-12 col-sm-12 col-lg-12">
+                           <div class="request col-md-8 col-sm-8 col-lg-8">PROJECT STATUS</div>
+                           <div class="col-md-4 col-sm-4 col-lg-4 padd"></div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-lg-12 statusholder">
+                           <!-- class="activestate" -->
+                           <div class="statuscheckbar"><span ><i class="fa fa-check-circle"></i><span class="border_top">&nbsp;</span></span><span ><i class="fa fa-check-circle"></i><span class="border_top">&nbsp;</span></span><span ><i class="fa fa-check-circle"></i><span class="border_top">&nbsp;</span></span><span class=""><i class="fa fa-check-circle"></i><span class="border_top">&nbsp;</span></span><span class=""><i class="fa fa-check-circle"></i></span></div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-lg-12  statustext statustextholder">
+                           <div class="col-md-2 col-sm-2 col-lg-2 ">Project Accepted</div>
+                           <div class="col-md-2 col-sm-2 col-lg-2 ">Downpayment Received</div>
+                           <div class="col-md-2 col-sm-2 col-lg-2 ">Order in Progress</div>
+                           <div class="col-md-2 col-sm-2 col-lg-2 ">Order in Progress</div>
+                           <div class="col-md-2 col-sm-2 col-lg-2 ">Project Complete</div>
+                        </div>
+                     </div>
+                     <div class="col-md-12 col-sm-12 col-lg-12 backgroundwhite paddesign"   ng-if="ProductViewData.ownerid == user.id">
+                              <div class="col-md-12 col-sm-12 col-lg-12  nopadding">
+                                 <div class="col-md-4 col-sm-4 col-lg-4 border-right">
+                                    <div class="labe">Collection Items
+                                    </div>
+                                    <div class="contentr">0</div>
+                                 </div>
+                                 <div class="col-md-4 col-sm-4 col-lg-4 border-right">
+                                    <div class="labe">Completed Projects
+                                    </div>
+                                    <div class="contentr">0</div>
+                                 </div>
+                                 <div class="col-md-4 col-sm-4 col-lg-4 ">
+                                    <div class="labe">Rank Apprentice
+                                    </div>
+                                    <div class="contentr"><i class="fa fa-trophy" ng-class="{'bronze':((ProductViewData.owner.experiencepoints >= 100) && (ProductViewData.owner.experiencepoints < 200)),'silver':((ProductViewData.owner.experiencepoints >= 200) && (ProductViewData.owner.experiencepoints < 300)), 'gold':((ProductViewData.owner.experiencepoints >= 300) && (ProductViewData.owner.experiencepoints < 400)),'platinum': ((ProductViewData.owner.experiencepoints >= 400) && (ProductViewData.owner.experiencepoints < 500)),'diamond': ProductViewData.owner.experiencepoints >= 500}"></i></div>
+                                 </div>
+                              </div>
+                           </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-lg-4 mynewpadding-noleft">
+                     <div class="col-md-12 col-sm-12 col-lg-12  mytoppadding backgroundwhite ">
+                        <div class="userholder col-md-7 col-sm-7 col-lg-7 cursor nopadding" ui-sref="app.viewuser({'id':ProductViewData.owner.id})">
+                           <img ng-src="{{IMGURL}}{{ProductViewData.owner.avatar}}" class="userimage" >
+                           <span>
+                           {{ProductViewData.owner.username | cut:true:8:''}} 
+                           </span>
+                        </div>
+                        <div class=" col-md-5 col-sm-5 col-lg-5 infostatus nopadding ">
+                           <div class="float-rt"><i class="fa fa-circle" ng-class="ProductViewData.owner.onlinestatus == 1 ? 'statusactive':'statusinactive'"></i> {{ProductViewData.owner.onlinestatus ? 'Online ':'Offline'}}</div>
+                        </div>
+                     </div>
+                     <div class="col-md-12 col-sm-12 col-lg-12 backgroundwhite paddingleftright">
+                        <div class="detailstitle ellipsis nopadding  margin-top">{{ProductViewData.title}} </div>
+                        <div class="tracks margin-bottom" ng-if="ProductViewData.type == 'Service'">{{ProductViewData.profession}}: <span ng-if="ProductViewData.type == 'Service'"> {{ProductViewData.owner.username}}</span></div>
+                         <div class="tracks margin-bottom" ng-if="ProductViewData.type != 'Service'">&nbsp;</div>
+                        <div class="detailsdescription nopadding margin-bottom min_max_height">{{ProductViewData.description | cut:true:600:''}}</div>
+                        <div class="col-md-12 col-sm-12 col-lg-12 nopadding margin-top abilitylisting">
+                        </div>
+                        <div class="text-danger ng-binding">&nbsp;</div>
+                        <div class="border-bottom margin-top col-md-12 col-sm-12 col-lg-12"></div>
+                        <div class="clear"></div>
+                        <div class="product-right margin-top col-md-12 col-sm-12 col-lg-12 nopadding flex-align margin-bottom">
+                          
+                           <div class="col-md-5 col-sm-5 col-lg-5 nopadding">
+                              <div class="price-box">
+                                                    <span class="per_price"><span  ng-if="ProductViewData.price > 0">$</span>{{ProductViewData.price ? ProductViewData.price : 'Free'}}</span>
+                                                    <span class="per_time" ng-if="ProductViewData.price > 0 && ProductViewData.type!='Shop'">Per {{ProductViewData.periodtype}}</span>
+                                                </div>
+                                                         </div>
+                           <div class="price-box col-md-7 col-sm-7 col-lg-7 nopadding ">
+                              <div class="product-button  product-newbutton col-md-12  col-sm-12 col-lg-12    text-right nopadding">
+                                 <a class="btn-add-wishlist" title="Add to Wishlist" ng-if="ProductViewData.ownerid!=user.id" ng-click="updatewishstatus();"><i class="fa fa-heart" ng-class="{'wished': ProductViewData.wishstatus == 1}"></i></a>
+                                 <a class="btn-add-comparre" title="Add to Cart" ng-if="ProductViewData.ownerid!=user.id" ng-click="addTocart(ProductViewData.id)"><i class="fa fa-plus"></i></a>
+                                 <a class="btn-add-comparre nomargin" title="Share to Earn" ng-click="sharetosocial(ProductViewData)"><i class="fa fa-share"></i></a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="clear"></div>
+               <div class="col-md-12 col-sm-12 col-lg-12 chatholder  margin-top mypadding">
+                  <div class="titlecontainers col-md-12 col-sm-12 col-lg-12">
+                     <div class="leftercontainer col-md-12 nopadding">
+                        <div class="request col-md-8 col-sm-8 col-lg-8">PRODUCT DISCUSSIONS</div>
+                       <div class="col-md-4 col-sm-4 col-lg-4 no-padding-left">
+                        <div class="float-rt chatimageholder"><img ng-src="{{IMGURL}}{{ProductViewData.owner.avatar}}" popover="{{ProductViewData.owner.username}}" popover-trigger="mouseenter"><img ng-src="{{IMGURL}}{{ProductViewData.buyer.avatar}}" popover="{{ProductViewData.buyer.username}}" popover-trigger="mouseenter"></div>
+                     </div>
+                     </div>
+                  </div>
+                  <div class="chatbody">
+                     <div class="col-md-12  col-sm-12 col-lg-12 chatmessagecontainer"  id="chatbody" ng-class="{'nocontentchat':chatData.length == 0 }" scroll-to-bottom="chatData">
+                        <div class="chatinnerbody" ng-if="chatData.length == 0">You didn't start your chat yet!</div>
+                        <div class="chatinnerbody" ng-repeat="message in chatData">
+                           <span ng-if="user.id != message.user_id"> <img class="userimg" ng-if="ProductViewData.buyer.id == user.id" ng-src="{{IMGURL}}{{ProductViewData.owner.avatar}}">
+                           <img class="userimg" ng-if="ProductViewData.owner.id == user.id" ng-src="{{IMGURL}}{{ProductViewData.buyer.avatar}}"></span>
+                           <div class="chatsender" ng-class="user.id == message.user_id ? 'right':'left'">
+                              <span ng-if="!message.isfile" class="chat-msgcontent">{{message.message}}</span>
+                              <div class="text-center col-md-12 mesg_img_holder" ng-if="message.isfile">
+                                 <span class="chatimg"  background-image="{{IMGURL}}{{message.fileurl}}" ng-click="viewChatImg(message);"></span>
+                              </div>
+                              <span class="chatdate">{{message.created_at | date:'dd-MMM-yy'}} </span><span class="chattime">{{message.created_at | date:'hh:mm a'}} </span>
+                           </div>
+                        </div>
+                     </div>
+                    
+                  </div>
+                   <div class="clear"></div>
+                     <div class="col-md-12 col-sm-12 col-lg-12 newtoppad">
+                     <div class="col-md-12 col-sm-12 col-lg-12 relativechat">
+                        <i class="fa fa-smile-o chatsmile" aria-hidden="true"></i>
+                        <input type="text" name="chat" class="chater" placeholder="Write a reply" ng-model="chatMessage.message" my-enter="sendReplymessage()">
+                        <i class="fa fa-paperclip chatattach" aria-hidden="true" ngf-select ngf-drop ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="sendchatattachment($files);"></i>
+                        <i class="fa fa-paper-plane chatsend" aria-hidden="true" ng-click="sendReplymessage()"></i>
+                     </div>
+                  </div>
+               </div>
+          
+            <div class="col-md-12 col-sm-12 col-lg-12  chatholder  margin-top mypadding">
+               <div class="titlecontainers col-md-12 col-sm-12 col-lg-12">
+                  <div class="request col-md-8 col-sm-8 col-lg-8">COMMENTS & PROJECT REVIEW</div>
+                  <div class="col-md-4 col-sm-4 col-lg-4 padd"></div>
+               </div>
+               <div class="col-md-12 col-sm-12 col-lg-12 backgroundwhite ">
+                  <div class="commentholder col-md-9 col-sm-9 col-lg-9">
+                     <div class="commenttitle addholder">My comments</div>
+                     <div class="commentarea">
+                        I am impressed what the service rendered and his professionalism in handling this project. superb communication and very knowledgeable. i will definitely recommend and would like to work with Melvin in future project. keep up the good work!
+                     </div>
+                     <div class="ratingarea col-md-12 col-sm-12 col-lg-11 nopadding ">
+                        <div class="ratingitem col-md-12 col-sm-12 col-lg-12 nopadding addholder margin-top" >
+                           <div class="float-lt ratingtitle col-md-8 col-sm-8 col-lg-5 nopadding ">Level of Proficiency</div>
+                           <div class="float-lt ratingtitle col-md-4 col-sm-4 col-lg-5 nopadding"><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star "></i></div>
+                        </div>
+                        <div class="ratingitem col-md-12 col-sm-12 col-lg-12 nopaddingcol-md-12 col-sm-12 col-lg-12 nopaddingcol-md-12 col-sm-12 col-lg-12 nopadding addholder">
+                          <div class="float-lt ratingtitle col-md-8 col-sm-8 col-lg-5 nopadding">Service Owner Reliability</div>
+                           <div class="float-lt ratingtitle col-md-4 col-sm-4 col-lg-5 nopadding"><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star "></i></div>
+                        </div>
+                        <div class="ratingitem col-md-12 col-sm-12 col-lg-12 nopaddingcol-md-12 col-sm-12 col-lg-12 nopadding addholder">
+                          <div class="float-lt ratingtitle col-md-8 col-sm-8 col-lg-5 nopadding">Easy to Communicate</div>
+                           <div class="float-lt ratingtitle col-md-4 col-sm-4 col-lg-5 nopadding"><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star "></i></div>
+                        </div>
+                        <div class="ratingitem col-md-12 col-sm-12 col-lg-12 nopadding addholder">
+                          <div class="float-lt ratingtitle col-md-8 col-sm-8 col-lg-5 nopadding">Project Puntuality</div>
+                           <div class="float-lt ratingtitle col-md-4 col-sm-4 col-lg-5 nopadding"><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star "></i></div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-3 col-sm-3 col-lg-3 addholder">
+                     <div class="overallrating">
+                        <div class="overalltitle">Appreciation</div>
+                        <div class="ratingstar text-center"><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star "></i></div>
+                     </div>
+                     <div class="overallpoint">
+                        <div class="overall_holder">
+                        <img src="img/overall.png">
+                        <div class="pointholder">50</div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+              </div>
+            <div class="col-md-2 col-sm-2 col-lg-2 nopadding rightSidebar" data-ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
+         </div>
+      </div>
+   </div>
+</div>

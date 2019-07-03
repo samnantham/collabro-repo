@@ -1,0 +1,22 @@
+<link href="css/desktop/home.css" rel="stylesheet" type="text/css"/>
+<div class="signupoverlay" ng-click="closePopover()" ng-if="(issignup||issignin||isforgotpw)"></div>
+<div ng-controller="HomeCtrl" id="pictureSlider">
+   <div class="profile" id="hometop" ng-if="!formLoading">
+      <ul class="cb-slideshow">
+            <li ng-repeat="(key,image) in backgroundimages" class="homepgbgs"><span ng-style="{'background-image':'url(' + IMGURL + image + ')','-webkit-animation-delay': (key * 6) + 's','-moz-animation-delay': (key * 6) + 's','-o-animation-delay': (key * 6) + 's','-ms-animation-delay': (key * 6) + 's','animation-delay': (key * 6) + 's'}">Image {{key + 1}}</span></li>
+        </ul>
+      <div class="wrap">
+         <div class="wthree-grids">
+            <section id="intro" >
+               <div class="intro-text">
+                  <h2>Collabro is The Platform for Entrepeneur to Collaborate and Do Business</h2>
+                  <p>Complete with unlimited features & flexibility and unparalleted customer support</p>
+                  <a class="btn-get-started scrollto">Take a tour</a>
+               </div>
+            </section>
+
+            <div class="clear"> </div>
+         </div>
+      </div>
+   </div>
+</div>

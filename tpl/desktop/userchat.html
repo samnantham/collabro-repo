@@ -1,0 +1,66 @@
+<div ng-controller="PrivateChatsCtrl" class="userchat">
+    <div class="wthree-dot" ng-if="!formLoading">
+        <div class="container" id="viewitemtop">
+            <div class="row">
+                <!-- Left Menu  -->
+                <div class="col-md-2 col-sm-2 col-lg-2 nopadding leftSidebar" data-ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+                <!-- Left Menu  -->
+                <div class="col-md-10 col-sm-10 col-lg-10 nopadding min800">
+                    <div class="col-md-12 col-sm-12 col-lg-12 mypadding">
+                        <div class=" col-md-12 col-sm-12 col-lg-12">
+                            <div class="usernewholder col-md-4 col-sm-4 col-lg-4 cursor"><img class="userimage" ng-src="{{IMGURL}}{{chatInfo.firstuserinfo.avatar}}" popover="{{chatInfo.firstuserinfo.username}}" ui-sref="app.viewuser({'id':chatInfo.firstuserinfo.id})" popover-trigger="mouseenter" ng-if="chatInfo.seconduser == user.id">
+                                <img class="userimage" ng-src="{{IMGURL}}{{chatInfo.seconduserinfo.avatar}}" ui-sref="app.viewuser({'id':chatInfo.seconduserinfo.id})" popover="{{chatInfo.seconduserinfo.username}}" popover-trigger="mouseenter" ng-if="chatInfo.firstuser == user.id">
+                                <span ng-if="chatInfo.seconduser == user.id" ui-sref="app.viewuser({'id':chatInfo.firstuserinfo.id})">{{chatInfo.firstuserinfo.username}}</span>
+                                <span ng-if="chatInfo.firstuser == user.id" ui-sref="app.viewuser({'id':chatInfo.seconduserinfo.id})">{{chatInfo.seconduserinfo.username}}</span>
+                            </div>
+                            <div class="userholder col-md-3 col-sm-3 col-lg-3 cursor">
+                                <div ng-if="chatInfo.seconduser == user.id">
+                                    <i class="fa fa-circle margin-top9" ng-class="chatInfo.firstuserinfo.onlinestatus == 1 ? 'statusactive':'statusinactive'"></i> <span class="">{{chatInfo.firstuserinfo.onlinestatus == 1 ? 'Online':'Offline'}}</span>
+                                </div>
+
+                                <div ng-if="chatInfo.firstuser == user.id">
+                                    <i class="fa fa-circle margin-top9" ng-class="chatInfo.seconduserinfo.onlinestatus == 1 ? 'statusactive':'statusinactive'"></i> <span class="">{{chatInfo.seconduserinfo.onlinestatus == 1 ? 'Online':'Offline'}}</span>
+                                </div>
+                            </div>
+                            <div class="float-rt closeb" ng-click="goback();"><img src="img/closebutton.png"></div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-sm-12 col-lg-12 nopadding paddingtopbottom">
+                        <div class="col-md-12 col-sm-12 col-lg-12 mypadding chatholder">
+                            <div class="chatbody">
+                                <div class="col-md-12 col-sm-12 col-lg-12 chatmessagecontainer" scroll-to-bottom="chatData" id="chatbody" ng-class="{'nocontentchat':chatData.length == 0 }">
+                                    <div class="chatinnerbody" ng-if="chatData.length == 0">You didn't start your chat yet!</div>
+                                    <div class="chatinnerbody" ng-repeat="message in chatData">
+                                        <img ng-if="message.user_id != user.id" ng-src="{{IMGURL}}{{message.avatar}}" class="userimg">
+                                        <div class="chatsender newchat" ng-class="user.id == message.user_id ? 'right':'left'">
+                                            <span class="chat-msgcontent" ng-if="!message.isfile">{{message.message}}</span>
+                                            <div class="text-center col-md-12 col-sm-12 col-lg-12" ng-if="message.isfile">
+                                                <span class="chatimg" background-image="{{IMGURL}}{{message.fileurl}}" ng-click="viewChatImg(message);"></span>
+                                            </div>
+                                            <span class="chatdate">{{message.created_at | date:'dd-MMM-yy'}} </span>
+                                            <span class="chattime">{{message.created_at | date:'hh:mm a'}} </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="clear"></div>
+                            <div class="col-md-12 col-sm-12 col-lg-12 newtoppad">
+                                <div class="col-md-12 col-sm-12 col-lg-12 relativechat">
+                                    <i class="fa fa-smile-o chatsmile" aria-hidden="true"></i>
+                                    <input type="text" name="chat" class="chater" placeholder="Write a reply" ng-model="chatMessage.message" my-enter="sendPrivateReplymessage()">
+                                    <i class="fa fa-paperclip chatattach" aria-hidden="true" ngf-select ngf-drop ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="senduserchatattachment($files);"></i>
+                                    <i class="fa fa-paper-plane chatsend" aria-hidden="true" ng-click="sendPrivateReplymessage()"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 col-lg-2 nopadding rightSidebar" data-ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>

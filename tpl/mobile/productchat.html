@@ -1,0 +1,76 @@
+<div ng-controller="ProductChatCtrl" >
+   <div class="col-xs-12 serviceheader chathead">
+      <div class="col-xs-1 servicelefticon" ng-click="goback()"><i class="fa fa-angle-left"></i></div>
+      <div class="col-xs-5 servicename">
+         <div class="userholder" ng-if="user.id == ProductViewData.owner.id">
+            <img ng-src="{{IMGURL}}{{ProductViewData.buyer.avatar}}" class="userimage">
+            <!-- {{ProductViewData.buyer.username}}  -->
+            <div class="userinfo"> {{ProductViewData.buyer.username | cut:true:8:''}}<br><span class="status">
+               <i class="fa fa-circle" ng-class="ProductViewData.buyer.onlinestatus == 1 ? 'statusactive':'statusinactive'"></i> {{ProductViewData.buyer.onlinestatus ? 'Online ':'Offline'}}</span>
+            </div>
+         </div>
+         <div class="userholder" ng-if="user.id == ProductViewData.buyer.id">
+            <img ng-src="{{IMGURL}}{{ProductViewData.owner.avatar}}" class="userimage">
+            <!-- {{ProductViewData.owner.username}}  -->
+            <div class="userinfo">{{ProductViewData.owner.username | cut:true:8:''}}<br><span class="status">
+               <i class="fa fa-circle" ng-class="ProductViewData.owner.onlinestatus == 1 ? 'statusactive':'statusinactive'"></i> {{ProductViewData.owner.onlinestatus ? 'Online ':'Offline'}}</span>
+            </div>
+         </div>
+      </div>
+      <div class="col-xs-6 servicerighticon">
+         <div class="product-button  product-newbutton col-xs-12 text-right nopadding">
+            <a class="btn-add-wishlist positionrelat8" title="User Products" ng-click="gotouserProducts();"><img src="img/power.png"></a>
+            <a class="btn-add-wishlist" ng-click="changefollowstatus(ProductViewData.isfollow,ProductViewData.owner.id);" ng-if="ProductViewData.owner.id != user.id"><i class="fa statusfollow font-size22" aria-hidden="true" ng-class="ProductViewData.isfollow == 1 ? 'fa-user-times':'fa-user-plus'" ></i></a>
+
+            <a class="btn-add-wishlist" ng-click="changefollowstatus(ProductViewData.isfollow,ProductViewData.buyer.id);" ng-if="ProductViewData.buyer.id != user.id"><i class="fa statusfollow font-size22" aria-hidden="true" ng-class="ProductViewData.isfollow == 1 ? 'fa-user-times':'fa-user-plus'" ></i></a>
+         </div>
+      </div>
+   </div>
+   <div class="col-xs-12 newpadding">
+      <div class="col-xs-12  prodetails flex-align">
+         <div class="col-xs-3 nopadding">
+            <div class="thumbholder">
+               <div class="slidee" background-image="{{ProductViewData.images[0].filetype == 1 ? IMGURL : ''}}{{ProductViewData.images[0].thumbnail}}"></div>
+            </div>
+         </div>
+         <div class="col-xs-9">
+            <div>{{ProductViewData.title}}</div>
+            <div class="chatusername">{{ convertDate(ProductViewData.created_at) | dateToISO | date:'dd-MMM-yy hh:mm a' }}</div>
+         </div>
+
+      </div>
+   </div>
+
+<div class="col-xs-12  chatholder nopadding">
+   <div class="chatbody" id="GroupChat">
+      <div class="col-md-12 col-sm-12 col-lg-12 nopadding chatmessagecontainer" id="chatbody" ng-class="{'nocontentchat':chatData.length == 0 }" scroll-to-bottom="chatData" ng-if="!formLoading">
+         <div class="col-xs-12 " ng-class="{'nocontentchat':chatData.length == 0 }">
+            <div class="chatinnerbody" ng-if="chatData.length == 0">You didn't start your chat yet!</div>
+            <div ng-repeat="message in chatData" class="col-xs-12 newpadding chm">
+               <img class="chatimgl" ng-if="(ProductViewData.owner.id == user.id) && (message.user_id != user.id)" ng-src="{{IMGURL}}{{ProductViewData.buyer.avatar}}">
+               <div class="chatsender newchat" ng-class="user.id == message.user_id ? 'right':'left'">
+                  <span class="chat-msgcontent" ng-if="!message.isfile">{{message.message}}</span>
+                  <div class="text-center col-md-12 col-sm-12 col-lg-12 nopadding mesg_img_holder" ng-if="message.isfile">
+                     <span class="chatimg" background-image="{{IMGURL}}{{message.fileurl}}" ng-click="viewChatImg(message);"></span>
+                  </div>
+                  <span class="chatdate">{{message.created_at | date:'dd-MMM-yy'}} </span>
+                  <span class="chattime">{{message.created_at | date:'hh:mm a'}} </span>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="col-xs-12 text-center">
+         <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 text-center newpadding marginbottom" >
+            <button class='collabro_btn commision-button button-width-100 designclass' ng-click="showCommision();" ng-if="(ProductViewData.owner.id != user.id)&&(!ProductViewData.commisionData)">{{ (ProductViewData.type == 'Service' ? 'COMMISSION' : (ProductViewData.type == 'Shop' ? 'BUY' : ProductViewData.type == 'Rental' ? 'BOOKING' : ProductViewData.type == 'Event' ? 'REGISTER': ProductViewData.type))  }}</button>
+         </div>
+         <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 relativechat newpadding relativetop" >
+            <i class="fa fa-smile-o chatsmile" aria-hidden="true"></i>
+            <input type="text" name="chat" class="chater" placeholder="Write a reply" ng-model="chatMessage.message" my-enter="sendReplymessage()">
+            <i class="fa fa-paperclip chatattach" aria-hidden="true" ngf-select ngf-drop ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="sendchatattachment($files);" ng-if="!chatMessage.message.length"></i>
+            <i class="fa fa-paper-plane chatsend" aria-hidden="true" ng-click="sendReplymessage()"></i>
+         </div>
+      </div>
+   </div>
+</div>
+</div>

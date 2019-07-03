@@ -1,0 +1,295 @@
+<div ng-controller="ViewItemCtrl" class="viewitem">
+   <div class="col-xs-12 serviceheader">
+      <div class="col-xs-1 servicelefticon" ng-click="goback()"><i class="fa fa-angle-left"></i></div>
+      <div class="col-xs-4 servicename">{{viewData.owner.username | cut:true:6:''}} | <i class="fa fa-trophy" ng-class="{'bronze':((viewData.owner.experiencepoints >= 100) && (viewData.owner.experiencepoints < 200)),'silver':((viewData.owner.experiencepoints >= 200) && (viewData.owner.experiencepoints < 300)), 'gold':((viewData.owner.experiencepoints >= 300) && (viewData.owner.experiencepoints < 400)),'platinum': ((viewData.owner.experiencepoints >= 400) && (viewData.owner.experiencepoints < 500)),'diamond': viewData.owner.experiencepoints >= 500}"></i></div>
+      <div class=" col-md-2 col-sm-2 col-lg-2 infohold col-xs-2 nopadding  text-center"><i class="fa fa-binoculars"></i> |   {{viewData.owner.followers}}</div>
+      <div class=" col-md-2 col-sm-2 col-lg-2 col-xs-2  nopadding infohold text-center "><i class="fa fa-user"></i>   | {{viewData.owner.following}}</div>
+      <div class=" col-md-2 col-sm-2 col-lg-2 col-xs-2  nopadding  infohold text-center"><i class="fa fa-eye"></i> |   {{viewData.owner.noofdeals}}</div>
+      <div class=" col-md-1 col-sm-1 col-lg-2 col-xs-1  mypadding infostatus text-right"><i class="fa fa-circle" ng-class="viewData.owner.onlinestatus == 1 ? 'statusactive':'statusinactive'"></i> </div>
+   </div>
+   <div class="col-xs-12 nopadding">
+      <slick data="viewData.images" infinite="false" init-onload="true" settings="productslick" ng-if="!formLoading" class="slider-for">
+         <div class="itemslider" ng-repeat="(key,image) in viewData.images">
+            <div class="imgcontainer" background-image="{{IMGURL}}{{image.file}}" ng-if="image.filetype == 1"></div>
+            <span ng-if="image.filetype == 2">
+               <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')"></anguvideo>
+               <sound-cloud-player url="{{image.file}}" ng-if="image.file&&image.file.includes('soundcloud')"></sound-cloud-player>
+            </span>
+         </div>
+      </slick>
+      <div class="thumbslider">
+         <slick data="viewData.images" infinite="false" init-onload="true" settings="mobilethumbslick" ng-if="!formLoading" class="slider-nav">
+            <div class="thumbholder" ng-repeat="(key,image) in viewData.images">
+               <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
+            </div>
+         </slick>
+      </div>
+   </div>
+   <div class="col-xs-12 backgroundwhite paddingleftright">
+      <div class="detailstitle margin-bottom margintop">{{viewData.title}} </div>
+
+      <div class="detailsdescription preline nopadding margin-bottom ">
+         {{viewData.description}}
+      </div>
+      <div class="detailsdescription src margintop col-xs-12 nopadding marginbottom" ng-if="viewData.type == 'Service'">
+         <div class="col-xs-6 mobile-no-padding-left marginbottom">
+            <div class="addholder">
+               <div class="label-text marginbottom5">Skills Area</div>
+               <div class="input-append date relative form_datetime">
+                                 <div class="datediv pjsbutton">
+                                    <span class="add-onnew"><i class="fa fa-user"></i> {{viewData.profession}}</span>
+                                 </div>
+                              </div>
+            </div>
+         </div>
+         <div class="col-xs-6 mobile-no-padding-right marginbottom">
+            <div class="addholder">
+               <div class="label-text marginbottom5">Location</div>
+               <div class="input-append date relative form_datetime">
+                                 <div class="datediv pjsbutton">
+                                    <span class="add-onnew"><i class="fa fa-map-marker "></i> {{viewData.location}}</span>
+                                 </div>
+                              </div>
+            </div>
+         </div>
+      </div>
+      <div class="detailsdescription src margintop nopadding marginbottom col-xs-12" ng-if="viewData.type == 'Shop'">
+         <div class="col-xs-12 mobile-no-padding marginbottom marginbottom">
+            <div class="addholder">
+               <div class="label-text marginbottom5">Product Type</div>
+              <div class="input-append date relative form_datetime">
+                                 <div class="datediv pjsbutton">
+                                    <span class="add-onnew"><i class="fa fa-suitcase"></i></i> {{viewData.productcategory.categoryname}}</span>
+                                 </div>
+               </div>
+            </div>
+         </div>
+        <!-- <div class="col-xs-6 mobile-no-padding-right">
+                              <div class="addholder">
+                                 <div class="label-text marginbottom5">Brand</div>
+                                  <div class="input-append date relative form_datetime">
+                                 <div class="datediv pjsbutton">
+                                    <span class="add-onnew"><i class="fa fa-suitcase"></i></i> {{viewData.productbrand.brandname}}</span>
+                                 </div>
+                              </div>
+                              </div>
+                           </div>
+          <div class="col-xs-4 nopadding">
+            <div class="addholder">
+               <div class="label-text marginbottom5">Brand</div>
+               <div class="description">{{viewData.productbrand.brandname}}</div>
+            </div>
+            </div> -->
+         <!-- <div class="col-xs-4 nopadding" ng-if="viewData.model">
+            <div class="addholder">
+               <div class="label-text marginbottom5">Model</div>
+               <div class="description">{{viewData.location}}</div>
+            </div>
+            </div> -->
+      </div>
+      <div class="description src nopadding col-xs-12 margintop marginbottom" ng-if="viewData.type == 'Rental'">
+         <div class="col-xs-6 mobile-no-padding-left marginbottom" ng-if="viewData.startdate">
+            <div class="addholder">
+               <div class="label-text marginbottom5">Start Date</div>
+                <div class="input-append date relative form_datetime">
+                                    <div class="datediv pjsbutton">
+                                       <span class="add-onnew"><i class="fa fa-calendar"></i> 
+                                       {{viewData.startdate | date:"dd-MM-yyyy"}}</span>
+                                    </div>
+                </div>
+            </div>
+         </div>
+         <div class="col-xs-6 mobile-no-padding-right marginbottom" ng-if="viewData.enddate">
+            <div class="addholder">
+               <div class="label-text marginbottom5">End Date</div>
+               <div class="input-append date relative form_datetime">
+                                    <div class="datediv pjsbutton">
+                                       <span class="add-onnew"><i class="fa fa-calendar"></i> 
+                                       {{viewData.enddate | date:"dd-MM-yyyy"}}</span>
+                                    </div>
+                                 </div>
+            </div>
+         </div>
+         <div class=" col-xs-6 mobile-no-padding-left ">
+            <div class="addholder">
+               <div class="label-text marginbottom5">Location</div>
+               <div class="input-append date relative form_datetime">
+                                    <div class="datediv pjsbutton">
+                                       <span class="add-onnew"><i class="fa fa-map-marker"></i> 
+                                       {{viewData.location}}</span>
+                                    </div>
+                                 </div>
+            </div>
+         </div>
+      </div>
+      <div class="description no-padding src col-xs-12 margintop marginbottom" ng-if="viewData.type == 'Event'">
+         <div class="col-xs-6 mobile-no-padding-left marginbottom">
+            <div class="addholder">
+               <div class="label-text marginbottom5">Start Date</div>
+               <div class="input-append date relative form_datetime">
+                                    <div class="datediv pjsbutton">
+                                       <span class="add-onnew" ng-if="!viewData.alldayevent"><i class="fa fa-calendar"></i> 
+                                       {{viewData.startdate | date:"dd-MM-yyyy"}}</span>
+                                       <span class="add-onnew" ng-if="viewData.alldayevent"><i class="fa fa-calendar"></i> 
+                                       Every Day</span>
+                                    </div>
+                                 </div>
+            </div>
+         </div>
+         <div class="col-xs-6 mobile-no-padding-right marginbottom">
+            <div class="addholder">
+               <div class="label-text marginbottom5">End Date</div>
+               <div class="input-append date relative form_datetime">
+                                    <div class="datediv pjsbutton">
+                                       <span class="add-onnew"  ng-if="!viewData.alldayevent"><i class="fa fa-calendar"></i> 
+                                       {{viewData.startdate | date:"dd-MM-yyyy"}}</span>
+                                       <span class="add-onnew" ng-if="viewData.alldayevent"><i class="fa fa-calendar"></i> 
+                                       Every Day</span>
+                                    </div>
+                                 </div>
+            </div>
+         </div>
+         <div class="col-xs-6 mobile-no-padding-left marginbottom">
+            <div class="addholder">
+               <div class="label-text marginbottom5">Start Time</div>
+               <div class="input-append date relative form_datetime">
+                                    <div class="datediv pjsbutton">
+                                       <span class="add-onnew"><i class="fa fa-clock-o"></i> 
+                                       {{viewData.starttime}}</span>
+                                    </div>
+                                 </div>
+            </div>
+         </div>
+         <div class="col-xs-6 mobile-no-padding-right marginbottom">
+            <div class="addholder">
+               <div class="label-text marginbottom5">End Time</div>
+               <div class="input-append date relative form_datetime">
+                                    <div class="datediv pjsbutton">
+                                       <span class="add-onnew"><i class="fa fa-clock-o"></i> 
+                                       {{viewData.endtime}}</span>
+                                    </div>
+                                 </div>
+            </div>
+         </div>
+         <div class="col-xs-6 mobile-no-padding-left ">
+            <div class="addholder">
+               <div class="label-text marginbottom5">Location</div>
+               <div class="input-append date relative form_datetime">
+                                 <div class="datediv pjsbutton">
+                                    <span class="add-onnew"><i class="fa fa-map-marker "></i> {{viewData.location}}</span>
+                                 </div>
+                              </div>
+            </div>
+         </div>
+         <!-- <div class="col-xs-2 no-padding">
+            <div class="addholder">
+               <div class="label-text marginbottom5">Location</div>
+               <div class="description">{{viewData.location}}</div>
+            </div>
+            </div>style="max-height: 1px;z-index: 5;position: relative;
+    top: -11px;" -->
+      </div>
+
+      <div class="col-xs-12 nopadding" ><i style="display: inline-block;padding: 15px 10px;" class="fa pull-right" ng-class="viewData.showExtra ? 'fa-caret-up' : 'fa-caret-down'" ng-click="viewData.showExtra = !viewData.showExtra" ng-if="(viewData.type != 'Service')&&((!viewData.isprivate)||(viewData.showmap))"></i></div>
+
+      <div class="extra-features slide-toggle-js marginbottom" ng-if="viewData.showExtra">
+         <div class="col-xs-12 no-padding margintop marginbottom" ng-if="!viewData.isprivate&&viewData.type!='Service'">
+            <div class="col-xs-6 nopadding">
+               <div class="addholder" ng-if="user.iscompany == 1&&viewData.organisation">
+                  <div class="label-text marginbottom5">Organisation</div>
+                  <div class="detailsdescription">{{viewData.organisation}}</div>
+               </div>
+               <div class=" nopadding">
+                  <div class="addholder">
+                     <div class="label-text marginbottom5">Address</div>
+                     <div class="detailsdescription">{{viewData.address}}</div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-xs-6 nopadding">
+               <div class="addholder"  ng-if="user.iscompany == 1">
+                  <div class="label-text marginbottom5" ng-class="{'text-white': !viewData.company_uen }">Company UEN No.</div>
+                  <div class="detailsdescription" ng-class="{'text-white': !viewData.company_uen }">{{viewData.company_uen ? viewData.company_uen : 'Not Provided'}}</div>
+               </div>
+               <div class="addiconholder" ng-if="!viewData.isprivate">
+                  <div class="iconhold col-xs-4 nopadding">
+                     <div class="label-text marginbottom5"> Email</div>
+                     <a href="mailto:{{viewData.email}}"><i class="fa fa-envelope-o"></i></a>
+                  </div>
+                  <div class="iconhold col-xs-4 nopadding">
+                     <div class="label-text marginbottom5"> Phone</div>
+                     <a href="tel:{{viewData.phoneno}}"><i class="fa fa-phone-square"></i></a>
+                  </div>
+                  <div class="iconhold col-xs-4 nopadding" ng-if="viewData.orderlink">
+                     <div class="label-text marginbottom5">
+                        Order Link
+                     </div>
+                     <a href="{{viewData.orderlink}}" target="_blank"><i class="fa fa-shopping-cart"></i></a>
+                  </div>
+               </div>
+            </div>
+            <div class="clear"></div>
+         </div>
+         <div class="col-xs-12 nopadding margintop margin-bottom" ng-if="viewData.showmap && viewData.type != 'Service'">
+            <ng-map center="{{viewData.latitude}},{{viewData.longitude}}" zoom="17" class="mapheight">
+               <marker icon="{{customIcon}}" position="{{viewData.latitude}}, {{viewData.longitude}}"></marker>
+            </ng-map>
+            
+         </div>
+      </div>
+      <div class="col-xs-11 footdetail nopadding margintop margin-bottom"> Date Posted : {{convertDate(viewData.created_at) | dateToISO | date:'dd MMMM yyyy'}}</div>
+      <div class="border-bottom margintop col-xs-11 "></div>
+      <div class="clear"></div>
+      <div class="product-right  borderbottom padding-bottom-15">
+         <div class="price-box col-xs-4 nopadding text-left">
+            <span class="per_price"><span ng-if="viewData.price > 0">$</span>{{viewData.price ? viewData.price : 'Free'}}</span>
+            <span class="per_time" ng-if="viewData.price > 0 && viewData.type!='Shop'">Per {{viewData.periodtype}}</span>
+         </div>
+         <div class="product-button mybutton  product-newbutton col-xs-8 text-right mobile-no-padding-left">
+            <div class="col-xs-12">
+            <a class="btn-add-wishlist" title="Add to Wishlist" ng-if="viewData.ownerid!=user.id" ng-click="updatewishstatus();"><i class="fa fa-heart" ng-class="{'wished': viewData.wishstatus == 1}"></i></a>
+            <a class="btn-add-comparre" title="Add to Cart" ng-if="viewData.ownerid!=user.id" ng-click="addTocart(viewData.id)"><i class="fa fa-plus"></i></a>
+            <a class="btn-add-comparre nomargin" title="Share to Earn" ng-click="sharetosocial(viewData)"><i class="fa fa-share"></i></a>
+         </div>
+         </div>
+      </div>
+      <div class="col-xs-12 nopadding margintop margin-bottom">
+         <div class="col-xs-12 text-center">
+         <button class='collabro_btn commision-button width60' ng-click="editProduct();" ng-if="viewData.owner.id == user.id"> Edit Product</button>
+      </div>
+         <div class="col-xs-5 nopadding-left">
+            
+            <button class='collabro_btn commision-button button-width-100' ng-click="showCommision();" ng-if="(viewData.owner.id != user.id)&&(!viewData.commisionData)"> {{ (viewData.type == 'Service' ? 'COMMISSION' : (viewData.type == 'Shop' ? 'BUY' : viewData.type == 'Rental' ? 'BOOKING' : viewData.type == 'Event' ? 'REGISTER': viewData.type))  }}</button>
+            <button class='collabro_btn commision-button button-width-100' ng-click="gotoChat(viewData.id)" ng-if="(viewData.owner.id != user.id)&&(viewData.commisionData)"> VIEW INFO</button>
+            <!-- {{ (viewData.type == 'Service' ? 'COMMISSIONED' : (viewData.type == 'Shop' ? 'BUYED' : viewData.type == 'Rental' ? 'BOOKED' : viewData.type == 'Event' ? 'REGISTERED': viewData.type))  }} -->
+         </div>
+         <div class="col-xs-2 nopadding">
+            <button class='followbutton' ng-click="changefollowstatus();" ng-if="viewData.owner.id != user.id">
+               <!--  {{ viewData.isfollow ? 'UnFollow':'Follow'}} --> <i class="fa  fa-user-times" aria-hidden="true" ng-if="(viewData.isfollow!='')"></i><i class="fa fa-user-plus" aria-hidden="true"  ng-if="(viewData.isfollow=='')"></i>
+            </button>
+         </div>
+         <div class="col-xs-5 nopadding-right text-right" ng-if="(viewData.owner.id != user.id)" ng-click="gotoChat(viewData.id)"><button class="chatbutton"> <img src="img/messenger.png" class="messenger-img"> &nbsp;CHAT NOW</button></div>
+      </div>
+      <div class="col-xs-12 marginbottom margintop">
+         <!-- <div class="col-xs-1"> &nbsp;</div> -->
+         <div class="col-xs-5 text-center mobile-no-padding-left">
+            <div class="topinfo"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></div>
+            <div class="bottominfo">Appreciation</div>
+         </div>
+
+         <div class="col-xs-2 text-center">
+            <div class="topinfo">{{viewData.noofviews}}</div>
+            <div class="bottominfo"><i class="fa fa-eye"></i></div>
+         </div>
+         <div class="col-xs-3 text-center">
+            <div class="topinfo">{{viewData.owner.followers}}</div>
+            <div class="bottominfo">Followers</div>
+         </div>
+         <div class="col-xs-2 text-center">
+            <div class="topinfo"><i class="fa fa-trophy" ng-class="{'bronze':((viewData.owner.experiencepoints >= 100) && (viewData.owner.experiencepoints < 200)),'silver':((viewData.owner.experiencepoints >= 200) && (viewData.owner.experiencepoints < 300)), 'gold':((viewData.owner.experiencepoints >= 300) && (viewData.owner.experiencepoints < 400)),'platinum': ((viewData.owner.experiencepoints >= 400) && (viewData.owner.experiencepoints < 500)),'diamond': viewData.owner.experiencepoints >= 500}"></i></div>
+            <div class="bottominfo">Rank</div>
+         </div>
+      </div>
+      <div class="clear"></div>
+   </div>
+</div>

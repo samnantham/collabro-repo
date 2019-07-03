@@ -1,0 +1,3 @@
+   	<span data-ng-include="'tpl/blocks/modalcontent/rejectform.html'" ng-if="ResponseData.isreject"></span>
+   	<span data-ng-include="'tpl/blocks/modalcontent/projectsuccess.html'" ng-if="ResponseData.status == 1 || ResponseData.status == 2"></span>
+   	<span data-ng-include="'tpl/blocks/modalcontent/ownerrequestform.html'" ng-if="ResponseData.status == 0 && !ResponseData.isreject"></span>

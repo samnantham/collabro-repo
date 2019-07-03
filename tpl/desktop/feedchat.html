@@ -1,0 +1,121 @@
+<div ng-controller="FeedChatCtrl" class="userchat">
+   <div class="wthree-dot" ng-if="!formLoading">
+      <div class="container" id="viewitemtop">
+         <div class="row">
+            <!-- Left Menu  -->
+            <div class="col-md-2 col-sm-2 col-lg-2 nopadding leftSidebar" data-ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+            <!-- Left Menu  -->
+            <div class="col-md-10 col-sm-10 col-lg-10 nopadding">
+               <div class="col-md-12 col-sm-12 col-lg-12 nopadding paddingtopbottom">
+                  <div class="col-md-12 col-sm-12 col-lg-12 mypadding">
+                  <div class="wishlistheader ">
+                  <div class="col-sm-12 col-md-12 col-lg-12">
+                     <span class="wishlisttitle float-lt">Active Feeds &nbsp;&nbsp;|&nbsp;&nbsp; 8 Feeds</span>
+                     <div class="float-rt">
+                      <div class=" closeb" ng-click="goback();"><img src="img/closebutton.png"></div>
+                     <div class="clear"></div>
+                     </div>
+                     <div class="clear"></div>  
+                     </div>
+                  </div>
+               </div>
+            
+
+
+                  <div class="col-md-8 col-sm-8 col-lg-8 mypadding">
+                     <slick data="feedData.files" infinite="false" init-onload="true" settings="productslick" ng-if="!formLoading" class="slider-for">
+                        <div class="width100" ng-repeat="(key,image) in feedData.files">
+                           <div class="imgcontainer" background-image="{{IMGURL}}{{image.file}}" ng-if="image.filetype == 1"></div>
+                           <span ng-if="image.filetype == 2">
+                           <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')"></anguvideo>
+                           <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')"></sound-cloud-player>
+                        </span>
+                        </div>
+                     </slick>
+                     <div class="thumbslider">
+                        <slick data="feedData.files" infinite="false" init-onload="true" settings="productthumbslick" ng-if="!formLoading">
+                           <div class="thumbholder" ng-repeat="(key,image) in feedData.files" >
+                              <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
+                           </div>
+                        </slick>
+                     </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-lg-4 mynewpadding-noleft" >
+                     <div class="col-md-12 col-sm-12 col-lg-12 mypadding mytoppadding backgroundwhite">
+                        <div class="userholder col-md-8 col-sm-8 col-lg-8 cursor nopadding">
+                           <img ng-src="{{IMGURL}}{{feedData.owner.avatar}}" class="userimage" ui-sref="app.viewuser({'id':feedData.owner.id})">
+                           <span>
+                           {{feedData.owner.username  | cut:true:5:''}} 
+                        </div>
+                        <div class=" col-md-4 col-sm-4 col-lg-4 infostatus nopadding">
+                           <div class="float-rt "><i class="fa fa-circle" ng-class="feedData.owner.onlinestatus == 1 ? 'statusactive':'statusinactive'"></i> {{feedData.owner.onlinestatus == 1 ? 'Online':'Offline'}}
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-12 col-sm-12 col-lg-12 backgroundwhite paddingleftright projectdetail">
+                        <div class="titles margin-top">{{feedData.title}} </div>
+                        <div class="tracks margin-bottom" ng-if="feedData.type == 'Service'">{{feedData.profession}}: <span ng-if="feedData.type == 'Service'"> {{feedData.owner.username}}</span></div>
+                        <div class="tracks margin-bottom" ng-if="feedData.type != 'Service'">&nbsp;</div>
+                        <div class="description nopadding margin-bottom">{{feedData.description | cut:true:385:''}}</div>
+                        <div class="col-md-12 col-sm-12 col-lg-12 nopadding margin-top abilitylisting">
+                        </div>
+                        <div class="text-danger">{{feedData.deadline | date:'dd-MMM-yyyy'}}</div>
+                        <div class="border-bottom margin-top col-md-12 col-sm-12 col-lg-12"></div>
+                        <div class="clear"></div>
+                        <div class="product-right margin-top col-md-12 col-sm-12 col-lg-12 nopadding">
+                           <div class="price-box col-md-7 col-sm-7 col-lg-7 nopadding">
+                              
+                           </div>
+                           <div class="price-box col-md-5 col-sm-5 col-lg-5 nopadding margin-bottom">
+                              <div class="product-button  product-newbutton col-md-12 col-sm-12 col-lg-12     text-right nopadding">
+                                 <a class="btn-add-wishlist cursor" title="Add to Wishlist" ng-click="updatefeedwish()" ng-if="feedData.owner.id!=user.id" tabindex="0"><i class="fa fa-heart" ng-class="{'wished': feedchat.wishstatus == 1}"></i></a>
+                                 <a class="btn-add-comparre nomargin" title="Share to Earn" ng-click="sharefeedtosocial(feedData)"><i class="fa fa-share"></i></a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="clear"></div>
+                  <div class="col-md-12 col-sm-12 col-lg-12 mypadding chatholder margin-top">
+                     <div class="titlecontainers">
+                        <div class="leftercontainer col-md-12 col-sm-12 col-lg-12 nopadding">
+                           <div class="request col-md-4 col-sm-4 col-lg-4">FEED DISCUSSIONS</div>
+                           <div class="padd col-md-4 col-sm-4 col-lg-4 text-right"></div>
+                           <div class="float-rt chatimageholder"><img ng-src="{{IMGURL}}{{feedData.owner.avatar}}" popover-trigger="mouseenter" popover="{{feedData.owner.username}}"><img ng-src="{{IMGURL}}{{member.user.avatar}}" ng-repeat="(no,member) in feedData.members" popover-trigger="mouseenter" popover="{{member.user.username}}"></div>
+                        </div>
+                     </div>
+                     <div class="chatbody" id="GroupChat">
+                        <div class="col-md-12 col-sm-12 col-lg-12 chatmessagecontainer" scroll-to-bottom="chatData"  id="chatbody" ng-class="{'nocontentchat':chatData.length == 0 }">
+                           <div class="chatinnerbody" ng-if="chatData.length == 0">You didn't start your chat yet!</div>
+                           <div class="chatinnerbody" ng-repeat="message in chatData">
+                              <img ng-if="message.user_id != user.id" ng-src="{{IMGURL}}{{message.avatar}}" class="userimg">
+                              <div class="chatsender newchat" ng-class="user.id == message.user_id ? 'right':'left'"> 
+                                 <span ng-class="{'chat-msgcontent': user.id != message.user_id}">
+                                 <span ng-if="!message.isfile" class="chat-msgcontent">{{message.message}}</span>
+                                  <div class="text-center col-md-12 col-sm-12 col-lg-12" ng-if="message.isfile">
+                                 <span class="chatimg" ng-if="message.isfile" background-image="{{IMGURL}}{{message.fileurl}}" ng-click="viewChatImg(message);"></span>
+                              </div>
+                                 </span>
+                                 <span class="chatdate">{{message.created_at | date:'dd-MMM-yy'}} </span><span class="chattime">{{message.created_at | date:'hh:mm a'}} </span><span class="chatname" ng-if="message.user_id != user.id">{{message.username}}</span>
+                              </div>
+                           </div>
+                        </div>
+                      
+                     </div>
+                      <div class="clear"></div>
+                     <div class="col-md-12 col-sm-12 col-lg-12 newtoppad">
+                     <div class="col-md-12 col-sm-12 col-lg-12 relativechat">
+                        <i class="fa fa-smile-o chatsmile" aria-hidden="true"></i>
+                        <input type="text" name="chat" class="chater" placeholder="Write a reply" ng-model="chatMessage.message" my-enter="sendReplymessage()">
+                        <i class="fa fa-paperclip chatattach" aria-hidden="true" ngf-select ngf-drop ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="sendattachment($files);"></i>
+                        <i class="fa fa-paper-plane chatsend" aria-hidden="true" ng-click="sendReplymessage()"></i>
+                     </div>
+                  </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-lg-2 nopadding rightSidebar" data-ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
+         </div>
+      </div>
+   </div>
+</div>

@@ -1,0 +1,139 @@
+<div ng-controller="FriendsCtrl" class="mobile friendctrl" >
+   <div class="col-xs-12 serviceheader">
+      <div class="col-xs-1 servicelefticon" ng-click="goback()"><i class="fa fa-angle-left"></i></div>
+      <div class="col-xs-5 servicename"><i class="fa fa-user-circle" aria-hidden="true"></i> &nbsp;My Friends</div>
+      <div class="col-xs-1 servicename"></div>
+      <div class="col-xs-2 nopadding text-right infohold"><i class="fa fa-binoculars"></i> | {{user.followers}}</div>
+      <div class="col-xs-3  text-right infohold"><i class="fa fa-user"></i> | {{user.following}}</div>
+   </div>
+   <div class="col-xs-12 newpadding" id="friends">
+      <div class="cate-name">
+         <a class="no_trans float-lt ng-binding">Showing <b>{{friends.from}}</b> to <b> {{friends.to}} </b> of {{friends.total}} Results.</a>
+         <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Sort By</a>
+         <ul class="dropdown-menu">
+            <li><a ng-click="sortfriends('created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+            <li><a ng-click="sortfriends('username','asc')"><i class="fa fa-sort-amount-asc"></i> Name ASC</a></li>
+            <li><a ng-click="sortfriends('username','desc')"><i class="fa fa-sort-amount-desc"></i> Name DESC</a></li>
+         </ul>
+      </div>
+   </div>
+   <div class="col-xs-12 newpadding mobilewishlist newpadding ">
+      <div class="col-md-10 col-sm-10 col-lg-10 nopadding">
+         <div class="col-md-12 col-sm-12 col-lg-12 nopadding src">
+            <div class="cate-name text-center" ng-if="friends.total == 0">
+               <a class="no_trans ng-binding">Currently no friends for you</a>
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg-12 friendholder ">
+               <div class="col-md-4 col-sm-4 col-lg-4 friendcontainer nopadding" dir-paginate="(key,friend) in friends.data | itemsPerPage: totalPerPage" total-items="friends.total" current-page="friendspagination.current" pagination-id="friends">
+                  <div class="friend_name_holder relat">
+                     <div class="col-md-7 col-sm-7 col-lg-7 col-xs-7 nopadding">
+                        <div class="friendname cursor" ui-sref="app.viewuser({'id':friend.id})">{{friend.username}}</div>
+                        <span class="friendoccupation">{{friend.profession}}</span>
+                     </div>
+                     <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5 nopadding">
+                        <div class="float-rt relat">
+                           <button class="actions" data-toggle="dropdown" aria-expanded="false" type="button">Action <i class="fa fa-angle-down" aria-hidden="true"></i></button>
+                           <ul class="dropdown-menu actionmenu">
+                              <li><a ng-click="collaborate(friend)">Collaborate</a></li>
+                              <li><a title="Share to Earn" ng-click="sharefriendtosocial(friend)">Share</a></li>
+                              <li><a ng-click="changefriendfollowstatus(key,friend);">Un Follow</a></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="friend_image_holder">
+                     <div class="col-md-5 col-sm-5 col-lg-5 col-xs-6">
+                        <div class="friendimage cursor" background-image="{{IMGURL}}{{friend.avatar}}" ui-sref="app.viewuser({'id':friend.id})"></div>
+                     </div>
+                     <div class="col-md-7 col-sm-7 col-lg-7 col-xs-6 nopadding-right">
+                        <div class="friendproductimage">
+                           <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 nopadding" ng-repeat="  (no,product) in friend.ownerproducts| limitTo: 2">
+                              <div class=" proimage" ng-if="product.images[0].filetype == 1" background-image="{{IMGURL}}{{product.images[0].thumbnail}}"></div>
+                              <div class=" proimage" ng-if="product.images[0].filetype == 2" background-image="{{product.images[0].thumbnail}}"></div>
+                           </div>
+                        </div>
+                        <div class="cate-box float-lt">
+                           <span class="cate_like">
+                              <div>{{friend.followers}}</div>
+                              <span class="cate_small">Followers</span>
+                           </span>
+                           <span class="cate_like">
+                           <i class="fa fa-trophy" ng-class="{'bronze':((friend.experiencepoints >= 100) && (friend.experiencepoints < 200)),'silver':((friend.experiencepoints >= 200) && (friend.experiencepoints < 300)), 'gold':((friend.experiencepoints >= 300) && (friend.experiencepoints < 400)),'platinum': ((friend.experiencepoints >= 400) && (friend.experiencepoints < 500)),'diamond': friend.experiencepoints >= 500}"></i><br>
+                           <span class="cate_small">Rank</span>
+                           </span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="friend_footer">
+                     <div class="col-md-5 col-sm-5 col-lg-5 col-xs-6  nopadding">
+                        <div class=" infostatus padding-top5"><i class="fa fa-circle" ng-class="friend.onlinestatus == 1 ? 'statusactive':'statusinactive'"></i> <span>{{friend.onlinestatus == 1 ? 'Online':'Offline'}}</span></div>
+                     </div>
+                     <div class="col-md-7 col-sm-7 col-lg-7 col-xs-6 text-right nopadding">
+                        <button class="chatnowbutton" ng-click="gotoprivatechat(friend.id)"><i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;&nbsp;CHAT NOW</button>
+                     </div>
+                  </div>
+               </div>
+               <dir-pagination-controls on-page-change="pageChanged(newPageNumber,'friends')" class="pull-right pagination-ctrl" pagination-id="friends"></dir-pagination-controls>
+            </div>
+         </div>
+         <div class="clear"></div>
+         <div class="col-md-12 col-sm-12 col-lg-12 nopadding" id="peoples">
+            <div class="col-md-12 col-sm-12 col-lg-12 newgray_back" >
+               <div class="userholder col-md-12 col-sm-12 col-lg-12"><p>Follow more members to see great content in your activity stream.</p></div>
+            </div>
+         </div>
+         <div class="clear"></div>
+         <div class="col-md-12 col-sm-12 col-lg-12 nopadding">
+            <div class="cate-name  margin-bottom">
+               <a class="no_trans float-lt ng-binding">Showing <b>{{otherpeoples.from}}</b> to <b>{{otherpeoples.to}}</b> of {{otherpeoples.total}} Results.</a>
+               <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Sort By</a>
+               <ul class="dropdown-menu">
+                  <li><a ng-click="sortotherpeoples('username','asc')"><i class="fa fa-sort-amount-asc"></i> Name ASC</a></li>
+                  <li><a ng-click="sortotherpeoples('username','desc')"><i class="fa fa-sort-amount-desc"></i> Name DESC</a></li>
+               </ul>
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg-12 friendholder nopadding">
+               <div class="col-md-4 col-sm-4 col-lg-4 friendcontainer nopadding" dir-paginate="(key,people) in otherpeoples.data | itemsPerPage: totalPerPage" total-items="otherpeoples.total" current-page="peoplespagination.current" pagination-id="peoples">
+                  <div class="friend_name_holder">
+                     <div class="col-md-7 col-sm-7 col-lg-7 col-xs-7 mobile-no-padding-left">
+                        <div class="friendname cursor" ui-sref="app.viewuser({'id':people.id})">{{people.username}}</div>
+                        <span class="friendoccupation">{{people.profession}}</span>
+                     </div>
+                     <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5 text-right mobile-no-padding-right">
+                        <div class="follow cursor float-rt" ng-click="changefollowstatus(key,people);">{{people.isfollow ? 'UN FOLLOW':'FOLLOW'}} <i class="fa fa-user-plus" ng-class="{'marginleft10': people.isfollow}"></i></div>
+                     </div>
+                  </div>
+                  <div class="friend_image_holder">
+                     <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5" ui-sref="app.viewuser({'id':people.id})">
+                        <div class="friendimage" background-image="{{IMGURL}}{{people.avatar}}"></div>
+                     </div>
+                     <div class="col-md-7 col-sm-7 col-lg-7 col-xs-7">
+                        <div class="friendproductimage">
+                           <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 nopadding" ng-repeat="(no,product) in people.ownerproducts| limitTo: 4">
+                              <div class=" proimage" ng-if="product.images[0].filetype == 1" background-image="{{IMGURL}}{{product.images[0].thumbnail}}"></div>
+                              <div class=" col-lg-6 proimage" ng-if="product.images[0].filetype == 2" background-image="{{product.images[0].thumbnail}}"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="friend_footer">
+                     <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5">
+                        <div class=" infostatus nopadding"><i class="fa fa-circle" ng-class="people.onlinestatus == 1 ? 'statusactive':'statusinactive'"></i> <span>{{people.onlinestatus == 1 ? 'Online':'Offline'}}</span></div>
+                     </div>
+                     <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5">
+                        <div>{{people.followers}}
+                           <span class="cate_small">Followers</span>
+                        </div>
+                     </div>
+                     <div class="col-md-2 col-sm-2 col-lg-2 col-xs-2 text-right">
+                        <i class="fa fa-trophy float-rt cate_like" ng-class="{'bronze':((people.experiencepoints >= 100) && (people.experiencepoints < 200)),'silver':((people.experiencepoints >= 200) && (people.experiencepoints < 300)), 'gold':((people.experiencepoints >= 300) && (people.experiencepoints < 400)),'platinum': ((people.experiencepoints >= 400) && (people.experiencepoints < 500)),'diamond': people.experiencepoints >= 500}"></i>
+                     </div>
+                  </div>
+               </div>
+               <dir-pagination-controls on-page-change="pageChanged(newPageNumber,'otherpeoples')" class="pull-right pagination-ctrl" pagination-id="peoples"></dir-pagination-controls>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="clear"></div>

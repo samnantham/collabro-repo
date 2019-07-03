@@ -1,0 +1,106 @@
+<form class="form-horizontal" name="addForm" novalidate ng-submit="addData(addForm);">
+    <div class="modal_title reject col-lg-12 col-md-12 col-sm-12 col-xs-12   deskmargin-25 ">
+      <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12  no-padding ">
+         <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12  no-padding flex-align" >
+            <div class="col-md-12 col-xs-12  no-padding subjecttitle reject">
+               REJECT OFFER
+               <div ng-if="currentdevice == 'desktop'" class="float-rt closeb " ng-click="closepopoverItem();"><i class="fa fa-minus-square-o" aria-hidden="true"></i></div></div>
+         </div>
+         
+      </div>
+  </div>
+        <div class="clear"></div>
+      <div class="bluebordercontainer" ng-if="currentdevice == 'mobile'"></div> 
+    
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+   <div class="lettercontainer">
+      <div class="letterdetailscontainer letterdetailscontainernew col-lg-12 col-md-12 col-sm-12 col-xs-12 mobile-no-padding">
+            <div class="leftimage rejectform mmarginbottom10" >
+               <div class="rectdetails "><p>You have rejected the job offer from the client. Please indicate the reason for your decision. Thank you.</p>
+               </div>
+               <div class="cancelcontainer margintop10">
+                  <div  class="canceltitle"><span class="detailstitle">Reason for Rejection</span>  <span class="text-danger" ng-if="productData.status == 2 && !ResponseData.reason"> (Select reason)</span></div>
+                  <div  class="cancelinnerconatiner col-lg-12 col-md-12 col-sm-12 no-padding-right">
+                     <ul class="canceloption ">
+                        <li class="margintop10">
+                           <div class="pretty p-default p-round">
+                              <input type="radio" name="reason" ng-model="ResponseData.reason" value="Unable to meet Buyer request">
+                              <div class="state">
+                                 <label>&nbsp;</label>
+                              </div>
+                           </div>
+                           Unable to meet Buyer request
+                        </li>
+                        <li class="margintop10">
+                           <div class="pretty p-default p-round">
+                              <input type="radio" name="reason" ng-model="ResponseData.reason" value="Overwhelmed with Projects">
+                              <div class="state">
+                                 <label>&nbsp;</label>
+                              </div>
+                           </div>
+                           Overwhelmed with Projects
+                        </li>
+                        <li class="margintop10 marginbottom10">
+                           <div class="pretty p-default p-round">
+                              <input type="radio" name="reason" ng-model="ResponseData.reason" value="Going on vacation">
+                              <div class="state">
+                                 <label>&nbsp;</label>
+                              </div>
+                           </div>
+                           Going on vacation
+                        </li>
+                     </ul>
+                  </div>
+                 
+               </div>
+            </div>
+             <div class="clear" ng-if="currentdevice == 'mobile'">&nbsp;</div>
+            <div class="rightimage rejectform-rightimage">
+              <div class="clear"></div>
+               <div class="col-lg-12 col-md-12 no-padding mmargintop10" >
+                  <div  class="label-text marginbottom5 ">Other Comments (Optional)</div>
+                  
+                     <textarea row="10" name="comments" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." class="height170 collabro-text-box" ng-model="ResponseData.comments" required ></textarea>
+                 
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+        <div class="clear"></div>
+      <div class="bluebordercontainer" ng-if="currentdevice == 'mobile'"></div> 
+   <div class="modal-footer">
+         <div class="col-lg-12 col-md-12 col-sm-12  no-padding margintop10">
+     
+      <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-right no-padding-right button_right" ng-if="currentdevice == 'desktop'">  
+      <div class="btn-group dropdown dropup col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
+         <button class="collabro_btn button-width-100 accept" ng-click="rejectOffer();">Proceed</button>
+      </div>
+   </div>
+   <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-right no-padding-right button_right" ng-if="currentdevice == 'desktop'"> <button class="reject collabro_btn button-width-100" ng-click="cancelRequest()">Cancel </button>
+         </div>
+   <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-left no-padding-right button_right" ng-if="currentdevice == 'desktop'">
+               <button class="collabro_btn border-chat button-width-100" class="chatb" ng-click="gotoChat(ResponseData.productid)"><i class="fa fa-phone-square marginright5" aria-hidden="true"></i>CHAT</button>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-1 col-xs-12 mobile-no-padding no-padding button_right mmargintop10" ng-if="currentdevice == 'desktop'">
+        </div>
+      <div class="col-lg-4 col-md-4 col-sm-2 col-xs-12 mobile-no-padding no-padding-left button_right mmargintop10" ng-if="currentdevice == 'desktop'">
+         <span class="submitcontent">*By confirming it means you agree with Collabro’s <a>terms and conditions.</a> Alternatively you can check with the seller first.</span>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-left no-padding-right " ng-if="currentdevice == 'mobile'">
+            <button class="collabro_btn border-chat button-width-100" ng-click="gotoChat(ResponseData.productid)"><i class="fa fa-phone-square marginright5" aria-hidden="true"></i> CHAT</button>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-right no-padding-right  " ng-if="currentdevice == 'mobile'">
+         <button class="reject collabro_btn button-width-100" ng-click="cancelRequest()">Cancel </button>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 mobile-no-padding no-padding-right button_right margintop10" ng-if="currentdevice == 'mobile'"> <button class="collabro_btn button-width-100 accept" ng-click="rejectOffer();">Proceed</button>
+         </div>
+        <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 mobile-no-padding no-padding-left button_right mmargintop10 bgF4F4F4 " ng-if="currentdevice == 'mobile'">
+            <div class="col-xs-10 mobile-no-padding-right"><span class="submitcontent margintopbottom15">*By confirming it means you agree with Collabro’s <a>terms and conditions.</a> Alternatively you can check with the seller first.</span> </div>
+            <div class="col-xs-2 mobile-no-padding-left">
+               <div class="float-rt closeb margintopbottom15" ng-click="closepopoverItem();"><i class="fa fa-minus-square-o" aria-hidden="true"></i></div>
+            </div>
+         </div>
+   </div>
+   </div>
+</form>

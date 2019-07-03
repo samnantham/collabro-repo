@@ -1,0 +1,118 @@
+<div ng-controller="FeedCtrl" class="feedpage">
+   <div class="wthree-dot" id="notificationtop" ng-if="!formLoading">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-2 col-sm-2 col-lg-2 nopadding leftSidebar" data-ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+            <div class="col-md-10 col-sm-10 col-lg-10 nopadding min800">
+               <div class="col-md-12 col-sm-12 col-lg-12 mypadding">
+                  <div class="wishlistheader ">
+                     <div class="col-sm-12 col-md-12 col-lg-12">
+                        <span class="wishlisttitle float-lt"><i class="fa fa-tasks" aria-hidden="true"></i>  &nbsp;LIST OF FEEDS</span>
+                        <div class="clear"></div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-sm-12 col-md-12 col-lg-12 mypadding">
+                  <div class="cate-name ng-scope">
+                     <a role="button" class="pull-left">{{activetab == 'myfeed' ? 'My Feeds':'Wished Feeds'}}</a>
+                     <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Filter By</a>
+                     <ul class="dropdown-menu">
+                        <li><a ng-click="setactivetab('myfeed')">My Feeds</a></li>
+                        <li><a ng-click="setactivetab('wishedfeed')">Wished Feeds</a></li>
+                     </ul>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+               <div class="col-md-12 col-sm-12 col-lg-12 mypadding notificationnew" ng-if="activetab == 'myfeed'">
+                  <div class="notificationlist" ng-if="myfeeds.data.length == 0">
+                     You are not created any feeds.
+                  </div>
+                  <div class="col-md-12 col-sm-12 col-lg-12  boot_list " dir-paginate="(key,data) in myfeeds.data | itemsPerPage: totalPerPage" total-items="myfeeds.total" >
+                     <div class="col-md-6 col-sm-4 col-lg-5  nopadding">
+                        <div class="boot_img" background-image="{{data.files[0].filetype == 1 ? IMGURL : ''}}{{data.files[0].thumbnail}}" alt="">&nbsp;</div>
+                        <div class="col-md-8 col-sm-7 col-lg-8 no-padding-left">
+                           <a class="boot_user_link" cursor>{{data.title}}</a>
+                           <span class="user-subhead">{{data.owner.username}}</span>
+                           <span class="user-subhead font_b"> | </span>
+                           <span class="user-subhead">
+                              <!-- Last Update: --> {{convertDate(data.updated_at) | dateToISO | date:'dd MMM yyyy'}}
+                           </span>
+                        </div>
+                     </div>
+                     <div class="col-md-6 col-sm-4 col-lg-5 no-padding">
+                        <div class="detailsdescription col-xs-12">{{data.description | cut:true:120:'..'}}</div>
+                     </div>
+                     <div class="col-md-2 col-sm-2 col-lg-2 flex-align nopadding text-center">
+                        <div class="col-md-12 col-sm-12 col-lg-12 nopadding">
+                           <div class="product-button">
+                              <a class="btn-add-wishlist" title="Add to Wishlist" ng-click="updatefeedwish(data)"><i class="fa fa-heart wished"></i></a>
+                              <a class="btn-add-comparre" title="Share to Earn" ng-click="sharefeedtosocial(data)" ><i class="fa fa-share"></i></a>
+                               <a class="btn-add-comparre" title="Message to" ng-click="gotofeedchat(data.id)" ><img class="ico-chat" src="img/promes.png"></a>
+                              <!-- <a class="btn-add-comparre"  ><i class="fa fa-minus-circle" aria-hidden="true"></i></a> -->
+                           </div>
+                        </div>
+                        
+                     </div>
+                     <!-- <div class="col-md-2 col-sm-2 col-lg-2 ">
+                        <div class="dropdown pad10"> -->
+                     <!-- <button class="btn_cus btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Actions
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                           <li><a href="#">HTML</a></li>
+                           <li><a href="#">CSS</a></li>
+                        </ul> -->
+                     <!--  </div>
+                        </div> -->
+                  </div>
+                  <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
+               </div>
+               <div class="col-md-12 col-sm-12 col-lg-12 notificationnew mypadding" ng-if="activetab == 'wishedfeed'">
+                  <div class="notificationlist text-center" ng-if="wishedfeeds.data.length == 0" >
+                     There is no wished feeds.
+                  </div>
+                  <div class="col-md-12 col-sm-12 col-lg-12 my_feeds boot_list" dir-paginate="(key,data) in wishedfeeds.data | itemsPerPage: totalPerPage" total-items="wishedfeeds.total"  >
+                     <div class="col-md-6 col-sm-4 col-lg-5  nopadding">
+                        <div class="boot_img" background-image="{{data.files[0].filetype == 1 ? IMGURL : ''}}{{data.files[0].thumbnail}}" alt="">&nbsp;</div>
+                        <div class="col-md-8 col-sm-7 col-lg-8 no-padding-left">
+                           <a class="boot_user_link" cursor>{{data.title}}</a>
+                           <span class="user-subhead">{{data.owner.username}}</span>
+                           <span class="user-subhead font_b"> | </span>
+                           <span class="user-subhead">
+                              <!-- Last Update: --> {{convertDate(data.updated_at) | dateToISO | date:'dd MMM yyyy'}}
+                           </span>
+                        </div>
+                     </div>
+                     <div class="col-md-6 col-sm-4 col-lg-5 no-padding">
+                        <div class="detailsdescription col-xs-12">{{data.description | cut:true:120:'..'}}</div>
+                     </div>
+                     <div class="col-md-2 col-sm-2 col-lg-2 flex-align nopadding text-center">
+                        <div class="col-md-12 col-sm-12 col-lg-12 nopadding">
+                           <div class="product-button">
+                              <a class="btn-add-wishlist" title="Add to Wishlist" ng-click="updatefeedwish(data)"><i class="fa fa-heart wished"></i></a>
+                              <a class="btn-add-comparre" title="Share to Earn" ng-click="sharefeedtosocial(data)" ><i class="fa fa-share"></i></a>
+                               <a class="btn-add-comparre" title="Message to" ng-click="gotofeedchat(data.id)" ><img class="ico-chat" src="img/promes.png"></a>
+                              <!-- <a class="btn-add-comparre"  ><i class="fa fa-minus-circle" aria-hidden="true"></i></a> -->
+                           </div>
+                        </div>
+                        
+                     </div>
+                     <!-- <div class="col-md-2 col-sm-2 col-lg-2 ">
+                        <div class="dropdown pad10"> -->
+                     <!-- <button class="btn_cus btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Actions
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                           <li><a href="#">HTML</a></li>
+                           <li><a href="#">CSS</a></li>
+                        </ul> -->
+                     <!--  </div>
+                        </div> -->
+                  </div>
+                
+                  <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
+               </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-lg-2 nopadding rightSidebar" data-ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
+         </div>
+      </div>
+   </div>
+</div>
