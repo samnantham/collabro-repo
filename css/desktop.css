@@ -619,7 +619,7 @@ input:checked+.slider:before {
 
 .col-md-4 .gallerys {
    position: relative;
-   height: 356px;
+   height: 490px;
 }
 .col-md-8 .gallerys iframe
 {
@@ -3705,16 +3705,15 @@ h6 {
 }
 
 .phone2 {
-   width: 29%;
+   width: 25%;
    padding: 2px 5px;
    float: left;
 }
 
 .phone1 {
    float: right;
-   width: 61%;
+   width: 60%;
    padding: 2px 5px;
-   margin-left: 10px;
    margin-bottom: 10px;
 }
 
@@ -5285,16 +5284,12 @@ h6 {
 
 .phone1 {
    width: 71% !important;
-   float: left;
+   float: right;
 }
 
 
 .no-padd-bottom .righttext{
       padding-bottom: 7px;
-}
-.phone2 {
-   width: 70px !important;
-   float: left;
 }
 
 .calicon {

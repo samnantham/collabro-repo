@@ -97,18 +97,21 @@
                                     <div class="userimageholder text-right" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid"
                                        ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="uploadProfileimg($files);"><img ng-src="{{IMGURL}}{{userData.avatar}}" ng-if="!editData.profileimg" class="userimageholder"><img ngf-src="editData.profileimg" ng-if="editData.profileimg" class="userimageholder"></div>
                                  </div>
-                                 <div class="col-md-9 col-sm-9 col-lg-10 nopadd">
+                                 <div class="col-md-9 col-sm-9 col-lg-10 no-padding">
                                     <div class="col-md-6 col-sm-6 col-lg-6 ">
                                        <div class="usertitle"><input class="profileedit" type="text" required ng-model="editData.username" name="username"></div>
                                        <div class="companytitle width-90"  ng-if="user.iscompany"><input class="profileedit width-100" type="text" value="COMPANY NAME (Optional)" ng-model="editData.organisation"  name="organisation"></div>
                                        <div class="companytitle noborder" ng-if="user.iscompany"><input class="profileedit" type="text" value="COMPANY UEN NO. (Optional)" ng-model="editData.company_uen" name="company_uen"></div>
                                     </div>
-                                    <div class="col-md-6 col-sm-6 col-lg-6 nopadding">
-                                       <div class="userphone"><span class=""><input class="profileedit phone2" type="text" ng-model="editData.countrycode" name="countrycode"></span><input class="profileedit phone1" type="text" required ng-model="editData.phonenumber" name="phonenumber"></div>
-                                       <div class="companytitle noborder"> <button class="verifyphone" ng-if="!user.otpverified" type="button">VERIFY MOBILE NUMBER</button></div>
-                                       <div class="clear"></div>
+                                    <div class="col-md-6 col-sm-6 col-lg-6">
+                                       <div class="userphone">
+                                          <input class="profileedit phone2" type="text" ng-model="editData.countrycode" name="countrycode">
+                                          <input class="profileedit phone1" type="text" required ng-model="editData.phonenumber" name="phonenumber"></div>
+                                       <div class="companytitle noborder"> <button class="verifyphone" ng-if="!user.otpverified" type="button">VERIFY MOBILE NUMBER</button></div>                               
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6  col-lg-offset-6 col-mf-offset-6">
                                        <div class="companytitle noborder col-md-12 col-sm-12 col-lg-12 nopadd margin-top6" >
-                                          <div class="col-md-2 col-sm-2 col-lg-2 nopadd map-marker-2"><i class="fa fa-map-marker map-marker float-lt" aria-hidden="true"></i></div>
+                                          <div class="col-md-2 col-sm-2 col-lg-2 map-marker-2 nopadd"><i class="fa fa-map-marker map-marker float-lt" aria-hidden="true"></i></div>
                                           <div class="col-md-10 col-sm-10 col-lg-10 nopadd" > <input class="profileedit width-100" type="text" ng-model="editData.country" name="country" required></div>
                                        </div>
                                     </div>
