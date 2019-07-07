@@ -224,7 +224,7 @@ angular.module('app')
 
                 var dialogInst = $modal.open({
                     animation: true,
-                    templateUrl: 'tpl/blocks/chatimagepopover.html',
+                    templateUrl: 'tpl/blocks/popover/chatimagepopover.html',
                     controller: 'DialogInstCtrl'
                 });
             }
@@ -251,7 +251,7 @@ angular.module('app')
             $rootScope.opensharepopover = function() {
                 var dialogInst = $modal.open({
                     animation: true,
-                    templateUrl: 'tpl/blocks/sharepopover.html',
+                    templateUrl: 'tpl/blocks/popover/sharepopover.html',
                     controller: 'DialogInstCtrl',
                     size: 'sm',
                     windowClass: 'share-popover',
@@ -1012,7 +1012,7 @@ angular.module('app')
                     ariaDescribedBy: 'modal-body',
                     backdrop: 'static',
                     keyboard: false,
-                    templateUrl: 'tpl/blocks/' + modalfile + '.html',
+                    templateUrl: 'tpl/blocks/modals/' + modalfile + '.html',
                     controller: modalcontroller,
                     controllerAs: '$ctrl',
                     size: 'lg',
