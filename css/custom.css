@@ -9,6 +9,22 @@ a:hover{
     text-decoration: none;
 }
 
+.flex-center{
+    justify-content: center;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.text-left{
+    text-align: left;
+}
+
+.text-right{
+    text-align: right;
+}
+
 #Login{
     padding: 5px 10px !important;
 }
