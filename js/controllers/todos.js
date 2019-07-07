@@ -15,6 +15,7 @@ app.controller('TodoListCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
                 };
                 $scope.todospagedata[$scope.pageno] = getData.data;
                 $scope.todos = getData.data;
+                console.log($scope.todos)
                 $rootScope.formLoading = false;
             } else {
                 $rootScope.logout();
