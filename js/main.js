@@ -28,6 +28,7 @@ angular.module('app')
             $rootScope.ismodalopen = false;
             $rootScope.validextensions = angular.copy(app.imgextensions);
             $rootScope.servicetypes = angular.copy(app.servicetypes);
+            $rootScope.todotypes = angular.copy(app.todotypes);
             $rootScope.projecttypes = angular.copy(app.projecttypes);
             $rootScope.periodtypes = angular.copy(app.periodtypes);
             $rootScope.locations = angular.copy(app.locations);
@@ -98,6 +99,12 @@ angular.module('app')
             $rootScope.openModal = function() {
                 if (!$rootScope.ismodalopen) {
                     $rootScope.openModalPopup('productmodal', 'ProductModalCtrl');
+                }
+            }
+
+            $rootScope.opentodoModal = function() {
+                if (!$rootScope.ismodalopen) {
+                    $rootScope.openModalPopup('todomodal', 'TodoModalCtrl');
                 }
             }
 
@@ -422,6 +429,15 @@ angular.module('app')
                 $rootScope.viewingThumb = {};
                 $rootScope.closepopoverItem();
             };
+
+            $rootScope.closetodoModal = function() {
+                $rootScope.formData = {};
+                $rootScope.formData.type = '';
+                $rootScope.viewingThumb = {};
+                $rootScope.closepopoverItem();
+            };
+
+            
 
             $rootScope.closecollaboratemodal = function() {
                 $rootScope.closepopoverItem();

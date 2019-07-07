@@ -28,7 +28,7 @@
                             There is no wished feeds.
                         </div>
                         <div class="col-md-12 col-sm-12 col-lg-12  boot_list" dir-paginate="(key,data) in myfeeds.data | itemsPerPage: totalPerPage" total-items="myfeeds.total">
-                            <div class="col-md-6 col-sm-4 col-lg-5  nopadding">
+                            <div class="col-md-6 col-sm-4 col-lg-5 nopadding">
                                 <div class="boot_img" background-image="{{data.files[0].filetype == 1 ? IMGURL : ''}}{{data.files[0].thumbnail}}" alt="">&nbsp;</div>
                                 <div class="col-md-8 col-sm-7 col-lg-8 no-padding-left">
                                     <a class="boot_user_link cursor">{{data.title}}</a>

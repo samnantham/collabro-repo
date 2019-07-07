@@ -1,0 +1,48 @@
+<link href="css/mobile/projectlist.css" rel="stylesheet" type="text/css" media="all"/>
+<div ng-controller="ProjectListCtrl" >
+   <div class="col-xs-12 serviceheader" >
+      <div class="col-xs-1 servicelefticon" ng-click="goback()"><i class="fa fa-angle-left"></i></div>
+      <div class="col-xs-5 servicename"><i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp;PROJECTS</div>
+      <div class="col-xs-6 servicename">
+         <div class="cate-name margin0">
+            <div class="float-rt">
+               <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Sort By</a>
+               <ul class="dropdown-menu">
+                  <li><a ng-click="sortproject('created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
+                  <li><a ng-click="sortproject('deadline','asc')"><i class="fa fa-sort-amount-asc"></i> Expiry ASC</a></li>
+                  <li><a ng-click="sortproject('deadline','desc')"><i class="fa fa-sort-amount-desc"></i> Expiry DESC</a></li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-xs-12 newpadding ">
+      <div class="">
+         <div class="col-xs-12  nopadding  boot_list text-center" ng-if="projects.total == 0">
+            <span class="user-subhead font-size18">Currently no projects</span>
+         </div>
+         <div class="col-xs-12  border-with-shade  boot_list" dir-paginate="(key,data) in projects.data | itemsPerPage: totalPerPage" total-items="projects.total" current-page="pagination.current" ui-sref="app.projectdetails({id:data.id})">
+            <div class="col-xs-7 nopadding">
+               <div class="col-xs-4 nopadding cursor">
+                  <img class="boot_img" ng-src="{{data.files[0].filetype == 1 ? IMGURL : ''}}{{data.files[0].thumbnail}}" alt="">
+               </div>
+               <div class="col-xs-8 newpadding">
+                  <a class="boot_user_link" cursor>{{data.title}}</a>
+                  <span class="user-subhead">{{data.owner.username}}</span>
+                  <div>
+                     <span class="user-red">{{data.remainingdays}} Days Remaining</span>
+                  </div>
+               </div>
+            </div>
+            <div class="col-xs-3 nopadding">
+               <a class="boot_user_link_new">{{data.totalcost | currency}} SGD</a>
+               <span class="user-subhead">  {{convertDate(data.created_at) | dateToISO | date:'dd MMM yyyy'}}</span>
+            </div>
+            <div class="col-xs-2 nopadding text-right">
+               <div class="com_section cursor" ui-sref="app.projectdetails({id:data.id})"><img src="img/promes.png"></div>
+            </div>
+         </div>
+         <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
+      </div>
+   </div>
+</div>

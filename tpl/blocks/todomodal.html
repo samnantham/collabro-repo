@@ -1,0 +1,120 @@
+<div>
+<form class="form-horizontal" name="todoForm" novalidate ng-submit="addtodo(todoForm);">
+   <div class="modal_title modal_orange col-lg-12 col-md-12 deskmargin-25">
+   <div>
+       <div class="topnewselect col-lg-6 col-md-6 no-padding flex-align">
+               <div class="label-text display_inline_block float_left marginright30 colorwhite nopadding mobilemarginright15 text-center "><span class="colatitle flex-align" ng-if="currentdevice != 'mobile'"><i class="fa fa-bolt"  style="font-size: 1.5rem;"></i> Todo</span> <i class="fa fa-bolt" ng-if="currentdevice == 'mobile'" style="font-size: 1.5rem;"></i></div>
+               <div class="col-lg-9 col-md-9 col-sm-9 col-xs-11 no-padding">
+                  <ui-select ng-model="todoData.type" theme="bootstrap" ng-change="resetFeedItems()" search-enabled="false">
+                  <ui-select-match allow-clear="true" class="selected-item float-lt">
+                    <p><i class="fa fa-circle-o"></i> {{todoData.type ? todoData.type : 'Select type'}}</p>
+                  </ui-select-match>
+                  <ui-select-choices repeat="type in todotypes| filter: $select.search  track by $index ">
+                     <span ng-bind-html="type | highlight: $select.search"></span>
+            </ui-select-choices>
+         </ui-select>
+                  
+               </div>
+            </div>
+     </div>
+</div>
+   <div tooltip="Please select any of service type" tooltip-trigger="mouseenter" tooltip-class="todoerror" tooltip-placement="right"  tooltip-enable="!todoData.type" >
+      <div class="mmargintop10">
+       <div class="leftimage">
+         <input name="todofiles" type="hidden" ng-model="todoData.productfile" ng-required="todoData.images.length == 0">
+            <div class="col-lg-12 col-md-12 nopadding">
+               <div class="label-text marginbottom5">Add Images <span class="text-danger" ng-if="imageerror"> {{imageerrormsg}}</span></div>
+               <div class="previewholder">
+               <div class="preview-img" ng-if="viewingThumb.file" background-image="{{viewingThumb.isfile ? '' : IMGURL}}{{viewingThumb.isfile ? viewingThumb.base64 : viewingThumb.file}}">
+                  <anguvideo ng-model="viewingThumb.file" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && !viewingThumb.file.includes('soundcloud')"></anguvideo>
+                  <sound-cloud-player url="{{viewingThumb.file}}" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && viewingThumb.file.includes('soundcloud')"></sound-cloud-player>
+               </div>
+            </div>
+               <div ng-if="!viewingThumb.file" class="uploadcontainer show" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj"
+                  ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-disabled="!todoData.type" ng-class="{'upload-btn-disabled': !todoData.type}">
+                  <div class="uploadinnercontainer">
+                     <ul>
+                        <li class="borderright flex-align"><img src="img/u1.png"></li>
+                        <li class="borderright flex-align"><img src="img/u2.png"></li>
+                        <li class="flex-align"><img src="img/u3.png"></li>
+                     </ul>
+                     <div class="clear"></div>
+                     <div class="uploadertext ">Add images, video from the web or take photos to upload to your page
+                     </div>
+                  </div>
+               </div>
+               <input name="productfile" type="hidden" ng-model="todoData.productfile" ng-required="todoData.images.length == 0 && !todoData.videourl">
+               <div class="col-lg-12 col-md-12 nopadding margintop5" ng-class="{'opacity_5': !todoData.type}"><i class="fa fa-info-circle" aria-hidden="true" ng-class="{'text-danger':todoData.images.length == 6 }"></i><span class="marginleft5" ng-class="{'text-danger':todoData.images.length == 6 }">Up to 6 representative Image and video 640 x 360.</span> </div>
+            </div>
+            <div class="col-lg-12 col-md-12 margintop10 no-padding">
+               <div class="label-text marginbottom5">Embed Video </div>
+               <div class="col-lg-12 col-md-12 col-sm-12 no-padding">
+                  <div class="col-md-8 col-lg-8 col-sm-8 col-xs-9 no-padding "><input type="text" name="videourl" ng-model="todoData.embedvideo" placeholder="Youtube / Vimeo / Soundcloud" ng-required="todoData.embedvideo" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/" ng-disabled="!todoData.type || (todoData.images.length == 6 && editkey == null)" class="collabro-text-box">
+                  </div>
+                  <div class="col-md-4 col-lg-4 col-sm-4 col-xs-3 no-padding-right mobile-no-padding-right text-right smallpading ">
+                     <button ng-class="{'videobtn-disabled': !todoData.type}"
+                        type="button" ng-click="uploadvideo();" ng-disabled="!todoData.type || (todoData.images.length == 6 && editkey == null)" class="collabro_btn gradient-button button-width-100"> Add </button>
+                  </div>
+               </div>
+               <div class="clear"></div>
+               <div class="bordercontainer"></div>
+            </div>
+            <!-- <div class="conta videocontainer" ng-if="todoData.videourl">
+               <anguvideo ng-model="todoData.videourl" width="100%" height="100%" ng-if="!todoData.videourl.includes('soundcloud')"></anguvideo>
+               <sound-cloud-player url="{{todoData.videourl}}" width="100%" height="100%" ng-if="todoData.videourl.includes('soundcloud')"></sound-cloud-player>
+               </div> -->
+            <div class="col-md-12 col-lg-12 no-padding img-disparea">
+               <span class="imager" ng-class="{'activeborder' : key == todoData.thumbimage}" ng-repeat="(key,data) in todoData.images" ng-click="chooseItem(key);" tooltip-template="'tpl/blocks/desktop/thumbnailpopover.html'" tooltip-trigger="click" ng-if="todoData.images.length > 0" tooltip-is-open="ismodalPopover && (key == selectedKey)" tooltip-class="preview-tooltip">
+                  <div ng-if="data.filetype == 1 && data.isfile" ngf-background="data.file"></div>
+                  <div ng-if="data.filetype == 1 && !data.isfile" background-image="{{IMGURL}}{{data.file}}"></div>
+                  <div ng-if="data.filetype == 2" background-image="{{data.thumbnail}}"></div>
+               </span>
+               <button class="imager_add" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="todoData.images.length < 6" ng-disabled="!todoData.type"><i class="fa fa-plus" aria-hidden="true"></i></button>
+               <div class="clear"></div>
+               <div class="marginer margintop5" ng-class="{'opacity_5': !todoData.type}"><span class="color01B221" ><i class="fa fa-info-circle" aria-hidden="true"></i><span class="marginleft5">Select the item you want as featured as thumbnail</span> </span>
+               </div>
+            </div>
+            <div class="clear"></div>
+         </div>
+      <div class="rightimage ">
+         <div class="infodiv">
+            <div class="common-itmes ing">
+               <div class="col-lg-12 col-md-12 nopadd ">
+                 <div class="label-text marginbottom5">Title <span class="text-danger" ng-if="todotitleerror"> (Enter Todo Title)</span></div> 
+                  <input type="text" name="title" placeholder="e.g. Title of the feed that you want to send to your friends" ng-model="todoData.title" required ng-disabled="!todoData.type" maxlength="100" class="collabro-text-box">
+                  <div class="pinklimit">{{todoData.title.length ? todoData.title.length : 0 }} / 100 Char</div>
+               </div>
+               <div class="col-lg-12 col-md-12 nopadding margintop10">
+                <div class="label-text marginbottom5"> Feed Description <span class="text-danger" ng-if="tododescriptionerror"> (Enter Todo Description)</span></div>
+                  <textarea row="10" name="description" placeholder="This is where you can put a description of your feed."  class="collabro-text-box height170" ng-model="todoData.description" required ng-disabled="!todoData.type" maxlength="1000"></textarea>
+                  <div class="pinklimit">{{todoData.description.length ? todoData.description.length : 0 }} / 1000 Char</div>
+               </div>
+
+               <div class="col-lg-6 col-md-6 nopadding margintop10">
+                     <div class="label-text marginbottom5">Deadline <span class="text-danger" ng-if="tododeadlineerror"> (Required)</span></div>
+                     <div class='add-on col-lg-12 nopadding date datepicker p_relative'>
+                        <div class="input-group-btn">
+                           <button class="collabro_btn btn-default" type="button" ng-disabled="!todoData.type">
+                           <i class="fa fa-calendar"></i>
+                           </button>
+                        </div>
+                        <input type="text" datepicker size="16" placeholder="Deadline" name="deadline" required readonly ng-model='todoData.tododeadline' ng-disabled="!todoData.type" class="collabro-text-box" />
+                     </div>
+                  </div>
+            </div>
+         </div>
+      </div>
+   </div>
+      <div class="clear"></div>
+      <div class="modal-footer margintop10">
+         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 mobile-no-padding-right no-padding-right button_right">
+         <button type="submit" class="collabro_btn btn-primary commision-button button-width-100" ng-if="!isedit" button-spinner="loading" ng-disabled="loading||!todoData.type">Add Todo</button>
+      </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 mobile-no-padding-left no-padding-left button_right">
+         <button type="button" class="collabro_btn btn-default cancel button-width-100" ng-click="closetodoModal();">Cancel</button>
+      </div>
+       
+      </div>
+   </div>
+</form>
+</div>

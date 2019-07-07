@@ -3994,7 +3994,8 @@ h6 {
 .commisionmodal .modal-dialog,
 .collaboratemodal .modal-dialog,
 .collaborateresponsemodal .modal-dialog,
-.broadcastmodal .modal-dialog {
+.broadcastmodal .modal-dialog,
+.todomodal .modal-dialog  {
    width: 1045px;
    margin: 30px auto;
 }
@@ -4619,7 +4620,7 @@ h6 {
    max-width: 240px;
 }
 
-.broadcastmodal .topselect {
+.broadcastmodal .topselect,.todomodal .topselect {
    width: 290px;
    display: inline-block;
    height: 27px;
@@ -4631,7 +4632,7 @@ h6 {
    height: 27px;
 }
 
-.broadcastmodal .titlecontainer {
+.broadcastmodal .titlecontainer,.todomodal .titlecontainer {
    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffa15c+0,ff6d41+100 */
    background: rgb(255, 161, 92);
    /* Old browsers */
@@ -4656,7 +4657,7 @@ h6 {
    top: 2px;
 }
 
-.broadcastmodal .modal-footer {
+.broadcastmodal .modal-footer,.todomodal .modal-footer {
    width: 100%;
 }
 
@@ -4671,7 +4672,7 @@ h6 {
 }
 
 .collaboratemodal .leftercontainer label,
-.broadcastmodal .leftercontainer label {
+.broadcastmodal .leftercontainer label,.todomodal .leftercontainer label{
    color: #fff;
    font-size: 11px;
    float: left;
@@ -5153,6 +5154,7 @@ h6 {
 }
 
 .broadcastmodal,
+.todomodal,
 .productmodal,
 .responsemodal,
 .commisionmodal,
@@ -5415,6 +5417,7 @@ h6 {
    .commisionmodal .modal-dialog,
    .collaboratemodal .modal-dialog,
    .broadcastmodal .modal-dialog,
+   .todomodal .modal-dialog,
    .collaborateresponsemodal .modal-dialog {
       width: 940px;
       margin: 30px auto;

@@ -183,6 +183,7 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
     }
 
     $scope.pageChanged = function(newPage) {
+        $rootScope.formLoading = true;
         $scope.typespageno = newPage;
         if (!$scope.pagedata[$scope.typespageno]) {
             if($scope.activetab != 'All'){
@@ -194,6 +195,7 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
             }
         } else {
             $scope.typeproductdata = $scope.pagedata[$scope.typespageno];
+            $rootScope.formLoading = false;
         }
     };
 

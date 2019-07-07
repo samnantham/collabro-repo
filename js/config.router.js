@@ -189,6 +189,12 @@ angular.module('app')
                     resolve: load(['js/controllers/projectlist.js'])
                 })
 
+                .state('app.todos', {
+                    url: '/todos',
+                    templateUrl: 'tpl/'+folderpath+'/todos.html',
+                    resolve: load(['js/controllers/todos.js'])
+                })
+
                 .state('app.projectdetails', {
                     url: '/projectdetails/:id',
                     templateUrl: 'tpl/'+folderpath+'/projectdetails.html',
