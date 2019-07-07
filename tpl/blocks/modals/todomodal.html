@@ -5,7 +5,7 @@
        <div class="topnewselect col-lg-6 col-md-6 no-padding flex-align">
                <div class="label-text display_inline_block float_left marginright30 colorwhite nopadding mobilemarginright15 text-center "><span class="colatitle flex-align" ng-if="currentdevice != 'mobile'"><i class="fa fa-bolt"  style="font-size: 1.5rem;"></i> Todo</span> <i class="fa fa-bolt" ng-if="currentdevice == 'mobile'" style="font-size: 1.5rem;"></i></div>
                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-11 no-padding">
-                  <ui-select ng-model="todoData.type" theme="bootstrap" ng-change="resetFeedItems()" search-enabled="false">
+                  <ui-select ng-model="todoData.type" theme="bootstrap" ng-change="resetTodoItems()" search-enabled="false">
                   <ui-select-match allow-clear="true" class="selected-item float-lt">
                     <p><i class="fa fa-circle-o"></i> {{todoData.type ? todoData.type : 'Select type'}}</p>
                   </ui-select-match>
@@ -18,9 +18,9 @@
             </div>
      </div>
 </div>
-   <div tooltip="Please select any of service type" tooltip-trigger="mouseenter" tooltip-class="todoerror" tooltip-placement="right"  tooltip-enable="!todoData.type" >
+   <div tooltip="Please choose todo type" tooltip-trigger="mouseenter" tooltip-class="todoerror" tooltip-placement="right"  tooltip-enable="!todoData.type" >
       <div class="mmargintop10">
-       <div class="leftimage">
+       <div class="leftimage" ng-if="!todoData.type || todoData.type == 'Personal'">
          <input name="todofiles" type="hidden" ng-model="todoData.productfile" ng-required="todoData.images.length == 0">
             <div class="col-lg-12 col-md-12 nopadding">
                <div class="label-text marginbottom5">Add Images <span class="text-danger" ng-if="imageerror"> {{imageerrormsg}}</span></div>
@@ -76,17 +76,57 @@
             </div>
             <div class="clear"></div>
          </div>
+         <div class="leftimage" ng-if=" todoData.type == 'Project'">
+            <div class="col-lg-12 col-md-12 nopadding">
+               <div class="label-text marginbottom5">Project <span class="text-danger" ng-if="projecterror"> (Select a Project)</span></div> 
+               <input name="project" type="hidden" ng-model="todoData.project" required>
+               <ui-select ng-model="selectedproject" theme="bootstrap" ng-change="applyproject(selectedproject);" search-enabled="false">
+                  <ui-select-match allow-clear="true" class="selected-item float-lt">
+                    <p><i class="fa fa-circle-o"></i> {{todoData.selectedproject.title ? todoData.selectedproject.title : 'Select Project'}}</p>
+                  </ui-select-match>
+                  <ui-select-choices repeat="selectedproject in myprojects | filter: $select.search  track by $index ">
+                     <span ng-bind-html=" selectedproject.title |  highlight: $select.search"></span>
+                  </ui-select-choices>
+               </ui-select>
+                <div class="col-lg-12 col-md-12 col-sm-12  no-padding margintop10">
+                  <div class=" detailstitle text-bold">{{todoData.selectedproject.title}}</div>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12  no-padding margintop10">
+                     <div class="details detailsdescription">{{todoData.selectedproject.description}}
+                     </div>
+                  </div>
+               <!-- <div class="col-lg-12 col-md-12 col-sm-12  no-padding margintop10">
+                  <div class="label-text marginbottom5" ng-if="todoData.selectedproject">Title</div>
+               </div>
+
+                 <div class=" detailstitle text-bold" ng-if="todoData.selectedproject"> {{todoData.selectedproject.title}}</div>
+
+                 <div class="label-text marginbottom5" ng-if="todoData.selectedproject">Description</div> 
+
+                 <div class="details detailsdescription" ng-if="todoData.selectedproject"> {{todoData.selectedproject.description}}</div> -->
+
+         <div class="col-md-12 col-lg-12 no-padding img-disparea">
+               <span class="imager" ng-repeat="(key,data) in todoData.selectedproject.files">
+                  <div ng-if="data.filetype == 1 && data.isfile" ngf-background="data.file"></div>
+                  <div ng-if="data.filetype == 1 && !data.isfile" background-image="{{IMGURL}}{{data.file}}"></div>
+                  <div ng-if="data.filetype == 2" background-image="{{data.thumbnail}}"></div>
+               </span>
+               <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            </div>
+         </div>
       <div class="rightimage ">
          <div class="infodiv">
             <div class="common-itmes ing">
                <div class="col-lg-12 col-md-12 nopadd ">
                  <div class="label-text marginbottom5">Title <span class="text-danger" ng-if="todotitleerror"> (Enter Todo Title)</span></div> 
-                  <input type="text" name="title" placeholder="e.g. Title of the feed that you want to send to your friends" ng-model="todoData.title" required ng-disabled="!todoData.type" maxlength="100" class="collabro-text-box">
+                  <input type="text" name="title" placeholder="e.g. Title of the todo that you want to add" ng-model="todoData.title" required ng-disabled="!todoData.type" maxlength="100" class="collabro-text-box">
                   <div class="pinklimit">{{todoData.title.length ? todoData.title.length : 0 }} / 100 Char</div>
                </div>
                <div class="col-lg-12 col-md-12 nopadding margintop10">
-                <div class="label-text marginbottom5"> Feed Description <span class="text-danger" ng-if="tododescriptionerror"> (Enter Todo Description)</span></div>
-                  <textarea row="10" name="description" placeholder="This is where you can put a description of your feed."  class="collabro-text-box height170" ng-model="todoData.description" required ng-disabled="!todoData.type" maxlength="1000"></textarea>
+                <div class="label-text marginbottom5"> Todo Description <span class="text-danger" ng-if="tododescriptionerror"> (Enter Todo Description)</span></div>
+                  <textarea row="10" name="description" placeholder="This is where you can put a description of your todo."  class="collabro-text-box height170" ng-model="todoData.description" required ng-disabled="!todoData.type" maxlength="1000"></textarea>
                   <div class="pinklimit">{{todoData.description.length ? todoData.description.length : 0 }} / 1000 Char</div>
                </div>
 

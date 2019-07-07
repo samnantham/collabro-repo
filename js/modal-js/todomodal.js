@@ -9,12 +9,22 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
         $rootScope.todoData.description = "";
         $rootScope.todoData.images = [];
         $rootScope.todoData.thumbimage = 0;
+        $rootScope.todoData.selectedproject = {};
+        $rootScope.todoData.project = '';
     }
 
     $rootScope.hidetodoerrors = function() {
         $rootScope.todotitleerror = false;
         $rootScope.tododescriptionerror = false;
         $rootScope.tododeadlineerror = false;
+        $rootScope.projecterror = false;
+    }
+
+    $rootScope.applyproject = function(project){
+        $rootScope.todoData.selectedproject = project;
+        $rootScope.todoData.project = project.id;
+        console.log($rootScope.todoData.selectedproject)
+        $rootScope.hidetodoerrors();
     }
 
     $rootScope.uploadvideo = function() {
@@ -252,9 +262,20 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
             }
             if (!form.deadline.$valid) {
                 $rootScope.tododeadlineerror = true;
-            }if (!form.todofiles.$valid) {
-                $rootScope.imageerror = true;
             }
+            if($rootScope.todoData.type == 'Personal')
+            {
+                if (!form.todofiles.$valid) {
+                    $rootScope.imageerror = true;
+                }
+            }
+            if($rootScope.todoData.type == 'Project')
+            {
+                if (!form.project.$valid) {
+                    $rootScope.projecterror = true;
+                }
+            }
+            
         }
     }
 }]);

@@ -40,6 +40,18 @@ app.controller('TodoListCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
         }
     };
 
-    $scope.getmytodos();
+    $scope.getmyprojects = function() {
+        webServices.get('allmyprojects').then(function(getData) {
+            if (getData.status == 200) {
+                $rootScope.myprojects = getData.data;
+                console.log($rootScope.myprojects)
+                $scope.getmytodos();
+            } else {
+                $rootScope.logout();
+            }
+        });
+    };
+
+    $scope.getmyprojects();
 
 }]);
