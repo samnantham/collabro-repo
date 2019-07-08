@@ -70,12 +70,12 @@ angular.module('app')
                         resolve: load(['js/controllers/home.js'])
                     })
 
-                    /*.state('app.signin', {
-                        url: '/signin',
-                        templateUrl: 'tpl/'+folderpath+'/signin.html',
+                    .state('app.forgotpassword', {
+                        url: '/forgotpassword',
+                        templateUrl: 'tpl/'+folderpath+'/forgotpassword.html',
                         resolve: load(['js/controllers/home.js'])
                     })
-*/
+
                     .state('app.signup', {
                         url: '/signup',
                         templateUrl: 'tpl/'+folderpath+'/signup.html',
