@@ -19,6 +19,7 @@
              
                <div class="col-md-12 col-sm-12 col-lg-12 nopadding paddingtopbottom">
                   <div class="col-md-8 col-sm-8 col-lg-8 mypadding">
+                     <div class="top-banner-left">
                      <slick data="ProductViewData.images" infinite="false" init-onload="true" settings="productslick" ng-if="!formLoading" class="slider-for">
                         <div class="width100 sliderframer" ng-repeat="(key,image) in ProductViewData.images">
                            <div class="imgcontainer" background-image="{{IMGURL}}{{image.file}}" ng-if="image.filetype == 1"></div>
@@ -71,8 +72,10 @@
                                  </div>
                               </div>
                            </div>
+                     </div>
                   </div>
                   <div class="col-md-4 col-sm-4 col-lg-4 mynewpadding-noleft">
+                        <div class="top-banner-right">
                      <div class="col-md-12 col-sm-12 col-lg-12  mytoppadding backgroundwhite ">
                         <div class="userholder col-md-7 col-sm-7 col-lg-7 cursor nopadding" ui-sref="app.viewuser({'id':ProductViewData.owner.id})">
                            <img ng-src="{{IMGURL}}{{ProductViewData.owner.avatar}}" class="userimage" >
@@ -110,6 +113,7 @@
                               </div>
                            </div>
                         </div>
+                     </div>
                      </div>
                   </div>
                </div>
