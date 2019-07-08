@@ -1,3 +1,8 @@
+.flex-center{
+    display: flex;
+    align-items: center;
+}
+
 .serviceheader{
     margin-top: 0px !important;
 }
