@@ -14,11 +14,13 @@ a:hover{
 }
 
 .top-banner-left{
+    min-height: 600px;
     max-height: 600px; 
     overflow: hidden;
 }
 
 .top-banner-right{
+    min-height: 600px;
     max-height: 600px;
     overflow: hidden;
 }
