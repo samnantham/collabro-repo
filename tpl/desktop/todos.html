@@ -32,7 +32,7 @@
                   <div class="col-md-12 col-sm-12 col-lg-12  boot_list text-center" ng-if="todos.total == 0">
                      <span class="user-subhead"><h2>Currently no Todos</h2></span>
                   </div>
-                  <div class="col-md-12 col-sm-12 col-lg-12  boot_list" dir-paginate="(key,data) in todos.data | itemsPerPage: totalPerPage" total-items="todos.total" current-page="pagination.current" ui-sref="app.projectdetails({id:data.id})">
+                  <div class="col-md-12 col-sm-12 col-lg-12  boot_list" dir-paginate="(key,data) in todos.data | itemsPerPage: totalPerPage" total-items="todos.total" current-page="pagination.current">
                      <div class="col-md-4 col-sm-4 col-lg-4 nopadding">
                         <div class="boot_img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ng-if="data.type == 'Personal' ">&nbsp;</div>
                         <div class="boot_img" background-image="{{data.projectinfo.files[0].filetype == 1 ? IMGURL : ''}}{{data.projectinfo.files[0].thumbnail}}" ng-if="data.type == 'Project' ">&nbsp;</div>
