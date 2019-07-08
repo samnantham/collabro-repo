@@ -40,9 +40,8 @@
 <div ng-show="isforgotpw">
    <div class="content-main" id="signinbox">
       <div class="w3ls-subscribe">
-         <div class="clear">&nbsp;</div>
-         <h4 class="text-center">FORGOT PASSWORD</h4>
-         <form name="forgotForm" novalidate ng-submit="forgotpassword(forgotForm)" class="forgotform" style="    ">
+         <h4>FORGOT PASSWORD</h4>
+         <form name="forgotForm" novalidate ng-submit="forgotpassword(forgotForm)">
             <span class="details text-left" >Email Address <span ng-if="forgoterrors.errormsg" class="text-danger">{{forgoterrors.errormsg}}</span>
             <span ng-if="forgoterrors.successmsg" class="text-success">{{forgoterrors.successmsg}}</span>
             <span ng-if="forgoterrors.email" class="text-danger">{{forgoterrors.email[0]}}</span><span ng-messages="forgotForm.email.$error" role="alert"><span class="text-danger" ng-message="required">Email Required</span><span class="text-danger" ng-message="email">Not valid email.</span> </span> </span><input type="email" name="email" placeholder="Email" ng-model="forgotModel.email" required>

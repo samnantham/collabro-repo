@@ -531,8 +531,11 @@ input[type="submit"] {
      padding-top: 0px;
      float: left;
 }
+.product-button a:first-of-type i{
+    padding-left: 0px !important;
+}
  .product-button .fa {
-     font-size: 17px !important;
+     font-size: 15px !important;
 }
 /*.products .product-button {
      padding-top: 4px !important;
@@ -862,8 +865,11 @@ display: inline-block;
      border: 0px #F7F7F7!important;
 
 }
+.service-btn{
+    padding-top: 0px !important;
+}
 
-.mobile .actions {
+.mobile .actions, .actions.action-btn {
     width: 100%;
     text-align: center;
     display: flex;
