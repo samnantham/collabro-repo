@@ -1,0 +1,88 @@
+<div ng-controller="ViewTodoCtrl" class="productchat">
+   <div class="popover" ng-if="shareData.title" data-ng-include="'tpl/blocks/desktop/sharepopover.html'"></div>
+   <div class="wthree-dot" ng-if="!formLoading">
+      <div class="container" id="viewitemtop">
+         <div class="row">
+            <!-- Left Menu Here  -->
+            <div class="col-md-2 col-sm-2 col-lg-2 nopadding leftSidebar" data-ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
+            <div class="col-md-10 col-sm-10 col-lg-10 nopadding">
+               <div class="col-md-12 col-sm-12 col-lg-12 nopadding paddingtopbottom">
+                  <div class="col-md-12 col-sm-12 col-lg-12 mypadding">
+                  <div class="wishlistheader ">
+                  <div class="col-sm-12 col-md-12 col-lg-12">
+                     <span class="wishlisttitle float-lt">Active Todos &nbsp;&nbsp;|&nbsp;&nbsp; 8 Todos</span>
+                     <div class="float-rt">
+                      <div class=" closeb" ng-click="goback();"><img src="img/closebutton.png"></div>
+                     <div class="clear"></div>
+                     </div>
+                     <div class="clear"></div>  
+                     </div>
+                  </div>
+               </div>
+            
+
+
+                  <div class="col-md-8 col-sm-8 col-lg-8 mypadding">
+                        <div class="top-banner-left">
+                     <slick data="todoData.images" infinite="false" init-onload="true" settings="productslick" ng-if="!formLoading" class="slider-for">
+                        <div class="width100" ng-repeat="(key,image) in todoData.images">
+                           <div class="imgcontainer" background-image="{{IMGURL}}{{image.file}}" ng-if="image.filetype == 1"></div>
+                           <span ng-if="image.filetype == 2">
+                           <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')"></anguvideo>
+                           <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')"></sound-cloud-player>
+                        </span>
+                        </div>
+                     </slick>
+                     <div class="thumbslider">
+                        <slick data="todoData.images" infinite="false"  settings="productthumbslick" infinite="false" init-onload="true" class="slider-for">
+                           <div class="thumbholder" ng-repeat="(key,image) in todoData.images" >
+                              <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
+                           </div>
+                        </slick>
+                     </div>
+                     </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-lg-4 mynewpadding-noleft" >
+                        <div class="top-banner-right backgroundwhite">
+                     <div class="col-md-12 col-sm-12 col-lg-12 mypadding mytoppadding backgroundwhite">
+                        <div class="userholder col-md-8 col-sm-8 col-lg-8 cursor nopadding">
+                           <img ng-src="{{IMGURL}}{{todoData.owner.avatar}}" class="userimage" ui-sref="app.viewuser({'id':todoData.owner.id})">
+                           <span>
+                           {{todoData.owner.username  | cut:true:5:''}} 
+                        </div>
+                        <div class=" col-md-4 col-sm-4 col-lg-4 infostatus nopadding">
+                           <div class="float-rt "><i class="fa fa-circle" ng-class="todoData.owner.onlinestatus == 1 ? 'statusactive':'statusinactive'"></i> {{todoData.owner.onlinestatus == 1 ? 'Online':'Offline'}}
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-12 col-sm-12 col-lg-12 backgroundwhite paddingleftright projectdetail">
+                        <div class="titles margin-top">{{todoData.title}} </div>
+                        <div class="tracks margin-bottom" ng-if="todoData.type == 'Service'">{{todoData.profession}}: <span ng-if="todoData.type == 'Service'"> {{todoData.owner.username}}</span></div>
+                        <div class="tracks margin-bottom" ng-if="todoData.type != 'Service'">&nbsp;</div>
+                        <div class="description nopadding margin-bottom">{{todoData.description | cut:true:385:''}}</div>
+                        <div class="col-md-12 col-sm-12 col-lg-12 nopadding margin-top abilitylisting">
+                        </div>
+                        <div class="text-danger">{{todoData.deadline | date:'dd-MMM-yyyy'}}</div>
+                        <div class="border-bottom margin-top col-md-12 col-sm-12 col-lg-12"></div>
+                        <div class="clear"></div>
+                        <div class="product-right margin-top col-md-12 col-sm-12 col-lg-12 nopadding">
+                           <div class="price-box col-md-7 col-sm-7 col-lg-7 nopadding">
+                              
+                           </div>
+                           <div class="price-box col-md-5 col-sm-5 col-lg-5 nopadding margin-bottom">
+                              <div class="product-button  product-newbutton col-md-12 col-sm-12 col-lg-12     text-right nopadding">
+                                 <a class="btn-add-comparre" title="Add to Compare"><i class="fa fa-plus"></i></a>
+                                 <a class="btn-add-comparre nomargin" title="Share to Earn" ng-click="sharetodo(todoData)"><i class="fa fa-share"></i></a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-lg-2 nopadding rightSidebar" data-ng-include="'tpl/blocks/desktop/rightmenu.html'"></div>
+         </div>
+      </div>
+   </div>
+</div>

@@ -37,7 +37,7 @@
                         <div class="boot_img" background-image="{{data.images[0].filetype == 1 ? IMGURL : ''}}{{data.images[0].thumbnail}}" ng-if="data.type == 'Personal' ">&nbsp;</div>
                         <div class="boot_img" background-image="{{data.projectinfo.files[0].filetype == 1 ? IMGURL : ''}}{{data.projectinfo.files[0].thumbnail}}" ng-if="data.type == 'Project' ">&nbsp;</div>
                         <div class="col-md-8 col-sm-7 col-lg-8 no-padding-left">
-                           <a class="boot_user_link" cursor>{{data.title}}</a>
+                           <a class="boot_user_link cursor" ui-sref="app.viewtodo({'id':data.id})">{{data.title}}</a>
                            <span class="user-subhead">{{data.type}} todo</span>
                            <span class="user-subhead font_b"> | </span>
                            <span class="user-subhead"><!-- Last Update: --> {{convertDate(data.updated_at) | dateToISO | date:'dd MMM yyyy'}}</span>

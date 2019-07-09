@@ -258,6 +258,14 @@ angular.module('app')
                 });
             }
 
+            $rootScope.sharetodo = function(data){
+                $rootScope.shareData = {};
+                $rootScope.shareData = data;
+                $rootScope.shareData.shareurl = app.todoshareurl;
+                $rootScope.sharetype = 'todo';
+                $rootScope.opensharepopover();
+            }
+
             $rootScope.stoploading = function() {
                 //$rootScope.$emit("scrolltop", {});
                 $rootScope.formLoading = false;
@@ -383,6 +391,32 @@ angular.module('app')
                         var IMGURL = $rootScope.IMGURL + $rootScope.shareData.files[0].thumbnail;
                     } else {
                         var IMGURL = $rootScope.shareData.files[0].thumbnail;
+                    }
+                    Facebook.ui({
+                        method: 'feed',
+                        name: $rootScope.shareData.title,
+                        link: $rootScope.shareData.shareurl + $rootScope.shareData.id,
+                        picture: IMGURL,
+                        caption: $rootScope.shareData.title,
+                        description: $rootScope.shareData.description
+                    }, function(response) {
+                        if (response === null) {
+                            console.log('was not shared');
+                        } else {
+                            if ((response == undefined) || (response.hasOwnProperty('error_code'))) {
+                                console.log('not shared');
+                            } else {
+                                $rootScope.updateforsocialshare(1);
+                                $rootScope.closepopoverItem();
+                                console.log('shared success');
+                            }
+                        }
+                    });
+                }else if ($rootScope.sharetype == 'todo') {
+                    if ($rootScope.shareData.images[0].filetype == 1) {
+                        var IMGURL = $rootScope.IMGURL + $rootScope.shareData.images[0].thumbnail;
+                    } else {
+                        var IMGURL = $rootScope.shareData.images[0].thumbnail;
                     }
                     Facebook.ui({
                         method: 'feed',

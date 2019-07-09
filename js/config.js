@@ -18,6 +18,7 @@ var app = angular.module('app')
                 app.feedshareurl = "http://mswebsg.info/server/sharefeed/";
                 app.friendshareurl = "http://mswebsg.info/server/sharefriend/";
                 app.projectshareurl = "http://mswebsg.info/server/shareproject/";
+                app.todoshareurl = "http://mswebsg.info/server/sharetodo/";
                 app.servicetypes = ['Service','Shop','Rental','Event'];
                 app.todotypes = ['Project','Personal'];
                 app.projecttypes = ['Accounting','Beauty Therapy','Advertising and Marketing','Transportation','Courier Services','Auto Services','Renovation','Medical','Food & Beverage','Wedding Services','Pest Control','Automobile','Landscaping','Accounting','Pet-Care Services','Photography / Videography','Childcare Services','Maintenance Services','Cleaning Services','Printing Services','Security Services','Consulting Services','Property & Inspection','Copywriting & Proof ','Property Management Services','Printing & Publishing ','Art & Decorating ','Entertainment','Talent Management','Presenter','Event Management','Health Care ','Education & Training','Shipping and Delivery','HR and Employment Services','Travel','Health & Fitness','Fashion','Web and Programming','Wedding ','Plant & Landscaping','Limousine Services','Miscellaneous Services'];

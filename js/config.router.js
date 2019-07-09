@@ -171,6 +171,12 @@ angular.module('app')
                     resolve: load(['ngMap','js/controllers/viewitem.js'])
                 })
 
+                .state('app.viewtodo', {
+                    url: '/viewtodo/:id',
+                    templateUrl: 'tpl/'+folderpath+'/viewtodo.html',
+                    resolve: load(['ngMap','js/controllers/viewtodo.js'])
+                })
+
                 .state('app.productchat', {
                     url: '/productchat/:id',
                     templateUrl: 'tpl/'+folderpath+'/productchat.html',
