@@ -78,7 +78,6 @@ a:hover{
     .app-header{
         width: 100%;
         float: left;
-        min-height: 74px;
     }
     .app-content{
         width: 100%;
