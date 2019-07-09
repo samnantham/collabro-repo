@@ -1108,7 +1108,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 }
  .footer-middle {
      background: #7E8EA4;
-     padding: 20px 0px;
+     padding: 25px 0px;
 }
  .footercontent {
      font-size: 12px;
@@ -1174,7 +1174,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 }
  .home #header {
      padding: 30px 0;
-     height: 74px;
+     height: 80px;
      background: rgba(0, 0, 0, 0.4);
 }
  #pagefooter {
