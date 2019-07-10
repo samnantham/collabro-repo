@@ -3818,7 +3818,7 @@ h6 {
    }
 }
 
-@media screen and (max-width: 1900px)and (min-width:1521px) {
+@media screen and (max-width: 1920px)and (min-width:1521px) {
    .friendcontainer {
       width: calc( (100% / 4) - 7px) !important;
       margin-right: 9px !important;
@@ -3836,7 +3836,7 @@ h6 {
    }
 }
 
-@media screen and (max-width: 1900px)and (min-width:1187px) {
+@media screen and (max-width: 1920px)and (min-width:1187px) {
    .service_container .activediv .products,
    .searchpage .service_container .products,
    .wishlistpage .service_container .products {
