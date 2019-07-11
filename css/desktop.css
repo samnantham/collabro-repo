@@ -4038,7 +4038,7 @@ h6 {
 
 .ui-select-bootstrap>.ui-select-match {
    width: 100%;
-   max-width: 240px;
+   max-width: 300px;
    font-size: 16px;
    border-radius: 4px;
    font-weight: normal;
@@ -4062,7 +4062,7 @@ h6 {
 .ui-select-bootstrap {
    float: left;
    width: 100%;
-   max-width: 240px;
+   max-width: 300px;
 }
 
 .ui-select-bootstrap>.ui-select-match i {
@@ -4616,7 +4616,7 @@ h6 {
 .ui-select-choices {
    width: 100% !important;
    margin: 0px !important;
-   max-width: 240px;
+   max-width: 300px;
 }
 
 .broadcastmodal .topselect,.todomodal .topselect {
