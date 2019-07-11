@@ -665,6 +665,7 @@ margin-top: 0px;
      height: 463px;
      display: block;
      width: 100%;
+     overflow: hidden;
 }
  .bannercontaineer p {
      width: 74px;
