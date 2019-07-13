@@ -2221,7 +2221,7 @@ margin-left: 8px !important;
 .itemslider iframe {
     height: 200px !important;
     width: 100%;
-    position: absolute;
+    /*position: absolute;*/
     top: 0px;
     background: #000;
 }
@@ -2246,7 +2246,7 @@ margin-left: 8px !important;
 .anguvideo iframe {
     height: 100%;
     width: 100%;
-    position: absolute;
+    /*position: absolute;*/
     top: 0px;
 }
 .titles {
