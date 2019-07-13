@@ -13,6 +13,21 @@ a:hover{
     height: 490px !important;
 }
 
+.default-btn-group a{
+    font-size: large;
+    font-weight: 400;
+    color: #77869A;
+    margin: 0 5px;
+}
+
+.default-btn-group a:hover{
+    color: #1dc8cd;
+}
+
+.default-btn-group a i{
+    font-size: large;
+}
+
 .top-banner-left{
     min-height: 600px;
     max-height: 600px; 

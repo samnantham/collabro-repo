@@ -50,8 +50,16 @@
                         <a class="boot_user_link_new">Early {{data.deadline | dateToISO | date:'MMM yyyy'}}</a>
                         <span class="user-red">{{data.remainingdays}} Days Remaining</span>
                      </div>
-                     <div class="col-md-1 col-sm-1 col-lg-1 flex-align flex-center">
-                        <a class="com_section cursor"><img src="img/promes.png"></a>
+                     <div class="col-md-1 col-sm-1 col-lg-1 flex-align flex-center default-btn-group">
+                        <a class="com_section cursor">
+                           <i class="fa fa-edit"></i>
+                        </a>
+                        <a class="com_section cursor">
+                           <i class="fa fa-trash-o"></i>
+                        </a>
+                        <a class="com_section cursor">
+                           <i class="fa fa-share"></i>
+                        </a>
                      </div>
                   </div>
                   <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>

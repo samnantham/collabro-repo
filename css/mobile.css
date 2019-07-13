@@ -871,7 +871,7 @@ display: inline-block;
 }
 
 .mobile .actions, .actions.action-btn {
-    width: 100%;
+    width: auto;
     text-align: center;
     display: flex;
     align-items: center;
@@ -898,6 +898,14 @@ display: inline-block;
      border:1px solid #CED1DA !important; 
      padding: 5px !important;
         
+}
+
+.actionmenu i{
+    min-width: 15px;
+}
+
+.mobile .actions:active, .actions.action-btn:active{
+    color: #1dc8cd;
 }
 
 .actions i {

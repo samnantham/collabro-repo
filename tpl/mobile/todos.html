@@ -40,7 +40,21 @@
                <span class="user-subhead">  {{convertDate(data.created_at) | dateToISO | date:'dd MMM yyyy'}}</span>
             </div>
             <div class="col-xs-2 nopadding text-right">
-               <div class="com_section cursor"><img src="img/promes.png"></div>
+               <div class="product-button-new ">
+                  <button class="actions action-btn" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                  <ul class="dropdown-menu actionmenu">
+                     <li><a class="com_section cursor">
+                        <i class="fa fa-edit"></i> Edit
+                     </a></li>
+                     <li>
+                     <a class="com_section cursor">
+                        <i class="fa fa-trash-o"></i> Delete
+                     </a></li>
+                    <li><a class="com_section cursor">
+                        <i class="fa fa-share"></i> Share
+                     </a></li>
+                  </ul>
+               </div>
             </div>
          </div>
          <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
