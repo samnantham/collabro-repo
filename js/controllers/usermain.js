@@ -111,6 +111,7 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
     };
 
     $scope.updatewishstatus = function(product, type, key) {
+        $rootScope.formLoading = true;
         var obj = {};
         obj.productid = product.id;
         if (product.wishstatus == 1) {
@@ -122,6 +123,7 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
         webServices.put('updatewish', obj).then(function(getData) {
             if (getData.status == 200) {
                 $scope.products[type][key].wishstatus = obj.wishstatus;
+                $rootScope.formLoading = false;
                 $rootScope.$emit("showsuccessmsg", getData.data.message);
             }
         });
