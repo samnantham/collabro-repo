@@ -240,7 +240,9 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
                 if (getData.status == 200) {
                     $rootScope.closetodoModal();
                     $rootScope.$emit("showsuccessmsg", getData.data.message);
+                    $rootScope.isedittodo = false;
                     $rootScope.todoData = {};
+                    $rootScope.viewingThumb = {};
                     $state.reload();
                     // if($rootScope.currentdevice == 'mobile'){
                     //     $state.go('app.todos');
@@ -282,9 +284,9 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
         webServices.get('todo/' + $rootScope.edittodoid).then(function(getData) {
             if (getData.status == 200) {
                 $rootScope.todoData = getData.data;
-                $rootScope.todoData.tododeadline = new Date($rootScope.todoData.deadline);
+                $rootScope.todoData.tododeadline = $filter('date')(new Date($rootScope.todoData.deadline), 'MM/dd/yyyy');
                 $rootScope.todoData.thumbimage = 0;
-                $rootScope.viewingThumb = $rootScope.formData.images[0];
+                $rootScope.viewingThumb = $rootScope.todoData.images[0];
             } else {
                 $rootScope.logout();
             }

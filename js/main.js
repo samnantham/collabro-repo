@@ -466,8 +466,9 @@ angular.module('app')
             };
 
             $rootScope.closetodoModal = function() {
-                $rootScope.formData = {};
-                $rootScope.formData.type = '';
+                $rootScope.isedittodo = false;
+                $rootScope.todoData = {};
+                $rootScope.todoData.type = '';
                 $rootScope.viewingThumb = {};
                 $rootScope.closepopoverItem();
             };
@@ -1005,8 +1006,6 @@ angular.module('app')
                 } else {
                     $rootScope.stateurl = paths[2];
                 }
-
-                console.log($rootScope.stateurl)
 
                 $rootScope.closepopoverItem();
                 $rootScope.userData = {};
