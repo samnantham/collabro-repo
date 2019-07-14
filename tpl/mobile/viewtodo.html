@@ -1,0 +1,45 @@
+<div ng-controller="ViewTodoCtrl" class="productchat">
+   <div class="col-xs-12 serviceheader">
+      <div class="col-xs-1 servicelefticon" ng-click="goback()"><i class="fa fa-angle-left"></i></div>
+      <div class="col-xs-4 servicename">{{todoData.owner.username | cut:true:6:''}} | <i class="fa fa-trophy" ng-class="{'bronze':((todoData.owner.experiencepoints >= 100) && (todoData.owner.experiencepoints < 200)),'silver':((todoData.owner.experiencepoints >= 200) && (todoData.owner.experiencepoints < 300)), 'gold':((todoData.owner.experiencepoints >= 300) && (todoData.owner.experiencepoints < 400)),'platinum': ((todoData.owner.experiencepoints >= 400) && (todoData.owner.experiencepoints < 500)),'diamond': todoData.owner.experiencepoints >= 500}"></i></div>
+      <div class=" col-md-2 col-sm-2 col-lg-2 infohold col-xs-2 nopadding  text-center"><i class="fa fa-binoculars"></i> |   {{todoData.owner.followers}}</div>
+      <div class=" col-md-2 col-sm-2 col-lg-2 col-xs-2  nopadding infohold text-center "><i class="fa fa-user"></i>   | {{todoData.owner.following}}</div>
+      <div class=" col-md-2 col-sm-2 col-lg-2 col-xs-2  nopadding  infohold text-center"><i class="fa fa-eye"></i> |   {{todoData.owner.noofdeals}}</div>
+      <div class=" col-md-1 col-sm-1 col-lg-2 col-xs-1  mypadding infostatus text-right"><i class="fa fa-circle" ng-class="todoData.owner.onlinestatus == 1 ? 'statusactive':'statusinactive'"></i> </div>
+   </div>
+   <div class="col-xs-12 nopadding">
+      <slick data="todoData.images" infinite="false" init-onload="true" settings="productslick" ng-if="!formLoading" class="slider-for">
+         <div class="itemslider" ng-repeat="(key,image) in todoData.images">
+            <div class="imgcontainer" background-image="{{IMGURL}}{{image.file}}" ng-if="image.filetype == 1"></div>
+            <span ng-if="image.filetype == 2">
+               <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')"></anguvideo>
+               <sound-cloud-player url="{{image.file}}" ng-if="image.file&&image.file.includes('soundcloud')"></sound-cloud-player>
+            </span>
+         </div>
+      </slick>
+      <div class="thumbslider">
+         <slick data="todoData.images" infinite="false" init-onload="true" settings="mobilethumbslick" ng-if="!formLoading" class="slider-nav">
+            <div class="thumbholder" ng-repeat="(key,image) in todoData.images">
+               <div class="slidee" background-image="{{image.filetype == 1 ? IMGURL : ''}}{{image.thumbnail}}"></div>
+            </div>
+         </slick>
+      </div>
+   </div>
+   <div class="col-xs-12 backgroundwhite paddingleftright">
+        <div class="detailstitle margin-bottom margintop">{{todoData.title}} </div>
+        <div class="detailsdescription preline nopadding margin-bottom ">
+            {{todoData.description}}
+        </div>
+        <div class="product-right  borderbottom padding-bottom-15">
+            <div class="price-box col-xs-4 nopadding text-left">
+                <span class="text-danger">{{todoData.deadline | date:'dd-MMM-yyyy'}}</span>
+            </div>
+            <div class="product-button mybutton  product-newbutton col-xs-8 text-right mobile-no-padding-left">
+                <div class="col-xs-12">
+                    <a class="btn-add-comparre nomargin" title="Share to Earn" ng-click="sharetodo(todoData)"><i class="fa fa-share"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

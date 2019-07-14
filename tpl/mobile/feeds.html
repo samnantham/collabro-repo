@@ -7,7 +7,7 @@
       </div>
    </div>
    <div class="col-xs-12 newpadding">
-                        <div class="cate-name ng-scope">
+                        <div class="cate-name" ng-if="!formLoading">
                             <a role="button" class="pull-left">{{activetab == 'myfeed' ? 'My Feeds':'Wished Feeds'}}</a>
                             <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Filter By</a>
                             <ul class="dropdown-menu">

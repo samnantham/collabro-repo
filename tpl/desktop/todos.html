@@ -15,14 +15,14 @@
                </div>
                <div class="col-sm-12 col-md-12 col-lg-12 nopadding">
 
-                  <div class="cate-name ng-scope">
+                  <div class="cate-name" ng-if="!formLoading">
                            <a class="no_trans float-lt ng-binding">Active Todos<span> | </span>{{todos.total}} Todos</a>
-                           <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Sort By</a>
+                           <a data-toggle="dropdown" role="button" class=" noti_btn_b float-rt">Filter By</a>
                            <ul class="dropdown-menu">
-                                 <li><a ng-click="sortproject('created_at','desc')"><i class="fa fa-clock-o"></i> Recent</a></li>
-                                 <li><a ng-click="sortproject('deadline','asc')"><i class="fa fa-sort-amount-asc"></i> Expiry ASC</a></li>
-                                 <li><a ng-click="sortproject('deadline','desc')"><i class="fa fa-sort-amount-desc"></i> Expiry DESC</a></li>
-                              </ul>
+                              <li><a ng-click="filterTodo('')">All Todo's</a></li>
+                              <li><a ng-click="filterTodo('Personal')">Personal Todo's</a></li>
+                              <li><a ng-click="filterTodo('Project')">Project Todo's</a></li>
+                           </ul>
                         </div>
                    <div class="clear"></div>
                </div>

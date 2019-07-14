@@ -285,8 +285,14 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
             if (getData.status == 200) {
                 $rootScope.todoData = getData.data;
                 $rootScope.todoData.tododeadline = $filter('date')(new Date($rootScope.todoData.deadline), 'MM/dd/yyyy');
-                $rootScope.todoData.thumbimage = 0;
-                $rootScope.viewingThumb = $rootScope.todoData.images[0];
+                
+                if($rootScope.todoData.type == 'Personal'){
+                    $rootScope.todoData.thumbimage = 0;
+                    $rootScope.viewingThumb = $rootScope.todoData.images[0];
+                }else{
+                    $rootScope.applyproject($rootScope.todoData.projectinfo);
+                }
+                console.log($rootScope.todoData)
             } else {
                 $rootScope.logout();
             }

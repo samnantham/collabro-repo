@@ -33,12 +33,13 @@ app.controller('TodoListCtrl', ['$scope', '$ngConfirm', '$state', '$timeout', 'w
         $rootScope.opentodoModal();
     }
 
-    $scope.sortproject = function(key, order) {
+    $rootScope.filterTodo = function(filter){
         $rootScope.formLoading = true;
-        $scope.pageno = 1;
-        $scope.todos = [];
-        $scope.todospagedata = [];
-        $scope.url = 'sorttodos/' + key + '/' + order + '/' + $scope.totalPerPage;
+        if(filter){
+            $scope.url = 'mytodos/' + $scope.totalPerPage + '/' +filter;
+        }else{
+            $scope.url = 'mytodos/' + $scope.totalPerPage;
+        }
         $scope.getmytodos();
     }
 
