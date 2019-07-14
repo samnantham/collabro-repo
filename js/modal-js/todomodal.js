@@ -23,7 +23,6 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
     $rootScope.applyproject = function(project){
         $rootScope.todoData.selectedproject = project;
         $rootScope.todoData.project = project.id;
-        console.log($rootScope.todoData.selectedproject)
         $rootScope.hidetodoerrors();
     }
 
@@ -277,5 +276,18 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
             }
             
         }
+    }
+
+    if ($rootScope.isedittodo) {
+        webServices.get('todo/' + $rootScope.edittodoid).then(function(getData) {
+            if (getData.status == 200) {
+                $rootScope.todoData = getData.data;
+                $rootScope.todoData.tododeadline = new Date($rootScope.todoData.deadline);
+                $rootScope.todoData.thumbimage = 0;
+                $rootScope.viewingThumb = $rootScope.formData.images[0];
+            } else {
+                $rootScope.logout();
+            }
+        });
     }
 }]);

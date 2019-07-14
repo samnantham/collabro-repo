@@ -1,5 +1,5 @@
 'use strict';
-app.controller('TodoListCtrl', ['$scope', '$http', '$state', '$timeout', 'webServices', 'utility', '$rootScope', '$stateParams', function($scope, $http, $state, $timeout, webServices, utility, $rootScope, $stateParams) {
+app.controller('TodoListCtrl', ['$scope', '$ngConfirm', '$state', '$timeout', 'webServices', 'utility', '$rootScope', '$stateParams', function($scope, $ngConfirm, $state, $timeout, webServices, utility, $rootScope, $stateParams) {
     
     $scope.todos = [];
     $scope.todospagedata = [];
@@ -15,13 +15,23 @@ app.controller('TodoListCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
                 };
                 $scope.todospagedata[$scope.pageno] = getData.data;
                 $scope.todos = getData.data;
-                console.log($scope.todos)
+                angular.forEach($scope.todos.data, function(todo, no) {
+                    if(todo.type == 'Project'){
+                        todo.images = todo.projectinfo.files;
+                    }
+                });
                 $rootScope.formLoading = false;
             } else {
                 $rootScope.logout();
             }
         });
     };
+
+    $rootScope.editTodo = function(data) {
+        $rootScope.isedittodo = true;
+        $rootScope.edittodoid = data.id;
+        $rootScope.opentodoModal();
+    }
 
     $scope.sortproject = function(key, order) {
         $rootScope.formLoading = true;
@@ -52,6 +62,30 @@ app.controller('TodoListCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
             }
         });
     };
+
+    $scope.deletetodo = function(key, todo) {
+        $ngConfirm({
+            title: 'Are you sure want to delete?',
+            content: 'Not possible to recover once you delete',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                tryAgain: {
+                    text: 'Delete',
+                    btnClass: 'btn-red',
+                    action: function() {
+                        webServices.delete('todo/' + todo.id).then(function(getData) {
+                            if (getData.status == 200) {
+                                $scope.todos.data.splice(key, 1); 
+                            }
+                        });
+                    }
+                },
+                close: function() {}
+            }
+        });
+
+    }
 
     $scope.getmyprojects();
 

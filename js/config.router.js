@@ -198,7 +198,7 @@ angular.module('app')
                 .state('app.todos', {
                     url: '/todos',
                     templateUrl: 'tpl/'+folderpath+'/todos.html',
-                    resolve: load(['js/controllers/todos.js'])
+                    resolve: load(['cp.ngConfirm','js/controllers/todos.js'])
                 })
 
                 .state('app.projectdetails', {
