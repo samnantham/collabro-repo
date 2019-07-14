@@ -80,7 +80,7 @@ app.controller('FeedChatCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
         if (files && files.length) {
             var extn = files[0].name.split(".").pop();
             if ($rootScope.validextensions.includes(extn.toLowerCase())) {
-                if (files[0].size <= 2000000) {
+                if (files[0].size <= $rootScope.maxUploadsize) {
                     var obj = {};
                     obj.file = files[0];
                     $rootScope.uploaduserchatattachment(obj);
