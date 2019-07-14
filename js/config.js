@@ -27,6 +27,7 @@ var app = angular.module('app')
                 app.locations = ['Singapore'];
                 app.currencies = ['USD','SGD'];
                 app.geopos = [1.290270,103.851959];
+                app.maxUploadsize = 5000000;
                 app.professions = ['Carpenter','Electrician','Plumber'];
                 app.rentaltypes = ['Hourly','Daily','Weekly','Mothly','Yearly'];
                 app.eventtypes = ['Music Events','Game Events'];

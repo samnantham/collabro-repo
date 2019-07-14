@@ -267,7 +267,7 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
         if (files && files.length) {
             var extn = files[0].name.split(".").pop();
             if ($rootScope.validextensions.includes(extn.toLowerCase())) {
-                if (files[0].size <= 2000000) {
+                if (files[0].size <= $rootScope.maxUploadsize) {
                     $scope.editData.profileimg = files[0];
                 } else {
                     $rootScope.$emit("showerrormsg", files[0].name + ' size exceeds 2MB.');

@@ -136,7 +136,7 @@ app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$statePar
             $rootScope.editkey = key;
             var extn = files[0].name.split(".").pop();
             if ($rootScope.validextensions.includes(extn.toLowerCase())) {
-                if (files[0].size <= 2000000) {
+                if (files[0].size <= $rootScope.maxUploadsize) {
                     var newobj = {};
                     newobj.file = files[0];
                     newobj.filename = files[0].name;
@@ -165,7 +165,7 @@ app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$statePar
                 for (var i = 0; i < files.length; i++) {
                     var extn = files[i].name.split(".").pop();
                     if ($rootScope.validextensions.includes(extn.toLowerCase())) {
-                        if (files[i].size <= 2000000) {
+                        if (files[i].size <= $rootScope.maxUploadsize) {
                             var newobj = {};
                             newobj.file = files[i];
                             newobj.filename = files[i].name;
