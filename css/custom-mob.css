@@ -1,3 +1,11 @@
+.w3ls-subscribe .details{
+    width: 100%;
+}
+
+.w3ls-subscribe .details .text-danger{
+    float: right;
+}
+
 .flex-center{
     display: flex;
     align-items: center;
