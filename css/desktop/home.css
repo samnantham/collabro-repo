@@ -7,7 +7,7 @@ body{
  .cb-slideshow, .cb-slideshow:after {
      width: 100%;
      float: left;
-     height: 700px;
+     height: auto;
      z-index: 0;
 }
  .cb-slideshow:after {
