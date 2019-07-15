@@ -5545,7 +5545,7 @@ h6 {
    width: 150px;
 }
 
-.broadcasterror {
+.broadcasterror,.todoerror {
    color: #fff;
    width: 150px;
    top: 32px !important;
@@ -5569,7 +5569,7 @@ h6 {
 .collaborateerror .tooltip-inner,
 .responseagreementerror .tooltip-inner,
 .broadcasterror .tooltip-inner,
-.collaborateagreementerror .tooltip-inner {
+.collaborateagreementerror .tooltip-inner,.todoerror .tooltip-inner {
    background-color: red!important;
    color: #fff;
 }
@@ -5577,7 +5577,7 @@ h6 {
 .collaborateerror .tooltip-arrow,
 .responseagreementerror .tooltip-arrow,
 .broadcasterror .tooltip-arrow,
-.collaborateagreementerror .tooltip-arrow {
+.collaborateagreementerror .tooltip-arrow ,.todoerror .tooltip-arrow{
    border-right-color: red!important;
 }
 

@@ -24,6 +24,8 @@ app.controller('HomeCtrl', ['$scope', '$state', '$rootScope', '$timeout','webSer
         $rootScope.formLoading = true;
         $scope.getBanners();
     }else{
-        $rootScope.formLoading = false;
+        $timeout(function() {
+            $rootScope.formLoading = false; 
+        }, 2000);
     }
 }]);

@@ -3,7 +3,7 @@
 <div ng-controller="HomeCtrl" id="pictureSlider">
    <div class="profile" id="hometop" ng-if="!formLoading">
       <ul class="cb-slideshow">
-            <li ng-repeat="(key,image) in backgroundimages" class="homepgbgs"><span ng-style="{'background-image':'url(' + IMGURL + image + ')','-webkit-animation-delay': (key * 6) + 's','-moz-animation-delay': (key * 6) + 's','-o-animation-delay': (key * 6) + 's','-ms-animation-delay': (key * 6) + 's','animation-delay': (key * 6) + 's'}">Image {{key + 1}}</span></li>
+            <li ng-repeat="(key,image) in backgroundimages track by $index" class="homepgbgs"><span ng-style="{'background-image':'url(' + IMGURL + image + ')','-webkit-animation-delay': (key * 6) + 's','-moz-animation-delay': (key * 6) + 's','-o-animation-delay': (key * 6) + 's','-ms-animation-delay': (key * 6) + 's','animation-delay': (key * 6) + 's'}">Image {{key + 1}}</span></li>
         </ul>
       <div class="wrap">
          <div class="wthree-grids">
