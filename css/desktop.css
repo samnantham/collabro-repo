@@ -5873,6 +5873,18 @@ h6 {
    background: #0AB21E!important;
 }
 
+.modal_title .ui-select-bootstrap{
+   width: auto;
+   float: right;
+   margin-left: auto;
+}
+
+.modal_title label.title{
+   color: #fff;
+   font-size: 12px;
+   float: left;
+}
+
 .ui-select-bootstrap .ui-select-choices-row>a {
    padding: .25rem .4rem;
    font-size: .81rem;

@@ -2,9 +2,12 @@
    <form class="form-horizontal" name="addForm" novalidate ng-submit="addData(addForm);">
       <div class="modal_title col-lg-12 col-md-12 deskmargin-25">
          <div>
-            <div class="topnewselect col-lg-6 col-md-6 no-padding flex-align">
-               <div class="colatitle display_inline_block float_left marginright10">REQUEST FOR SERVICES</div>
-               <div class="col-lg-11 col-md-10 col-xs-12 no-padding">
+            <div class="topnewselect col-lg-12 col-md-12 flex-align">
+               <div class="col-lg-4 col-md-4 col-xs-12">
+                  <div class="post-title white display_inline_block float_left marginright10">REQUEST FOR SERVICES</div>
+               </div>
+               <div class="col-lg-4 col-md-4 no-padding flex-align">
+                     <label class="title">Type Of Service</label>
                   <ui-select ng-model="formData.type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" onkeypress="return false;" onfocus="blur();" ng-readonly="!$select.searchEnabled">
                      <ui-select-match allow-clear="true" class="selected-item float-lt">
                         <p><i class="fa fa-circle-o"></i> {{formData.type ? formData.type : 'Select Category Post'}}</p>
@@ -13,7 +16,18 @@
                         <span ng-bind-html="type | highlight: $select.search"></span>
                      </ui-select-choices>
                   </ui-select>
-                  <span ng-if="currentdevice != 'mobile'"><span class="text-danger cat-error float-lt" ng-if="!formData.type" > (Please Choose)</span></span>
+                  <!-- <span ng-if="currentdevice != 'mobile'"><span class="text-danger cat-error float-lt" ng-if="!formData.type" > (Please Choose)</span></span> -->
+               </div>
+               <div class="col-lg-3 col-md-3 no-padding flex-align col-lg-offset-1">    
+                  <label class="title">Category</label>              
+                  <ui-select ng-model="formData.type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" onkeypress="return false;" onfocus="blur();" ng-readonly="!$select.searchEnabled">
+                     <ui-select-match allow-clear="true" class="selected-item float-lt">
+                        <p><i class="fa fa-circle-o"></i> {{formData.type ? formData.type : 'Select Category'}}</p>
+                     </ui-select-match>
+                     <ui-select-choices repeat="type in servicetypes | filter: $select.search">
+                        <span ng-bind-html="type | highlight: $select.search"></span>
+                     </ui-select-choices>
+                  </ui-select>
                </div>
             </div>
          </div>

@@ -13,6 +13,10 @@ a:hover{
     height: 490px !important;
 }
 
+.post-title.white{
+    color: #fff;
+}
+
 .default-btn-group a{
     font-size: large;
     font-weight: 400;
