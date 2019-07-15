@@ -174,7 +174,7 @@ angular.module('app')
                 .state('app.viewtodo', {
                     url: '/viewtodo/:id',
                     templateUrl: 'tpl/'+folderpath+'/viewtodo.html',
-                    resolve: load(['ngMap','js/controllers/viewtodo.js'])
+                    resolve: load(['cp.ngConfirm','js/controllers/viewtodo.js'])
                 })
 
                 .state('app.productchat', {
