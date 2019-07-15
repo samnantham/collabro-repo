@@ -9,9 +9,9 @@
                     <div class="col-md-12 col-sm-12 col-lg-12 nopadding paddingtopbottom">
                         <div class="col-md-12 col-sm-12 col-lg-12 mypadding">
                             <div class="wishlistheader ">
-                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="col-sm-12 col-md-12 col-lg-12 flex-align">
                                     <span class="wishlisttitle float-lt">Active Todos &nbsp;&nbsp;|&nbsp;&nbsp; {{user.activetodo}} Todos</span>
-                                    <div class="float-rt">
+                                    <div class="float-rt right">
                                         <div class=" closeb" ng-click="goback();"><img src="img/closebutton.png"></div>
                                         <div class="clear"></div>
                                     </div>
@@ -60,17 +60,20 @@
                                     <div class="description nopadding margin-bottom">{{todoData.description | cut:true:385:''}}</div>
                                     <div class="col-md-12 col-sm-12 col-lg-12 nopadding margin-top abilitylisting">
                                     </div>
-                                    <div class="text-danger">{{todoData.deadline | date:'dd-MMM-yyyy'}}</div>
+                                    
                                     <div class="border-bottom margin-top col-md-12 col-sm-12 col-lg-12"></div>
                                     <div class="clear"></div>
                                     <div class="col-md-12 col-sm-12 col-lg-12 nopadding flexmiddle">
                                         <div class="product-button col-md-12 col-sm-12 col-lg-4 text-right nopadding" ng-if="todoData.type == 'Project'">
                                             <p class="viewbutton cursor" ui-sref="app.projectdetails({id:todoData.projectid})"> Go to Project</p>
                                         </div>
-                                        <div class="product-button  product-newbutton col-md-12 col-sm-12 col-lg-8 text-right nopadding">
-                                            <a class="btn-add-wishlist" title="Edit Todo" ng-if="todoData.userid == user.id" ng-click="editTodo(todoData)"><i class="fa fa-edit"></i></a>
-                                            <a class="btn-add-comparre" title="Remove Todo" ng-if="todoData.userid == user.id" ng-click="deletetodo(todoData)"><i class="fa fa-trash-o"></i></a>
-                                            <a class="btn-add-comparre nomargin" title="Share to Earn" ng-click="sharetodo(todoData)"><i class="fa fa-share"></i></a>
+                                        <div class="product-button  product-newbutton col-md-12 col-sm-12 col-lg-12 text-right nopadding mt-10 todo-bottom-btn">
+                                            <div class="text-danger">{{todoData.deadline | date:'dd-MMM-yyyy'}}</div>
+                                            <div class="right-btn">
+                                                <a class="btn-add-comparre nomargin" title="Edit Todo" ng-if="todoData.userid == user.id" ng-click="editTodo(todoData)"><i class="fa fa-edit"></i></a>
+                                                <a class="btn-add-comparre nomargin" title="Remove Todo" ng-if="todoData.userid == user.id" ng-click="deletetodo(todoData)"><i class="fa fa-trash-o"></i></a>
+                                                <a class="btn-add-comparre nomargin" title="Share to Earn" ng-click="sharetodo(todoData)"><i class="fa fa-share"></i></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

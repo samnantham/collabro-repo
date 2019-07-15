@@ -1,34 +1,32 @@
 <div>
     <form class="form-horizontal" name="addForm" novalidate ng-submit="addData(addForm);">
-        <div class="post-request modal_title col-lg-12 col-md-12 deskmargin-25">
-            <div>
-                <div class="topnewselect col-lg-12 col-md-12 flex-align">
-                    <div class="col-lg-4 col-md-4 col-xs-12">
-                        <div class="post-title white display_inline_block float_left marginright10">REQUEST FOR SERVICES</div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 no-padding flex-align">
-                        <label class="title">Type Of Service</label>
-                        <ui-select ng-model="formData.request_type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" onkeypress="return false;" onfocus="blur();" ng-readonly="!$select.searchEnabled">
-                            <ui-select-match allow-clear="true" class="selected-item float-lt">
-                                <p><i class="fa fa-circle-o"></i> {{formData.request_type ? formData.request_type : 'Service Type'}}</p>
-                            </ui-select-match>
-                            <ui-select-choices repeat="type in servicetypes | filter: $select.search">
-                                <span ng-bind-html="type | highlight: $select.search"></span>
-                            </ui-select-choices>
-                        </ui-select>
-                    </div>
-                    <div class="col-lg-3 col-md-3 no-padding flex-align col-lg-offset-1">
-                        <label class="title">Category</label>
-                        <ui-select ng-model="formData.request_category" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" onkeypress="return false;" onfocus="blur();" ng-readonly="!$select.searchEnabled">
-                            <ui-select-match allow-clear="true" class="selected-item float-lt">
-                                <p><i class="fa fa-circle-o"></i> {{formData.request_category ? formData.request_category : 'Select Category'}}</p>
-                            </ui-select-match>
-                            <ui-select-choices repeat="type in servicetypes | filter: $select.search">
-                                <span ng-bind-html="type | highlight: $select.search"></span>
-                            </ui-select-choices>
-                        </ui-select>
-                    </div>
-                </div>
+        <div class="post-request modal_title col-lg-12 col-md-12 col-xs-12 deskmargin-25">
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-xs-12 flex-align">
+                  <div class="post-title white display_inline_block float_left marginright10">REQUEST FOR SERVICES</div>
+               </div>
+               <div class="col-lg-4 col-md-4 col-xs-12 flex-align m-10">
+                  <label class="title">Type Of Service</label>
+                  <ui-select ng-model="formData.request_type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" onkeypress="return false;" onfocus="blur();" ng-readonly="!$select.searchEnabled">
+                        <ui-select-match allow-clear="true" class="selected-item float-lt">
+                           <p><i class="fa fa-circle-o"></i> {{formData.request_type ? formData.request_type : 'Service Type'}}</p>
+                        </ui-select-match>
+                        <ui-select-choices repeat="type in servicetypes | filter: $select.search">
+                           <span ng-bind-html="type | highlight: $select.search"></span>
+                        </ui-select-choices>
+                  </ui-select>
+               </div>
+               <div class="col-lg-3 col-md-3 flex-align col-lg-offset-1 col-xs-12 m-10">
+                  <label class="title">Category</label>
+                  <ui-select ng-model="formData.request_category" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" onkeypress="return false;" onfocus="blur();" ng-readonly="!$select.searchEnabled">
+                        <ui-select-match allow-clear="true" class="selected-item float-lt">
+                           <p><i class="fa fa-circle-o"></i> {{formData.request_category ? formData.request_category : 'Select Category'}}</p>
+                        </ui-select-match>
+                        <ui-select-choices repeat="type in servicetypes | filter: $select.search">
+                           <span ng-bind-html="type | highlight: $select.search"></span>
+                        </ui-select-choices>
+                  </ui-select>
+               </div>
             </div>
         </div>
         <div class="mmargintop10">

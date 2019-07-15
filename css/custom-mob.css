@@ -48,3 +48,20 @@
    /* min-height: 100vh;*/
     background: #fff;
 }
+
+.post-request{
+    width: 100%;
+    float: left;
+}
+
+.post-request .post-title{
+    color: #7E8EA4;
+}
+
+.post-request .m-10{
+    margin-top: 10px;
+}
+
+.post-request label.title{
+    color: #7E8EA4 !important; 
+}

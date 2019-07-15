@@ -3186,6 +3186,7 @@ padding: 30px 15px;
 }
 .rightimage {
 margin-top: 20px;
+float: left;
     }
 .uploadcontainer {
      width: 100%;
@@ -3441,7 +3442,7 @@ margin-top: 13px;}
     .loc-txt{width: 191.11px !important;}
     
     .in2{margin-right: 5px !important;}
-    .leftimage {width: 100%;}
+    .leftimage {width: 100%; float: left;}
 
 
     

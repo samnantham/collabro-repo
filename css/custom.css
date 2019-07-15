@@ -53,6 +53,11 @@ a:hover{
     justify-content: center;
 }
 
+.right{
+    float: right;
+    margin-left: auto;
+}
+
 .text-center{
     text-align: center;
 }
@@ -103,6 +108,22 @@ a:hover{
     font-size: 12px;
     float: left;
  }
+
+
+.todo-bottom-btn{
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+    justify-content: space-between;
+}
+
+.todo-bottom-btn .right-btn a{
+    color: #77869A;
+}
+
+.todo-bottom-btn .right-btn a:hover i{
+    color: #32C6E4;
+}
 
 
 /* @media 1920 */
