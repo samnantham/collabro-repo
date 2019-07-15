@@ -65,3 +65,10 @@
 .post-request label.title{
     color: #7E8EA4 !important; 
 }
+
+.detailstitle{
+    width: 100%;
+    float: left;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
