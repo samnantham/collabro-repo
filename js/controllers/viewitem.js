@@ -131,6 +131,12 @@ app.controller('ViewItemCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
         $rootScope.openModal();
     }
 
+    $rootScope.editRequest = function() {
+        $rootScope.iseditproduct = true;
+        $rootScope.editproductid = $rootScope.viewData.id;
+        $rootScope.openRequestModal();
+    }
+
     $scope.getLatandLong = function(address) {
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({

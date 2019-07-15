@@ -32,7 +32,7 @@
             {{viewData.description}}
         </div>
         <div class="detailsdescription src margintop col-xs-12 nopadding marginbottom" ng-if="viewData.type == 'Service'">
-            <div class="col-xs-6 mobile-no-padding-left marginbottom">
+            <div class="col-xs-6 mobile-no-padding-left marginbottom" ng-if="!viewData.is_request">
                 <div class="addholder">
                     <div class="label-text marginbottom5">Skills Area</div>
                     <div class="input-append date relative form_datetime">
@@ -42,12 +42,42 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-6 mobile-no-padding-right marginbottom">
+            <div class="col-xs-6 mobile-no-padding-right marginbottom"  ng-if="!viewData.is_request">
                 <div class="addholder">
                     <div class="label-text marginbottom5">Location</div>
                     <div class="input-append date relative form_datetime">
                         <div class="datediv pjsbutton">
                             <span class="add-onnew"><i class="fa fa-map-marker "></i> {{viewData.location}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 mobile-no-padding-left marginbottom" ng-if="viewData.is_request">
+                <div class="addholder">
+                    <div class="label-text marginbottom5">Request Type</div>
+                    <div class="input-append date relative form_datetime">
+                        <div class="datediv pjsbutton">
+                            <span class="add-onnew"><i class="fa fa-th-list"></i> {{viewData.request_type}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 mobile-no-padding-left marginbottom" ng-if="viewData.is_request">
+                <div class="addholder">
+                    <div class="label-text marginbottom5">Request Category</div>
+                    <div class="input-append date relative form_datetime">
+                        <div class="datediv pjsbutton">
+                            <span class="add-onnew"><i class="fa fa-th-large"></i> {{viewData.request_category}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 mobile-no-padding-left marginbottom" ng-if="viewData.is_request">
+                <div class="addholder">
+                    <div class="label-text marginbottom5">Deadline</div>
+                    <div class="input-append date relative form_datetime">
+                        <div class="datediv pjsbutton">
+                            <span class="add-onnew"><i class="fa fa-clock-o"></i> {{viewData.deadline | date:'dd-MMM-yyyy'}}</span>
                         </div>
                     </div>
                 </div>
@@ -226,7 +256,8 @@
         </div>
         <div class="col-xs-12 nopadding margintop margin-bottom">
             <div class="col-xs-12 text-center">
-                <button class='collabro_btn commision-button width60' ng-click="editProduct();" ng-if="viewData.owner.id == user.id"> Edit Product</button>
+                <button class='collabro_btn commision-button width60' ng-click="editProduct();" ng-if="(viewData.owner.id == user.id)&&(!viewData.is_request)"> Edit {{(viewData.type == 'Service' ? 'Service' : (viewData.type == 'Shop' ? 'Product' : viewData.type == 'Rental' ? 'Rental' : viewData.type == 'Event' ? 'Event': viewData.type))}}</button>
+                <button class='collabro_btn commision-button width60' ng-click="editRequest();" ng-if="(viewData.owner.id == user.id)&&(viewData.is_request)"> Edit Request</button>
             </div>
             <div class="col-xs-5 nopadding-left">
 

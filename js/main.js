@@ -464,6 +464,13 @@ angular.module('app')
                 $rootScope.closepopoverItem();
             };
 
+             $rootScope.closerequestModal = function() {
+                $rootScope.formData = {};
+                $rootScope.formData.type = '';
+                $rootScope.viewingThumb = {};
+                $rootScope.closepopoverItem();
+            };
+
             $rootScope.closebroadcastModal = function() {
                 $rootScope.formData = {};
                 $rootScope.formData.type = '';

@@ -48,7 +48,7 @@
                         <div class="tracks" ng-if="viewData.type == 'Service'">{{viewData.profession?viewData.profession:'Photographer'}}: <span ng-if="viewData.type == 'Service'"> {{viewData.owner.username}}</span></div>
                         <div class="detailsdescription no-padding  margin-top col-md-12 col-sm-12 col-lg-12 addholder">{{viewData.description}}</div>
                         <div class="marginbottom15  margin-top col-md-12 col-sm-12 col-lg-12 no-padding" ng-if="viewData.type == 'Service'">
-                           <div class="col-md-3 col-sm-4 col-lg-3 no-padding-left">
+                           <div class="col-md-3 col-sm-4 col-lg-3 no-padding-left" ng-if="!viewData.is_request">
                               <div class="addholder">
                                  <div class="label-text marginbottom5">Skills Area</div>
                                   <div class="input-append date relative form_datetime">
@@ -59,7 +59,7 @@
                                
                               </div>
                            </div>
-                           <div class="col-md-3 col-sm-4 col-lg-3 no-padding-left">
+                           <div class="col-md-3 col-sm-4 col-lg-3 no-padding-left" ng-if="!viewData.is_request">
                               <div class="addholder">
                                  <div class="label-text marginbottom5">Location</div>
                                  <div class="input-append date relative form_datetime">
@@ -67,6 +67,40 @@
                                     <span class="add-onnew"><i class="fa fa-map-marker "></i> {{viewData.location}}</span>
                                  </div>
                               </div>
+                              </div>
+                           </div>
+                           <div class="col-md-3 col-sm-4 col-lg-3 no-padding-left" ng-if="viewData.is_request">
+                              <div class="addholder">
+                                 <div class="label-text marginbottom5">Request Type</div>
+                                  <div class="input-append date relative form_datetime">
+                                 <div class="datediv pjsbutton">
+                                    <span class="add-onnew"><i class="fa fa-th-list"></i> {{viewData.request_type}}</span>
+                                 </div>
+                              </div>
+                               
+                              </div>
+                           </div>
+                           <div class="col-md-3 col-sm-4 col-lg-3 no-padding-left" ng-if="viewData.is_request">
+                              <div class="addholder">
+                                 <div class="label-text marginbottom5">Request Category</div>
+                                  <div class="input-append date relative form_datetime">
+                                 <div class="datediv pjsbutton">
+                                    <span class="add-onnew"><i class="fa fa-th-large"></i> {{viewData.request_category}}</span>
+                                 </div>
+                              </div>
+                               
+                              </div>
+                           </div>
+
+                           <div class="col-md-3 col-sm-4 col-lg-3 no-padding-left" ng-if="viewData.is_request">
+                              <div class="addholder">
+                                 <div class="label-text marginbottom5">Deadline</div>
+                                  <div class="input-append date relative form_datetime">
+                                 <div class="datediv pjsbutton">
+                                    <span class="add-onnew"><i class="fa fa-clock-o"></i> {{viewData.deadline  | date:'dd-MMM-yyyy'}}</span>
+                                 </div>
+                              </div>
+                               
                               </div>
                            </div>
                         </div>
