@@ -91,6 +91,19 @@ a:hover{
     overflow: hidden;
 }
 
+.post-request.modal_title .ui-select-bootstrap{
+    width: auto;
+    float: right;
+    min-width: 70%;
+    margin-left: auto;
+ }
+ 
+ .post-request.modal_title label.title{
+    color: #fff;
+    font-size: 12px;
+    float: left;
+ }
+
 
 /* @media 1920 */
 @media screen and (max-width: 1920px) and (min-width:1601px) {
@@ -107,3 +120,4 @@ a:hover{
         float: left;
     }
 }
+
