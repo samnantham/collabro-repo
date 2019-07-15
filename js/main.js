@@ -109,6 +109,12 @@ angular.module('app')
                 }
             }
 
+            $rootScope.openRequestModal = function() {
+                if (!$rootScope.ismodalopen) {
+                    $rootScope.openModalPopup('requestmodal', 'RequestModalCtrl');
+                }
+            }
+
             $rootScope.productslick = {
                 slidesToShow: 1,
                 slidesToScroll: 1,

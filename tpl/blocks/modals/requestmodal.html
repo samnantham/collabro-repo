@@ -1,0 +1,162 @@
+<div>
+   <form class="form-horizontal" name="addForm" novalidate ng-submit="addData(addForm);">
+      <div class="modal_title col-lg-12 col-md-12 deskmargin-25">
+         <div>
+            <div class="topnewselect col-lg-6 col-md-6 no-padding flex-align">
+               <div class="colatitle display_inline_block float_left marginright10">REQUEST FOR SERVICES</div>
+               <div class="col-lg-11 col-md-10 col-xs-12 no-padding">
+                  <ui-select ng-model="formData.type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" onkeypress="return false;" onfocus="blur();" ng-readonly="!$select.searchEnabled">
+                     <ui-select-match allow-clear="true" class="selected-item float-lt">
+                        <p><i class="fa fa-circle-o"></i> {{formData.type ? formData.type : 'Select Category Post'}}</p>
+                     </ui-select-match>
+                     <ui-select-choices repeat="type in servicetypes | filter: $select.search">
+                        <span ng-bind-html="type | highlight: $select.search"></span>
+                     </ui-select-choices>
+                  </ui-select>
+                  <span ng-if="currentdevice != 'mobile'"><span class="text-danger cat-error float-lt" ng-if="!formData.type" > (Please Choose)</span></span>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="mmargintop10">
+         <div class="leftimage">
+            <div class="col-lg-12 col-md-12 col-sm-12  dottedborder">
+                  NOTE: The is a <a>Tripartite Standard Agreement</a> form to protect both parties against any issues in the future. Read for more info<a> here</a>.
+                  <br><br>
+                  <div class="bottomnewtext">Read and agreed to the TSA Protection Scheme</div>
+                  <div class="pretty p-image p-plain floatleft commisionagree mobile-no-margin-right no-margin-right">
+                     <input type="checkbox" name="isaccept" ng-true-value="1" ng-false-value="0" ng-model="commisionData.isaccept" class="ng-pristine ng-untouched ng-valid" tabindex="0" aria-checked="false" aria-invalid="false">
+                     <div class="state">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        <label>&nbsp;&nbsp;</label>
+                     </div>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+            <div class="col-lg-12 col-md-12 nopadding margintop10">
+               <div class="label-text marginbottom5">Add Images <span class="text-danger" ng-if="imageerror"> {{imageerrormsg}}</span></div>
+               <div class="previewholder">
+               <div class="preview-img" ng-if="viewingThumb.file" background-image="{{viewingThumb.isfile ? '' : IMGURL}}{{viewingThumb.isfile ? viewingThumb.base64 : viewingThumb.file}}">
+                  <anguvideo ng-model="viewingThumb.file" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && !viewingThumb.file.includes('soundcloud')"></anguvideo>
+                  <sound-cloud-player url="{{viewingThumb.file}}" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && viewingThumb.file.includes('soundcloud')"></sound-cloud-player>
+               </div>
+               </div>
+               <div ng-if="!viewingThumb.file" class="uploadcontainer show" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="10" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-disabled="!formData.type || formData.images.length == 6" ng-class="{'upload-btn-disabled': !formData.type || formData.images.length == 6}">
+                  <div class="uploadinnercontainer">
+                     <ul>
+                        <li class="borderright flex-align"><img src="img/u1.png"></li>
+                        <li class="borderright flex-align"><img src="img/u2.png"></li>
+                        <li class="flex-align"><img src="img/u3.png"></li>
+                     </ul>
+                     <div class="clear"></div>
+                     <div class="uploadertext ">Add images, video from the web or take photos to upload to your page
+                     </div>
+                  </div>
+               </div>
+               <input name="productfile" type="hidden" ng-model="formData.productfile" ng-required="formData.images.length == 0 && !formData.videourl">
+               <div class="col-lg-12 col-md-12 nopadding margintop5" ng-class="{'opacity_5': !formData.type}"><i class="fa fa-info-circle" aria-hidden="true" ng-class="{'text-danger':formData.images.length == 6 }"></i><span class="marginleft5" ng-class="{'text-danger':formData.images.length == 6 }">Up to 6 representative Image and video 640 x 360.</span> </div>
+            </div>
+            <div class="col-lg-12 col-md-12 margintop10 no-padding">
+               <div class="label-text marginbottom5">Embed Video </div>
+               <div class="col-lg-12 col-md-12 col-sm-12 no-padding">
+                  <div class="col-md-8 col-lg-8 col-sm-8 col-xs-9 no-padding "><input type="text" name="videourl" ng-model="formData.embedvideo" placeholder="Youtube / Vimeo / Soundcloud" ng-required="formData.embedvideo" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/" ng-disabled="!formData.type || (formData.images.length == 6 && editkey == null)" class="collabro-text-box">
+                  </div>
+                  <div class="col-md-4 col-lg-4 col-sm-4 col-xs-3 no-padding-right mobile-no-padding-right text-right smallpading ">
+                     <button ng-class="{'videobtn-disabled': !formData.type}"
+                        type="button" ng-click="uploadvideo();" ng-disabled="!formData.type || (formData.images.length == 6 && editkey == null)" class="collabro_btn gradient-button button-width-100"> Add </button>
+                  </div>
+               </div>
+               <div class="clear"></div>
+               <div class="bordercontainer"></div>
+            </div>
+            <div class="col-md-12 col-lg-12 no-padding img-disparea">
+               <span class="imager" ng-class="{'activeborder' : key == formData.thumbimage}" ng-repeat="(key,data) in formData.images" ng-click="chooseItem(key);" tooltip-template="'tpl/blocks/desktop/thumbnailpopover.html'" tooltip-trigger="click" ng-if="formData.images.length > 0" tooltip-is-open="ismodalPopover && (key == selectedKey)" tooltip-class="preview-tooltip">
+                  <div ng-if="data.filetype == 1 && data.isfile" ngf-background="data.file"></div>
+                  <div ng-if="data.filetype == 1 && !data.isfile" background-image="{{IMGURL}}{{data.file}}"></div>
+                  <div ng-if="data.filetype == 2" background-image="{{data.thumbnail}}"></div>
+               </span>
+               <button class="imager_add" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6"
+                  ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="formData.images.length < 6" ng-disabled="!formData.type"><i class="fa fa-plus" aria-hidden="true"></i></button>
+               <div class="clear"></div>
+               <div class="marginer margintop5" ng-if="formData.images.length > 0" ng-class="{'opacity_5': !formData.type}"><span class="color01B221" ><i class="fa fa-info-circle" aria-hidden="true"></i><span class="marginleft5">Select the item you want as featured as thumbnail</span> </span>
+               </div>
+            </div>
+            <div class="clear"></div>
+         </div>
+         <div class="rightimage">
+            <div class="infodiv">
+               <div class="service-items">
+                  <div class="col-lg-12 col-md-12 nopadding ">
+                     <div class="label-text marginbottom5">
+                        Type of Service / Title <span class="text-danger" ng-if="titleerror"> (Enter Service Title)</span>
+                     </div>
+                     <input type="text" name="title" placeholder="e.g. Image of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-disabled="!formData.type" class="collabro-text-box"  maxlength="100">
+                     <!-- <div class="pinklimit">{{formData.title.length ? formData.title.length : 0 }} / 100 Char</div> -->
+                  </div>
+                  <div class="col-lg-12 col-md-12 nopadding margintop10">
+                     <div class="label-text marginbottom5">
+                        Service Description <span class="text-danger" ng-if="descriptionerror"> (Enter Service Description)</span>
+                     </div>
+                     <textarea row="10" name="description" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." class="height170 collabro-text-box" ng-model="formData.description" required ng-disabled="!formData.type" maxlength="1000" ></textarea>
+                  </div>
+                  <!-- <div class="pinklimit">{{formData.description.length ? formData.description.length : 0 }} / 1000 Char</div>
+                     </div> -->
+                  <div class="col-lg-12 col-md-12 no-padding margintop10" >
+                     <div class="col-md-3 col-sm-3 col-lg-3 col-xs-6 no-padding-left mobile-no-padding-left display">
+                        <div class="label-text marginbottom5">Deadline <span class="text-danger" ng-if="tododeadlineerror"> (Required)</span></div>
+                     <div class='add-on col-lg-12 nopadding date datepicker p_relative'>
+                        <div class="input-group-btn">
+                           <button class="collabro_btn btn-default" type="button" ng-disabled="!todoData.type">
+                           <i class="fa fa-calendar"></i>
+                           </button>
+                        </div>
+                        <input type="text" datepicker size="16" placeholder="Deadline" name="deadline" required readonly ng-model='todoData.tododeadline' ng-disabled="!todoData.type" class="collabro-text-box" />
+                     </div>
+                     </div>
+                     <div class="col-md-3 col-sm-3 col-xs-6 col-lg-3 display  mobile-no-padding-right-col no-padding-left">
+                     </div>
+                     <div class="col-md-3 col-sm-3 col-xs-6 col-lg-3 display  mobile-no-padding-right-col no-padding-left">
+                     </div>
+                     <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12 no-padding ratecontainer mmargintop10 pull-right">
+                        <div class="label-text marginbottom5">Rate <span class="text-danger" ng-if="priceerror"> (Rate Required)</span></div>
+                        <div class="rate_holder ">
+                           <div class="rate_currency" ng-class="{'opacity_5': !formData.type}">$</div>
+                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-6 no-padding mobile-no-padding-left" > <input type="tex" class="collabro-text-box no-margin percost" placeholder="0.00" name="price" ng-model="formData.price" required class="percost price-decor"  min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type"></div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="clear"></div>
+                  <div class="col-lg-12 col-md-12 nopadding margintop10">
+                     <div class="flex-align  pull-right">
+                        <div class="label-text float-left display_inline_block marginright5">Negotiable</div>
+                        <div class="float-left">
+                           <div class="pretty p-image p-plain">
+                              <input ng-disabled="!formData.type" type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="formData.hasbargain" />
+                              <div class="state">
+                                 <label class="yesorno">&nbsp;&nbsp;</label>
+                                 <i class="fa fa-check" aria-hidden="true"></i>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="clear"></div>
+               </div>
+            </div>
+         </div>
+         <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="modal-footer">
+         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-right no-padding-right button_right">
+            <button type="submit" class="collabro_btn commision-button button-width-100 button_right" ng-if="!isedit" button-spinner="loading" ng-disabled="loading||!formData.type">Publish Item</button>
+         </div>
+         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-left no-padding-left button_right">
+            <button type="button" class="collabro_btn btn-default cancel button-width-100 " ng-click="closeproductModal();">Cancel</button>
+         </div>
+         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 no-padding-left">    
+            <button type="submit" class="collabro_btn btn-primary" ng-if="isedit" button-spinner="loading" ng-disabled="loading">Update</button>
+         </div>
+      </div>
+   </form>
+</div>

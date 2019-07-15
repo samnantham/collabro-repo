@@ -3994,7 +3994,8 @@ h6 {
 .collaboratemodal .modal-dialog,
 .collaborateresponsemodal .modal-dialog,
 .broadcastmodal .modal-dialog,
-.todomodal .modal-dialog  {
+.todomodal .modal-dialog,
+.requestmodal .modal-dialog  {
    width: 1045px;
    margin: 30px auto;
 }
@@ -4002,6 +4003,12 @@ h6 {
 .productmodal .titlecontainer,
 .commisionmodal .titlecontainer {
    background: #F4F4F4;
+   padding: 15px 0px !important;
+   width: 100%;
+}
+
+.requestmodal .titlecontainer {
+   background: #0AB21E;
    padding: 15px 0px !important;
    width: 100%;
 }
@@ -5158,7 +5165,8 @@ h6 {
 .responsemodal,
 .commisionmodal,
 .collaboratemodal,
-.collaborateresponsemodal {
+.collaborateresponsemodal,
+.requestmodal {
    z-index: 20 !important;
 }
 
@@ -5413,13 +5421,15 @@ h6 {
    .collaboratemodal .modal-dialog,
    .broadcastmodal .modal-dialog,
    .todomodal .modal-dialog,
-   .collaborateresponsemodal .modal-dialog {
+   .collaborateresponsemodal .modal-dialog,
+   .requestmodal .modal-dialog {
       width: 940px;
       margin: 30px auto;
    }
    .productmodal .titlecontainer,
    .responsemodal .titlecontainer,
-   .commisionmodal .titlecontainer {
+   .commisionmodal .titlecontainer,
+   .requestmodal .titlecontainer {
       background: #F4F4F4;
       padding: 13px 20px;
       height: 59px;
@@ -5857,6 +5867,10 @@ h6 {
    background: #F4F4F4;
    padding: .8rem 1rem;
    margin: 0px auto;
+}
+
+.requestmodal .modal_title {
+   background: #0AB21E!important;
 }
 
 .ui-select-bootstrap .ui-select-choices-row>a {
