@@ -51,7 +51,8 @@
                   <div class="products" ng-class-even="'even-margin'" ng-repeat="(key,data) in products.service">
                      <div class="product-container">
                         <div class="product-left">
-                           <div class="product-thumb" ui-sref="app.viewitem({id:data.id})">
+                           <div class="product-thumb relat" ui-sref="app.viewitem({id:data.id})">
+                              <span class="wish_icon" ng-if="data.is_request"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
                               <a class="product-img">
                                  <div class="imgholder" background-image="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1"></div>
                                  <div class="imgholder" background-image="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"></div>
@@ -83,7 +84,8 @@
                <div class="products" dir-paginate="(key,data) in typeproductdata.data | itemsPerPage: typestotalPerPage" total-items="typeproductdata.total" current-page="pagination.current">
                   <div class="product-container">
                      <div class="product-left">
-                        <div class="product-thumb" ui-sref="app.viewitem({id:data.id})">
+                        <div class="product-thumb relat" ui-sref="app.viewitem({id:data.id})">
+                           <span class="wish_icon" ng-if="data.is_request"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
                            <a class="product-img">
                               <div class="imgholder" background-image="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1"></div>
                               <div class="imgholder" background-image="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"></div>
