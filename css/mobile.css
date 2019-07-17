@@ -2257,6 +2257,8 @@ margin-left: 8px !important;
 .anguvideo iframe {
     height: 500px;
     width: 100%;
+    position: relative;
+    overflow: hidden;
 }
 .titles {
     color: #344051;
