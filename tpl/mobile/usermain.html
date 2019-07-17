@@ -1,6 +1,6 @@
 <div ng-controller="UserMainCtrl" class="usermain">
    <div class="bannercontaineer">
-      <slick data="user.cover.coverfiles" slides-to-show="1" slides-to-scroll="1" dots="false" infinite="false" autoplay="false" autoplaySpeed="2000" ng-if="!formLoading">
+      <slick ng-if="!formLoading" init-onload="true" data="sliders" settings="coverslickConfig"  dots="false" infinite="true">
          <div class="" ng-repeat="(key,image) in user.cover.coverfiles">
             <div class="width100" background-image="{{IMGURL}}{{image.file}}" ng-if="image.filetype == 1"></div>
 

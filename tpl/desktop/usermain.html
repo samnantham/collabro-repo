@@ -10,8 +10,8 @@
 
                   <div class="col-md-8 col-sm-8 col-lg-8 mynewpadding-noleft">
                      <div class="gallerys">
-                        <slick data="user.cover.coverfiles" slides-to-show="1" slides-to-scroll="1" dots="false" infinite="false" autoplay="false" autoplaySpeed="2000">
-                           <div class="width100 sliderframer" ng-repeat="(key,image) in user.cover.coverfiles">
+                        <slick ng-if="!formLoading" init-onload="true" data="sliders" settings="coverslickConfig"  dots="false" infinite="true">
+                           <div class="width100 sliderframer" ng-repeat="(key,image) in sliders">
                               <div class="imgcontainer" background-image="{{IMGURL}}{{image.file}}" ng-if="image.filetype == 1"></div>
                               <span ng-if="image.filetype == 2">
                               <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')"></anguvideo>
@@ -23,7 +23,7 @@
                         <div class="bottomholder">
                            <p><i class="fa fa-eye" aria-hidden="true"></i>{{user.totalviewers}}</p>
                            <p><i class="fa fa-heart" aria-hidden="true"></i>{{user.totallikes}}</p>
-                           <div><button class="chatnowbutton"><i class="fa fa-phone-square" aria-hidden="true"></i> CHAT NOW</button></div>
+                           <!-- <div><button class="chatnowbutton"><i class="fa fa-phone-square" aria-hidden="true"></i> CHAT NOW</button></div> -->
                         </div>
                      </div>
                   </div>

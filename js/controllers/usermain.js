@@ -1,5 +1,6 @@
 'use strict';
 app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'webServices', 'utility', '$rootScope', '$timeout', function($scope, $http, $state, authServices, webServices, utility, $rootScope, $timeout) {
+    $rootScope.formLoading = true;
     $scope.issort = false;
     $scope.firstloadingcompleted = false;
     $scope.products = [];
@@ -17,13 +18,13 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
     };
 
     $scope.getfeeds = function() {
-        webServices.get('userfeeds/'+$scope.totalPerPage + '?page=' + $scope.pageno).then(function(getData) {
+        webServices.get('userfeeds/' + $scope.totalPerPage + '?page=' + $scope.pageno).then(function(getData) {
             if (getData.status == 200) {
                 $scope.lastpage = getData.data.last_page;
                 $scope.feeds = $scope.feeds.concat(getData.data.data);
-                if(!$scope.firstloadingcompleted){
+                if (!$scope.firstloadingcompleted) {
                     $scope.getproducts();
-                }else{
+                } else {
                     $rootScope.formLoading = false;
                 }
             } else {
@@ -32,23 +33,23 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
         });
     };
 
-    $scope.openfeed = function(key,status){
-        if(status)
-        {
-            var accordion = $('.accordion'), timeOut;
-            var element = document.getElementById("accorditem"+key);
+    $scope.openfeed = function(key, status) {
+        if (status) {
+            var accordion = $('.accordion'),
+                timeOut;
+            var element = document.getElementById("accorditem" + key);
             clearTimeout(timeOut);
             timeOut = setTimeout(function() {
                 accordion.animate({
-                scrollTop: 3 * (element.offsetTop/5)
+                    scrollTop: 3 * (element.offsetTop / 5)
                 }, 450);
             }, 350);
         }
     }
 
-    $scope.loadMoreRecords = function(){
-        if($scope.lastpage <= $scope.pageno){
-            $scope.pageno ++;
+    $scope.loadMoreRecords = function() {
+        if ($scope.lastpage <= $scope.pageno) {
+            $scope.pageno++;
             $scope.getfeeds();
         }
     }
@@ -65,6 +66,31 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
             }
         });
     }
+
+    $scope.currentIndex = 0;
+    $scope.autoplay = true;
+
+    $scope.coverslickConfig = {
+        autoplay: $scope.autoplay,
+        autoplaySpeed: 2000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: false,
+        event: {
+            afterChange: function(event, slick, currentSlide, nextSlide) {
+                $scope.currentIndex = currentSlide;
+                var slideData = $rootScope.user.cover.coverfiles[$scope.currentIndex];
+                if(slideData.filetype == 2){
+                    $scope.coverslickConfig.autoplay = false;
+                }else{
+                    $scope.coverslickConfig.autoplay = true;
+                }
+            },
+            init: function(event, slick) {
+                slick.slickGoTo($scope.currentIndex); // slide to correct index when init
+            }
+        }
+    };
 
     $scope.gotofeedchat = function(feedid) {
         webServices.put('feedchat/' + feedid + '/' + $rootScope.user.id).then(function(getData) {
@@ -94,7 +120,7 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
         });
     }
 
-   /* $(window).scroll(function () { 
+    /* $(window).scroll(function () { 
         console.log($(window).scrollTop());
     });
 */
@@ -103,6 +129,8 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
         webServices.get('gettypeproducts').then(function(getData) {
             if (getData.status == 200) {
                 $scope.products = getData.data;
+                var sliderinfo = $rootScope.user.cover.coverfiles;
+                $scope.sliders = sliderinfo;
                 $rootScope.formLoading = false;
             } else {
                 $rootScope.logout();
@@ -145,29 +173,29 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
     $scope.sortproduct = function(type, key, order) {
         $scope.issort = true;
         $rootScope.formLoading = true;
-        if($scope.activetab == 'All'){
+        if ($scope.activetab == 'All') {
             webServices.get('sortuserproducts/' + type + '/' + key + '/' + order).then(function(getData) {
                 if (getData.status == 200) {
                     $scope.products[type] = getData.data;
                     $rootScope.formLoading = false;
                 }
             });
-        }else{
+        } else {
             $scope.pagedata = [];
             $scope.typeproductdata = [];
             $scope.typespageno = 1;
-            $scope.url = 'sortusertypeproducts/' + type + '/' + key + '/' + order +'?page='+$scope.typespageno;
+            $scope.url = 'sortusertypeproducts/' + type + '/' + key + '/' + order + '?page=' + $scope.typespageno;
             $scope.getAPIdata();
         }
     }
 
     $scope.filteruserproducts = function() {
         $scope.pagedata = [];
-        $scope.url = 'filterproductbytype/' + $scope.activetab+'?page='+$scope.typespageno;
+        $scope.url = 'filterproductbytype/' + $scope.activetab + '?page=' + $scope.typespageno;
         $scope.getAPIdata();
     }
 
-    $scope.getAPIdata = function(){
+    $scope.getAPIdata = function() {
         webServices.get($scope.url).then(function(getData) {
             if (getData.status == 200) {
                 $scope.typeproductdata = getData.data;
@@ -186,10 +214,10 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
         $rootScope.formLoading = true;
         $scope.typespageno = newPage;
         if (!$scope.pagedata[$scope.typespageno]) {
-            if($scope.activetab != 'All'){
-                if($scope.issort){
+            if ($scope.activetab != 'All') {
+                if ($scope.issort) {
                     $scope.sortproduct();
-                }else{
+                } else {
                     $scope.filteruserproducts();
                 }
             }
