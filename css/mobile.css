@@ -361,7 +361,10 @@ a:focus,a:active, a:hover
 }
 .slick-prev,
 .slick-next {
-   z-index: 9999;
+   z-index: 999999;
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
    /*display: none !important;*/
 }
 .product-slider .slick-prev,
@@ -2254,9 +2257,6 @@ margin-left: 8px !important;
 .anguvideo iframe {
     height: 500px;
     width: 100%;
-    /*position: absolute;*/
-    top: 0px;
-    z-index: 0;
 }
 .titles {
     color: #344051;
@@ -4832,7 +4832,7 @@ font-family: "Lato";
 .pretty.p-default input:checked~.state label:after {
     background-color: #344051!important;
 }
-.product-slider .slick-prev {
+/* .product-slider .slick-prev {
 
        top: 85px;
 
@@ -4841,7 +4841,7 @@ font-family: "Lato";
 .product-slider .slick-next {
 
        top: 85px;
-}
+} */
   .profile_container .products .per_price
   {
   font-size: 1.25rem;
