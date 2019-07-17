@@ -1009,7 +1009,13 @@ display: inline-block;
     color: #7E8EA4;
     font-weight: bold;
     padding: 3px 0px;
+    display: inline-flex;
+    align-items: center;
 }
+.servicename .champion-img{
+    margin: 0 5px;
+}
+
 .servicelefticon i {
     font-size: 20px;
     color: #7E8EA4;
