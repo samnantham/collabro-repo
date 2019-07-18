@@ -70,28 +70,6 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
     $scope.currentIndex = 0;
     $scope.autoplay = true;
 
-    $scope.coverslickConfig = {
-        autoplay: $scope.autoplay,
-        autoplaySpeed: 2000,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        dots: false,
-        event: {
-            afterChange: function(event, slick, currentSlide, nextSlide) {
-                $scope.currentIndex = currentSlide;
-                var slideData = $rootScope.user.cover.coverfiles[$scope.currentIndex];
-                if(slideData.filetype == 2){
-                    $scope.coverslickConfig.autoplay = false;
-                }else{
-                    $scope.coverslickConfig.autoplay = true;
-                }
-            },
-            init: function(event, slick) {
-                slick.slickGoTo($scope.currentIndex); // slide to correct index when init
-            }
-        }
-    };
-
     $scope.gotofeedchat = function(feedid) {
         webServices.put('feedchat/' + feedid + '/' + $rootScope.user.id).then(function(getData) {
             if (getData.status == 200) {
@@ -119,11 +97,38 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
             }
         });
     }
-
+    
     /* $(window).scroll(function () { 
         console.log($(window).scrollTop());
     });
 */
+
+    $scope.setcoverslickconfig = function(){
+        $scope.coverslickConfig = {
+                autoplay: $scope.autoplay,
+                autoplaySpeed: 2000,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                dots: false,
+                method: {},
+                event: {
+                    afterChange: function(event, slick, currentSlide, nextSlide) {
+                        $scope.currentIndex = currentSlide;
+                        var slideData = $scope.sliders[$scope.currentIndex];
+                        if(slideData.filetype == 2){
+                            $scope.coverslickConfig.method.slickPause();
+                        }else{
+                            $scope.coverslickConfig.method.slickPlay();
+                        }
+                    },
+                    init: function(event, slick) {
+                        slick.slickGoTo($scope.currentIndex); // slide to correct index when init
+                    }
+                }
+            };
+            $rootScope.formLoading = false;
+    }
+
     $scope.getproducts = function() {
         $scope.firstloadingcompleted = true;
         webServices.get('gettypeproducts').then(function(getData) {
@@ -131,7 +136,7 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
                 $scope.products = getData.data;
                 var sliderinfo = $rootScope.user.cover.coverfiles;
                 $scope.sliders = sliderinfo;
-                $rootScope.formLoading = false;
+                $scope.setcoverslickconfig();
             } else {
                 $rootScope.logout();
             }
