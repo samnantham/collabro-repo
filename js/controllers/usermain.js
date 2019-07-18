@@ -114,12 +114,22 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
                 event: {
                     afterChange: function(event, slick, currentSlide, nextSlide) {
                         $scope.currentIndex = currentSlide;
+                        if(currentSlide > 0){
+                            var previous = currentSlide - 1;
+                        }else{
+                            var previous = $scope.sliders.length - 1;
+                        } 
+                        console.log($scope.sliders[previous])
                         var slideData = $scope.sliders[$scope.currentIndex];
                         if(slideData.filetype == 2){
                             $scope.coverslickConfig.method.slickPause();
                         }else{
                             $scope.coverslickConfig.method.slickPlay();
                         }
+                        if($scope.sliders[previous].filetype == 2){
+                            $('iframe').attr('src', $('iframe').attr('src'));
+                        }
+
                     },
                     init: function(event, slick) {
                         slick.slickGoTo($scope.currentIndex); // slide to correct index when init
