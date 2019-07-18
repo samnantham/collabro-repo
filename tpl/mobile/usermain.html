@@ -4,8 +4,8 @@
          <div class="" ng-repeat="(key,image) in user.cover.coverfiles">
             <div class="width100" background-image="{{IMGURL}}{{image.file}}" ng-if="image.filetype == 1"></div>
 
-            <anguvideo ng-model="image.file" width="100%" height="384px" ng-if="image.filetype == 2 && !image.file.includes('soundcloud')"></anguvideo>
-            <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.filetype == 2 && image.file.includes('soundcloud')"></sound-cloud-player>
+            <anguvideo ng-model="image.file" width="100%" height="384px" ng-if="image.filetype == 2 && !image.file.includes('soundcloud')" id="{{image.file.includes('youtu') ? 'youtube' : 'vimeo'}}{{key}}"></anguvideo>
+            <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.filetype == 2 && image.file.includes('soundcloud')" id="soundcloud{{key}}"></sound-cloud-player>
          </div>
       </slick>
       

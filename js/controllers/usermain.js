@@ -119,16 +119,40 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
                         }else{
                             var previous = $scope.sliders.length - 1;
                         } 
-                        console.log($scope.sliders[previous])
+                        $scope.sliders[$scope.currentIndex].isloaded = true;
+                        if($scope.sliders[$scope.currentIndex].filetype == 2){
+                            if($scope.sliders[$scope.currentIndex].file.includes('soundcloud')){   
+                                $("#soundcloud"+$scope.currentIndex+" iframe").attr('id','sciframe'+$scope.currentIndex);
+                            }
+                        }
                         var slideData = $scope.sliders[$scope.currentIndex];
                         if(slideData.filetype == 2){
                             $scope.coverslickConfig.method.slickPause();
                         }else{
                             $scope.coverslickConfig.method.slickPlay();
                         }
-                        if($scope.sliders[previous].filetype == 2){
-                            $('iframe').attr('src', $('iframe').attr('src'));
+                        // $('iframe').each(function(){
+                        //     $(this)[0].contentWindow.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*');    
+                        // });
+                        if($scope.sliders[previous].isloaded)
+                        {   if($scope.sliders[previous].filetype == 2){
+                                if($scope.sliders[previous].file.includes('vimeo')){   
+                                    $('#vimeo'+previous+' iframe')[0].contentWindow.postMessage('{"method":"unload"}','*');
+                                }else if($scope.sliders[previous].file.includes('youtu')){   
+                                    $('#youtube'+previous+' iframe')[0].contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
+                                }else{
+                                    var widget = SC.Widget('sciframe'+previous);
+                                    widget.pause()
+                                }
+                            }
                         }
+                        
+                        // if($scope.sliders[previous].filetype == 2){
+                        //     // if($scope.sliders[previous].file.includes('youtu')){
+                        //     //     $('.videoClass')[0].contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
+                        //     // }
+                        //     // $('iframe').attr('src', $('iframe').attr('src'));
+                        // }
 
                     },
                     init: function(event, slick) {
@@ -146,6 +170,19 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
                 $scope.products = getData.data;
                 var sliderinfo = $rootScope.user.cover.coverfiles;
                 $scope.sliders = sliderinfo;
+                angular.forEach(sliderinfo, function(slider, no) {
+                    slider.isloaded = false;
+                    if(slider.filetype == 2){
+                        if(slider.file.includes('youtu')){
+                            var videodata = slider.file.split('/');
+                            slider.file = 'https://www.youtube.com/embed/'+videodata[videodata.length - 1]+'?autoplay=1&enablejsapi=1';
+                        }else if(slider.file.includes('vimeo')){
+                            var videodata = slider.file.split('/');
+                             slider.file = 'https://player.vimeo.com/video/'+videodata[videodata.length - 1]+'?api=1&player_id=player'+no;
+                            //player.vimeo.com/video/
+                        }
+                    }
+                });
                 $scope.setcoverslickconfig();
             } else {
                 $rootScope.logout();

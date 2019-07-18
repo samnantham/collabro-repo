@@ -53,7 +53,7 @@
                            <div class="col-md-2 col-sm-2 col-lg-2 ">Project Complete</div>
                         </div>
                      </div>
-                     <div class="col-md-12 col-sm-12 col-lg-12 backgroundwhite paddesign"   ng-if="ProductViewData.ownerid == user.id">
+                     <div class="col-md-12 col-sm-12 col-lg-12 backgroundwhite paddesign" ng-if="ProductViewData.ownerid == user.id">
                               <div class="col-md-12 col-sm-12 col-lg-12  nopadding">
                                  <div class="col-md-4 col-sm-4 col-lg-4 border-right">
                                     <div class="labe">Collection Items
@@ -68,7 +68,7 @@
                                  <div class="col-md-4 col-sm-4 col-lg-4 ">
                                     <div class="labe">Rank Apprentice
                                     </div>
-                                    <div class="contentr"><i class="fa fa-trophy" ng-class="{'bronze':((ProductViewData.owner.experiencepoints >= 100) && (ProductViewData.owner.experiencepoints < 200)),'silver':((ProductViewData.owner.experiencepoints >= 200) && (ProductViewData.owner.experiencepoints < 300)), 'gold':((ProductViewData.owner.experiencepoints >= 300) && (ProductViewData.owner.experiencepoints < 400)),'platinum': ((ProductViewData.owner.experiencepoints >= 400) && (ProductViewData.owner.experiencepoints < 500)),'diamond': ProductViewData.owner.experiencepoints >= 500}"></i></div>
+                                    <div class="contentr"><img class="champion-img" ng-src="{{IMGURL}}{{ProductViewData.owner.xprank.icon}}" /><!-- <i class="fa fa-trophy" ng-class="{'bronze':((ProductViewData.owner.experiencepoints >= 100) && (ProductViewData.owner.experiencepoints < 200)),'silver':((ProductViewData.owner.experiencepoints >= 200) && (ProductViewData.owner.experiencepoints < 300)), 'gold':((ProductViewData.owner.experiencepoints >= 300) && (ProductViewData.owner.experiencepoints < 400)),'platinum': ((ProductViewData.owner.experiencepoints >= 400) && (ProductViewData.owner.experiencepoints < 500)),'diamond': ProductViewData.owner.experiencepoints >= 500}"></i> --></div>
                                  </div>
                               </div>
                            </div>

@@ -14,17 +14,17 @@
                            <div class="width100 sliderframer" ng-repeat="(key,image) in sliders">
                               <div class="imgcontainer" background-image="{{IMGURL}}{{image.file}}" ng-if="image.filetype == 1"></div>
                               <span ng-if="image.filetype == 2">
-                              <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')"></anguvideo>
-                              <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')"></sound-cloud-player>
+                              <anguvideo ng-model="image.file" width="100%" height="auto" ng-if="image.file&&!image.file.includes('soundcloud')" id="{{image.file.includes('youtu') ? 'youtube' : 'vimeo'}}{{key}}"></anguvideo>
+                              <sound-cloud-player url="{{image.file}}" class="m-t-sm" ng-if="image.file&&image.file.includes('soundcloud')" id="soundcloud{{key}}"></sound-cloud-player>
                            </span>
                            </div>
                         </slick>
                         
-                        <div class="bottomholder">
+                        <!-- <div class="bottomholder">
                            <p><i class="fa fa-eye" aria-hidden="true"></i>{{user.totalviewers}}</p>
                            <p><i class="fa fa-heart" aria-hidden="true"></i>{{user.totallikes}}</p>
-                           <!-- <div><button class="chatnowbutton"><i class="fa fa-phone-square" aria-hidden="true"></i> CHAT NOW</button></div> -->
-                        </div>
+                           <div><button class="chatnowbutton"><i class="fa fa-phone-square" aria-hidden="true"></i> CHAT NOW</button></div>
+                        </div> -->
                      </div>
                   </div>
                   <div class="col-md-4 col-sm-4 col-lg-4 nopadding">
