@@ -142,3 +142,11 @@ a:hover{
     }
 }
 
+.championship{
+    display: inline-flex;
+    align-items: center;
+}
+.champion-img{
+    height: 25px;
+    width: 25px;
+}

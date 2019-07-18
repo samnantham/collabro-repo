@@ -1,7 +1,9 @@
 <div ng-controller="ViewItemCtrl" class="viewitem">
     <div class="col-xs-12 serviceheader">
         <div class="col-xs-1 servicelefticon" ng-click="goback()"><i class="fa fa-angle-left"></i></div>
-        <div class="col-xs-4 servicename">{{viewData.owner.username | cut:true:6:''}} | <i class="fa fa-trophy" ng-class="{'bronze':((viewData.owner.experiencepoints >= 100) && (viewData.owner.experiencepoints < 200)),'silver':((viewData.owner.experiencepoints >= 200) && (viewData.owner.experiencepoints < 300)), 'gold':((viewData.owner.experiencepoints >= 300) && (viewData.owner.experiencepoints < 400)),'platinum': ((viewData.owner.experiencepoints >= 400) && (viewData.owner.experiencepoints < 500)),'diamond': viewData.owner.experiencepoints >= 500}"></i></div>
+        <div class="col-xs-4 servicename">{{viewData.owner.username | cut:true:6:''}} | <i class="fa fa-trophy" ng-class="{'bronze':((viewData.owner.experiencepoints >= 100) && (viewData.owner.experiencepoints < 200)),'silver':((viewData.owner.experiencepoints >= 200) && (viewData.owner.experiencepoints < 300)), 'gold':((viewData.owner.experiencepoints >= 300) && (viewData.owner.experiencepoints < 400)),'platinum': ((viewData.owner.experiencepoints >= 400) && (viewData.owner.experiencepoints < 500)),'diamond': viewData.owner.experiencepoints >= 500}"></i>
+            <img class="champion-img" src="img/chat1" />
+        </div>
         <div class=" col-md-2 col-sm-2 col-lg-2 infohold col-xs-2 nopadding  text-center"><i class="fa fa-binoculars"></i> | {{viewData.owner.followers}}</div>
         <div class=" col-md-2 col-sm-2 col-lg-2 col-xs-2  nopadding infohold text-center "><i class="fa fa-user"></i> | {{viewData.owner.following}}</div>
         <div class=" col-md-2 col-sm-2 col-lg-2 col-xs-2  nopadding  infohold text-center"><i class="fa fa-eye"></i> | {{viewData.owner.noofdeals}}</div>
