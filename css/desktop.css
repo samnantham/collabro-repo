@@ -6663,8 +6663,8 @@ html .ui-button.ui-state-disabled:active {
 }
 
 .broadcastmodal .tooltip-error, .todomodal .tooltip-error{
-   top: 32px !important;
-   left: 450px !important;
+   top: 34px !important;
+   left: 510px !important;
 }
 
 .requestmodal .tooltip-error{
