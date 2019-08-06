@@ -27,7 +27,7 @@
                   <div class="projectvalue">
                      <div class="float-lt">
                         <div class="rate"><span  ng-if="data.product.price > 0">$</span>{{data.product.price ? data.product.price: 'Free'}}</div>
-                        <span class="per_time" ng-if="data.product.price > 0">Per {{data.product.periodtype}}</span>
+                        <span class="per_time" ng-if="data.product.price > 0 && data.product.type!='Shop'&&data.product.periodtype">Per {{data.product.periodtype}}</span>
                      </div>
                      <div class="float-rt">  
                         <i class="fa fa-heart-o activelike" aria-hidden="true"></i>                       
