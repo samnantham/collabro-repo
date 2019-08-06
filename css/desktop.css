@@ -441,6 +441,16 @@ input:checked+.slider:before {
    margin-top: 8px;
 }
 
+.ml-0{
+   margin-left: 0px;
+   width: 100%;
+   justify-content: flex-end;
+}
+
+.ml-0 .ui-select-bootstrap{
+   margin-left: 10px !important;
+}
+
 .powerhead {
    font-size: 14px;
    font-weight: bold;

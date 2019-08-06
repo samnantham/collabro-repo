@@ -17,15 +17,17 @@
                   </ui-select>
                </div>
                <div class="col-lg-4 col-md-4 flex-align col-xs-12 m-10">
+                   <div class="ml-0 flex-align">
                   <label class="title">Category</label>
-                  <ui-select ng-model="formData.request_category" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" onkeypress="return false;" onfocus="blur();" ng-readonly="!$select.searchEnabled">
-                        <ui-select-match allow-clear="true" class="selected-item float-lt">
-                           <p><i class="fa fa-circle-o"></i> {{formData.request_category ? formData.request_category : 'Select Category'}}</p>
-                        </ui-select-match>
-                        <ui-select-choices repeat="category in requestcategories | filter: $select.search">
-                           <span ng-bind-html="category | highlight: $select.search"></span>
-                        </ui-select-choices>
-                  </ui-select>
+                    <ui-select ng-model="formData.request_category" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" onkeypress="return false;" onfocus="blur();" ng-readonly="!$select.searchEnabled">
+                            <ui-select-match allow-clear="true" class="selected-item float-lt">
+                            <p><i class="fa fa-circle-o"></i> {{formData.request_category ? formData.request_category : 'Select Category'}}</p>
+                            </ui-select-match>
+                            <ui-select-choices repeat="category in requestcategories | filter: $select.search">
+                            <span ng-bind-html="category | highlight: $select.search"></span>
+                            </ui-select-choices>
+                    </ui-select>
+                </div>
                </div>
             </div>
         </div>
