@@ -24,7 +24,7 @@
          </div> -->
       </div>
    </div>
-   <div tooltip="Please select any of service type" tooltip-trigger="mouseenter" tooltip-class="collaborateerror" tooltip-placement="right"  tooltip-enable="!formData.type">
+   <div tooltip="Please select any of service type" tooltip-trigger="mouseenter" tooltip-class="tooltip-error" tooltip-placement="right"  tooltip-enable="!formData.type">
       <div class="mobiledec" ng-if="currentdevice == 'mobile'">&nbsp;</div>
       <div class="leftimage">
          <div class="col-lg-12 col-md-12 dottedborder"  ng-class="{'opacity_5': !formData.type}">
@@ -215,8 +215,8 @@
       </div>
       <div class="clear"></div>
       <div class="modal-footer">
-         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 mobile-no-padding-right no-padding-right button_right">
-         <button type="submit" class="collabro_btn commision-button button-width-100"  button-spinner="loading" ng-disabled="!formData.type" tooltip="You Need to agree TSA Protection rules!" tooltip-trigger="click" tooltip-class="collaborateagreementerror" tooltip-placement="right"  tooltip-enable="!formData.isaccept">Proceed</button>
+         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 mobile-no-padding-right no-padding-right button_right"  tooltip="You Need to agree TSA Protection rules!" tooltip-trigger="mouseenter" tooltip-class="agreementerror" tooltip-placement="right"  tooltip-enable="!formData.isaccept && formData.type">
+         <button type="submit" class="collabro_btn commision-button button-width-100"  button-spinner="loading" ng-disabled="!formData.type || !formData.isaccept">Proceed</button>
       </div>
          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 mobile-no-padding-left no-padding-left button_right">
          <button type="button" class="collabro_btn btn-default cancel button-width-100" ng-click="closecollaboratemodal();">Cancel</button>

@@ -5547,27 +5547,6 @@ h6 {
    overflow-x: hidden;
 }
 
-.collaborateerror {
-   top: 32px!important;
-   left: 700px!important;
-   color: #fff;
-   width: 150px;
-}
-
-.responseagreementerror {
-   left: -410px!important;
-   top: -391px!important;
-   color: #fff;
-   width: 150px;
-}
-
-.broadcasterror,.todoerror {
-   color: #fff;
-   width: 150px;
-   top: 32px !important;
-   left: 450px !important;
-}
-
 .wishlist_container .productholder {
    width: calc( (100% / 3) - 6px) !important;
    margin-right: 9px !important;
@@ -5580,28 +5559,6 @@ h6 {
 
 .wishlist_container .productholder .products {
    width: 100% !important;
-}
-
-.collaborateerror .tooltip-inner,
-.responseagreementerror .tooltip-inner,
-.broadcasterror .tooltip-inner,
-.collaborateagreementerror .tooltip-inner,.todoerror .tooltip-inner {
-   background-color: red!important;
-   color: #fff;
-}
-
-.collaborateerror .tooltip-arrow,
-.responseagreementerror .tooltip-arrow,
-.broadcasterror .tooltip-arrow,
-.collaborateagreementerror .tooltip-arrow ,.todoerror .tooltip-arrow{
-   border-right-color: red!important;
-}
-
-.collaborateagreementerror {
-   left: 292px!important;
-   top: 154px!important;
-   color: #fff;
-   width: 150px;
 }
 
 @media screen and (max-width: 1100px)and (min-width:960px) {
@@ -6656,4 +6613,66 @@ html .ui-button.ui-state-disabled:active {
 	min-height: 265px;
 	max-height: 265px;
 	overflow-y: scroll;
+}
+/*Tooltip Error css*/
+
+.tooltip-error,.agreementerror {
+  color: #fff;
+  width: 150px;
+}
+
+.tooltip-error .tooltip-inner,
+.agreementerror .tooltip-inner{
+   background-color: red!important;
+   color: #fff;
+}
+
+.tooltip-error .tooltip-arrow,
+.agreementerror .tooltip-arrow{
+   border-right-color: red!important;
+}
+
+.collaborateresponsemodal .agreementerror{
+  left: -550px!important;
+  top: -390px!important;
+}
+
+.collaboratemodal .agreementerror{
+  left: 300px!important;
+  top: 168px!important;
+}
+
+.commisionmodal .agreementerror{
+  left: 280px!important;
+  top: -410px!important;
+}
+
+.responsemodal .agreementerror {
+   left: -410px!important;
+   top: -391px!important;
+}
+
+.requestmodal .agreementerror {
+   left: 300px!important;
+   top: 170px!important;
+}
+
+.collaboratemodal .tooltip-error {
+   top: 32px!important;
+   left: 700px!important;
+}
+
+.broadcastmodal .tooltip-error, .todomodal .tooltip-error{
+   top: 32px !important;
+   left: 450px !important;
+}
+
+.requestmodal .tooltip-error{
+   top: 32px !important;
+   left: 680px !important;
+}
+
+.productmodal .tooltip-error{
+   top: 32px !important;
+   left: 400px !important;
 }

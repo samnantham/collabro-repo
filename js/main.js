@@ -28,6 +28,8 @@ angular.module('app')
             $rootScope.ismodalopen = false;
             $rootScope.validextensions = angular.copy(app.imgextensions);
             $rootScope.servicetypes = angular.copy(app.servicetypes);
+            $rootScope.requestservicetypes = angular.copy(app.requestservicetypes);
+            $rootScope.requestcategories = angular.copy(app.requestcategories);
             $rootScope.todotypes = angular.copy(app.todotypes);
             $rootScope.projecttypes = angular.copy(app.projecttypes);
             $rootScope.periodtypes = angular.copy(app.periodtypes);
@@ -589,7 +591,11 @@ angular.module('app')
                         $rootScope.user = $sessionStorage.user;
                         var xppoints = $rootScope.user.experiencepoints * 100 / $rootScope.user.allowedXP;
                         $rootScope.chartdata = [0, 0, $rootScope.user.experiencepoints, 0];
-                    } else {
+                    } else if(getData.status == 401){
+                        $scope.errors = utility.getError(getData.data.message);
+                        $rootScope.$emit("showerrors", $scope.errors);
+                        $rootScope.logout();
+                    }else{
                         $rootScope.logout();
                     }
                 });

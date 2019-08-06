@@ -39,7 +39,7 @@
                   <div class="product-container cursor" >
                      <div class="product-left">
                         <div class="product-thumb relat">
-                           <span class="wish_icon" ng-if="data.iscompared"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+                           <span class="wish_icon" ng-if="data.iscompared"><i class="fa fa-check" aria-hidden="true"></i></span>
                            <a class="product-img" ui-sref="app.viewitem({id:data.product.id})">
                               <div class="imgholder" background-image="{{IMGURL}}{{data.product.images[0].thumbnail}}" ng-if="data.product.images[0].filetype == 1"></div>
                               <div class="imgholder" background-image="{{data.product.images[0].thumbnail}}" ng-if="data.product.images[0].filetype == 2"></div>

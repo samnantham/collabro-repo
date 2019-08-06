@@ -11,7 +11,7 @@
                         <ui-select-match allow-clear="true" class="selected-item float-lt">
                            <p><i class="fa fa-circle-o"></i> {{formData.request_type ? formData.request_type : 'Service Type'}}</p>
                         </ui-select-match>
-                        <ui-select-choices repeat="type in servicetypes | filter: $select.search">
+                        <ui-select-choices repeat="type in requestservicetypes | filter: $select.search">
                            <span ng-bind-html="type | highlight: $select.search"></span>
                         </ui-select-choices>
                   </ui-select>
@@ -22,14 +22,14 @@
                         <ui-select-match allow-clear="true" class="selected-item float-lt">
                            <p><i class="fa fa-circle-o"></i> {{formData.request_category ? formData.request_category : 'Select Category'}}</p>
                         </ui-select-match>
-                        <ui-select-choices repeat="type in servicetypes | filter: $select.search">
-                           <span ng-bind-html="type | highlight: $select.search"></span>
+                        <ui-select-choices repeat="category in requestcategories | filter: $select.search">
+                           <span ng-bind-html="category | highlight: $select.search"></span>
                         </ui-select-choices>
                   </ui-select>
                </div>
             </div>
         </div>
-        <div class="mmargintop10">
+        <div class="mmargintop10" tooltip="Please select any of service type" tooltip-trigger="mouseenter" tooltip-class="tooltip-error" tooltip-placement="right"  tooltip-enable="!formData.request_type">
             <div class="leftimage">
                 <div class="col-lg-12 col-md-12 col-sm-12  dottedborder">
                     NOTE: The is a <a>Tripartite Standard Agreement</a> form to protect both parties against any issues in the future. Read for more info<a> here</a>.
@@ -37,7 +37,7 @@
                     <br>
                     <div class="bottomnewtext">Read and agreed to the TSA Protection Scheme</div>
                     <div class="pretty p-image p-plain floatleft commisionagree mobile-no-margin-right no-margin-right">
-                        <input type="checkbox" name="isaccept" ng-true-value="1" ng-false-value="0" ng-model="formData.isaccept" tabindex="0" aria-checked="false" aria-invalid="false" required>
+                        <input type="checkbox" name="isaccept" ng-true-value="1" ng-false-value="0" ng-model="formData.isaccept" tabindex="0" aria-checked="false" aria-invalid="false" required ng-disabled="!formData.request_type">
                         <div class="state">
                             <i class="fa fa-check" aria-hidden="true"></i>
                             <label>&nbsp;&nbsp;</label>
@@ -165,8 +165,8 @@
         </div>
         <div class="clear"></div>
         <div class="modal-footer">
-            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-right no-padding-right button_right">
-                <button type="submit" class="collabro_btn commision-button button-width-100 button_right" button-spinner="loading" ng-disabled="loading||!formData.request_type" tooltip="You Need to agree TSA Protection rules!" tooltip-enable="!formData.isaccept" tooltip-trigger="mouseenter">Publish Item</button>
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-right no-padding-right button_right"  tooltip="You Need to agree TSA Protection rules!" tooltip-enable="!formData.isaccept && formData.request_type" tooltip-class="agreementerror" tooltip-trigger="mouseenter" tooltip-placement="right">
+                <button type="submit" class="collabro_btn commision-button button-width-100 button_right" button-spinner="loading" ng-disabled="loading || !formData.request_type || !formData.isaccept">Publish Item</button>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-left no-padding-left button_right">
                 <button type="button" class="collabro_btn btn-default cancel button-width-100 " ng-click="closerequestModal();">Cancel</button>

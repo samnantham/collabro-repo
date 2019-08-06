@@ -13,12 +13,11 @@
                         <span ng-bind-html="type | highlight: $select.search"></span>
                      </ui-select-choices>
                   </ui-select>
-                  <span ng-if="currentdevice != 'mobile'"><span class="text-danger cat-error float-lt" ng-if="!formData.type" > (Please Choose)</span></span>
                </div>
             </div>
          </div>
       </div>
-      <div class="mmargintop10">
+      <div class="mmargintop10" tooltip="Please select any of service type" tooltip-trigger="mouseenter" tooltip-class="tooltip-error" tooltip-placement="right"  tooltip-enable="!formData.type">
          <div class="leftimage">
             <div class="col-lg-12 col-md-12 nopadding margintop10">
                <div class="label-text marginbottom5">Add Images <span class="text-danger" ng-if="imageerror"> {{imageerrormsg}}</span></div>
