@@ -437,6 +437,10 @@ input:checked+.slider:before {
    margin-bottom: 30px;
 }
 
+.m-cus{
+   margin-top: 8px;
+}
+
 .powerhead {
    font-size: 14px;
    font-weight: bold;
