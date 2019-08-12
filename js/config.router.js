@@ -46,6 +46,12 @@ angular.module('app')
                         resolve: load(['js/controllers/htmlcomponent.js'])
                     })
 
+                    .state('app.main', {
+                        url: '/main',
+                        templateUrl: 'tpl/'+folderpath+'/main.html',
+                        resolve: load(['js/controllers/main.js'])
+                    })
+
                     .state('app.searchitems', {
                         url: '/searchitems/:keyword',
                         templateUrl: 'tpl/'+folderpath+'/searchitem.html',

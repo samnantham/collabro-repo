@@ -67,8 +67,6 @@ app.controller('ViewProductCtrl', ['$scope', '$http', '$state', '$timeout', 'web
         webServices.get('filtermainproducts/'+type+'/'+key+'/'+order).then(function(getData) {
             if(getData.status==200){
                 $scope.products[type.toLowerCase()] = getData.data;
-                var $owl = $('.owl-carousel').owlCarousel();
-                $owl.trigger('refresh.owl.carousel');
                 $rootScope.formLoading = false;
             }
         });

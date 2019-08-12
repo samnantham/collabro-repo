@@ -601,6 +601,14 @@ angular.module('app')
                 });
             }
 
+            $rootScope.getSettings = function() {
+                webServices.get('getsettings').then(function(getData) {
+                    if (getData.status == 200) {
+                        $rootScope.settings = getData.data;
+                    }
+                });
+            }
+
             $rootScope.addTocart = function(product) {
                 webServices.post('cart/' + product).then(function(getData) {
                     if (getData.status == 200) {
@@ -1025,7 +1033,7 @@ angular.module('app')
                 } else {
                     $rootScope.stateurl = paths[2];
                 }
-
+                $rootScope.getSettings();
                 $rootScope.closepopoverItem();
                 $rootScope.userData = {};
                 $rootScope.searchData = {};

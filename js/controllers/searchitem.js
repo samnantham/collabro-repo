@@ -3,7 +3,7 @@ app.controller('SearchItemPageCtrl', ['$scope', '$http', '$state', '$timeout', '
     
     $rootScope.formData = {};
     $rootScope.isPopover = false;
-    $scope.keyword = $stateParams.keyword;;
+    $scope.keyword = $stateParams.keyword;
     if($rootScope.user){
         if($rootScope.user.username){
             $state.go('app.usermain');
@@ -11,11 +11,8 @@ app.controller('SearchItemPageCtrl', ['$scope', '$http', '$state', '$timeout', '
     }
     $scope.activetab = 'All';
     $scope.url = 'searchhomeproducts/' + $stateParams.keyword;
-    $scope.typespageno = 1;
-    $scope.typestotalPerPage = 12;
-    $scope.pagination = {
-        current: 1
-    };
+
+    $rootScope.searchData.keyword = $stateParams.keyword
     
     $scope.getproducts = function() {
         webServices.get($scope.url).then(function(getData) {
@@ -38,7 +35,7 @@ app.controller('SearchItemPageCtrl', ['$scope', '$http', '$state', '$timeout', '
 
     $scope.sortproduct = function(type,key,order){
         $rootScope.formLoading = true;
-        webServices.get('filtermainproducts/'+type+'/'+key+'/'+order).then(function(getData) {
+        webServices.get('filtermainproducts/'+ type +'/'+ $scope.keyword +'/'+ key +'/'+ order).then(function(getData) {
             if(getData.status==200){
                 $scope.products[type.toLowerCase()] = getData.data;
                 $rootScope.formLoading = false;
@@ -61,28 +58,15 @@ app.controller('SearchItemPageCtrl', ['$scope', '$http', '$state', '$timeout', '
     }
 
      $scope.filtertypeproducts = function() {
-        webServices.get('productbytype/' + $scope.activetab + '/' + $scope.typestotalPerPage +'?page='+$scope.typespageno).then(function(getData) {
+        webServices.get('productbytype/' + $scope.activetab + '/' + $stateParams.keyword ).then(function(getData) {
             if (getData.status == 200) {
                 $scope.typeproductdata = getData.data;
-                $scope.pagedata[$scope.typespageno] = getData.data;
-                $scope.pagination = {
-                    current: $scope.typespageno
-                };
                 $rootScope.formLoading = false;
             } else {
                 $rootScope.logout();
             }
         });
     }
-
-    $scope.pageChanged = function(newPage) {
-        $scope.typespageno = newPage;
-        if (!$scope.pagedata[$scope.pageno]) {
-            $scope.filtertypeproducts();
-        } else {
-            $scope.typeproductdata = $scope.pagedata[$scope.pageno];
-        }
-    };
 
     $scope.getproducts();
 }]);

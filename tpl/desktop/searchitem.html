@@ -120,8 +120,8 @@
                         </slick>
                      </div>
                      <div ng-if="activetab=='service'">
-                        <div class="products item" dir-paginate="(key,data) in typeproductdata.data | itemsPerPage: typestotalPerPage" total-items="typeproductdata.total" current-page="pagination.current">
-                           <div class="product-container" ng-click="showItem(data)">
+                        <div class="products item" ng-repeat="(key,data) in typeproductdata" ng-class="{'dummy-slideritem' : data.isdummy}">
+                           <div class="product-container" ng-click="showItem(data)" ng-if="!data.isdummy">
                               <div class="product-left">
                                  <div class="product-thumb">
                                     <a class="product-img">
@@ -146,8 +146,8 @@
                                  </div>
                               </div>
                            </div>
+                           <div class="product-container" ng-if="data.isdummy" style="cursor: default;">Advertisement for Services</div>
                         </div>
-                        <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
                      </div>
                   </div>
                </div>
@@ -233,8 +233,8 @@
                         </slick>
                      </div>
                      <div ng-if="activetab=='shop'">
-                        <div class="products item" dir-paginate="(key,data) in typeproductdata.data | itemsPerPage: typestotalPerPage" total-items="typeproductdata.total" current-page="pagination.current">
-                           <div class="product-container" ng-click="showItem(data)">
+                        <div class="products item" ng-repeat="(key,data) in typeproductdata" ng-class="{'dummy-slideritem' : data.isdummy}">
+                           <div class="product-container" ng-click="showItem(data)" ng-if="!data.isdummy">
                               <div class="product-left">
                                  <div class="product-thumb">
                                     <a class="product-img">
@@ -259,8 +259,8 @@
                                  </div>
                               </div>
                            </div>
+                           <div class="product-container" ng-if="data.isdummy" style="cursor: default;">Advertisement for Products</div>
                         </div>
-                        <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
                      </div>
                   </div>
                </div>
@@ -348,8 +348,8 @@
                            </div>
                         </slick>
                         <div ng-if="activetab=='rental'">
-                           <div class="products item" dir-paginate="(key,data) in typeproductdata.data | itemsPerPage: typestotalPerPage" total-items="typeproductdata.total" current-page="pagination.current">
-                              <div class="product-container" ng-click="showItem(data)">
+                           <div class="products item" ng-repeat="(key,data) in typeproductdata" ng-class="{'dummy-slideritem' : data.isdummy}">
+                              <div class="product-container" ng-click="showItem(data)" ng-if="!data.isdummy">
                                  <div class="product-left">
                                     <div class="product-thumb">
                                        <a class="product-img">
@@ -374,13 +374,13 @@
                                     </div>
                                  </div>
                               </div>
+                              <div class="product-container" ng-if="data.isdummy" style="cursor: default;">Advertisement for Rental</div>
                            </div>
-                           <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
                         </div>
                      </div>
                      <div ng-if="activetab=='rental'">
-                        <div class="products item" dir-paginate="(key,data) in typeproductdata.data | itemsPerPage: typestotalPerPage" total-items="typeproductdata.total" current-page="pagination.current">
-                           <div class="product-container" ng-click="showItem(data)">
+                        <div class="products item" ng-repeat="(key,data) in typeproductdata" ng-class="{'dummy-slideritem' : data.isdummy}">
+                           <div class="product-container" ng-if="!data.isdummy" ng-click="showItem(data)">
                               <div class="product-left">
                                  <div class="product-thumb">
                                     <a class="product-img">
@@ -405,8 +405,8 @@
                                  </div>
                               </div>
                            </div>
+                           <div class="product-container" ng-if="data.isdummy" style="cursor: default;">Advertisement for Rental</div>
                         </div>
-                        <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
                      </div>
                   </div>
                </div>
@@ -494,8 +494,8 @@
                         </slick>
                      </div>
                      <div ng-if="activetab=='event'">
-                        <div class="products item" dir-paginate="(key,data) in typeproductdata.data | itemsPerPage: typestotalPerPage" total-items="typeproductdata.total" current-page="pagination.current">
-                           <div class="product-container" ng-click="showItem(data)">
+                        <div class="products item" ng-repeat="(key,data) in typeproductdata" ng-class="{'dummy-slideritem' : data.isdummy}">
+                           <div class="product-container" ng-click="showItem(data)" ng-if="!data.isdummy">
                               <div class="product-left">
                                  <div class="product-thumb">
                                     <a class="product-img">
@@ -520,8 +520,8 @@
                                  </div>
                               </div>
                            </div>
+                           <div class="product-container" ng-if="data.isdummy" style="cursor: default;">Advertisement for Events</div>
                         </div>
-                        <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" class="pull-right pagination-ctrl"></dir-pagination-controls>
                      </div>
                   </div>
                </div>
