@@ -2352,6 +2352,7 @@ h6 {
 }
 
 .chat-msgcontent {
+   margin-top: 10px;
    margin-bottom: 20px;
 }
 
@@ -2509,7 +2510,7 @@ h6 {
 
 #GroupChat .chatsender.right,
 #GroupChat .chatsender.left {
-   padding: 16px 10px;
+   padding: 7px 10px;
 }
 
 .chatattach {

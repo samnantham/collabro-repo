@@ -63,19 +63,19 @@
                                     
                                     <div class="border-bottom margin-top col-md-12 col-sm-12 col-lg-12"></div>
                                     <div class="clear"></div>
-                                    <div class="col-md-12 col-sm-12 col-lg-12 nopadding flexmiddle">
-                                        <div class="product-button col-md-12 col-sm-12 col-lg-4 text-right nopadding" ng-if="todoData.type == 'Project'">
-                                            <p class="viewbutton cursor" ui-sref="app.projectdetails({id:todoData.projectid})"> Go to Project</p>
-                                        </div>
+                                    <div class="col-md-12 col-sm-12 col-lg-12 nopadding flexmiddle">                                        
                                         <div class="product-button  product-newbutton col-md-12 col-sm-12 col-lg-12 text-right nopadding mt-10 todo-bottom-btn">
                                             <div class="text-danger">{{todoData.deadline | date:'dd-MMM-yyyy'}}</div>
+                                            <div class="product-button col-md-12 col-sm-12 col-lg-4 text-right nopadding" ng-if="todoData.type == 'Project'">
+                                                <p class="viewbutton cursor" ui-sref="app.projectdetails({id:todoData.projectid})"> Go to Project</p>
+                                            </div> 
                                             <div class="right-btn">
                                                 <a class="btn-add-comparre nomargin" title="Edit Todo" ng-if="todoData.userid == user.id" ng-click="editTodo(todoData)"><i class="fa fa-edit"></i></a>
                                                 <a class="btn-add-comparre nomargin" title="Remove Todo" ng-if="todoData.userid == user.id" ng-click="deletetodo(todoData)"><i class="fa fa-trash-o"></i></a>
                                                 <a class="btn-add-comparre nomargin" title="Share to Earn" ng-click="sharetodo(todoData)"><i class="fa fa-share"></i></a>
-                                            </div>
+                                            </div>                                             
                                         </div>
-                                    </div>
+                                    </div>                                    
                                 </div>
                             </div>
                         </div>

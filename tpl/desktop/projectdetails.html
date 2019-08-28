@@ -112,7 +112,7 @@
                            <div class="chatinnerbody" ng-repeat="message in chatData">
                               <img ng-if="message.user_id != user.id" ng-src="{{IMGURL}}{{message.avatar}}" class="userimg">
                               <div class="chatsender newchat" ng-class="user.id == message.user_id ? 'right':'left'"> 
-                                 <span ng-class="{'chat-msgcontent': user.id != message.user_id}">
+                                 <span ng-class="{'chat-msgcontent': user.id != message.user_id}" class="mb-20">
                                  <span ng-if="!message.isfile" class="chat-msgcontent">{{message.message}}</span>
                                   <div class="text-center col-md-12 col-sm-12 col-lg-12" ng-if="message.isfile">
                                  <span class="chatimg" ng-if="message.isfile" background-image="{{IMGURL}}{{message.fileurl}}" ng-click="viewChatImg(message);"></span>
