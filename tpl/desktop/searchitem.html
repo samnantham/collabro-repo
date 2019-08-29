@@ -1,6 +1,6 @@
    <div ng-controller="SearchItemPageCtrl" class="mainpagewhole">
    <div class="signupoverlay" ng-click="closePopover()" ng-if="(issignup||issignin||isforgotpw)"></div>
-   <div class="popupoverlay" ng-if="((stateurl=='searchitems')&&(formData.title))||((stateurl=='viewproduct')&&(formData.title))" ng-click="closepopoverItem();" esc-key="closepopoverItem()"></div>
+<!--    <div class="popupoverlay" ng-if="((stateurl=='searchitems')&&(formData.title))||((stateurl=='viewproduct')&&(formData.title))" ng-click="closepopoverItem();" esc-key="closepopoverItem()"></div> -->
    <div class="wthree-dot" ng-if="!formLoading">
       <div class="container">
 
@@ -34,7 +34,7 @@
                   </div>
               
             </div>
-            <div class="popover" ng-if="formData.title" data-ng-include="'tpl/blocks/desktop/productpopover.html'"></div>
+            <!-- <div class="popover" ng-if="formData.title" data-ng-include="'tpl/blocks/desktop/productpopover.html'"></div> -->
             <div class="service_container main_container non-logged-search">
                <!--list 1-->
                <div class="col-sm-12 col-md-12 col-lg-12 nopadding" ng-if="activetab == 'All' || activetab == 'service'">

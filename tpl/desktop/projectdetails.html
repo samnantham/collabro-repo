@@ -107,7 +107,7 @@
                         </div>
                      </div>
                      <div class="chatbody" id="GroupChat">
-                        <div class="col-md-12 col-sm-12 col-lg-12 chatmessagecontainer" data-simplebar id="chatbody" ng-class="{'nocontentchat':chatData.length == 0 }" data-simplebar>
+                        <div class="col-md-12 col-sm-12 col-lg-12 chatmessagecontainer" scroll-to-bottom="chatData" id="chatbody" ng-class="{'nocontentchat':chatData.length == 0 }">
                            <div class="chatinnerbody" ng-if="chatData.length == 0">You didn't start your chat yet!</div>
                            <div class="chatinnerbody" ng-repeat="message in chatData">
                               <img ng-if="message.user_id != user.id" ng-src="{{IMGURL}}{{message.avatar}}" class="userimg">

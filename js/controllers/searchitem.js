@@ -1,5 +1,5 @@
 'use strict';
-app.controller('SearchItemPageCtrl', ['$scope', '$http', '$state', '$timeout', 'webServices', 'utility', '$rootScope', '$stateParams', function($scope, $http, $state, $timeout, webServices, utility, $rootScope, $stateParams) {
+app.controller('SearchItemPageCtrl', ['$scope', '$modal', '$http', '$state', '$timeout', 'webServices', 'utility', '$rootScope', '$stateParams', function($scope, $modal, $http, $state, $timeout, webServices, utility, $rootScope, $stateParams) {
     
     $rootScope.formData = {};
     $rootScope.isPopover = false;
@@ -25,13 +25,22 @@ app.controller('SearchItemPageCtrl', ['$scope', '$http', '$state', '$timeout', '
     };
 
     $scope.showItem = function(item) {
-        $rootScope.productLoading = true;
+        $rootScope.formData = {};
+        $rootScope.formData = item; 
         $timeout(function() {  
-            $rootScope.formData = {};
-            $rootScope.formData = item; 
-            $rootScope.productLoading = false;
+            $scope.dialogInst = $modal.open({
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    keyboard: false,
+                    templateUrl: 'tpl/blocks/modals/popovermodal.html',
+                    size: 'lg',
+                    windowClass: 'popovermodal',
+                });
+
         }, 1000);
     };
+
+
 
     $scope.sortproduct = function(type,key,order){
         $rootScope.formLoading = true;
