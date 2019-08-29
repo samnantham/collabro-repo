@@ -4504,8 +4504,8 @@ input[disabled],textarea[disabled] {
 
 .modal-open .modal
 {
-    z-index: 10 !important;
-        background: #00000059;
+    z-index:1000000 !important;
+    background: #00000059;
 }
 .ui-select-bootstrap .ui-select-choices-row.active>a {
     color: #344051;

@@ -592,7 +592,7 @@ angular.module('app')
                         var xppoints = $rootScope.user.experiencepoints * 100 / $rootScope.user.allowedXP;
                         $rootScope.chartdata = [0, 0, $rootScope.user.experiencepoints, 0];
                     } else if(getData.status == 401){
-                        $scope.errors = utility.getError(getData.data.message);
+                        $scope.errors.push(getData.data.message);
                         $rootScope.$emit("showerrors", $scope.errors);
                         $rootScope.logout();
                     }else{
