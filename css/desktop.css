@@ -6568,15 +6568,13 @@ html .ui-button.ui-state-disabled:active {
 
 
 .modal-dialog{
-  width: 30%;
+  width: 50%;
 }
-
 
 .otpmodal .modal-dialog .btn{
   margin-top: 15px;
   padding: 6px 32px;
 }
-
 
 
 .modal-dialog .commision-button{
