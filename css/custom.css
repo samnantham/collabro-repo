@@ -50,7 +50,8 @@ a:hover{
     align-items: center;
 }
 
-.flex-center{
+.flex-justify-center{
+    display: flex;
     justify-content: center;
 }
 
