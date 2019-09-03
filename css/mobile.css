@@ -2423,7 +2423,7 @@ margin-left: 8px !important;
     background: #F4F4F4;
     padding: 10px 10px;
 }
-.topcontainer .col-xs-4, .topcontainer .col-xs-6 {
+.topcontainer .col-xs-3, .topcontainer .col-xs-6 {
     font-size: 13px;
         color: #344051;
     border-bottom: 2px solid #CFD1D3;
@@ -2433,7 +2433,7 @@ margin-left: 8px !important;
     line-height: 25px;
 
 }
-.topcontainer .col-xs-4.active, .topcontainer .col-xs-6.active {
+.topcontainer .col-xs-3.active, .topcontainer .col-xs-6.active {
     font-weight: bold;
     border-bottom: 2px solid #00D8FF;
 }

@@ -31,9 +31,10 @@
                            </div>
                         </div>
                         <div class="col-md-12 col-sm-12 col-lg-12 topcontainer">
-                           <div class="col-md-4 col-sm-4 col-lg-4 cursor" ng-class="{'active':activetab=='profile'}" ng-click="setactivetab('profile');">PROFILE</div>
-                           <div class="col-md-4 col-sm-4 col-lg-4 cursor" ng-class="{'active':activetab=='address'}" ng-click="setactivetab('address');">ADDRESS</div>
-                           <div class="col-md-4 col-sm-4 col-lg-4 cursor" ng-class="{'active':activetab=='account'}" ng-click="setactivetab('account');">MY ACCOUNT</div>
+                           <div class="col-md-3 col-sm-3 col-lg-3 cursor" ng-class="{'active':activetab=='profile'}" ng-click="setactivetab('profile');">PROFILE</div>
+                           <div class="col-md-3 col-sm-3 col-lg-3 cursor" ng-class="{'active':activetab=='address'}" ng-click="setactivetab('address');">ADDRESS</div>
+                           <div class="col-md-3 col-sm-3 col-lg-3 cursor" ng-class="{'active':activetab=='account'}" ng-click="setactivetab('account');">MY ACCOUNT</div>
+                           <div class="col-md-3 col-sm-3 col-lg-3 cursor" ng-class="{'active':activetab=='password'}" ng-click="setactivetab('password');">PASSWORD</div>
                         </div>
                         <div class="profile_conatainer" ng-if="activetab=='profile'&&!profileedit">
                            <div class="col-md-12 col-sm-12 col-lg-12 detailscontainer">
@@ -83,9 +84,6 @@
                               </div>
                            </div>
                         </div>
-
-
-
                         <div class="profile_conatainer" ng-if="activetab=='profile'&&profileedit">
                            <form name="profileform" ng-submit="saveProfile(profileform)">
                               <div class="col-md-12 col-sm-12 col-lg-12 detailscontainer">
@@ -233,6 +231,38 @@
                                        </div>
                                     </div>
                                  </div>
+                              </div>
+                           </form>
+                        </div>
+                        <div class="profile_conatainer" ng-if="activetab=='password'">
+                           <form name="passwordform" ng-submit="changePassword(passwordform)" novalidate>
+                              <div class="col-md-12 col-sm-12 col-lg-12">
+                                 <div class="col-md-2 col-sm-2 col-lg-2 ">
+                                    <div class="leftlabel">CURRENT PASSWORD</div>
+                                 </div>
+                                 <div class="col-md-10 col-sm-10 col-lg-10 nopaddr ">
+                                    <div class="rightlabel"><input class="profileedit width-100" type="password" ng-model="passwordData.oldpassword" name="currentpassword" required></div>
+                                 </div>
+                              </div>
+                              <div class="col-md-12 col-sm-12 col-lg-12">
+                                 <div class="col-md-2 col-sm-2 col-lg-2 ">
+                                    <div class="leftlabel">NEW PASSWORD</div>
+                                 </div>
+                                 <div class="col-md-10 col-sm-10 col-lg-10 nopaddr ">
+                                    <div class="rightlabel"><input class="profileedit width-100" type="password" ng-model="passwordData.newpassword"  name="newpassword" required ng-minlength="8"></div>
+                                 </div>
+                              </div>
+                              <div class="col-md-12 col-sm-12 col-lg-12">
+                                 <div class="col-md-2 col-sm-2 col-lg-2 ">
+                                    <div class="leftlabel">CONFIRM PASSWORD</div>
+                                 </div>
+                                 <div class="col-md-10 col-sm-10 col-lg-10 nopaddr ">
+                                    <div class="rightlabel"><input class="profileedit width-100" type="password" ng-model="passwordData.confirmpassword"  name="confirmpassword" required ng-minlength="8"></div>
+                                 </div>
+                              </div>
+
+                              <div class="col-md-12 col-sm-12 col-lg-12 detailscontainer">
+                                 <button type="submit" class="editprofile">Submit</button>
                               </div>
                            </form>
                         </div>

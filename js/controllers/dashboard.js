@@ -154,6 +154,7 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
             $scope.profileedit = false;
             $scope.addressedit = false;
             $scope.activetab = tab;
+            $scope.passwordData = {};
         }
     }
 
@@ -258,6 +259,37 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', '$timeout', 'webSe
             if (!form.countrycode.$valid) {
                 $scope.errors.push('Please enter your countrycode');
             }
+            $rootScope.$emit("showerrors", $scope.errors);
+        }
+    }
+
+     $scope.changePassword = function(form) {
+        $scope.errors = [];
+        if (form.$valid) {
+            $rootScope.formLoading = true;
+            webServices.post('changepassword', $scope.passwordData).then(function(getData) {
+                $rootScope.formLoading = false;
+                if (getData.status == 200) {
+                    $rootScope.getUserInfo();
+                    $rootScope.$emit("showsuccessmsg", getData.data.message);
+                    $scope.setMyData();
+                    $scope.passwordData = {};
+                } else if (getData.status == 401) {
+                    $scope.errors = utility.getError(getData.data.message);
+                    $rootScope.$emit("showerrors", $scope.errors);
+                }
+
+            });
+        } else {
+            
+            if (!form.confirmpassword.$valid) {
+                $scope.errors.push('Please confirm your new password');
+            }if (!form.newpassword.$valid) {
+                $scope.errors.push('Please enter your new password and minimum 8 charecters needed');
+            }if (!form.currentpassword.$valid) {
+                $scope.errors.push('Please enter your Current Password');
+            }
+    
             $rootScope.$emit("showerrors", $scope.errors);
         }
     }

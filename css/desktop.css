@@ -3221,13 +3221,13 @@ h6 {
    font-weight: bold;
 }
 
-.topcontainer .col-md-4.active,
+.topcontainer .col-md-3.active,
 .topcontainer .col-md-6.active {
    font-weight: bold;
    border-bottom: 2px solid #00D8FF;
 }
 
-.topcontainer .col-md-4,
+.topcontainer .col-md-3,
 .topcontainer .col-md-6 {
    font-size: 15px;
    color: #344051;
@@ -3951,7 +3951,7 @@ h6 {
    .rightinfover .rt i {
       font-size: 29%;
    }
-   .topcontainer .col-md-4,
+   .topcontainer .col-md-3,
    .topcontainer .col-md-6 {
       font-size: 13px;
    }

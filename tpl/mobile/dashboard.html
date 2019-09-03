@@ -37,9 +37,10 @@
     <div class="col-xs-12  backgroundwhite no-padding">
       <div class="col-xs-12 newpadding">
    <div class="col-xs-12  topcontainer">
-      <div class="col-xs-4 nopadding cursor text-center" ng-class="{'active':activetab=='profile'}" ng-click="setactivetab('profile');">PROFILE</div>
-      <div class="col-xs-4 nopadding cursor text-center" ng-class="{'active':activetab=='address'}" ng-click="setactivetab('address');">ADDRESS</div>
-      <div class="col-xs-4 nopadding cursor text-center" ng-class="{'active':activetab=='account'}" ng-click="setactivetab('account');">MY ACCOUNT</div>
+      <div class="col-xs-3 nopadding cursor text-center" ng-class="{'active':activetab=='profile'}" ng-click="setactivetab('profile');">PROFILE</div>
+      <div class="col-xs-3 nopadding cursor text-center" ng-class="{'active':activetab=='address'}" ng-click="setactivetab('address');">ADDRESS</div>
+      <div class="col-xs-3 nopadding cursor text-center" ng-class="{'active':activetab=='account'}" ng-click="setactivetab('account');">ACCOUNT</div>
+      <div class="col-xs-3 nopadding cursor text-center" ng-class="{'active':activetab=='password'}" ng-click="setactivetab('password');">PASSWORD</div>
    </div>
 </div>
 </div>
@@ -248,6 +249,37 @@
                   </div>
                </form>
             </div>
+            <div class="profile_conatainer" ng-if="activetab=='password'">
+                           <form name="passwordform" ng-submit="changePassword(passwordform)" novalidate>
+                              <div class="col-xs-12 nopadding">
+                                 <div class="col-xs-3 newpadding">
+                                    <div class="leftlabel">CURRENT PASSWORD</div>
+                                 </div>
+                                 <div class="col-xs-9 newpaddingleft ">
+                                    <div class="rightlabel"><input class="profileedit width-100" type="password" ng-model="passwordData.oldpassword" name="currentpassword" required></div>
+                                 </div>
+                              </div>
+                              <div class="col-xs-12 nopadding">
+                                 <div class="col-xs-3 newpadding">
+                                    <div class="leftlabel">NEW PASSWORD</div>
+                                 </div>
+                                 <div class="col-xs-9 newpaddingleft ">
+                                    <div class="rightlabel"><input class="profileedit width-100" type="password" ng-model="passwordData.newpassword" name="newpassword" required></div>
+                                 </div>
+                              </div>
+                              <div class="col-xs-12 nopadding">
+                                 <div class="col-xs-3 newpadding">
+                                    <div class="leftlabel">CONFIRM PASSWORD</div>
+                                 </div>
+                                 <div class="col-xs-9 newpaddingleft ">
+                                    <div class="rightlabel"><input class="profileedit width-100" type="password" ng-model="passwordData.confirmpassword" name="confirmpassword" required></div>
+                                 </div>
+                              </div>
+                              <div class="col-xs-12 ">
+                                 <button type="submit" class="editprofile" >Submit</button>
+                              </div>
+                           </form>
+                        </div>
          </div>
          <div class="col-xs-12 borderbottom nopadding"></div>
          <div class="col-xs-12 nopadding">
