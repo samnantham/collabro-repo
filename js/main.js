@@ -584,6 +584,7 @@ angular.module('app')
             }
 
             $rootScope.getUserInfo = function() {
+                $scope.errors = [];
                 webServices.get('getauthenticateduser').then(function(getData) {
                     if (getData.status == 200) {
                         $sessionStorage.user = getData.data;

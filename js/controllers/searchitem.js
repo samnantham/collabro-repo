@@ -24,6 +24,23 @@ app.controller('SearchItemPageCtrl', ['$scope', '$modal', '$http', '$state', '$t
         });
     };
 
+    $rootScope.searchproductslick = {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                fade: true,
+                asNavFor: '.slider-nav',
+                method: {},
+                event: {
+                    afterChange: function(event, slick, currentSlide, nextSlide) {
+                        $scope.slickCurrentIndex2 = currentSlide;
+                    },
+                    init: function(event, slick) {
+                        slick.slickGoTo($scope.slickCurrentIndex2); // slide to correct index when init
+                    }
+                }
+            };
+
     $scope.showItem = function(item) {
         $rootScope.formData = {};
         $rootScope.formData = item; 
