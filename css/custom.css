@@ -14,6 +14,10 @@ a:hover{
     height: 490px !important;
 }
 
+.mt-50{
+    margin-top: 50px;
+}
+
 .post-title.white{
     color: #fff;
 }
@@ -162,3 +166,71 @@ a:hover{
     max-height: 16px;
     max-width: 16px;
 }
+
+#pictureSlider{
+    width: 100%;
+    height: 96vh;
+    overflow: hidden;
+    float: left;
+}
+
+.section-con{
+    width: 100%;
+    float: left;
+    padding: 50px 0;
+    background: #fff;
+}
+
+.section-con1{
+    width: 100%;
+    float: left;
+    padding: 50px 0;
+    background: #f3fdff;
+}
+
+.custom-container{
+    width: 80%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.custom-container p{
+    margin-bottom: 15px;
+    line-height: 24px;
+}
+
+.custom-container h3{
+    font-size: 40px;
+}
+
+.img-full{
+    width: 100%;
+    float: left;
+}
+
+.img-full img{
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+}
+
+#pagefooter{
+    width: 100%;
+    float: left;
+}
+
+.icon-holder{
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    font-size: 50px;
+    display: inline-block;
+    border-radius: 50%;
+    border: 1px solid #77869A;
+    margin-bottom: 15px;
+}
+

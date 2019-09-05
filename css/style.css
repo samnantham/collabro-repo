@@ -1088,7 +1088,7 @@
      -webkit-transition: all 0.3s ease-in-out 0s;
      transition: all 0.3s ease-in-out 0s;
 }
- .noti_btn:hover:before {
+ .noti_btn:hover:before, .noti_btn.active:before {
      visibility: visible;
      -webkit-transform: scaleX(1);
      transform: scaleX(1);
@@ -1397,15 +1397,11 @@
 /* .nav-menu>li.active {
      border-bottom: 3px solid #fff;
 }*/
- .nav-menu>li a:active::before {
+ /* .nav-menu>li a:active::before {
      background-color: #fff;
      transform-origin: left top;
      transform: scale(1, 1);
-}
-/* .nav-menu>li a:hover::before, a:focus::before {
-     transform-origin: left top;
-     transform: scale(1, 1);
-}*/
+} */
 /* Nav Menu Arrows */
  .sf-arrows .sf-with-ul {
      padding-right: 30px;
