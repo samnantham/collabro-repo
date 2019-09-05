@@ -66,16 +66,17 @@
       </div>
       <nav id="nav-menu-container">
          <ul class="nav-menu">
+            <li class="noti_btn"><a ng-click="changebg('aboutus')" class="active">Home</a></li>
             <li class="noti_btn"><a ng-click="changebg('aboutus')">About Us</a></li>
             <li class="noti_btn"><a ng-click="changebg('features')">Features</a></li>
             <li class="noti_btn"><a ng-click="changebg('benefits')">Benefits</a></li>
-            <li class="dropdown noti_btn"  dropdown is-open="menustatus.isopen">
+            <!-- <li class="dropdown noti_btn"  dropdown is-open="menustatus.isopen">
                <a ng-click="changebg('more')" class="ropdown-toggle" ng-mouseenter="menustatus.isopen = true" ng-mouseleave="menustatus.isopen = false">More <span class="caret"></span></a>
                <ul class="dropdown-menu" ng-mouseenter="menustatus.isopen = true" ng-mouseleave="menustatus.isopen = false">
                   <li><a ng-click="changebg('more')">Drop</a></li>
                </ul>
             </li>
-            <li> </li>
+            <li> </li> -->
          </ul>
       </nav>
       <div class="newauth absolute"><span class="authbtn marginr " id="Login"  ng-click="showhidepopup('signup')"
