@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('AppCtrl', ['$scope', '$location', '$sce', '$sessionStorage', '$window', 'webServices', 'utility', '$rootScope', '$state', '$timeout', '$aside', 'Facebook', 'GoogleSignin', 'authServices', 'isMobile', '$modal', '$filter', 'ngNotify', 'bowser',
-        function($scope, $location, $sce, $sessionStorage, $window, webServices, utility, $rootScope, $state, $timeout, $aside, Facebook, GoogleSignin, authServices, isMobile, $modal, $filter, ngNotify, bowser, $modalInstance) {
+    .controller('AppCtrl', ['$scope', '$location', '$sce', '$sessionStorage', '$window', 'webServices', 'utility', '$rootScope', '$state', '$timeout', '$aside', 'Facebook', 'GoogleSignin', 'authServices', 'isMobile', '$modal', '$filter', 'ngNotify', 'bowser', '$document',
+        function($scope, $location, $sce, $sessionStorage, $window, webServices, utility, $rootScope, $state, $timeout, $aside, Facebook, GoogleSignin, authServices, isMobile, $modal, $filter, ngNotify, bowser, $modalInstance, $document) {
             $rootScope.formLoading = true;
             $rootScope.pageloading = true;
             if (isMobile.phone) {
@@ -70,6 +70,11 @@ angular.module('app')
                 setWidth: 300,
                 axis: 'y',
                 autoHideScrollbar: true
+            }
+
+            $rootScope.gotoMenu = function(menu){
+                $rootScope.activemenu = menu;
+                console.log(menu)
             }
 
             $rootScope.$watch('formLoading', function() {

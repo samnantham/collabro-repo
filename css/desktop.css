@@ -1,4 +1,7 @@
-﻿body {
+﻿html{
+  overflow-x: hidden;
+}
+body {
    margin: 0;
    font-family: 'Lato' !important;
    height: 100%;
@@ -6705,4 +6708,12 @@ html .ui-button.ui-state-disabled:active {
 .productmodal .tooltip-error{
    top: 32px !important;
    left: 400px !important;
+}
+.skitter{
+  position: relative!important;
+  max-width: 100%!important;
+}
+.skitter .box_clone{
+  width: 100%!important;
+      z-index: 20!important;
 }

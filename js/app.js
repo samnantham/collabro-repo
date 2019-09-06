@@ -32,5 +32,7 @@ angular.module('app', [
     'angularMoment',
     'infinite-scroll',
     'ui.select',
-    'AnimatedScroll'
+    'AnimatedScroll',
+    'duScroll',
+    'skitter'
 ]);

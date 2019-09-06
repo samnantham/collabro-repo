@@ -1,119 +1,95 @@
-<link href="css/desktop/home.css" rel="stylesheet" type="text/css"/>
 <div class="signupoverlay" ng-click="closePopover()" ng-if="(issignup||issignin||isforgotpw)"></div>
-<div ng-controller="HomeCtrl" id="pictureSlider">
-   <div class="profile" id="hometop" ng-if="!formLoading">
-      <ul class="cb-slideshow">
-            <li ng-repeat="(key,image) in backgroundimages track by $index" class="homepgbgs"><span ng-style="{'background-image':'url(' + IMGURL + image + ')','-webkit-animation-delay': (key * 6) + 's','-moz-animation-delay': (key * 6) + 's','-o-animation-delay': (key * 6) + 's','-ms-animation-delay': (key * 6) + 's','animation-delay': (key * 6) + 's'}">Image {{key + 1}}</span></li>
-        </ul>
-      <div class="wrap">
-         <div class="wthree-grids">
-            <section id="intro" >
+<div ng-controller="HomeCtrl">
+    <div class="profile" id="home" ng-if="!formLoading">
+        <ng-skitter items="photos" options="skitterOption">
                <div class="intro-text">
-                  <h2>Collabro is The Platform for Entrepeneur to Collaborate and Do Business</h2>
-                  <p>Complete with unlimited features & flexibility and unparalleted customer support</p>
-                  <a class="btn-get-started scrollto">Take a tour</a>
+                  <h2>{{item.title}}</h2>
+                  <p>{{item.description}}</p>
+                  <a class="btn-get-started scrollto">{{item.button}}</a>
                </div>
-            </section>
+        </ng-skitter>
+    </div>
 
-            <div class="clear"> </div>
-         </div>
-      </div>
-   </div>
-</div>
+    <!-- About  -->
+    <div class="section-con" id="aboutus">
+        <div class="custom-container">
+            <div ng-bind-html=""></div>
+        </div>
+    </div>
 
-<!-- About  -->
-<div class="section-con">
-   <div class="custom-container">
-      <div class="row">
-         <div class="col-lg-12 col-md-12 text-center">
-            <h3>About Us</h3>
-            <p>Little about us</p>
-         </div>
-      </div>
-      <div class="row flex-center mt-30">
-         <div class="col-lg-6 col-md-6">
-            <img src="img/aboutus.png" />
-         </div>
-         <div class="col-lg-6 col-md-6">
-            <p>Collabro is a decentralised platform for entrepreneurs to collaborate, engage, find resources and do business. Built with AI-powered tripartite collaboration system technology to connect business owners and end-users. This platform will benefit those who are seeking resources to hire, buy, sell or offer services.</p>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-         </div>
-      </div>
-   </div>
-</div>
+    <!-- Features -->
+    <div class="section-con1" id="features">
+        <div class="custom-container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 text-center">
+                    <h3>Features</h3>
+                    <p>Why choose us</p>
+                </div>
+            </div>
+            <div class="row mt-50">
+                <div class="col-lg-3 col-md-3 text-center">
+                    <div class="icon-holder">
+                        <i class="fa fa-cogs"></i>
+                    </div>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                </div>
+                <div class="col-lg-3 col-md-3 text-center">
+                    <div class="icon-holder">
+                        <i class="fa fa-cogs"></i>
+                    </div>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                </div>
+                <div class="col-lg-3 col-md-3 text-center">
+                    <div class="icon-holder">
+                        <i class="fa fa-cogs"></i>
+                    </div>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                </div>
+                <div class="col-lg-3 col-md-3 text-center">
+                    <div class="icon-holder">
+                        <i class="fa fa-cogs"></i>
+                    </div>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!-- Features -->
-<div class="section-con1">
-      <div class="custom-container">
-         <div class="row">
-            <div class="col-lg-12 col-md-12 text-center">
-               <h3>Features</h3>
-               <p>Why choose us</p>
+    <!-- Features -->
+    <div class="section-con" id="benefits">
+        <div class="custom-container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 text-center">
+                    <h3>Benifits</h3>
+                    <p>Why choose us</p>
+                </div>
             </div>
-         </div>
-         <div class="row mt-50">
-            <div class="col-lg-3 col-md-3 text-center">
-               <div class="icon-holder">
-                  <i class="fa fa-cogs"></i>
-               </div>
-               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+            <div class="row mt-50">
+                <div class="col-lg-3 col-md-3 text-center">
+                    <div class="icon-holder">
+                        <i class="fa fa-cogs"></i>
+                    </div>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                </div>
+                <div class="col-lg-3 col-md-3 text-center">
+                    <div class="icon-holder">
+                        <i class="fa fa-cogs"></i>
+                    </div>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                </div>
+                <div class="col-lg-3 col-md-3 text-center">
+                    <div class="icon-holder">
+                        <i class="fa fa-cogs"></i>
+                    </div>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                </div>
+                <div class="col-lg-3 col-md-3 text-center">
+                    <div class="icon-holder">
+                        <i class="fa fa-cogs"></i>
+                    </div>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                </div>
             </div>
-            <div class="col-lg-3 col-md-3 text-center">
-               <div class="icon-holder">
-                  <i class="fa fa-cogs"></i>
-               </div>
-               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-            </div>
-            <div class="col-lg-3 col-md-3 text-center">
-               <div class="icon-holder">
-                  <i class="fa fa-cogs"></i>
-               </div>
-               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-            </div>
-            <div class="col-lg-3 col-md-3 text-center">
-               <div class="icon-holder">
-                  <i class="fa fa-cogs"></i>
-               </div>
-               <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-            </div>
-         </div>
-      </div>
-   </div>
-
-   <!-- Features -->
-<div class="section-con">
-   <div class="custom-container">
-      <div class="row">
-         <div class="col-lg-12 col-md-12 text-center">
-            <h3>Benifits</h3>
-            <p>Why choose us</p>
-         </div>
-      </div>
-      <div class="row mt-50">
-         <div class="col-lg-3 col-md-3 text-center">
-            <div class="icon-holder">
-               <i class="fa fa-cogs"></i>
-            </div>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-         </div>
-         <div class="col-lg-3 col-md-3 text-center">
-            <div class="icon-holder">
-               <i class="fa fa-cogs"></i>
-            </div>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-         </div>
-         <div class="col-lg-3 col-md-3 text-center">
-            <div class="icon-holder">
-               <i class="fa fa-cogs"></i>
-            </div>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-         </div>
-         <div class="col-lg-3 col-md-3 text-center">
-            <div class="icon-holder">
-               <i class="fa fa-cogs"></i>
-            </div>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-         </div>
-      </div>
-   </div>
+        </div>
+    </div>
 </div>
