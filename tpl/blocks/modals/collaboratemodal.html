@@ -43,7 +43,7 @@
          <div class="col-lg-12 col-md-12 nopadding margintop10">
             <div class="label-text marginbottom5">Add Images <span class="text-danger" ng-if="imageerror"> {{imageerrormsg}}</span></div>
             <div class="previewholder">
-            <div class="preview-img" ng-if="viewingThumb.file" background-image="{{viewingThumb.isfile ? viewingThumb.base64 : viewingThumb.file}}">
+            <div class="preview-img" ng-if="viewingThumb.file" ng-if="viewingThumb.file" background-image="{{viewingThumb.isfile ? '' : IMGURL}}{{viewingThumb.isfile ? viewingThumb.base64 : viewingThumb.file}}">
                <!-- <img ngf-src="viewingThumb.file" ng-if="viewingThumb.filetype == 1"> -->
                <anguvideo ng-model="viewingThumb.file" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && !viewingThumb.file.includes('soundcloud')"></anguvideo>
                <sound-cloud-player url="{{viewingThumb.file}}" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && viewingThumb.file.includes('soundcloud')"></sound-cloud-player>
@@ -80,7 +80,7 @@
             </div>
          <div class="col-md-12 col-lg-12 no-padding img-disparea">
             <span class="imager" ng-class="{'activeborder' : key == formData.thumbimage}" ng-repeat="(key,data) in formData.images" ng-click="chooseItem(key);" tooltip-template="'tpl/blocks/desktop/thumbnailpopover.html'" tooltip-trigger="click" ng-if="formData.images.length > 0" tooltip-is-open="ismodalPopover && (key == selectedKey)" tooltip-class="preview-tooltip">
-               <div ng-if="data.filetype == 1 && data.isfile" background-image="{{data.base64}}"></div>
+               <div ng-if="data.filetype == 1 && data.isfile"ngf-background="data.file"></div>
                <div ng-if="data.filetype == 1 && !data.isfile" background-image="{{IMGURL}}{{data.file}}"></div>
                <div ng-if="data.filetype == 2" background-image="{{data.thumbnail}}"></div>
             </span>
@@ -163,7 +163,7 @@
                         </div>
                         <div class="col-md-5 col-sm-5 col-lg-5 nopadding">
                           <div class="col-md-12 col-lg-12 nopadding">
-                              <button type="button" class="collabro_btn gradient-button button-width-100" ng-click="changeactiveDiv('members');" ng-disabled="!formData.type" cl >Add Members</button>
+                              <button type="button" class="collabro_btn gradient-button button-width-100" ng-click="changeactiveDiv('members');" ng-disabled="!formData.type">Add Members</button>
                            </div>
                         </div>
                      </div>
@@ -171,8 +171,8 @@
             <div class="addressdiv" ng-show="activediv =='members' ">
                <div class="col-lg-12 col-md-12 no-padding mmargintop10">
                   <div class="label-text marginbottom5">Choose from Friendlist </div>
-                  <input type="text" name="friend" placeholder="Search Friends" ng-model="formData.friend" ng-change="complete(formData.friend)" class="form-control collabro-text-box" />
-                  <ul class="list-group userlist" ng-if="formData.friend.length > 0" >
+                  <input type="text" name="friend" placeholder="Search Friends" ng-model="formData.friend" ng-change="complete(formData.friend)" class="form-control collabro-text-box" ng-focus="focused = true" ng-blur="focused = false"/>
+                  <ul class="list-group userlist" ng-if="focused || formData.friend.length > 0">
                      <li class="list-group-item" ng-repeat="(key,friend) in friends" ng-click="addprojectfriend(key,friend)">{{friend.username}}</li>
                   </ul>
                </div>

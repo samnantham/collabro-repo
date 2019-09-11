@@ -243,7 +243,11 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
                     $rootScope.isedittodo = false;
                     $rootScope.todoData = {};
                     $rootScope.viewingThumb = {};
-                    $state.reload();
+                    if($rootScope.isedittodo){
+                        $state.go('app.viewtodo',{'id':$rootScope.edittodoid})
+                    }else{
+                        $state.reload();
+                    }
                     // if($rootScope.currentdevice == 'mobile'){
                     //     $state.go('app.todos');
                     // }

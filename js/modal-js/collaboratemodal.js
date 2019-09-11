@@ -221,6 +221,7 @@ app.controller('CollaborateModalCtrl', ['$scope', '$timeout', '$state', '$stateP
             webServices.upload('project', $rootScope.formData).then(function(getData) {
                 $rootScope.fromfriendspage = false;
                 $rootScope.formLoading = false;
+                console.log(getData)
                 if (getData.status == 200) {
                     $rootScope.$emit("showsuccessmsg", getData.data.message);
                     $rootScope.formData = {};
@@ -339,6 +340,32 @@ app.controller('CollaborateModalCtrl', ['$scope', '$timeout', '$state', '$stateP
                 $rootScope.editkey = null;
             }, 500);
         };
+    }
+
+    if ($rootScope.iseditproject) {
+        webServices.get('project/' + $rootScope.editprojectid).then(function(getData) {
+            if (getData.status == 200) {
+                $rootScope.formData = getData.data;
+                $rootScope.formData.projectdeadline = $filter('date')(new Date($rootScope.formData.deadline), 'MM/dd/yyyy');
+                $rootScope.formData.thumbimage = 0;
+                $rootScope.formData.projectmembers = [];
+                $rootScope.formData.images = $rootScope.formData.files;
+                $rootScope.viewingThumb = $rootScope.formData.images[0];
+                angular.forEach(friends, function(member,index) {
+                    angular.forEach($rootScope.formData.members, function(promember) {
+                        if (member.id == promember.userid) {
+                            var newmember = member;
+                            newmember.price = promember.price;
+                            $rootScope.formData.projectmembers.push(newmember);
+                            friends.splice(index, 1);
+                        }
+                    });
+                });
+                console.log($rootScope.formData)
+            } else {
+                $rootScope.logout();
+            }
+        });
     }
 
 }]);

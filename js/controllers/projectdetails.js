@@ -113,6 +113,12 @@ app.controller('ProjectDetailCtrl', ['$scope', '$sce', '$http', '$state', '$stat
         webServices.put('updateuserchat', Data).then(function(getData) {
         });
     }
+
+    $rootScope.editProject = function() {
+        $rootScope.iseditproject = true;
+        $rootScope.editprojectid = $rootScope.projectData.id;
+        $rootScope.opencollaboratemodal();
+    }
     
     $scope.getItem();
 

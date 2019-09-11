@@ -99,11 +99,12 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
         obj.productid = product.productid;
         obj.wishstatus = 0;
         obj.iscompared = 0;
-        if(!product.iscompared){
+        /*if(!product.iscompared){
             var message = 'Are you sure, want to remove this item from wishlist'
         }else{
             var message = 'This item you have added in wishlist and compare list too, do you want to remove?'
-        }
+        }*/
+        var message = 'Are you sure?';
         $ngConfirm({
             title: message,
             content: '',
@@ -117,7 +118,11 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
                         $scope.updatewish('remove',obj);
                     }
                 },
-                close: function() {}
+                cancel: {
+                    text: 'No',
+                    action: function () {
+                    }
+                }
             }
         });
     }
@@ -128,7 +133,7 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
         obj.wishstatus = 1;
         obj.iscompared = 0;
         $ngConfirm({
-            title: 'Are you sure, want to remove this item from compare list',
+            title: 'Are you sure ?'/*'Are you sure, want to remove this item from compare list'*/,
             content: '',
             type: 'red',
             typeAnimated: true,
@@ -141,7 +146,11 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
                         $scope.updatewish('compare',obj);
                     }
                 },
-                close: function() {}
+                cancel: {
+                    text: 'No',
+                    action: function () {
+                    }
+                }
             }
         });
     }
@@ -152,7 +161,7 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
         obj.wishstatus = 1;
         obj.iscompared = 0;
         $ngConfirm({
-            title: 'Are you sure, want to remove this item from compare list',
+            title: 'Are you sure?',/*'Are you sure, want to remove this item from compare list',*/
             content: '',
             type: 'red',
             typeAnimated: true,
@@ -164,7 +173,11 @@ app.controller('WishlistCtrl', ['$scope', '$http', '$state', '$timeout', 'webSer
                         $scope.updatewish('remove',obj);
                     }
                 },
-                close: function() {}
+                cancel: {
+                    text: 'No',
+                    action: function () {
+                    }
+                }
             }
         });
     }
