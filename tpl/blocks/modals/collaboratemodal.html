@@ -171,10 +171,11 @@
             <div class="addressdiv" ng-show="activediv =='members' ">
                <div class="col-lg-12 col-md-12 no-padding mmargintop10">
                   <div class="label-text marginbottom5">Choose from Friendlist </div>
-                  <input type="text" name="friend" placeholder="Search Friends" ng-model="formData.friend" ng-change="complete(formData.friend)" class="form-control collabro-text-box" ng-focus="focused = true" ng-blur="focused = false"/>
+                  <input type="text"  class="form-control collabro-text-box" placeholder="Search Friends" focus-me="opened" ng-focus="onFocus($event)" ng-show="opened" ng-trim="false" ng-model="selected" empty-typeahead typeahead="friend as friend.username for friend in myfriends | filter:$viewValue:stateComparator" typeahead-on-select="addprojectfriend(selected); selected = '';">
+                  <!-- <input type="text" name="friend" placeholder="Search Friends" ng-model="formData.friend" ng-change="complete(formData.friend)" class="form-control collabro-text-box" ng-focus="focused = true" ng-blur="focused = false"/>
                   <ul class="list-group userlist" ng-if="focused || formData.friend.length > 0">
                      <li class="list-group-item" ng-repeat="(key,friend) in friends" ng-click="addprojectfriend(key,friend)">{{friend.username}}</li>
-                  </ul>
+                  </ul> -->
                </div>
                <div class="col-lg-12 col-md-12 no-padding margintop10 member-min-height">
                   <div class="label-text marginbottom5">

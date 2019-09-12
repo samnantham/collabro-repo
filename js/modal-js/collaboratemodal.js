@@ -2,6 +2,7 @@ app.controller('CollaborateModalCtrl', ['$scope', '$timeout', '$state', '$stateP
     $rootScope.activediv = 'info';
     $rootScope.formData.type = '';
     var friends =  angular.copy($rootScope.user.myfriends);
+    $rootScope.myfriends = friends;
 
     $rootScope.resetProductItems = function() {
         $rootScope.loading = false;
@@ -32,7 +33,7 @@ app.controller('CollaborateModalCtrl', ['$scope', '$timeout', '$state', '$stateP
 
     $rootScope.complete = function(string) {
         $rootScope.friends = [];
-        if (string.length > 1) {
+        if (string.length > 0) {
             angular.forEach(friends, function(friend) {
                 if (friend.username.toLowerCase().includes(string.toLowerCase())) {
                     $rootScope.friends.push(friend);
@@ -43,18 +44,23 @@ app.controller('CollaborateModalCtrl', ['$scope', '$timeout', '$state', '$stateP
         }
     }
 
-    $rootScope.addprojectfriend = function(key, friend) {
+    $rootScope.addprojectfriend = function(friend) {
         if($rootScope.formData.projectmembers.length < 8){
             var status = false;
             angular.forEach($rootScope.formData.projectmembers, function(userfriend) {
-                if (userfriend.username == friend.username) {
+                if (userfriend.id == friend.id) {
                     status = true;
                 }
             });
+
             if(!status){
-                $rootScope.formData.friend = '';
+                $rootScope.selected = {};
                 $rootScope.formData.projectmembers.push(friend);
-                friends.splice(key, 1);
+                angular.forEach(friends, function(myfriend,key) {
+                    if (myfriend.id == friend.id) {
+                        friends.splice(key, 1);
+                    }
+                });
             }else{
                 $rootScope.$emit("showerrormsg", 'Member Already Added');
             }
@@ -207,7 +213,25 @@ app.controller('CollaborateModalCtrl', ['$scope', '$timeout', '$state', '$stateP
             $rootScope.ismodalPopover = false;
         }
     }
+
+    $rootScope.onFocus = function (e) {
+        $timeout(function () {
+          $(e.target).trigger('input');
+          $(e.target).trigger('change'); // for IE
+        });
+    };
+
+    $rootScope.stateComparator = function (state, viewValue) {
+        return viewValue === '[$empty$]' || (''+state).toLowerCase().indexOf((''+viewValue).toLowerCase()) > -1;
+    };
+
+
     $rootScope.changeactiveDiv = function(div) {
+        if(div == 'members'){
+            $rootScope.opened = true;
+        }else{
+            $rootScope.opened = false;
+        }
         $rootScope.activediv = div;
     }
 

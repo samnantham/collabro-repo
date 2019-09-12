@@ -7,7 +7,7 @@ app.controller('ViewFeedCtrl', ['$scope', '$ngConfirm', '$http', '$state', '$sta
         webServices.get('feed/' + $stateParams.id).then(function(getData) {
             if (getData.status == 200) {
                 $rootScope.feedData = getData.data;
-                if($rootScope.feedData.owner != $rootScope.user.id){
+                if($rootScope.feedData.owner.id != $rootScope.user.id){
                     $scope.gotofeedchat();
                 }
                 $rootScope.formLoading = false;
@@ -19,6 +19,7 @@ app.controller('ViewFeedCtrl', ['$scope', '$ngConfirm', '$http', '$state', '$sta
 
      $scope.gotofeedchat = function() {
         webServices.put('feedchat/' + $stateParams.id + '/' + $rootScope.user.id).then(function(getData) {
+            console.log(getData)
             if (getData.status == 200) {
                 $state.go('app.feedchat', {
                     'chatid': getData.data.id

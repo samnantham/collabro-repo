@@ -5971,8 +5971,8 @@ h6 {
    color: #6C777D;
 }
 
-.userlist {
-   z-index: 10000;
+.collaboratemodal .searchsuggestions {
+   z-index: 10000!important;
    position: absolute;
    width: 100%;
 }

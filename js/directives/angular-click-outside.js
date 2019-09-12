@@ -2,7 +2,7 @@
 
 (function() {
     'use strict';
-
+    var secretEmptyKey = '[$empty$]'
     angular
         .module('angular-click-outside', [])
         .directive('clickOutside', [
