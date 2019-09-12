@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Config for the router
+ * Config for the rou++++++++++++++
  */
 angular.module('app')
     .run(
@@ -183,6 +183,12 @@ angular.module('app')
                     resolve: load(['cp.ngConfirm','js/controllers/viewtodo.js'])
                 })
 
+                .state('app.viewfeed', {
+                    url: '/viewfeed/:id',
+                    templateUrl: 'tpl/'+folderpath+'/viewfeed.html',
+                    resolve: load(['cp.ngConfirm','js/controllers/viewfeed.js'])
+                })
+
                 .state('app.productchat', {
                     url: '/productchat/:id',
                     templateUrl: 'tpl/'+folderpath+'/productchat.html',
@@ -229,6 +235,18 @@ angular.module('app')
                     url: '/viewuser/:id',
                     templateUrl: 'tpl/'+folderpath+'/viewuser.html',
                     resolve: load(['js/controllers/viewuser.js'])
+                })
+
+                .state('app.howitworks', {
+                    url: '/howitworks',
+                    templateUrl: 'tpl/'+folderpath+'/howitworks.html',
+                    resolve: load(['js/controllers/howitworks.js'])
+                })
+
+                .state('app.rewardsandbenefits', {
+                    url: '/rewardsandbenefits',
+                    templateUrl: 'tpl/'+folderpath+'/rewardsandbenefits.html',
+                    resolve: load(['js/controllers/rewardsandbenefits.js'])
                 })
 
                 /*Common Routes*/

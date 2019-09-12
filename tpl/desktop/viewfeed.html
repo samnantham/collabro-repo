@@ -1,5 +1,6 @@
-<div ng-controller="FeedChatCtrl" class="userchat">
-   <div class="wthree-dot" ng-if="!formLoading">
+<div ng-controller="ViewFeedCtrl" class="productchat">
+    <div class="popover" ng-if="shareData.title" data-ng-include="'tpl/blocks/desktop/sharepopover.html'"></div>
+     <div class="wthree-dot" ng-if="!formLoading">
       <div class="container" id="viewitemtop">
          <div class="row">
             <!-- Left Menu  -->
@@ -68,49 +69,12 @@
                            </div>
                            <div class="price-box col-md-5 col-sm-5 col-lg-5 nopadding margin-bottom">
                               <div class="product-button  product-newbutton col-md-12 col-sm-12 col-lg-12     text-right nopadding">
-                                 <a class="btn-add-wishlist cursor" title="Add to Wishlist" ng-click="updatefeedwish()" ng-if="feedData.owner.id!=user.id" tabindex="0"><i class="fa fa-heart" ng-class="{'wished': feedchat.wishstatus == 1}"></i></a>
+                                 <a class="btn-add-wishlist cursor" title="Add to Wishlist" ng-click="updatefeedwish()" ng-if="feedData.owner.id!=user.id" tabindex="0"><i class="fa fa-heart" ng-class="{'wished': feedData.wishstatus == 1}"></i></a>
                                  <a class="btn-add-comparre nomargin" title="Share to Earn" ng-click="sharefeedtosocial(feedData)"><i class="fa fa-share"></i></a>
                               </div>
                            </div>
                         </div>
                      </div>
-                  </div>
-                  <div class="clear"></div>
-                  <div class="col-md-12 col-sm-12 col-lg-12 mypadding chatholder margin-top">
-                     <div class="titlecontainers">
-                        <div class="leftercontainer col-md-12 col-sm-12 col-lg-12 nopadding">
-                           <div class="request col-md-4 col-sm-4 col-lg-4">FEED DISCUSSIONS</div>
-                           <div class="padd col-md-4 col-sm-4 col-lg-4 text-right"></div>
-                           <div class="float-rt chatimageholder"><img ng-src="{{IMGURL}}{{feedData.owner.avatar}}" popover-trigger="mouseenter" popover="{{feedData.owner.username}}"><img ng-src="{{IMGURL}}{{member.user.avatar}}" ng-repeat="(no,member) in feedData.members" popover-trigger="mouseenter" popover="{{member.user.username}}"></div>
-                        </div>
-                     </div>
-                     <div class="chatbody" id="GroupChat">
-                        <div class="col-md-12 col-sm-12 col-lg-12 chatmessagecontainer" scroll-to-bottom="chatData"  id="chatbody" ng-class="{'nocontentchat':chatData.length == 0 }">
-                           <div class="chatinnerbody" ng-if="chatData.length == 0">You didn't start your chat yet!</div>
-                           <div class="chatinnerbody" ng-repeat="message in chatData">
-                              <img ng-if="message.user_id != user.id" ng-src="{{IMGURL}}{{message.avatar}}" class="userimg">
-                              <div class="chatsender newchat" ng-class="user.id == message.user_id ? 'right':'left'"> 
-                                 <span ng-class="{'chat-msgcontent': user.id != message.user_id}" class="mb-20">
-                                 <span ng-if="!message.isfile" class="chat-msgcontent">{{message.message}}</span>
-                                  <div class="text-center col-md-12 col-sm-12 col-lg-12" ng-if="message.isfile">
-                                 <span class="chatimg" ng-if="message.isfile" background-image="{{IMGURL}}{{message.fileurl}}" ng-click="viewChatImg(message);"></span>
-                              </div>
-                                 </span>
-                                 <span class="chatdate">{{message.created_at | date:'dd-MMM-yy'}} </span><span class="chattime">{{message.created_at | date:'hh:mm a'}} </span><span class="chatname" ng-if="message.user_id != user.id">{{message.username}}</span>
-                              </div>
-                           </div>
-                        </div>
-                      
-                     </div>
-                      <div class="clear"></div>
-                     <div class="col-md-12 col-sm-12 col-lg-12 newtoppad">
-                     <div class="col-md-12 col-sm-12 col-lg-12 relativechat">
-                        <i class="fa fa-smile-o chatsmile" aria-hidden="true"></i>
-                        <input type="text" name="chat" class="chater" placeholder="Write a reply" ng-model="chatMessage.message" my-enter="sendReplymessage()">
-                        <i class="fa fa-paperclip chatattach" aria-hidden="true" ngf-select ngf-drop ngf-multiple="false" ngf-accept="'image/*'" ngf-capture="capture" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="sendattachment($files);"></i>
-                        <i class="fa fa-paper-plane chatsend" aria-hidden="true" ng-click="sendReplymessage()"></i>
-                     </div>
-                  </div>
                   </div>
                </div>
             </div>

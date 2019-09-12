@@ -67,7 +67,7 @@
                         <div class="userholder col-md-8 col-sm-8 col-lg-8 cursor nopadding">
                            <img ng-src="{{IMGURL}}{{projectData.owner.avatar}}" class="userimage" ui-sref="app.viewuser({'id':projectData.owner.id})">
                            <span>
-                           {{projectData.owner.username  | cut:true:5:''}} 
+                           {{projectData.owner.username | cut:true:10:''}} 
                         </div>
                         <div class=" col-md-4 col-sm-4 col-lg-4 infostatus nopadding">
                            <div class="float-rt "><i class="fa fa-circle" ng-class="projectData.owner.onlinestatus == 1 ? 'statusactive':'statusinactive'"></i> {{projectData.owner.onlinestatus == 1 ? 'Online':'Offline'}}

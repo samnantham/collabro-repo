@@ -20,7 +20,7 @@
       <div class="titles">{{formData.title}} </div>
       <div class="description paddingtopbottom margintop">{{formData.description | cut:true:100:''}}</div>
       <div class="price-box col-md-7 nopadding">
-         <span class="per_price"><span ng-if="formData.price > 0">$ </span>{{formData.price ? formData.price: 'Free'}}</span>
+         <span class="per_price"><span ng-if="formData.price > 0">$</span>{{formData.price ? formData.price: 'Free'}}</span>
          <span class="per_time" ng-if="formData.price > 0 && formData.type !='Shop'">Per {{formData.periodtype}}</span>
       </div>
    </div>

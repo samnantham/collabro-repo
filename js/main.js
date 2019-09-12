@@ -486,7 +486,6 @@ angular.module('app')
             };
 
             $rootScope.closetodoModal = function() {
-                $rootScope.isedittodo = false;
                 $rootScope.todoData = {};
                 $rootScope.todoData.type = '';
                 $rootScope.viewingThumb = {};

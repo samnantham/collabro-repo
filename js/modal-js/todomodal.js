@@ -240,11 +240,10 @@ app.controller('TodoModalCtrl', ['$scope', '$timeout', '$state', '$stateParams',
                 if (getData.status == 200) {
                     $rootScope.closetodoModal();
                     $rootScope.$emit("showsuccessmsg", getData.data.message);
-                    $rootScope.isedittodo = false;
                     $rootScope.todoData = {};
                     $rootScope.viewingThumb = {};
                     if($rootScope.isedittodo){
-                        $state.go('app.viewtodo',{'id':$rootScope.edittodoid})
+                        $state.go('app.viewtodo',{'id':$rootScope.edittodoid});
                     }else{
                         $state.reload();
                     }
