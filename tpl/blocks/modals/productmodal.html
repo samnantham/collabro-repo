@@ -3,8 +3,8 @@
       <div class="modal_title col-lg-12 col-md-12 deskmargin-25">
          <div>
             <div class="topnewselect col-lg-6 col-md-6 no-padding flex-align">
-               <div class="label-text display_inline_block float_left marginright10">Category</div>
-               <div class="col-lg-11 col-md-10 col-xs-12 no-padding">
+               <div class="label-text display_inline_block float_left marginright30 nopadding mobilemarginright15 text-center ">Category</div>
+               <div class="col-lg-9 col-md-9 col-xs-12 no-padding">
                   <ui-select ng-model="formData.type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" onkeypress="return false;" onfocus="blur();" ng-readonly="!$select.searchEnabled">
                      <ui-select-match allow-clear="true" class="selected-item float-lt">
                         <p><i class="fa fa-circle-o"></i> {{formData.type ? formData.type : 'Select Category Post'}}</p>

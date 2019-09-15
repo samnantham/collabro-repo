@@ -7,7 +7,7 @@
                 <!-- Left Menu  -->
                 <div class="col-md-10 col-sm-10 col-lg-10 nopadding min800">
                     <div class="col-md-12 col-sm-12 col-lg-12 mypadding">
-                        <div class=" col-md-12 col-sm-12 col-lg-12">
+                        <div class="wishlistheader">
                             <div class="usernewholder col-md-4 col-sm-4 col-lg-4 cursor"><img class="userimage" ng-src="{{IMGURL}}{{chatInfo.firstuserinfo.avatar}}" popover="{{chatInfo.firstuserinfo.username}}" ui-sref="app.viewuser({'id':chatInfo.firstuserinfo.id})" popover-trigger="mouseenter" ng-if="chatInfo.seconduser == user.id">
                                 <img class="userimage" ng-src="{{IMGURL}}{{chatInfo.seconduserinfo.avatar}}" ui-sref="app.viewuser({'id':chatInfo.seconduserinfo.id})" popover="{{chatInfo.seconduserinfo.username}}" popover-trigger="mouseenter" ng-if="chatInfo.firstuser == user.id">
                                 <span ng-if="chatInfo.seconduser == user.id" ui-sref="app.viewuser({'id':chatInfo.firstuserinfo.id})">{{chatInfo.firstuserinfo.username}}</span>

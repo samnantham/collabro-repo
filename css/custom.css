@@ -9,9 +9,13 @@ a:hover{
     text-decoration: none;
 }
 
-
 .h-490{
     height: 490px !important;
+}
+
+.homebanner{
+    position: relative;
+    top: -4.5em;
 }
 
 .mt-50{

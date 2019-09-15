@@ -5760,10 +5760,11 @@ h6 {
 }
 
 .label-text {
-   font-size: .7rem;
-   font-weight: normal;
-   font-family: 'Lato';
+   font-family: 'Helvetica Neue';
+   display: inline-block;
+   font-size: 20px;
    color: #7E8EA4;
+   min-width: 145px;
 }
 
 .p_relative {
@@ -6707,7 +6708,7 @@ html .ui-button.ui-state-disabled:active {
 
 .productmodal .tooltip-error{
    top: 32px !important;
-   left: 400px !important;
+   left: 515px !important;
 }
 .skitter{
   position: relative!important;
