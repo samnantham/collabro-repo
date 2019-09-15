@@ -73,7 +73,7 @@ body[class*=ng-confirm-no-scroll-] {
   border-radius: 4px;
   position: relative;
   outline: none;
-  padding: 15px 15px 0;
+  padding: 20px;
   overflow: hidden;
   margin-left: auto;
   margin-right: auto;
@@ -163,6 +163,8 @@ body[class*=ng-confirm-no-scroll-] {
      -moz-user-select: initial;
       -ms-user-select: initial;
           user-select: initial;
+  font-weight: bold;
+  font-size: 20px;
 }
 .ng-confirm .ng-confirm-box div.ng-confirm-title-c .ng-confirm-title:empty {
   display: none;
@@ -191,12 +193,13 @@ body[class*=ng-confirm-no-scroll-] {
   display: none;
 }
 .ng-confirm .ng-confirm-box .ng-confirm-buttons {
-  padding-bottom: 11px;
+  padding-bottom: 0px;
 }
+
 .ng-confirm .ng-confirm-box .ng-confirm-buttons > button {
   margin-bottom: 4px;
-  margin-left: 2px;
-  margin-right: 2px;
+  margin-left: 15px;
+  margin-right: 0;
 }
 .ng-confirm .ng-confirm-box .ng-confirm-buttons button {
   display: inline-block;
@@ -425,7 +428,7 @@ body[class*=ng-confirm-no-scroll-] {
           animation-name: type-green;
 }
 .ng-confirm.ng-confirm-type-red .ng-confirm-box {
-  border-top: solid 7px #e74c3c;
+  /* border-top: solid 7px #e74c3c; */
   -webkit-animation-name: type-red;
           animation-name: type-red;
 }
