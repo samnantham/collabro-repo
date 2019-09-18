@@ -171,7 +171,7 @@ a:focus,a:active, a:hover
      height: 56px;
      text-align: center;
      align-items: center;
-     z-index: 1000;
+     z-index: 1000000;
 }
  #wrap img {
     margin:auto;
@@ -3200,6 +3200,7 @@ padding: 30px 15px;
 .rightimage {
 margin-top: 20px;
 float: left;
+width: 100%;
     }
 .uploadcontainer {
      width: 100%;
