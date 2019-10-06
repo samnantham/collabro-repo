@@ -45,11 +45,11 @@
                      <div class="col-md-4 col-sm-4 col-lg-4 no-padding">
                         <div class="detailsdescription col-xs-12">{{data.description | cut:true:120:'..'}}</div>
                      </div>
-                     <div class="col-md-3 col-sm-3 col-lg-3">
+                     <div class="col-md-2 col-sm-2 col-lg-2">
                         <a class="boot_user_link_new">Early {{data.deadline | dateToISO | date:'MMM yyyy'}}</a>
                         <span class="user-red">{{data.remainingdays}} Days Remaining</span>
                      </div>
-                     <div class="col-md-1 col-sm-1 col-lg-1 flex-align flex-center default-btn-group">
+                     <div class="col-md-2 col-sm-2 col-lg-2 flex-align flex-center default-btn-group">
                         <a class="com_section cursor" ng-click="editTodo(data)">
                            <i class="fa fa-edit"></i>
                         </a>

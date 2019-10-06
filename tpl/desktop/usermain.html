@@ -5,7 +5,7 @@
             <!-- Left Menu Here  -->
             <div class="col-md-2 col-sm-2 col-lg-2 nopadding leftSidebar" data-ng-include="'tpl/blocks/desktop/leftmenu.html'"></div>
             <!-- Left Menu Here  -->
-            <div class="col-md-10 col-sm-10 col-lg-10 nopadding ">
+            <div class="col-md-10 col-sm-10 col-lg-10 nopadding mt-9">
                <div class="col-md-12 col-sm-12 col-lg-12 mypadding">
 
                   <div class="col-md-8 col-sm-8 col-lg-8 mynewpadding-noleft">
@@ -37,7 +37,7 @@
                               <accordion close-others="true">
                                  <accordion-group  is-open="feed.feedopen" ng-repeat="(num,feed) in feeds" class="notifer" ng-class="{'bgwhite':feed.feedopen}"   ng-click="openfeed(num,feed.feedopen)" id="accorditem{{num}}">
                                     <accordion-heading>
-                                       <div class="col-md-12 col-sm-12 nopadding">
+                                       <div class="col-md-12 col-sm-12 nopadding flex-center">
                                           <div class="col-md-2 col-sm-2  feed-avatar" background-image="{{IMGURL}}{{feed.owner.avatar}}"></div>
                                           <div class="col-md-8 col-sm-7 notifercontent">
                                              {{feed.title}}

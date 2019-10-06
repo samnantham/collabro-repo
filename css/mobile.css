@@ -111,7 +111,12 @@
    color: #fff;
    font-weight: 600;
    padding: 10px 30px;
+   border-radius: 5px;
 
+}
+
+.mt-0{
+    margin-top: 0px !important;
 }
 .bottom50
 {
@@ -154,14 +159,14 @@ a:focus,a:active, a:hover
     outline: none !important;
 }
 .topmenu{
-    background:  transparent;    border:  navajowhite;    color: #fff;
+    background:  transparent;    border:  navajowhite;    color: #fff; font-size: 20px;
 }
 .cursor {
     cursor: pointer;
 }
  #wrap {
      float: right;
-     padding: 8px 0px;
+     padding: 8px 6px;
      position: fixed;
      top: 0px;
      right: 0px;
@@ -2502,6 +2507,7 @@ margin-left: 8px !important;
     font-weight: bold;
     color: #29ABE2;
     text-align: left;
+    padding: 8px 0;
 }
 .righttext {
     font-size: 14px;

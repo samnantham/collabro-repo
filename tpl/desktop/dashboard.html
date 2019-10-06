@@ -241,7 +241,7 @@
                                     <div class="leftlabel">CURRENT PASSWORD</div>
                                  </div>
                                  <div class="col-md-10 col-sm-10 col-lg-10 nopaddr ">
-                                    <div class="rightlabel"><input class="profileedit width-100" type="password" ng-model="passwordData.oldpassword" name="currentpassword" required></div>
+                                    <div class="rightlabel mt-0"><input class="profileedit width-100" type="password" ng-model="passwordData.oldpassword" name="currentpassword" required></div>
                                  </div>
                               </div>
                               <div class="col-md-12 col-sm-12 col-lg-12">
@@ -249,7 +249,7 @@
                                     <div class="leftlabel">NEW PASSWORD</div>
                                  </div>
                                  <div class="col-md-10 col-sm-10 col-lg-10 nopaddr ">
-                                    <div class="rightlabel"><input class="profileedit width-100" type="password" ng-model="passwordData.newpassword"  name="newpassword" required ng-minlength="8"></div>
+                                    <div class="rightlabel mt-0"><input class="profileedit width-100" type="password" ng-model="passwordData.newpassword"  name="newpassword" required ng-minlength="8"></div>
                                  </div>
                               </div>
                               <div class="col-md-12 col-sm-12 col-lg-12">
@@ -257,7 +257,7 @@
                                     <div class="leftlabel">CONFIRM PASSWORD</div>
                                  </div>
                                  <div class="col-md-10 col-sm-10 col-lg-10 nopaddr ">
-                                    <div class="rightlabel"><input class="profileedit width-100" type="password" ng-model="passwordData.confirmpassword"  name="confirmpassword" required ng-minlength="8"></div>
+                                    <div class="rightlabel mt-0"><input class="profileedit width-100" type="password" ng-model="passwordData.confirmpassword"  name="confirmpassword" required ng-minlength="8"></div>
                                  </div>
                               </div>
 
@@ -438,11 +438,11 @@
                         </div>
                         <div ng-if="bottomactivetab=='mylistings'">
                            <div class="projectlisting col-md-12 col-sm-12 col-lg-12" dir-paginate="(key,data) in myProducts.data | itemsPerPage: totalPerPage" total-items="myProducts.total" current-page="pagination.current">
-                              <div class="col-md-2 col-sm-2 col-lg-2 cursor" ui-sref="app.viewitem({'id':data.id})">
+                              <div class="col-md-1 col-sm-1 col-lg-1 cursor no-padding" ui-sref="app.viewitem({'id':data.id})">
                                  <div class="pro-thumb" background-image="{{IMGURL}}{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 1"></div>
                                  <div class="pro-thumb" background-image="{{data.images[0].thumbnail}}" ng-if="data.images[0].filetype == 2"></div>
                               </div>
-                              <div class="col-md-4 col-sm-4 col-lg-4">
+                              <div class="col-md-5 col-sm-5 col-lg-5">
                                  <div class="projtitle cursor" ui-sref="app.viewitem({'id':data.id})">{{data.title}}</div>
                                  <div class="projinfo">Last Update: {{convertDate(data.updated_at) | dateToISO | date:'dd MMMM yyyy'}} </div>
                               </div>
