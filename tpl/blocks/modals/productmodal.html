@@ -3,7 +3,7 @@
       <div class="modal_title col-lg-12 col-md-12 deskmargin-25">
          <div>
             <div class="topnewselect col-lg-6 col-md-6 no-padding flex-align">
-               <div class="label-text display_inline_block float_left marginright30 nopadding mobilemarginright15 text-center ">Category</div>
+               <div class="modal-title display_inline_block float_left marginright30 nopadding mobilemarginright15 text-center ">Category</div>
                <div class="col-lg-9 col-md-9 col-xs-12 no-padding">
                   <ui-select ng-model="formData.type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" onkeypress="return false;" onfocus="blur();" ng-readonly="!$select.searchEnabled">
                      <ui-select-match allow-clear="true" class="selected-item float-lt">
@@ -19,7 +19,7 @@
       </div>
       <div class="mmargintop10" tooltip="Please select any of service type" tooltip-trigger="mouseenter" tooltip-class="tooltip-error" tooltip-placement="right"  tooltip-enable="!formData.type">
          <div class="leftimage">
-            <div class="col-lg-12 col-md-12 nopadding margintop10">
+            <div class="col-lg-12 col-md-12 nopadding">
                <div class="label-text marginbottom5">Add Images <span class="text-danger" ng-if="imageerror"> {{imageerrormsg}}</span></div>
                <div class="previewholder">
                <div class="preview-img" ng-if="viewingThumb.file" background-image="{{viewingThumb.isfile ? '' : IMGURL}}{{viewingThumb.isfile ? viewingThumb.base64 : viewingThumb.file}}">
@@ -137,7 +137,7 @@
                   <div class="clear"></div>
                   <div class="col-lg-12 col-md-12 nopadding margintop10">
                      <div class="flex-align">
-                        <div class="label-text float-left display_inline_block marginright5">Negotiable</div>
+                        <div class="label-text float-left display_inline_block marginright5 check-label">Negotiable</div>
                         <div class="float-left">
                            <div class="pretty p-image p-plain">
                               <input ng-disabled="!formData.type" type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="formData.hasbargain" />
@@ -552,7 +552,7 @@
          <div class="clear"></div>
       </div>
       <div class="clear"></div>
-      <div class="modal-footer">
+      <div class="modal-footer mt-20">
          <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-right no-padding-right button_right">
             <button type="submit" class="collabro_btn commision-button button-width-100 button_right" ng-if="!isedit" button-spinner="loading" ng-disabled="loading||!formData.type">Publish Item</button>
          </div>
