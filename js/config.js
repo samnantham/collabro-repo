@@ -38,7 +38,9 @@ var app = angular.module('app')
                 app.Shopfeatures = [{"feature":"Prosthetic Make-Up"},{"feature":"Bridal Make-Up"},{"feature":"Event Make-Up"},{"feature":"Studio Make-Up"}];
                 app.Rentalfeatures = [{"feature":"Registrant must be at least 18 years old"},{"feature":"Free AromaEase 5ml essential oil"},{"feature":"Goodie bag for the first 5000 participants"},{"feature":"Beetroot Lavender Lip Balm"}];
                 app.Eventfeatures = [{"feature":"Registrant must be at least 18 years old"},{"feature":"Free AromaEase 5ml essential oil"},{"feature":"Goodie bag for the first 5000 participants"},{"feature":"Beetroot Lavender Lip Balm"}];
+                app.redirectroutes = ['viewfeed','viewuser','viewproduct','viewtodo'];
                 $compileProvider.aHrefSanitizationWhitelist(/^\s*(whatsapp):/);
+            
             }
         ])
     .run(['bowser', '$rootScope', function(bowser, $rootScope) {

@@ -41,6 +41,7 @@ angular.module('app')
             $rootScope.rentaltypes = angular.copy(app.rentaltypes);
             $rootScope.eventtypes = angular.copy(app.eventtypes);
             $rootScope.maxUploadsize = angular.copy(app.maxUploadsize);
+            $rootScope.redirectroutes = angular.copy(app.redirectroutes);
             $rootScope.categories = [];
             $rootScope.registerModel.iscompany = '0';
             $scope.thisyear = new Date().getFullYear();
@@ -824,10 +825,13 @@ angular.module('app')
                 $rootScope.loading = false;
                 $rootScope.loginloading = false;
                 $rootScope.searchData = {};
-                if ($rootScope.redirectproduct) {
-                    $state.go('app.viewitem', ({
-                        'id': $rootScope.redirectproduct
-                    }));
+                if ($rootScope.isredirect) {
+                    console.log('from apiurl to website')
+                    console.log($rootScope.redirecturl)
+                    window.open($rootScope.redirecturl,"_self")
+                    // $state.go('app.viewitem', ({
+                    //     'id': $rootScope.redirectproduct
+                    // }));
                 } else {
                     $state.go('app.usermain');
                 }
@@ -1029,7 +1033,23 @@ angular.module('app')
                 $rootScope.activebg = bg;
             }
 
-            $rootScope.$on('$locationChangeStart', function() {
+            $rootScope.$on('$locationChangeStart', function (event, current, previous) {
+                $rootScope.redirecturl = '';
+                $rootScope.isredirect = false;
+                console.log(current)
+                console.log(previous)
+                angular.forEach($rootScope.redirectroutes, function(state) {
+                    if(current.includes('home') || current.includes('viewproduct')){
+                        if(previous.includes(state)){
+                            $rootScope.isredirect = true;
+                            $rootScope.redirecturl = previous;
+                            if($rootScope.redirecturl.includes('viewproduct')){
+                                $rootScope.redirecturl.replace('viewproduct','viewitem');
+                            }
+                        }
+                    }
+                });
+                
                 $rootScope.formLoading = true;
                 $rootScope.pageloading = true;
                 var paths = $location.path().split('/');
