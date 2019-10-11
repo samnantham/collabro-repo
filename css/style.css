@@ -1239,7 +1239,7 @@ h1 {
      padding: 6px 5px;
      position: fixed;
      width: 100%;
-     z-index: 999;
+     z-index: 99999;
      top: 0px;
      left: 0px;
      padding-left: 60px;

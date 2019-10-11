@@ -60,7 +60,7 @@
       </div>
       <div class="search search-input">
          <form novalidate name="searchform" ng-submit="gotosearch(searchData.keyword)" class="search-keyword-form">
-            <input type="text" placeholder="Search for any thing" placeholder="Search for any thing" ng-model="searchData.keyword" ng-change="searchedit()" typeahead="data as data for data in keywords | filter:$viewValue" typeahead-on-select="gotosearch(searchData.keyword)">
+            <input type="text" placeholder="Search for anything" placeholder="Search for anything" ng-model="searchData.keyword" ng-change="searchedit()" typeahead="data as data for data in keywords | filter:$viewValue" typeahead-on-select="gotosearch(searchData.keyword)">
             <input type="submit"  value="">
          </form>
       </div>
@@ -90,17 +90,15 @@
       <div class="row">
          <div class="main-header">
             <div class="row flex-center">
-               <div class="col-sm-2 col-md-2 col-lg-2">
+               <div class="col-sm-4 col-md-5 col-lg-6">
                   <div class="logo">
                      <a ui-sref="app.home"  ng-if="!user.username"><img ng-src="{{IMGURL}}{{settings.footerlogo}}" alt="Logo"></a>
                      <a ui-sref="app.usermain" ng-if="user.username"><img ng-src="{{IMGURL}}{{settings.footerlogo}}" alt="Logo"></a>
                   </div>
-               </div>
-               <div class="col-sm-2 col-md-3 col-lg-4">
                   <div class="advanced-search box-radius">
                      <form class="form-inline search-keyword-form" novalidate name="searchform" ng-submit="gotosearch(searchData.keyword)">
                         <div class="form-group search-input">
-                           <input type="text" placeholder="Search for any thing" ng-model="searchData.keyword" ng-change="searchedit()" typeahead="data as data for data in keywords | filter:$viewValue" typeahead-on-select="gotosearch(searchData.keyword)">
+                           <input type="text" placeholder="Search for anything" ng-model="searchData.keyword" ng-change="searchedit()" typeahead="data as data for data in keywords | filter:$viewValue" typeahead-on-select="gotosearch(searchData.keyword)">
                         </div>
                         <button type="submit" class="btn-search"><i class="fa fa-search"></i></button>
                      </form>
@@ -124,19 +122,19 @@
                         <div ng-if="user.username" class="col-sm-9 col-md-9 col-lg-9">
                            <a ng-click="openbroadcastModal();" class="btn btn-default btn-arrow orangebutton"><i class="fa fa-bolt"></i>BROADCAST</a> 
                            <a ng-click="openModal();" class="btn btn-default btn-arrow postbutton">POST <i class="fa fa-plus-circle"></i></a>
-                           <a role="button" class="noti_newbtn notif_btnf" ui-sref="app.notification">
-                              <i class="fa fa-bell-o"></i>
-                              <div class="noticount" ng-if="user.notifications > 0">
-                                 {{user.notifications}} <!-- < 9 ? user.notifications : '9+'}} -->
-                              </div>
-                           </a>
-                           <a role="button" class="noti_newbtn notif_btn" ui-sref="app.chats">
+                           <a role="button" class="noti_newbtn notif_btn right" ui-sref="app.todos"><i class="fa fa-calendar-check-o"></i></a>
+                           <a role="button" class="noti_newbtn notif_btn right" ui-sref="app.chats">
                               <img class="mesgbutton" src="img/message.png" >
                               <div class="noticount" ng-if="user.chatmessages > 0" >
                                  {{user.chatmessages}}<!--  > 0 ? user.chatmessages : '9+'}} -->
                               </div>
                            </a>
-                           <a role="button" class="noti_newbtn notif_btn" ui-sref="app.todos"><i class="fa fa-calendar-check-o"></i></a>
+                           <a role="button" class="noti_newbtn notif_btnf right" ui-sref="app.notification">
+                              <i class="fa fa-bell-o"></i>
+                              <div class="noticount" ng-if="user.notifications > 0">
+                                 {{user.notifications}} <!-- < 9 ? user.notifications : '9+'}} -->
+                              </div>
+                           </a>
                         </div>
                         <div class="pfcontent col-sm-3 col-md-3 col-lg-3" id="pfcontent"  ng-if="user.username">
                            <div class="cate-name1">
