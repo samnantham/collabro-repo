@@ -38,9 +38,12 @@
             delete $rootScope.user;
             localStorage.user = "";
             $rootScope.loading = false;
-            $rootScope.redirectproduct = null;
             localStorage.project = '';
-            $state.go('app.home');
+            if ($rootScope.currentdevice == 'mobile') {
+                $state.go('app.mobilemain');
+            }else{
+                $state.go('app.home');
+            }
         };
 
         auth.checkPermissionForView = function(view) {

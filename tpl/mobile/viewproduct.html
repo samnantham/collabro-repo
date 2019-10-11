@@ -1,4 +1,4 @@
-<div ng-controller="ViewItemCtrl" class="viewitem">
+<div ng-controller="ViewProductCtrl" class="viewitem">
     <div class="col-xs-12 serviceheader">
         <div class="col-xs-1 servicelefticon" ng-click="goback()"><i class="fa fa-angle-left"></i></div>
         <div class="col-xs-4 servicename">{{viewData.owner.username | cut:true:6:''}} | <!-- <i class="fa fa-trophy" ng-class="{'bronze':((viewData.owner.experiencepoints >= 100) && (viewData.owner.experiencepoints < 200)),'silver':((viewData.owner.experiencepoints >= 200) && (viewData.owner.experiencepoints < 300)), 'gold':((viewData.owner.experiencepoints >= 300) && (viewData.owner.experiencepoints < 400)),'platinum': ((viewData.owner.experiencepoints >= 400) && (viewData.owner.experiencepoints < 500)),'diamond': viewData.owner.experiencepoints >= 500}"></i> -->

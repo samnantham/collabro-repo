@@ -16,16 +16,23 @@ angular.module('app')
         ['$stateProvider', '$urlRouterProvider', '$locationProvider', 'JQ_CONFIG', 'MODULE_CONFIG', 'isMobileProvider',
             function($stateProvider, $urlRouterProvider, $locationProvider, JQ_CONFIG, MODULE_CONFIG, isMobile) {
                 var layout = "tpl/blocks/app.html";
+
+                var current_url = window.location.href;
+                
                 if (isMobile.phone) {
                     var base = '/mobile';
                     var folderpath = 'mobile';
+                    if(!current_url.includes('mobile')){
+                        var parts = current_url.split('/');
+                        window.open(current_url.replace('responsive','responsive/mobile'),"_self")
+                    }
+                    $urlRouterProvider.otherwise(base + '/mobilemain');
                 } else {
                     var base = '';
                     var folderpath = 'desktop';
+                    $urlRouterProvider.otherwise(base + '/home');
                 }
 
-                var layout = "tpl/blocks/app.html";
-                $urlRouterProvider.otherwise(base + '/usermain');
                 $locationProvider.html5Mode(true);
 
                 $stateProvider
@@ -42,27 +49,27 @@ angular.module('app')
 
                     .state('app.htmlcomponent', {
                         url: '/htmlcomponent',
-                        templateUrl: 'tpl/'+folderpath+'/htmlcomponent.html',
+                        templateUrl: 'tpl/htmlcomponent.html',
                         resolve: load(['js/controllers/htmlcomponent.js'])
                     })
 
                     .state('app.main', {
                         url: '/main',
-                        templateUrl: 'tpl/'+folderpath+'/main.html',
+                        templateUrl: 'tpl/main.html',
                         resolve: load(['js/controllers/main.js'])
                     })
 
                     .state('app.searchitems', {
                         url: '/searchitems/:keyword',
-                        templateUrl: 'tpl/'+folderpath+'/searchitem.html',
+                        templateUrl: 'tpl/searchitem.html',
                         resolve: load(['js/controllers/searchitem.js'])
                     })
 
-                    .state('app.viewproduct', {
+                    /*.state('app.viewproduct', {
                         url: '/viewproduct/:id',
                         templateUrl: 'tpl/'+folderpath+'/viewproduct.html',
                         resolve: load(['js/controllers/viewproduct.js'])
-                    })
+                    })*/
                 }
                 /*Only Desktop Routes*/
 
@@ -72,19 +79,19 @@ angular.module('app')
                   $stateProvider
                     .state('app.mobilemain', {
                         url: '/mobilemain',
-                        templateUrl: 'tpl/'+folderpath+'/mobilemain.html',
+                        templateUrl: 'tpl/mobile/mobilemain.html',
                         resolve: load(['js/controllers/home.js'])
                     })
 
                     .state('app.forgotpassword', {
                         url: '/forgotpassword',
-                        templateUrl: 'tpl/'+folderpath+'/forgotpassword.html',
+                        templateUrl: 'tpl/mobile/forgotpassword.html',
                         resolve: load(['js/controllers/home.js'])
                     })
 
                     .state('app.signup', {
                         url: '/signup',
-                        templateUrl: 'tpl/'+folderpath+'/signup.html',
+                        templateUrl: 'tpl/mobile/signup.html',
                         resolve: load(['js/controllers/home.js'])
                     })
 
@@ -247,6 +254,12 @@ angular.module('app')
                     url: '/rewardsandbenefits',
                     templateUrl: 'tpl/'+folderpath+'/rewardsandbenefits.html',
                     resolve: load(['js/controllers/rewardsandbenefits.js'])
+                })
+
+                .state('app.viewproduct', {
+                    url: '/viewproduct/:id',
+                    templateUrl: 'tpl/'+folderpath+'/viewproduct.html',
+                    resolve: load(['js/controllers/viewproduct.js'])
                 })
 
                 /*Common Routes*/

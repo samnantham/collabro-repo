@@ -75,7 +75,6 @@ angular.module('app')
 
             $rootScope.gotoMenu = function(menu){
                 $rootScope.activemenu = menu;
-                console.log(menu)
             }
 
             $rootScope.$watch('formLoading', function() {
@@ -581,7 +580,11 @@ angular.module('app')
                 $rootScope.isPopover = false;
                 $rootScope.iseditproduct = false;
                 if ($rootScope.stateurl == 'viewproduct') {
-                    $state.go('app.main');
+                    if($rootScope.currentdevice == 'desktop'){
+                        $state.go('app.main');
+                    }else{
+                        $state.go('app.mobilemain');
+                    }
                 }
                 $('.modal-content > .ng-scope').each(function() {
                     $(this).scope().$dismiss();
@@ -826,8 +829,6 @@ angular.module('app')
                 $rootScope.loginloading = false;
                 $rootScope.searchData = {};
                 if ($rootScope.isredirect) {
-                    console.log('from apiurl to website')
-                    console.log($rootScope.redirecturl)
                     window.open($rootScope.redirecturl,"_self")
                     // $state.go('app.viewitem', ({
                     //     'id': $rootScope.redirectproduct
@@ -1036,15 +1037,15 @@ angular.module('app')
             $rootScope.$on('$locationChangeStart', function (event, current, previous) {
                 $rootScope.redirecturl = '';
                 $rootScope.isredirect = false;
-                console.log(current)
-                console.log(previous)
                 angular.forEach($rootScope.redirectroutes, function(state) {
-                    if(current.includes('home') || current.includes('viewproduct')){
+                    if(current.includes('home') || current.includes('viewproduct') ||  current.includes('mobilemain')){
                         if(previous.includes(state)){
                             $rootScope.isredirect = true;
                             $rootScope.redirecturl = previous;
-                            if($rootScope.redirecturl.includes('viewproduct')){
-                                $rootScope.redirecturl.replace('viewproduct','viewitem');
+                            if($rootScope.currentdevice == 'desktop'){
+                                if($rootScope.redirecturl.includes('viewproduct')){
+                                    $rootScope.redirecturl.replace('viewproduct','viewitem');
+                                }
                             }
                         }
                     }
@@ -1053,6 +1054,7 @@ angular.module('app')
                 $rootScope.formLoading = true;
                 $rootScope.pageloading = true;
                 var paths = $location.path().split('/');
+
                 if (paths[1] != 'mobile') {
                     $rootScope.stateurl = paths[1];
                 } else {

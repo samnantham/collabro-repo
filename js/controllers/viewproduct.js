@@ -2,6 +2,11 @@
 app.controller('ViewProductCtrl', ['$scope', '$http', '$state', '$timeout', 'webServices', '$stateParams', '$rootScope', function($scope, $http, $state, $timeout, webServices, $stateParams, $rootScope) {
     $rootScope.formData = {};
     $rootScope.isPopover = false;
+
+    if($rootScope.currentdevice == 'mobile'){
+        $state.go('app.viewitem',{'id':$stateParams.id});
+    }
+    
     if($rootScope.user){
         if($rootScope.user.username){
             $state.go('app.viewitem',{'id':$stateParams.id});
