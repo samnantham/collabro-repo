@@ -3233,12 +3233,14 @@ blockquote p {
 }
 
 .topcontainer .col-md-3.active,
+.topcontainer .col-lg-4.active,
 .topcontainer .col-md-6.active {
    font-weight: bold;
    border-bottom: 2px solid #00D8FF;
 }
 
 .topcontainer .col-md-3,
+.topcontainer .col-lg-4,
 .topcontainer .col-md-6 {
    font-size: 15px;
    color: #344051;
