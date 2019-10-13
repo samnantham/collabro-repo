@@ -3,11 +3,11 @@
       <div class="custom-modal">
          
          <!-- Custom modal title -->
-         <div class="custom-modal-title">
-            <div class="row flex-center">
+         <div class="custom-modal-title modal-gray">
+            <div class="row flex-align-center">
                <div class="col-lg-4 col-md-4"><h3>New Post</h3></div>               
-               <div class="col-lg-4 col-md-4 col-xs-12 no-padding">
-                  <div class="modal-title display_inline_block float_left marginright30 nopadding mobilemarginright15 text-center ">Category</div>
+               <div class="col-lg-4 col-md-4 col-xs-12 flex-center-space">
+                  <div class="dropdown-label">Category</div>
                   <ui-select ng-model="formData.type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" onkeypress="return false;" onfocus="blur();" ng-readonly="!$select.searchEnabled">
                      <ui-select-match allow-clear="true" class="selected-item float-lt">
                         <p><i class="fa fa-circle-o"></i> {{formData.type ? formData.type : 'Select Category Post'}}</p>
@@ -141,15 +141,12 @@
                         </div>
                         <div class="clear"></div>
                         <div class="col-lg-12 col-md-12 nopadding margintop10">
-                           <div class="flex-align">
-                              <div class="label-text float-left display_inline_block marginright5 check-label">Negotiable</div>
-                              <div class="float-left">
-                                 <div class="pretty p-image p-plain">
-                                    <input ng-disabled="!formData.type" type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="formData.hasbargain" />
-                                    <div class="state">
-                                       <label class="yesorno">&nbsp;&nbsp;</label>
-                                       <i class="fa fa-check" aria-hidden="true"></i>
-                                    </div>
+                           <div class="custom-checkbox">
+                              <div class="pretty p-image p-plain">
+                                 <input ng-disabled="!formData.type" type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="formData.hasbargain" />
+                                 <div class="state">
+                                    <label class="yesorno">Negotiable</label>
+                                    <i class="fa fa-check" aria-hidden="true"></i>
                                  </div>
                               </div>
                            </div>
@@ -191,7 +188,7 @@
                            </div>
                            <div class="col-md-3 col-sm-3 col-lg-3 col-xs-6 no-padding ratecontainer mmargintop10">
                               <div class="label-text marginbottom5">Price <span class="text-danger" ng-if="priceerror"> (Price Required)</span></div>
-                              <div class="rate_holder margintop5">
+                              <div class="rate_holder">
                                  <div class="rate_currency" ng-class="{'opacity_5': !formData.type}">$</div>
                                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding mobile-no-padding-left " > <input type="tex" class="collabro-text-box no-margin percost" placeholder="0.00" name="price" ng-model="formData.price" required class="percost price-decor"  min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type"></div>
                                  <!-- <div class="rate_price display col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding mobile-no-padding-right" >
@@ -258,7 +255,7 @@
                            </div>
                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12 no-padding ratecontainer mmargintop10">
                               <div class="label-text marginbottom5">Price <span class="text-danger" ng-if="priceerror"> (Price Required)</span></div>
-                              <div class="rate_holder margintop5">
+                              <div class="rate_holder">
                                  <div class="rate_currency" ng-class="{'opacity_5': !formData.type}">$</div>
                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding-left mobile-no-padding-left " > <input type="tex" class="collabro-text-box no-margin percost" placeholder="0.00" name="price" ng-model="formData.price" required class="percost price-decor"  min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type"></div>
                                  <div class="rate_price display col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding mobile-no-padding-right" >
@@ -320,11 +317,13 @@
                               </div>
                               <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
                                  <div class="label-text marginbottom5">NA</div>
-                                 <div class="pretty p-image p-plain ">
-                                    <input type="checkbox" name="hasstartdate" ng-true-value="1" ng-false-value="0" ng-model="formData.hasstartdate" ng-change="clearDate('start',formData.hasstartdate);">
-                                    <div class="state">
-                                       <i class="fa fa-check" aria-hidden="true"></i>
-                                       <label>&nbsp;&nbsp;</label>
+                                 <div class="custom-checkbox">
+                                    <div class="pretty p-image p-plain ">
+                                       <input type="checkbox" name="hasstartdate" ng-true-value="1" ng-false-value="0" ng-model="formData.hasstartdate" ng-change="clearDate('start',formData.hasstartdate);">
+                                       <div class="state">
+                                          <label class="yesorno">&nbsp;&nbsp;</label>
+                                          <i class="fa fa-check" aria-hidden="true"></i>
+                                       </div>
                                     </div>
                                  </div>
                               </div>
@@ -343,18 +342,20 @@
                               </div>
                               <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2 ">
                                  <div class="label-text marginbottom5">NA</div>
-                                 <div class="pretty p-image p-plain ">
-                                    <input type="checkbox" name="hasenddate"  ng-true-value="1" ng-false-value="0" ng-model="formData.hasenddate" ng-change="clearDate('end',formData.hasenddate);">
-                                    <div class="state">
-                                       <i class="fa fa-check" aria-hidden="true"></i>
-                                       <label>&nbsp;&nbsp;</label>
+                                 <div class="custom-checkbox">
+                                    <div class="pretty p-image p-plain ">
+                                       <input type="checkbox" name="hasenddate"  ng-true-value="1" ng-false-value="0" ng-model="formData.hasenddate" ng-change="clearDate('end',formData.hasenddate);">
+                                       <div class="state">
+                                          <label class="yesorno">&nbsp;&nbsp;</label>
+                                          <i class="fa fa-check" aria-hidden="true"></i>
+                                       </div>
                                     </div>
                                  </div>
                               </div>
                            </div>
                            <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12 no-padding ratecontainer mmargintop10">
                               <div class="label-text marginbottom5">Price <span class="text-danger" ng-if="priceerror"> (Price Required)</span></div>
-                              <div class="rate_holder margintop5">
+                              <div class="rate_holder">
                                  <div class="rate_currency" ng-class="{'opacity_5': !formData.type}">$</div>
                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding-left mobile-no-padding-left " > <input type="tex" class="collabro-text-box no-margin percost" placeholder="0.00" name="price" ng-model="formData.price" required class="percost price-decor"  min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type"></div>
                                  <div class="rate_price display col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding mobile-no-padding-right" >
@@ -405,26 +406,29 @@
                            </div>
                            <div class="col-md-3 col-sm-3 col-lg-4 col-xs-2 no-padding-left">
                               <div>&nbsp;</div>
-                              <div class="checktext float-lt">
-                                 <div class="pretty p-image p-plain">
-                                    <input type="checkbox" />
-                                    <div class="state">
-                                       <i class="fa fa-check" aria-hidden="true"></i>
-                                       <label>All day event</label>
+                              <div class="custom-checkbox">
+                                    <div class="pretty p-image p-plain">
+                                       <input type="checkbox" />
+                                       <div class="state">
+                                          <label class="yesorno">All day event</label>
+                                          <i class="fa fa-check" aria-hidden="true"></i>
+                                       </div>
                                     </div>
                                  </div>
-                              </div>
                            </div>
 
                            <div class="mobileclear" ng-if="currentdevice == 'mobile'"></div>
                            <div class="col-lg-12 col-md-12 no-padding margintop10" ng-if="currentdevice == 'mobile'">
-                           <div class="pretty p-image p-plain">
-                              <input type="checkbox" />
-                              <div class="state">
-                                 <i class="fa fa-check" aria-hidden="true"></i>
-                                 <label>Save the date</label>
+                              <div class="custom-checkbox">
+                                 <div class="pretty p-image p-plain">
+                                    <input type="checkbox" />
+                                    <div class="state">
+                                       <label>Save the date</label>
+                                       <i class="fa fa-check" aria-hidden="true"></i>
+                                    </div>
+                                 </div>
                               </div>
-                           </div>
+                              
                         </div>
                            <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12 nopadding mmargintop10" ng-if="formData.type!='Service'">
                               <div class="label-text marginbottom5">Collection and Physical Store Address </div>
@@ -435,13 +439,15 @@
                         </div>
                         <div class="clear"></div>
                         <div class="col-lg-12 col-md-12 no-padding margintop10" ng-if="currentdevice != 'mobile'">
-                           <div class="pretty p-image p-plain">
-                              <input type="checkbox" />
-                              <div class="state">
-                                 <i class="fa fa-check" aria-hidden="true"></i>
-                                 <label>Save the date</label>
+                           <div class="custom-checkbox">
+                                 <div class="pretty p-image p-plain">
+                                    <input type="checkbox" />
+                                    <div class="state">
+                                       <label class="yesorno">Save the date</label>
+                                       <i class="fa fa-check" aria-hidden="true"></i>
+                                    </div>
+                                 </div>
                               </div>
-                           </div>
                         </div>
                      </div>
                   </div>

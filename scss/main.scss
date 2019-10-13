@@ -1,1 +1,12 @@
-@import "./modal.scss";
+/* Tools */
+@import "./1-tools/fonts.scss";
+@import "./1-tools/vars.sass";
+@import "./1-tools/custom-mixin.scss";
+
+/* Basics */
+@import "./2-basics/helpers.sass";
+@import "./2-basics/body-elements.sass";
+
+/* Components */
+@import "./3-components/modal.scss";
+@import "./3-components/checkbox.scss";

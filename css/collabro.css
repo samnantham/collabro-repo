@@ -1,0 +1,593 @@
+/* Tools */
+/* Font awsome */
+@import url(https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+/* Roboto */
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900);
+/* Lato */
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,900);
+/* Montserrat */
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900);
+/* varela round regular */
+@import url(https://fonts.googleapis.com/css?family=Varela+Round);
+/* Poppins font */
+@import url(https://fonts.googleapis.com/css?family=Poppins:400,500,600,700);
+/* box shadow */
+@keyframes rotation {
+  0% {
+    transform: rotate(0);
+  }
+  10% {
+    transform: rotate(30deg);
+  }
+  20% {
+    transform: rotate(0);
+  }
+  80% {
+    transform: rotate(0);
+  }
+  90% {
+    transform: rotate(-30deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+@keyframes zoom {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+  }
+  51% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/* Basics */
+* {
+  outline: none !important;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.primary {
+  color: #00C4E8;
+}
+
+.secondary {
+  color: #7E8EA4;
+}
+
+.success {
+  color: #34AA44;
+}
+
+.info {
+  color: #00C4E8;
+}
+
+.warning {
+  color: #ffc114;
+}
+
+.danger {
+  color: #FF1561;
+}
+
+.default {
+  color: #00C4E8;
+}
+
+.error {
+  color: #FF1561;
+}
+
+.primary-bg {
+  background: #00C4E8;
+}
+
+.secondary-bg {
+  background: #7E8EA4;
+}
+
+.success-bg {
+  background: #34AA44;
+}
+
+.info-bg {
+  background: #00C4E8;
+}
+
+.warning-bg {
+  background: #ffc114;
+}
+
+.danger-bg {
+  background: #FF1561;
+}
+
+.default-bg {
+  background: #00C4E8;
+}
+
+.aqua-bg {
+  background: #7FDBFF;
+}
+
+.navy-bg {
+  background: #001F3F;
+}
+
+.teal-bg {
+  background: #2C8B93;
+}
+
+.olive-bg {
+  background: #3D9970;
+}
+
+.lime-bg {
+  background: #01FF70;
+}
+
+.rad-red-bg {
+  background: #FF3A5C;
+}
+
+.yellow-bg {
+  background: #ffc114;
+}
+
+.relative {
+  position: relative;
+}
+
+.caps {
+  text-transform: capitalize;
+}
+
+.bold {
+  font-weight: 900;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.abscenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+}
+
+.disabled {
+  display: none !important;
+}
+
+.black {
+  color: #1C1C1C;
+}
+
+.wd-100, hr {
+  width: 100%;
+  float: left;
+}
+
+.u-case {
+  text-transform: capitalize;
+}
+
+.block {
+  display: block;
+}
+
+.in-block {
+  display: inline-block !important;
+  width: auto !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.light-text {
+  font-weight: 300 !important;
+}
+
+.semibold-text {
+  font-weight: 600 !important;
+}
+
+.line-head {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.border {
+  border: 1px solid;
+  border-color: #ddd;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.inline-flex-center {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-center-space {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label-xs {
+  font-size: 11px;
+}
+
+.font-price {
+  font-size: 34px;
+  color: #00C4E8;
+  font-weight: 500;
+}
+
+.no-pad {
+  padding: 0px !important;
+}
+
+.p-0 {
+  padding: 0px !important;
+}
+
+.p-5 {
+  padding: 5px !important;
+}
+
+.p-10 {
+  padding: 10px !important;
+}
+
+.p-15 {
+  padding: 15px !important;
+}
+
+.p-20 {
+  padding: 20px !important;
+}
+
+.p-25 {
+  padding: 25px !important;
+}
+
+.p-30 {
+  padding: 30px !important;
+}
+
+.p-35 {
+  padding: 35px !important;
+}
+
+.p-50 {
+  padding: 50px !important;
+}
+
+.p-75 {
+  padding: 75px 75px 0px !important;
+}
+
+.m-0 {
+  margin: 0px !important;
+}
+
+.m-5 {
+  margin: 5px !important;
+}
+
+.m-10 {
+  margin: 10px !important;
+}
+
+.m-15 {
+  margin: 15px !important;
+}
+
+.m-20 {
+  margin: 20px !important;
+}
+
+.mt-0 {
+  margin-top: 0px !important;
+}
+
+.mt-5 {
+  margin-top: 5px !important;
+}
+
+.mt-10 {
+  margin-top: 10px !important;
+}
+
+.mt-15 {
+  margin-top: 15px !important;
+}
+
+.mt-20 {
+  margin-top: 20px !important;
+}
+
+.mt-25 {
+  margin-top: 25px !important;
+}
+
+.mt-30 {
+  margin-top: 30px !important;
+}
+
+.mt-35 {
+  margin-top: 35px !important;
+}
+
+.mt-40 {
+  margin-top: 40px !important;
+}
+
+.mt-50 {
+  margin-top: 50px !important;
+}
+
+.mb-0 {
+  margin-bottom: 0px !important;
+}
+
+.mb-5 {
+  margin-bottom: 5px !important;
+}
+
+.mb-10 {
+  margin-bottom: 10px !important;
+}
+
+.mb-15 {
+  margin-bottom: 15px !important;
+}
+
+.mb-20 {
+  margin-bottom: 20px !important;
+}
+
+.ml-0 {
+  margin-left: 0px !important;
+}
+
+.ml-5 {
+  margin-left: 5px !important;
+}
+
+.ml-10 {
+  margin-left: 10px !important;
+}
+
+.ml-15 {
+  margin-left: 15px !important;
+}
+
+.ml-20 {
+  margin-left: 20px !important;
+}
+
+.ml-30 {
+  margin-left: 30px !important;
+}
+
+.mr-0 {
+  margin-right: 0px !important;
+}
+
+.mr-5 {
+  margin-right: 5px !important;
+}
+
+.mr-10 {
+  margin-right: 10px !important;
+}
+
+.mr-15 {
+  margin-right: 15px !important;
+}
+
+.mr-20 {
+  margin-right: 20px !important;
+}
+
+.mr-30 {
+  margin-right: 30px !important;
+}
+
+.pt-20 {
+  padding-top: 20px !important;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.mr-auto {
+  margin-right: auto;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+.cursor-drag {
+  cursor: drag;
+}
+
+.backbtn {
+  background: #f8f8f8;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  margin-right: 10px;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  display: inline-block;
+  color: #000B19;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.back-page {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.back-page .back-text {
+  font-size: 16px;
+  color: #29ABE2;
+}
+
+.rounded {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+}
+
+.img-full {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+
+/* Body elements */
+body {
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  padding-top: 60px;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Lato";
+  font-weight: 600 !important;
+  margin: 0px;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.form-control {
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+}
+.form-control::placeholder, .form-control::moz-placeholder, .form-control:-ms-input-placeholder, .form-control::-ms-input-placeholder {
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+}
+
+/* Components */
+.custom-modal {
+  width: 100%;
+  float: left;
+}
+.custom-modal .custom-modal-title {
+  width: 100%;
+  float: left;
+  padding: 13px 15px;
+  margin-bottom: 25px;
+}
+.custom-modal .custom-modal-title.modal-gray {
+  background: #f4f4f4;
+}
+.custom-modal .custom-modal-title h3 {
+  font-size: 20px;
+  text-transform: uppercase;
+}
+.custom-modal .custom-modal-title .dropdown-label {
+  width: 100%;
+  float: left;
+  margin-right: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: right;
+}
+.custom-modal .custom-modal-title .ui-select-bootstrap {
+  width: 100%;
+  float: right;
+  min-width: 210px;
+}
+.custom-modal .custom-modal-body {
+  width: 100%;
+  float: left;
+}
+.custom-modal .custom-modal-footer {
+  width: 100%;
+  float: left;
+  margin-top: 25px;
+}
+
+.custom-checkbox {
+  width: 100%;
+  float: left;
+  position: relative;
+}
+.custom-checkbox .pretty {
+  float: left;
+}
+.custom-checkbox .pretty input[type=checkbox] {
+  min-height: auto;
+}
+.custom-checkbox .pretty .state {
+  float: left;
+  position: relative;
+}
+
+/*# sourceMappingURL=collabro.css.map */

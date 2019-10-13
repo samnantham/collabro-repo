@@ -1,0 +1,39 @@
+.custom-modal{
+    width: 100%;
+    float: left;
+    .custom-modal-title{
+        width: 100%;
+        float: left;
+        padding: 13px 15px;
+        margin-bottom: 25px;
+        &.modal-gray{
+            background: $modal-gray;
+        }
+        h3{
+            font-size: $font-l;
+            text-transform: uppercase;
+        }
+        .dropdown-label{
+            width: 100%;
+            float: left;
+            margin-right: 10px;
+            font-size: $font-xs;
+            font-weight: $font-semibold;
+            text-align: right;
+        }
+        .ui-select-bootstrap{
+            width: 100%;
+            float: right;
+            min-width: 210px;
+        }
+    }
+    .custom-modal-body{
+        width: 100%;
+        float: left;
+    }
+    .custom-modal-footer{
+        width: 100%;
+        float: left;
+        margin-top: 25px;
+    }
+}

@@ -1,0 +1,15 @@
+.custom-checkbox{
+    width: 100%;
+    float: left;
+    position: relative;
+    .pretty{
+        float: left;
+        input[type="checkbox"]{
+            min-height: auto;
+        }
+        .state{
+            float: left;
+            position: relative;
+        }
+    }    
+}

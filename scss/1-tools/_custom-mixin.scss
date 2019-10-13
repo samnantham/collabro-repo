@@ -1,0 +1,131 @@
+@mixin box-shadow($value) {
+	box-shadow: $value;
+	-webkit-box-shadow: $value;
+	-moz-box-shadow: $value;
+}
+
+@mixin border-radius($value) {
+	border-radius: $value;
+	-webkit-border-radius: $value;
+	-moz-border-radius: $value;
+}
+
+@mixin transition($value) {
+	transition: $value;
+	-webkit-transition: $value;
+	-moz-transition: $value;
+}
+
+@mixin background-size($value) {
+	-webkit-background-size: $value;
+	-moz-background-size: $value;
+	-o-background-size: $value;
+	background-size: $value;
+}
+
+@mixin box-sizing($value) {
+	box-sizing: $value;
+    -moz-box-sizing: $value;
+    -webkit-box-sizing: $value;
+}
+
+@mixin transform($value) {
+	transform: translate($value);
+	-webkit-transform: translate($value);
+	-moz-transform: translate($value);
+}
+
+@mixin absolute-center(){
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+}
+
+@keyframes rotation {
+	0% { transform: rotate(0); }
+	10% { transform: rotate(30deg); }
+	20% { transform: rotate(0); }
+	80% { transform: rotate(0); }
+	90% { transform: rotate(-30deg); }
+	100% { transform: rotate(0); }
+}
+
+@keyframes zoom {
+	0% { opacity: 0; transform: scale(0); }
+	10% { opacity: 1; transform: scale(1); }
+	50% { opacity: 1; }
+	51% { opacity: 0; }
+	100% { opacity: 0; }
+}
+
+@mixin lhCrop($line-height) {
+	&::before {
+		content: '';
+		display: block;
+		height: 0;
+		width: 0;
+		margin-top: calc((1 - #{$line-height}) * 0.5em);
+	}
+}
+
+//word wrap
+
+@mixin  word($size) {
+    width:($size);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@mixin  wordlines() {
+	/* autoprefixer: off */
+	-webkit-box-orient: vertical;
+	-moz-box-orient: vertical;
+	display: block;
+	display: -webkit-box;
+	display: -moz-box;
+	-webkit-line-clamp: 2;
+	-moz-line-clamp: 2;
+	overflow: hidden;
+	// line-height: 2;
+	text-overflow: ellipsis;
+	min-height: 32px;
+}
+
+//Avatars
+@mixin avatar($size) {
+	width: $size;
+	  height: $size;
+	  font-weight: $font-regular;
+	font-size: $font-r;
+	  color: $white;
+	  line-height: $size;
+	background-color: $light-blue;
+	text-align: center;
+	@include border-radius(50%);
+	  position: relative;
+	  text-transform: uppercase;
+	  display: flex;
+	justify-content: center;
+	  align-items: center;
+	  cursor: pointer;
+	  .avatar-letter
+	  {
+		  width: $size;
+		  height: $size;
+		  display: inline-block;
+	  }
+  }
+
+@mixin lhCrop($line-height, $capital-letter: 1) {
+	&::before {
+		content: '';
+		display: block;
+		height: 0;
+		width: 0;
+		margin-top: calc((#{$capital-letter} - #{$line-height}) * 0.5em);
+	}
+}
