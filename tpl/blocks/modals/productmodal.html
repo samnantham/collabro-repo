@@ -1,10 +1,13 @@
 <div>
    <form class="form-horizontal" name="addForm" novalidate ng-submit="addData(addForm);">
-      <div class="modal_title col-lg-12 col-md-12 deskmargin-25">
-         <div>
-            <div class="topnewselect col-lg-6 col-md-6 no-padding flex-align">
-               <div class="modal-title display_inline_block float_left marginright30 nopadding mobilemarginright15 text-center ">Category</div>
-               <div class="col-lg-9 col-md-9 col-xs-12 no-padding">
+      <div class="custom-modal">
+         
+         <!-- Custom modal title -->
+         <div class="custom-modal-title">
+            <div class="row flex-center">
+               <div class="col-lg-4 col-md-4"><h3>New Post</h3></div>               
+               <div class="col-lg-4 col-md-4 col-xs-12 no-padding">
+                  <div class="modal-title display_inline_block float_left marginright30 nopadding mobilemarginright15 text-center ">Category</div>
                   <ui-select ng-model="formData.type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false" onkeypress="return false;" onfocus="blur();" ng-readonly="!$select.searchEnabled">
                      <ui-select-match allow-clear="true" class="selected-item float-lt">
                         <p><i class="fa fa-circle-o"></i> {{formData.type ? formData.type : 'Select Category Post'}}</p>
@@ -16,552 +19,560 @@
                </div>
             </div>
          </div>
-      </div>
-      <div class="mmargintop10" tooltip="Please select any of service type" tooltip-trigger="mouseenter" tooltip-class="tooltip-error" tooltip-placement="right"  tooltip-enable="!formData.type">
-         <div class="leftimage">
-            <div class="col-lg-12 col-md-12 nopadding">
-               <div class="label-text marginbottom5">Add Images <span class="text-danger" ng-if="imageerror"> {{imageerrormsg}}</span></div>
-               <div class="previewholder">
-               <div class="preview-img" ng-if="viewingThumb.file" background-image="{{viewingThumb.isfile ? '' : IMGURL}}{{viewingThumb.isfile ? viewingThumb.base64 : viewingThumb.file}}">
-                  <anguvideo ng-model="viewingThumb.file" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && !viewingThumb.file.includes('soundcloud')"></anguvideo>
-                  <sound-cloud-player url="{{viewingThumb.file}}" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && viewingThumb.file.includes('soundcloud')"></sound-cloud-player>
-               </div>
-               </div>
-               <div ng-if="!viewingThumb.file" class="uploadcontainer show" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="10" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-disabled="!formData.type || formData.images.length == 6" ng-class="{'upload-btn-disabled': !formData.type || formData.images.length == 6}">
-                  <div class="uploadinnercontainer">
-                     <ul>
-                        <li class="borderright flex-align"><img src="img/u1.png"></li>
-                        <li class="borderright flex-align"><img src="img/u2.png"></li>
-                        <li class="flex-align"><img src="img/u3.png"></li>
-                     </ul>
+
+         <!-- Modal body -->
+         <div class="custom-modal-body">
+            <div class="mmargintop10" tooltip="Please select any of service type" tooltip-trigger="mouseenter" tooltip-class="tooltip-error" tooltip-placement="right"  tooltip-enable="!formData.type">
+               <div class="leftimage">
+                  <div class="col-lg-12 col-md-12 nopadding">
+                     <div class="label-text marginbottom5">Add Images <span class="text-danger" ng-if="imageerror"> {{imageerrormsg}}</span></div>
+                     <div class="previewholder">
+                     <div class="preview-img" ng-if="viewingThumb.file" background-image="{{viewingThumb.isfile ? '' : IMGURL}}{{viewingThumb.isfile ? viewingThumb.base64 : viewingThumb.file}}">
+                        <anguvideo ng-model="viewingThumb.file" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && !viewingThumb.file.includes('soundcloud')"></anguvideo>
+                        <sound-cloud-player url="{{viewingThumb.file}}" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && viewingThumb.file.includes('soundcloud')"></sound-cloud-player>
+                     </div>
+                     </div>
+                     <div ng-if="!viewingThumb.file" class="uploadcontainer show" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="10" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-disabled="!formData.type || formData.images.length == 6" ng-class="{'upload-btn-disabled': !formData.type || formData.images.length == 6}">
+                        <div class="uploadinnercontainer">
+                           <ul>
+                              <li class="borderright flex-align"><img src="img/u1.png"></li>
+                              <li class="borderright flex-align"><img src="img/u2.png"></li>
+                              <li class="flex-align"><img src="img/u3.png"></li>
+                           </ul>
+                           <div class="clear"></div>
+                           <div class="uploadertext ">Add images, video from the web or take photos to upload to your page
+                           </div>
+                        </div>
+                     </div>
+                     <input name="productfile" type="hidden" ng-model="formData.productfile" ng-required="formData.images.length == 0 && !formData.videourl">
+                     <div class="col-lg-12 col-md-12 nopadding margintop5" ng-class="{'opacity_5': !formData.type}"><i class="fa fa-info-circle" aria-hidden="true" ng-class="{'text-danger':formData.images.length == 6 }"></i><span class="marginleft5" ng-class="{'text-danger':formData.images.length == 6 }">Up to 6 representative Image and video 640 x 360.</span> </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12 margintop10 no-padding">
+                     <div class="label-text marginbottom5">Embed Video </div>
+                     <div class="col-lg-12 col-md-12 col-sm-12 no-padding">
+                        <div class="col-md-8 col-lg-8 col-sm-8 col-xs-9 no-padding "><input type="text" name="videourl" ng-model="formData.embedvideo" placeholder="Youtube / Vimeo / Soundcloud" ng-required="formData.embedvideo" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/" ng-disabled="!formData.type || (formData.images.length == 6 && editkey == null)" class="collabro-text-box">
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-3 no-padding-right mobile-no-padding-right text-right smallpading ">
+                           <button ng-class="{'videobtn-disabled': !formData.type}"
+                              type="button" ng-click="uploadvideo();" ng-disabled="!formData.type || (formData.images.length == 6 && editkey == null)" class="collabro_btn gradient-button button-width-100"> Add </button>
+                        </div>
+                     </div>
                      <div class="clear"></div>
-                     <div class="uploadertext ">Add images, video from the web or take photos to upload to your page
-                     </div>
+                     <div class="bordercontainer"></div>
                   </div>
-               </div>
-               <input name="productfile" type="hidden" ng-model="formData.productfile" ng-required="formData.images.length == 0 && !formData.videourl">
-               <div class="col-lg-12 col-md-12 nopadding margintop5" ng-class="{'opacity_5': !formData.type}"><i class="fa fa-info-circle" aria-hidden="true" ng-class="{'text-danger':formData.images.length == 6 }"></i><span class="marginleft5" ng-class="{'text-danger':formData.images.length == 6 }">Up to 6 representative Image and video 640 x 360.</span> </div>
-            </div>
-            <div class="col-lg-12 col-md-12 margintop10 no-padding">
-               <div class="label-text marginbottom5">Embed Video </div>
-               <div class="col-lg-12 col-md-12 col-sm-12 no-padding">
-                  <div class="col-md-8 col-lg-8 col-sm-8 col-xs-9 no-padding "><input type="text" name="videourl" ng-model="formData.embedvideo" placeholder="Youtube / Vimeo / Soundcloud" ng-required="formData.embedvideo" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/" ng-disabled="!formData.type || (formData.images.length == 6 && editkey == null)" class="collabro-text-box">
-                  </div>
-                  <div class="col-md-4 col-lg-4 col-sm-4 col-xs-3 no-padding-right mobile-no-padding-right text-right smallpading ">
-                     <button ng-class="{'videobtn-disabled': !formData.type}"
-                        type="button" ng-click="uploadvideo();" ng-disabled="!formData.type || (formData.images.length == 6 && editkey == null)" class="collabro_btn gradient-button button-width-100"> Add </button>
-                  </div>
-               </div>
-               <div class="clear"></div>
-               <div class="bordercontainer"></div>
-            </div>
-            <div class="col-md-12 col-lg-12 no-padding img-disparea">
-               <span class="imager" ng-class="{'activeborder' : key == formData.thumbimage}" ng-repeat="(key,data) in formData.images" ng-click="chooseItem(key);" tooltip-template="'tpl/blocks/desktop/thumbnailpopover.html'" tooltip-trigger="click" ng-if="formData.images.length > 0" tooltip-is-open="ismodalPopover && (key == selectedKey)" tooltip-class="preview-tooltip">
-                  <div ng-if="data.filetype == 1 && data.isfile" ngf-background="data.file"></div>
-                  <div ng-if="data.filetype == 1 && !data.isfile" background-image="{{IMGURL}}{{data.file}}"></div>
-                  <div ng-if="data.filetype == 2" background-image="{{data.thumbnail}}"></div>
-               </span>
-               <button class="imager_add" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6"
-                  ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="formData.images.length < 6" ng-disabled="!formData.type"><i class="fa fa-plus" aria-hidden="true"></i></button>
-               <div class="clear"></div>
-               <div class="marginer margintop5" ng-if="formData.images.length > 0" ng-class="{'opacity_5': !formData.type}"><span class="color01B221" ><i class="fa fa-info-circle" aria-hidden="true"></i><span class="marginleft5">Select the item you want as featured as thumbnail</span> </span>
-               </div>
-            </div>
-            <div class="clear"></div>
-         </div>
-         <div class="rightimage">
-            <div class="infodiv" ng-if="activediv =='info'">
-               <div class="service-items" ng-if="((!formData.type || formData.type=='Service') && currentdevice == 'desktop' ) || ((formData.type=='Service') && (currentdevice == 'mobile')) && (activediv =='info')" >
-                  <div class="col-lg-12 col-md-12 nopadding ">
-                     <div class="label-text marginbottom5">
-                        Type of Service / Title <span class="text-danger" ng-if="titleerror"> (Enter Service Title)</span>
-                     </div>
-                     <input type="text" name="title" placeholder="e.g. Image of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-disabled="!formData.type" class="collabro-text-box"  maxlength="100">
-                     <!-- <div class="pinklimit">{{formData.title.length ? formData.title.length : 0 }} / 100 Char</div> -->
-                  </div>
-                  <div class="col-lg-12 col-md-12 nopadding margintop10">
-                     <div class="label-text marginbottom5">
-                        Service Description <span class="text-danger" ng-if="descriptionerror"> (Enter Service Description)</span>
-                     </div>
-                     <textarea row="10" name="description" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." class="height170 collabro-text-box" ng-model="formData.description" required ng-disabled="!formData.type" maxlength="1000" ></textarea>
-                  </div>
-                  <!-- <div class="pinklimit">{{formData.description.length ? formData.description.length : 0 }} / 1000 Char</div>
-                     </div> -->
-                  <div class="col-lg-12 col-md-12 no-padding margintop10" >
-                     <div class="col-md-3 col-sm-3 col-lg-3 col-xs-6 no-padding-left mobile-no-padding-left display">
-                        <div class="label-text marginbottom5">Location</div>
-                        <ui-select name="location" ng-model="formData.location" theme="bootstrap" search-enabled="false" ng-disabled="!formData.type" onkeypress="return false;" onfocus="blur();">
-                           <ui-select-match allow-clear="true" class="selected-item float-lt">
-                              <p>
-                                 <!-- <i class="fa fa-circle-o"></i>  -->{{formData.location ? formData.location : 'Select Location'}}
-                              </p>
-                           </ui-select-match>
-                           <ui-select-choices repeat="location in locations">
-                              <span ng-bind-html="location | highlight: $select.search"></span>
-                           </ui-select-choices>
-                        </ui-select>
-                     </div>
-                     <div class="col-md-3 col-sm-3 col-xs-6 col-lg-3 display  mobile-no-padding-right-col no-padding-left">
-                        <div class="label-text marginbottom5">Skills Area <span class="text-danger" ng-if="skillerror"> (Choose Skill)</span></div>
-                        <ui-select name="profession" ng-model="formData.profession" theme="bootstrap" search-enabled="false" ng-disabled="!formData.type" ng-required="formData.type=='Service'" onkeypress="return false;" onfocus="blur();">
-                           <ui-select-match allow-clear="true" class="selected-item float-lt">
-                              <p>
-                                 <!-- <i class="fa fa-circle-o"></i>  -->{{formData.profession ? formData.profession : 'Select Skill'}}
-                              </p>
-                           </ui-select-match>
-                           <ui-select-choices repeat="profession in professions">
-                              <span ng-bind-html="profession | highlight: $select.search"></span>
-                           </ui-select-choices>
-                        </ui-select>
-                     </div>
-                     <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12 no-padding ratecontainer mmargintop10">
-                        <div class="label-text marginbottom5">Rate <span class="text-danger" ng-if="priceerror"> (Rate Required)</span></div>
-                        <div class="rate_holder ">
-                           <div class="rate_currency" ng-class="{'opacity_5': !formData.type}">$</div>
-                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding-left mobile-no-padding-left" > <input type="tex" class="collabro-text-box no-margin percost" placeholder="0.00" name="price" ng-model="formData.price" required class="percost price-decor"  min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type"></div>
-                           <div class="rate_price display col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding mobile-no-padding-right-col" >
-                              <ui-select name="periodtype" ng-model="formData.periodtype" theme="bootstrap" search-enabled="false"  ng-disabled="!formData.type" onkeypress="return false;" onfocus="blur();">
-                                 <ui-select-match allow-clear="true" class="selected-item float-lt">
-                                    <p>
-                                       <!-- <i class="fa fa-circle-o"></i>  -->{{formData.periodtype ? formData.periodtype : 'Select Period Type'}}
-                                    </p>
-                                 </ui-select-match>
-                                 <ui-select-choices repeat="periodtype in periodtypes">
-                                    <span ng-bind-html="periodtype | highlight: $select.search"></span>
-                                 </ui-select-choices>
-                              </ui-select>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="clear"></div>
-                  <div class="col-lg-12 col-md-12 nopadding margintop10">
-                     <div class="flex-align">
-                        <div class="label-text float-left display_inline_block marginright5 check-label">Negotiable</div>
-                        <div class="float-left">
-                           <div class="pretty p-image p-plain">
-                              <input ng-disabled="!formData.type" type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="formData.hasbargain" />
-                              <div class="state">
-                                 <label class="yesorno">&nbsp;&nbsp;</label>
-                                 <i class="fa fa-check" aria-hidden="true"></i>
-                              </div>
-                           </div>
-                        </div>
+                  <div class="col-md-12 col-lg-12 no-padding img-disparea">
+                     <span class="imager" ng-class="{'activeborder' : key == formData.thumbimage}" ng-repeat="(key,data) in formData.images" ng-click="chooseItem(key);" tooltip-template="'tpl/blocks/desktop/thumbnailpopover.html'" tooltip-trigger="click" ng-if="formData.images.length > 0" tooltip-is-open="ismodalPopover && (key == selectedKey)" tooltip-class="preview-tooltip">
+                        <div ng-if="data.filetype == 1 && data.isfile" ngf-background="data.file"></div>
+                        <div ng-if="data.filetype == 1 && !data.isfile" background-image="{{IMGURL}}{{data.file}}"></div>
+                        <div ng-if="data.filetype == 2" background-image="{{data.thumbnail}}"></div>
+                     </span>
+                     <button class="imager_add" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6"
+                        ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="formData.images.length < 6" ng-disabled="!formData.type"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                     <div class="clear"></div>
+                     <div class="marginer margintop5" ng-if="formData.images.length > 0" ng-class="{'opacity_5': !formData.type}"><span class="color01B221" ><i class="fa fa-info-circle" aria-hidden="true"></i><span class="marginleft5">Select the item you want as featured as thumbnail</span> </span>
                      </div>
                   </div>
                   <div class="clear"></div>
                </div>
-               <!-- Service Info End-->
-               <!-- Shop Info Start -->
-               <div class="shop-items" ng-if="(formData.type=='Shop')&&(activediv =='info')">
-                  <div class="col-lg-12 col-md-12 nopadding ">
-                     <div class="label-text marginbottom5">
-                        Product Title <span class="text-danger" ng-if="titleerror"> (Enter Product Title)</span>
-                     </div>
-                     <input type="text" name="title" placeholder="e.g. Image of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-disabled="!formData.type"  maxlength="100" class="collabro-text-box">
-                     <!-- <div class="pinklimit">{{formData.title.length ? formData.title.length : 0 }} / 100 Char</div> -->
-                  </div>
-                  <div class="col-lg-12 col-md-12 nopadding margintop10">
-                     <div class="label-text marginbottom5">
-                        Product Description <span class="text-danger" ng-if="descriptionerror"> (Enter Product Description)</span>
-                     </div>
-                     <textarea row="10" name="description" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." class="height170 collabro-text-box"  ng-model="formData.description" required ng-disabled="!formData.type"
-                        maxlength="1000"></textarea>
-                  </div>
-                  <div class="col-lg-12 col-md-12 nopadding margintop10">
-                     <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12 mobile-no-padding no-padding-left display">
-                        <div class="label-text marginbottom5">Product Category <span class="text-danger" ng-if="categoryerror"> (Choose Type)</span></div>
-                        <ui-select name="category" ng-model="formData.category" theme="bootstrap" search-enabled="false" onkeypress="return false;" onfocus="blur();">
-                           <ui-select-match allow-clear="true" class="selected-item float-lt">
-                              <p>
-                                 <!-- <i class="fa fa-circle-o"></i>  -->{{formData.category ? $select.selected.categoryname : 'Select Type'}}
-                              </p>
-                           </ui-select-match>
-                           <ui-select-choices repeat="category.id as category in categories">
-                              <span ng-bind-html="category.categoryname | highlight: $select.search"></span>
-                           </ui-select-choices>
-                        </ui-select>
-                     </div>
-                     <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 display">
-                     </div>
-                     <div class="col-md-3 col-sm-3 col-lg-3 col-xs-6 no-padding ratecontainer mmargintop10">
-                        <div class="label-text marginbottom5">Price <span class="text-danger" ng-if="priceerror"> (Price Required)</span></div>
-                        <div class="rate_holder margintop5">
-                           <div class="rate_currency" ng-class="{'opacity_5': !formData.type}">$</div>
-                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding mobile-no-padding-left " > <input type="tex" class="collabro-text-box no-margin percost" placeholder="0.00" name="price" ng-model="formData.price" required class="percost price-decor"  min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type"></div>
-                           <!-- <div class="rate_price display col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding mobile-no-padding-right" >
-                              <ui-select name="periodtype" ng-model="formData.periodtype" theme="bootstrap" search-enabled="false"  ng-disabled="!formData.type" onkeypress="return false;" onfocus="blur();">
-                                 <ui-select-match allow-clear="true" class="selected-item float-lt">
-                                    <p>
-                                       <i class="fa fa-circle-o"></i> {{formData.periodtype ? formData.periodtype : 'Select Period Type'}}
-                                    </p>
-                                 </ui-select-match>
-                                 <ui-select-choices repeat="periodtype in periodtypes">
-                                    <span ng-bind-html="periodtype | highlight: $select.search"></span>
-                                 </ui-select-choices>
-                              </ui-select>
+               <div class="rightimage">
+                  <div class="infodiv" ng-if="activediv =='info'">
+                     <div class="service-items" ng-if="((!formData.type || formData.type=='Service') && currentdevice == 'desktop' ) || ((formData.type=='Service') && (currentdevice == 'mobile')) && (activediv =='info')" >
+                        <div class="col-lg-12 col-md-12 nopadding ">
+                           <div class="label-text marginbottom5">
+                              Type of Service / Title <span class="text-danger" ng-if="titleerror"> (Enter Service Title)</span>
+                           </div>
+                           <input type="text" name="title" placeholder="e.g. Image of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-disabled="!formData.type" class="collabro-text-box"  maxlength="100">
+                           <!-- <div class="pinklimit">{{formData.title.length ? formData.title.length : 0 }} / 100 Char</div> -->
+                        </div>
+                        <div class="col-lg-12 col-md-12 nopadding margintop10">
+                           <div class="label-text marginbottom5">
+                              Service Description <span class="text-danger" ng-if="descriptionerror"> (Enter Service Description)</span>
+                           </div>
+                           <textarea row="10" name="description" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." class="height170 collabro-text-box" ng-model="formData.description" required ng-disabled="!formData.type" maxlength="1000" ></textarea>
+                        </div>
+                        <!-- <div class="pinklimit">{{formData.description.length ? formData.description.length : 0 }} / 1000 Char</div>
                            </div> -->
-                        </div>
-                     </div>
-                     <div class="clear"></div>
-                     <div class="col-lg-12 col-md-12 nopadding margintop10" ng-if="formData.type!='Service'">
-                        <div class="col-md-7 col-sm-7 col-lg-7 nopadding">
-                        </div>
-                        <div class="col-md-5 col-sm-5 col-lg-5 nopadding">
-                           <div class="label-text marginbottom5">Collection and Physical Store Address </div>
-                           <div class="col-md-12 col-lg-12 nopadding">
-                              <button type="button" class="collabro_btn gradient-button button-width-100" ng-click="changeactiveDiv('address');" ng-disabled="!formData.type" cl >Insert Address?</button>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="clear"></div>
-               </div>
-               <!-- Shop Info End -->
-               <!-- Rental Info Start -->
-               <div class="rental-items" ng-if="(formData.type=='Rental')&&(activediv =='info')">
-                  <div class="col-lg-12 col-md-12 nopadding ">
-                     <div class="label-text marginbottom5">
-                        Type of Rental Services / Title <span class="text-danger" ng-if="titleerror"> (Enter Rental Title)</span>
-                     </div>
-                     <input type="text" name="title" placeholder="e.g. Image of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-disabled="!formData.type"  maxlength="100" class="collabro-text-box">
-                     <!-- <div class="pinklimit">{{formData.title.length ? formData.title.length : 0 }} / 100 Char</div> -->
-                  </div>
-                  <div class="col-lg-12 col-md-12 nopadding margintop10">
-                     <div class="label-text marginbottom5">
-                        Product Description <span class="text-danger" ng-if="descriptionerror"> (Enter Rental Description)</span>
-                     </div>
-                     <textarea row="10" name="description" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." class="height170 collabro-text-box" ng-model="formData.description" required ng-disabled="!formData.type"
-                        maxlength="1000"></textarea>
-                  </div>
-                  <!-- <div>Date Availability</div> -->
-                  <div class="col-lg-12 col-md-12 nopadding margintop10">
-                     <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12 mobile-no-padding no-padding-left display">
-                        <div class="label-text marginbottom5">Location</div>
-                        <ui-select name="location" ng-model="formData.location" theme="bootstrap" search-enabled="false" onkeypress="return false;" onfocus="blur();">
-                           <ui-select-match allow-clear="true" class="selected-item float-lt">
-                              <p>
-                                 <!-- <i class="fa fa-circle-o"></i>  -->{{formData.location ? formData.location : 'Select Location'}}
-                              </p>
-                           </ui-select-match>
-                           <ui-select-choices repeat="location in locations">
-                              <span ng-bind-html="location | highlight: $select.search"></span>
-                           </ui-select-choices>
-                        </ui-select>
-                     </div>
-                     <div class="col-md-3 col-sm-3 col-xs-6 col-lg-3 display">
-                     </div>
-                     <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12 no-padding ratecontainer mmargintop10">
-                        <div class="label-text marginbottom5">Price <span class="text-danger" ng-if="priceerror"> (Price Required)</span></div>
-                        <div class="rate_holder margintop5">
-                           <div class="rate_currency" ng-class="{'opacity_5': !formData.type}">$</div>
-                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding-left mobile-no-padding-left " > <input type="tex" class="collabro-text-box no-margin percost" placeholder="0.00" name="price" ng-model="formData.price" required class="percost price-decor"  min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type"></div>
-                           <div class="rate_price display col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding mobile-no-padding-right" >
-                              <ui-select name="periodtype" ng-model="formData.periodtype" theme="bootstrap" search-enabled="false"  ng-disabled="!formData.type" onkeypress="return false;" onfocus="blur();">
+                        <div class="col-lg-12 col-md-12 no-padding margintop10" >
+                           <div class="col-md-3 col-sm-3 col-lg-3 col-xs-6 no-padding-left mobile-no-padding-left display">
+                              <div class="label-text marginbottom5">Location</div>
+                              <ui-select name="location" ng-model="formData.location" theme="bootstrap" search-enabled="false" ng-disabled="!formData.type" onkeypress="return false;" onfocus="blur();">
                                  <ui-select-match allow-clear="true" class="selected-item float-lt">
                                     <p>
-                                       <!-- <i class="fa fa-circle-o"></i>  -->{{formData.periodtype ? formData.periodtype : 'Select Period Type'}}
+                                       <!-- <i class="fa fa-circle-o"></i>  -->{{formData.location ? formData.location : 'Select Location'}}
                                     </p>
                                  </ui-select-match>
-                                 <ui-select-choices repeat="periodtype in periodtypes">
-                                    <span ng-bind-html="periodtype | highlight: $select.search"></span>
+                                 <ui-select-choices repeat="location in locations">
+                                    <span ng-bind-html="location | highlight: $select.search"></span>
                                  </ui-select-choices>
                               </ui-select>
                            </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="clear"></div>
-                  <div class="col-lg-12 col-md-12 nopadding margintop10" >
-                     <div class="col-md-7 col-sm-7 col-lg-7 nopadding" ng-if="formData.type!='Service'">
-                     </div>
-                     <div class="col-md-5 col-sm-5 col-lg-5 nopadding" >
-                        <div class="label-text marginbottom5">Collection and Physical Store Address </div>
-                        <div class="col-md-12 col-lg-12 nopadding">
-                           <button type="button" class="collabro_btn gradient-button button-width-100" ng-click="changeactiveDiv('address');" ng-disabled="!formData.type" >Insert Address?</button>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <!-- Rental Info End -->
-               <!-- Event Info Start -->
-               <div class="event-items" ng-if="(formData.type=='Event')&&(activediv =='info')">
-                  <div class="col-lg-12 col-md-12 nopadding ">
-                     <div class="label-text marginbottom5">
-                        Event Title <span class="text-danger" ng-if="titleerror"> (Enter Event Title)</span>
-                     </div>
-                     <input type="text" name="title" placeholder="e.g. Image of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-disabled="!formData.type"  maxlength="100" class="collabro-text-box">
-                     <!-- <div class="pinklimit">{{formData.title.length ? formData.title.length : 0 }} / 100 Char</div> -->
-                  </div>
-                  <div class="col-lg-12 col-md-12 nopadding margintop10">
-                     <div class="label-text marginbottom5">
-                        Event Description <span class="text-danger" ng-if="descriptionerror"> (Enter Event Description)</span>
-                     </div>
-                     <textarea row="10" name="description" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." class="height170 collabro-text-box" ng-model="formData.description" required ng-disabled="!formData.type"
-                        maxlength="1000"></textarea>
-                  </div>
-                  <div class="col-lg-12 col-md-12 no-padding margintop10">
-                     <div class="col-md-3 col-sm-3 col-lg-3 col-xs-6 no-padding-left mobile-no-padding">
-                        <div class="col-md-9 col-lg-9 col-sm-9 col-xs-9 no-padding">
-                           <div class="label-text marginbottom5">Start Date <span class="text-danger" ng-if="startdateerror"> (Required)</span></div>
-                           <div class='add-on col-lg-12 nopadding date datepicker p_relative'>
-                                 <div class="input-group-btn">
-                                    <button class="collabro_btn btn-default" type="button">
-                                    <i class="fa fa-calendar"></i>
-                                    </button>
+                           <div class="col-md-3 col-sm-3 col-xs-6 col-lg-3 display  mobile-no-padding-right-col no-padding-left">
+                              <div class="label-text marginbottom5">Skills Area <span class="text-danger" ng-if="skillerror"> (Choose Skill)</span></div>
+                              <ui-select name="profession" ng-model="formData.profession" theme="bootstrap" search-enabled="false" ng-disabled="!formData.type" ng-required="formData.type=='Service'" onkeypress="return false;" onfocus="blur();">
+                                 <ui-select-match allow-clear="true" class="selected-item float-lt">
+                                    <p>
+                                       <!-- <i class="fa fa-circle-o"></i>  -->{{formData.profession ? formData.profession : 'Select Skill'}}
+                                    </p>
+                                 </ui-select-match>
+                                 <ui-select-choices repeat="profession in professions">
+                                    <span ng-bind-html="profession | highlight: $select.search"></span>
+                                 </ui-select-choices>
+                              </ui-select>
+                           </div>
+                           <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12 no-padding ratecontainer mmargintop10">
+                              <div class="label-text marginbottom5">Rate <span class="text-danger" ng-if="priceerror"> (Rate Required)</span></div>
+                              <div class="rate_holder ">
+                                 <div class="rate_currency" ng-class="{'opacity_5': !formData.type}">$</div>
+                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding-left mobile-no-padding-left" > <input type="tex" class="collabro-text-box no-margin percost" placeholder="0.00" name="price" ng-model="formData.price" required class="percost price-decor"  min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type"></div>
+                                 <div class="rate_price display col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding mobile-no-padding-right-col" >
+                                    <ui-select name="periodtype" ng-model="formData.periodtype" theme="bootstrap" search-enabled="false"  ng-disabled="!formData.type" onkeypress="return false;" onfocus="blur();">
+                                       <ui-select-match allow-clear="true" class="selected-item float-lt">
+                                          <p>
+                                             <!-- <i class="fa fa-circle-o"></i>  -->{{formData.periodtype ? formData.periodtype : 'Select Period Type'}}
+                                          </p>
+                                       </ui-select-match>
+                                       <ui-select-choices repeat="periodtype in periodtypes">
+                                          <span ng-bind-html="periodtype | highlight: $select.search"></span>
+                                       </ui-select-choices>
+                                    </ui-select>
                                  </div>
-                                 <input type="text" datepicker size="16" ng-model="formData.productstartdate" placeholder="Start Date" name="startdate" ng-required="!formData.hasstartdate" readonly container="modal"/>
-                           </div>
-                        </div>
-                        <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
-                           <div class="label-text marginbottom5">NA</div>
-                           <div class="pretty p-image p-plain ">
-                              <input type="checkbox" name="hasstartdate" ng-true-value="1" ng-false-value="0" ng-model="formData.hasstartdate" ng-change="clearDate('start',formData.hasstartdate);">
-                              <div class="state">
-                                 <i class="fa fa-check" aria-hidden="true"></i>
-                                 <label>&nbsp;&nbsp;</label>
                               </div>
                            </div>
                         </div>
+                        <div class="clear"></div>
+                        <div class="col-lg-12 col-md-12 nopadding margintop10">
+                           <div class="flex-align">
+                              <div class="label-text float-left display_inline_block marginright5 check-label">Negotiable</div>
+                              <div class="float-left">
+                                 <div class="pretty p-image p-plain">
+                                    <input ng-disabled="!formData.type" type="checkbox" ng-true-value="1" ng-false-value="0" ng-model="formData.hasbargain" />
+                                    <div class="state">
+                                       <label class="yesorno">&nbsp;&nbsp;</label>
+                                       <i class="fa fa-check" aria-hidden="true"></i>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="clear"></div>
                      </div>
-                     <div class="col-md-3 col-sm-3 col-lg-3 col-xs-6 no-padding-left mobile-no-padding ">
-                        <div class="col-md-9 col-lg-9 col-sm-9 col-xs-9 no-padding">
-                           <div class="label-text marginbottom5">End Date <span class="text-danger" ng-if="enddateerror"> (Required)</span></div>
-                           <div class='add-on col-lg-12 nopadding date datepicker p_relative'>
-                              <div class="input-group-btn">
-                                 <button class="collabro_btn btn-default" type="button">
-                                 <i class="fa fa-calendar"></i>
-                                 </button>
-                              </div>
-                              <input type="text" datepicker size="16" ng-model="formData.productenddate" placeholder="End Date" name="enddate" ng-required="!formData.hasenddate" readonly/>
+                     <!-- Service Info End-->
+                     <!-- Shop Info Start -->
+                     <div class="shop-items" ng-if="(formData.type=='Shop')&&(activediv =='info')">
+                        <div class="col-lg-12 col-md-12 nopadding ">
+                           <div class="label-text marginbottom5">
+                              Product Title <span class="text-danger" ng-if="titleerror"> (Enter Product Title)</span>
                            </div>
+                           <input type="text" name="title" placeholder="e.g. Image of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-disabled="!formData.type"  maxlength="100" class="collabro-text-box">
+                           <!-- <div class="pinklimit">{{formData.title.length ? formData.title.length : 0 }} / 100 Char</div> -->
                         </div>
-                        <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2 ">
-                           <div class="label-text marginbottom5">NA</div>
-                           <div class="pretty p-image p-plain ">
-                              <input type="checkbox" name="hasenddate"  ng-true-value="1" ng-false-value="0" ng-model="formData.hasenddate" ng-change="clearDate('end',formData.hasenddate);">
-                              <div class="state">
-                                 <i class="fa fa-check" aria-hidden="true"></i>
-                                 <label>&nbsp;&nbsp;</label>
-                              </div>
+                        <div class="col-lg-12 col-md-12 nopadding margintop10">
+                           <div class="label-text marginbottom5">
+                              Product Description <span class="text-danger" ng-if="descriptionerror"> (Enter Product Description)</span>
                            </div>
+                           <textarea row="10" name="description" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." class="height170 collabro-text-box"  ng-model="formData.description" required ng-disabled="!formData.type"
+                              maxlength="1000"></textarea>
                         </div>
-                     </div>
-                     <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12 no-padding ratecontainer mmargintop10">
-                        <div class="label-text marginbottom5">Price <span class="text-danger" ng-if="priceerror"> (Price Required)</span></div>
-                        <div class="rate_holder margintop5">
-                           <div class="rate_currency" ng-class="{'opacity_5': !formData.type}">$</div>
-                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding-left mobile-no-padding-left " > <input type="tex" class="collabro-text-box no-margin percost" placeholder="0.00" name="price" ng-model="formData.price" required class="percost price-decor"  min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type"></div>
-                           <div class="rate_price display col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding mobile-no-padding-right" >
-                              <ui-select name="periodtype" ng-model="formData.periodtype" theme="bootstrap" search-enabled="false"  ng-disabled="!formData.type" onkeypress="return false;" onfocus="blur();">
+                        <div class="col-lg-12 col-md-12 nopadding margintop10">
+                           <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12 mobile-no-padding no-padding-left display">
+                              <div class="label-text marginbottom5">Product Category <span class="text-danger" ng-if="categoryerror"> (Choose Type)</span></div>
+                              <ui-select name="category" ng-model="formData.category" theme="bootstrap" search-enabled="false" onkeypress="return false;" onfocus="blur();">
                                  <ui-select-match allow-clear="true" class="selected-item float-lt">
                                     <p>
-                                       <!-- <i class="fa fa-circle-o"></i>  -->{{formData.periodtype ? formData.periodtype : 'Select Period Type'}}
+                                       <!-- <i class="fa fa-circle-o"></i>  -->{{formData.category ? $select.selected.categoryname : 'Select Type'}}
                                     </p>
                                  </ui-select-match>
-                                 <ui-select-choices repeat="periodtype in periodtypes">
-                                    <span ng-bind-html="periodtype | highlight: $select.search"></span>
+                                 <ui-select-choices repeat="category.id as category in categories">
+                                    <span ng-bind-html="category.categoryname | highlight: $select.search"></span>
                                  </ui-select-choices>
                               </ui-select>
                            </div>
+                           <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 display">
+                           </div>
+                           <div class="col-md-3 col-sm-3 col-lg-3 col-xs-6 no-padding ratecontainer mmargintop10">
+                              <div class="label-text marginbottom5">Price <span class="text-danger" ng-if="priceerror"> (Price Required)</span></div>
+                              <div class="rate_holder margintop5">
+                                 <div class="rate_currency" ng-class="{'opacity_5': !formData.type}">$</div>
+                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding mobile-no-padding-left " > <input type="tex" class="collabro-text-box no-margin percost" placeholder="0.00" name="price" ng-model="formData.price" required class="percost price-decor"  min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type"></div>
+                                 <!-- <div class="rate_price display col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding mobile-no-padding-right" >
+                                    <ui-select name="periodtype" ng-model="formData.periodtype" theme="bootstrap" search-enabled="false"  ng-disabled="!formData.type" onkeypress="return false;" onfocus="blur();">
+                                       <ui-select-match allow-clear="true" class="selected-item float-lt">
+                                          <p>
+                                             <i class="fa fa-circle-o"></i> {{formData.periodtype ? formData.periodtype : 'Select Period Type'}}
+                                          </p>
+                                       </ui-select-match>
+                                       <ui-select-choices repeat="periodtype in periodtypes">
+                                          <span ng-bind-html="periodtype | highlight: $select.search"></span>
+                                       </ui-select-choices>
+                                    </ui-select>
+                                 </div> -->
+                              </div>
+                           </div>
+                           <div class="clear"></div>
+                           <div class="col-lg-12 col-md-12 nopadding margintop10" ng-if="formData.type!='Service'">
+                              <div class="col-md-7 col-sm-7 col-lg-7 nopadding">
+                              </div>
+                              <div class="col-md-5 col-sm-5 col-lg-5 nopadding">
+                                 <div class="label-text marginbottom5">Collection and Physical Store Address </div>
+                                 <div class="col-md-12 col-lg-12 nopadding">
+                                    <button type="button" class="collabro_btn gradient-button button-width-100" ng-click="changeactiveDiv('address');" ng-disabled="!formData.type" cl >Insert Address?</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="clear"></div>
+                     </div>
+                     <!-- Shop Info End -->
+                     <!-- Rental Info Start -->
+                     <div class="rental-items" ng-if="(formData.type=='Rental')&&(activediv =='info')">
+                        <div class="col-lg-12 col-md-12 nopadding ">
+                           <div class="label-text marginbottom5">
+                              Type of Rental Services / Title <span class="text-danger" ng-if="titleerror"> (Enter Rental Title)</span>
+                           </div>
+                           <input type="text" name="title" placeholder="e.g. Image of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-disabled="!formData.type"  maxlength="100" class="collabro-text-box">
+                           <!-- <div class="pinklimit">{{formData.title.length ? formData.title.length : 0 }} / 100 Char</div> -->
+                        </div>
+                        <div class="col-lg-12 col-md-12 nopadding margintop10">
+                           <div class="label-text marginbottom5">
+                              Product Description <span class="text-danger" ng-if="descriptionerror"> (Enter Rental Description)</span>
+                           </div>
+                           <textarea row="10" name="description" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." class="height170 collabro-text-box" ng-model="formData.description" required ng-disabled="!formData.type"
+                              maxlength="1000"></textarea>
+                        </div>
+                        <!-- <div>Date Availability</div> -->
+                        <div class="col-lg-12 col-md-12 nopadding margintop10">
+                           <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12 mobile-no-padding no-padding-left display">
+                              <div class="label-text marginbottom5">Location</div>
+                              <ui-select name="location" ng-model="formData.location" theme="bootstrap" search-enabled="false" onkeypress="return false;" onfocus="blur();">
+                                 <ui-select-match allow-clear="true" class="selected-item float-lt">
+                                    <p>
+                                       <!-- <i class="fa fa-circle-o"></i>  -->{{formData.location ? formData.location : 'Select Location'}}
+                                    </p>
+                                 </ui-select-match>
+                                 <ui-select-choices repeat="location in locations">
+                                    <span ng-bind-html="location | highlight: $select.search"></span>
+                                 </ui-select-choices>
+                              </ui-select>
+                           </div>
+                           <div class="col-md-3 col-sm-3 col-xs-6 col-lg-3 display">
+                           </div>
+                           <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12 no-padding ratecontainer mmargintop10">
+                              <div class="label-text marginbottom5">Price <span class="text-danger" ng-if="priceerror"> (Price Required)</span></div>
+                              <div class="rate_holder margintop5">
+                                 <div class="rate_currency" ng-class="{'opacity_5': !formData.type}">$</div>
+                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding-left mobile-no-padding-left " > <input type="tex" class="collabro-text-box no-margin percost" placeholder="0.00" name="price" ng-model="formData.price" required class="percost price-decor"  min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type"></div>
+                                 <div class="rate_price display col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding mobile-no-padding-right" >
+                                    <ui-select name="periodtype" ng-model="formData.periodtype" theme="bootstrap" search-enabled="false"  ng-disabled="!formData.type" onkeypress="return false;" onfocus="blur();">
+                                       <ui-select-match allow-clear="true" class="selected-item float-lt">
+                                          <p>
+                                             <!-- <i class="fa fa-circle-o"></i>  -->{{formData.periodtype ? formData.periodtype : 'Select Period Type'}}
+                                          </p>
+                                       </ui-select-match>
+                                       <ui-select-choices repeat="periodtype in periodtypes">
+                                          <span ng-bind-html="periodtype | highlight: $select.search"></span>
+                                       </ui-select-choices>
+                                    </ui-select>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="col-lg-12 col-md-12 nopadding margintop10" >
+                           <div class="col-md-7 col-sm-7 col-lg-7 nopadding" ng-if="formData.type!='Service'">
+                           </div>
+                           <div class="col-md-5 col-sm-5 col-lg-5 nopadding" >
+                              <div class="label-text marginbottom5">Collection and Physical Store Address </div>
+                              <div class="col-md-12 col-lg-12 nopadding">
+                                 <button type="button" class="collabro_btn gradient-button button-width-100" ng-click="changeactiveDiv('address');" ng-disabled="!formData.type" >Insert Address?</button>
+                              </div>
+                           </div>
                         </div>
                      </div>
-                  </div>
-                  <div class="clear"></div>
-                  <div class="col-lg-12 col-md-12 no-padding margintop10">
-                     <div class="col-md-4 col-sm-4 col-lg-3 col-xs-6 no-padding-left mobile-no-padding-left no-right-arrow">
-                        <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5 nopadd display">
-                           <div class="label-text marginbottom5">From</div>
-                           <ui-select name="starttime" ng-model="formData.starttime" theme="bootstrap" search-enabled="false" onkeypress="return false;" onfocus="blur();">
-                              <ui-select-match allow-clear="true" class="selected-item float-lt">
-                                 <p>
-                                    <!-- <i class="fa fa-circle-o"></i>  -->{{formData.starttime ? formData.starttime : 'Select StartTime'}}
-                                 </p>
-                              </ui-select-match>
-                              <ui-select-choices repeat="starttime in times">
-                                 <span ng-bind-html="starttime | highlight: $select.search"></span>
-                              </ui-select-choices>
-                           </ui-select>
+                     <!-- Rental Info End -->
+                     <!-- Event Info Start -->
+                     <div class="event-items" ng-if="(formData.type=='Event')&&(activediv =='info')">
+                        <div class="col-lg-12 col-md-12 nopadding ">
+                           <div class="label-text marginbottom5">
+                              Event Title <span class="text-danger" ng-if="titleerror"> (Enter Event Title)</span>
+                           </div>
+                           <input type="text" name="title" placeholder="e.g. Image of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-disabled="!formData.type"  maxlength="100" class="collabro-text-box">
+                           <!-- <div class="pinklimit">{{formData.title.length ? formData.title.length : 0 }} / 100 Char</div> -->
                         </div>
-                        <div class="col-md-1 col-sm-1 col-lg-1 col-xs-2 no-padding">&nbsp;</div>
-                        <div class="col-md-5 col-sm-5 col-lg-5  col-xs-5 nopadd display mobilenopad">
-                           <div class="label-text marginbottom5"> to </div>
-                           <ui-select name="endtime" ng-model="formData.endtime" theme="bootstrap" search-enabled="false" onkeypress="return false;" onfocus="blur();">
-                              <ui-select-match allow-clear="true" class="selected-item float-lt">
-                                 <p>
-                                    <!-- <i class="fa fa-circle-o"></i>  -->{{formData.endtime ? formData.endtime : 'Select EndTime'}}
-                                 </p>
-                              </ui-select-match>
-                              <ui-select-choices repeat="endtime in times">
-                                 <span ng-bind-html="endtime | highlight: $select.search"></span>
-                              </ui-select-choices>
-                           </ui-select>
+                        <div class="col-lg-12 col-md-12 nopadding margintop10">
+                           <div class="label-text marginbottom5">
+                              Event Description <span class="text-danger" ng-if="descriptionerror"> (Enter Event Description)</span>
+                           </div>
+                           <textarea row="10" name="description" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." class="height170 collabro-text-box" ng-model="formData.description" required ng-disabled="!formData.type"
+                              maxlength="1000"></textarea>
                         </div>
-                     </div>
-                     <div class="col-md-3 col-sm-3 col-lg-4 col-xs-2 no-padding-left">
-                        <div>&nbsp;</div>
-                        <div class="checktext float-lt">
+                        <div class="col-lg-12 col-md-12 no-padding margintop10">
+                           <div class="col-md-3 col-sm-3 col-lg-3 col-xs-6 no-padding-left mobile-no-padding">
+                              <div class="col-md-9 col-lg-9 col-sm-9 col-xs-9 no-padding">
+                                 <div class="label-text marginbottom5">Start Date <span class="text-danger" ng-if="startdateerror"> (Required)</span></div>
+                                 <div class='add-on col-lg-12 nopadding date datepicker p_relative'>
+                                       <div class="input-group-btn">
+                                          <button class="collabro_btn btn-default" type="button">
+                                          <i class="fa fa-calendar"></i>
+                                          </button>
+                                       </div>
+                                       <input type="text" datepicker size="16" ng-model="formData.productstartdate" placeholder="Start Date" name="startdate" ng-required="!formData.hasstartdate" readonly container="modal"/>
+                                 </div>
+                              </div>
+                              <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+                                 <div class="label-text marginbottom5">NA</div>
+                                 <div class="pretty p-image p-plain ">
+                                    <input type="checkbox" name="hasstartdate" ng-true-value="1" ng-false-value="0" ng-model="formData.hasstartdate" ng-change="clearDate('start',formData.hasstartdate);">
+                                    <div class="state">
+                                       <i class="fa fa-check" aria-hidden="true"></i>
+                                       <label>&nbsp;&nbsp;</label>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-3 col-sm-3 col-lg-3 col-xs-6 no-padding-left mobile-no-padding ">
+                              <div class="col-md-9 col-lg-9 col-sm-9 col-xs-9 no-padding">
+                                 <div class="label-text marginbottom5">End Date <span class="text-danger" ng-if="enddateerror"> (Required)</span></div>
+                                 <div class='add-on col-lg-12 nopadding date datepicker p_relative'>
+                                    <div class="input-group-btn">
+                                       <button class="collabro_btn btn-default" type="button">
+                                       <i class="fa fa-calendar"></i>
+                                       </button>
+                                    </div>
+                                    <input type="text" datepicker size="16" ng-model="formData.productenddate" placeholder="End Date" name="enddate" ng-required="!formData.hasenddate" readonly/>
+                                 </div>
+                              </div>
+                              <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2 ">
+                                 <div class="label-text marginbottom5">NA</div>
+                                 <div class="pretty p-image p-plain ">
+                                    <input type="checkbox" name="hasenddate"  ng-true-value="1" ng-false-value="0" ng-model="formData.hasenddate" ng-change="clearDate('end',formData.hasenddate);">
+                                    <div class="state">
+                                       <i class="fa fa-check" aria-hidden="true"></i>
+                                       <label>&nbsp;&nbsp;</label>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12 no-padding ratecontainer mmargintop10">
+                              <div class="label-text marginbottom5">Price <span class="text-danger" ng-if="priceerror"> (Price Required)</span></div>
+                              <div class="rate_holder margintop5">
+                                 <div class="rate_currency" ng-class="{'opacity_5': !formData.type}">$</div>
+                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding-left mobile-no-padding-left " > <input type="tex" class="collabro-text-box no-margin percost" placeholder="0.00" name="price" ng-model="formData.price" required class="percost price-decor"  min="1" max="100000" limit-to-max step="0.01" valid-number precision="2" ng-disabled="!formData.type"></div>
+                                 <div class="rate_price display col-lg-6 col-md-6 col-sm-6 col-xs-6 no-padding mobile-no-padding-right" >
+                                    <ui-select name="periodtype" ng-model="formData.periodtype" theme="bootstrap" search-enabled="false"  ng-disabled="!formData.type" onkeypress="return false;" onfocus="blur();">
+                                       <ui-select-match allow-clear="true" class="selected-item float-lt">
+                                          <p>
+                                             <!-- <i class="fa fa-circle-o"></i>  -->{{formData.periodtype ? formData.periodtype : 'Select Period Type'}}
+                                          </p>
+                                       </ui-select-match>
+                                       <ui-select-choices repeat="periodtype in periodtypes">
+                                          <span ng-bind-html="periodtype | highlight: $select.search"></span>
+                                       </ui-select-choices>
+                                    </ui-select>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="col-lg-12 col-md-12 no-padding margintop10">
+                           <div class="col-md-4 col-sm-4 col-lg-3 col-xs-6 no-padding-left mobile-no-padding-left no-right-arrow">
+                              <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5 nopadd display">
+                                 <div class="label-text marginbottom5">From</div>
+                                 <ui-select name="starttime" ng-model="formData.starttime" theme="bootstrap" search-enabled="false" onkeypress="return false;" onfocus="blur();">
+                                    <ui-select-match allow-clear="true" class="selected-item float-lt">
+                                       <p>
+                                          <!-- <i class="fa fa-circle-o"></i>  -->{{formData.starttime ? formData.starttime : 'Select StartTime'}}
+                                       </p>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="starttime in times">
+                                       <span ng-bind-html="starttime | highlight: $select.search"></span>
+                                    </ui-select-choices>
+                                 </ui-select>
+                              </div>
+                              <div class="col-md-1 col-sm-1 col-lg-1 col-xs-2 no-padding">&nbsp;</div>
+                              <div class="col-md-5 col-sm-5 col-lg-5  col-xs-5 nopadd display mobilenopad">
+                                 <div class="label-text marginbottom5"> to </div>
+                                 <ui-select name="endtime" ng-model="formData.endtime" theme="bootstrap" search-enabled="false" onkeypress="return false;" onfocus="blur();">
+                                    <ui-select-match allow-clear="true" class="selected-item float-lt">
+                                       <p>
+                                          <!-- <i class="fa fa-circle-o"></i>  -->{{formData.endtime ? formData.endtime : 'Select EndTime'}}
+                                       </p>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="endtime in times">
+                                       <span ng-bind-html="endtime | highlight: $select.search"></span>
+                                    </ui-select-choices>
+                                 </ui-select>
+                              </div>
+                           </div>
+                           <div class="col-md-3 col-sm-3 col-lg-4 col-xs-2 no-padding-left">
+                              <div>&nbsp;</div>
+                              <div class="checktext float-lt">
+                                 <div class="pretty p-image p-plain">
+                                    <input type="checkbox" />
+                                    <div class="state">
+                                       <i class="fa fa-check" aria-hidden="true"></i>
+                                       <label>All day event</label>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+
+                           <div class="mobileclear" ng-if="currentdevice == 'mobile'"></div>
+                           <div class="col-lg-12 col-md-12 no-padding margintop10" ng-if="currentdevice == 'mobile'">
                            <div class="pretty p-image p-plain">
                               <input type="checkbox" />
                               <div class="state">
                                  <i class="fa fa-check" aria-hidden="true"></i>
-                                 <label>All day event</label>
+                                 <label>Save the date</label>
+                              </div>
+                           </div>
+                        </div>
+                           <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12 nopadding mmargintop10" ng-if="formData.type!='Service'">
+                              <div class="label-text marginbottom5">Collection and Physical Store Address </div>
+                              <div class="col-lg-12 col-md-12 nopadding">
+                                 <button type="button" class="collabro_btn gradient-button button-width-100" ng-click="changeactiveDiv('address');" ng-disabled="!formData.type" >Insert Address?</button>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="col-lg-12 col-md-12 no-padding margintop10" ng-if="currentdevice != 'mobile'">
+                           <div class="pretty p-image p-plain">
+                              <input type="checkbox" />
+                              <div class="state">
+                                 <i class="fa fa-check" aria-hidden="true"></i>
+                                 <label>Save the date</label>
                               </div>
                            </div>
                         </div>
                      </div>
-
-                     <div class="mobileclear" ng-if="currentdevice == 'mobile'"></div>
-                      <div class="col-lg-12 col-md-12 no-padding margintop10" ng-if="currentdevice == 'mobile'">
-                     <div class="pretty p-image p-plain">
-                        <input type="checkbox" />
-                        <div class="state">
-                           <i class="fa fa-check" aria-hidden="true"></i>
-                           <label>Save the date</label>
+                  </div>
+                  <!-- Event Info End -->
+                  <!-- info end -->
+                  <div class="addressdiv" ng-if="activediv =='address'" >
+                     <div class="col-lg-12 col-md-12 col-sm-12 nopadding">
+                        <div class="col-lg-5 col-md-5 col-sm-5 nopadding">
+                           <div class="label-text marginbottom5">
+                              Address <span class="text-danger" ng-if="addresserror"> (Enter Address)</span>
+                           </div>
+                           <textarea row="10" name="address" ng-model="formData.address" required placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." class="height70 collabro-text-box"></textarea>
                         </div>
-                     </div>
-                  </div>
-                     <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12 nopadding mmargintop10" ng-if="formData.type!='Service'">
-                        <div class="label-text marginbottom5">Collection and Physical Store Address </div>
-                        <div class="col-lg-12 col-md-12 nopadding">
-                           <button type="button" class="collabro_btn gradient-button button-width-100" ng-click="changeactiveDiv('address');" ng-disabled="!formData.type" >Insert Address?</button>
+                        <div class="col-lg-2 col-md-2 col-sm-2 no-padding"> &nbsp;</div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 nopadding">
+                           <div class="label-text marginbottom5">
+                              Business Email <span class="text-danger" ng-if="emailerror"> (Enter a valid Email)</span>
+                           </div>
+                           <input type="email" name="emailid" placeholder="email" ng-model="formData.email" required class="collabro-text-box">
+                           <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 no-padding margintop10">
+                              <div class="pretty p-image p-plain">
+                                 <input type="radio" name="isprivate" value="1" ng-model="formData.isprivate">
+                                 <div class="state">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                    <label>Private</label>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 no-padding margintop10" >
+                              <div class="pretty p-image p-plain">
+                                 <input type="radio" name="isprivate" value="0" ng-model="formData.isprivate">
+                                 <div class="state">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                    <label>Public</label>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
+                        <div class="clear"></div>
                      </div>
-                  </div>
-                  <div class="clear"></div>
-                  <div class="col-lg-12 col-md-12 no-padding margintop10" ng-if="currentdevice != 'mobile'">
-                     <div class="pretty p-image p-plain">
-                        <input type="checkbox" />
-                        <div class="state">
-                           <i class="fa fa-check" aria-hidden="true"></i>
-                           <label>Save the date</label>
+                     <div class="col-lg-12 col-md-12 col-sm-12 no-padding margintop10">
+                        <div class="col-lg-5 col-md-5 col-sm-5 nopadding">
+                           <div class="col-lg-8 col-md-8 col-sm-8 no-padding-left mobile-no-padding">
+                              <div class="label-text marginbottom5">Postal Code <span class="text-danger" ng-if="postalcodeerror"> (Enter Postal Code)</span></div>
+                              <input type="text" name="postalcode" ng-model="formData.postalcode" required numbers-only required class="collabro-text-box">
+                           </div>
+                           <div class="col-lg-4 col-md-4 col-sm-4 no-padding text-right mmargintop10" ng-if="currentdevice == 'desktop'">
+                              <div class="label-text marginbottom5">&nbsp;</div>
+                              <div class="pretty p-image p-plain">
+                                 <input type="checkbox" name="showmap" ng-true-value="1" ng-false-value="0" ng-model="formData.showmap">
+                                 <div class="state" >
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                    <label>Show map</label>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
+                        <div class="companynum" ng-if="currentdevice == 'mobile'">
+                           <div class="checktext marginlefttop mmargintop10" >
+                              <div class="pretty p-image p-plain">
+                                 <input type="checkbox" name="showmap" ng-true-value="1" ng-false-value="0" ng-model="formData.showmap">
+                                 <div class="state" >
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                    <label>Show map</label>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="clear"></div>
                      </div>
-                  </div>
-               </div>
-            </div>
-            <!-- Event Info End -->
-            <!-- info end -->
-            <div class="addressdiv" ng-if="activediv =='address'" >
-               <div class="col-lg-12 col-md-12 col-sm-12 nopadding">
-                  <div class="col-lg-5 col-md-5 col-sm-5 nopadding">
-                     <div class="label-text marginbottom5">
-                        Address <span class="text-danger" ng-if="addresserror"> (Enter Address)</span>
+                     <div class="col-lg-12 col-md-12 col-sm-12 no-padding margintop10" ng-if="user.iscompany == 1">
+                        <div class="col-lg-5 col-md-5 col-sm-5 nopadding">
+                           <div class="label-text marginbottom5">Organisation <span class="text-danger" ng-if="organisationerror"> (Enter your Organization Name)</span></div>
+                           <input type="text" name="organisation" placeholder="Name of company or organiser" ng-model="formData.organisation" required class="collabro-text-box">
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 no-padding"> &nbsp;</div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 nopadding">
+                           <div class="label-text marginbottom5"> Company UEN No. <span class="text-danger" ng-if="companyuenerror"> (Enter your Company UEN)</span></div>
+                           <input type="text" name="company_uen" placeholder="Company registrtion No." ng-model="formData.company_uen" class="collabro-text-box">
+                        </div>
+                        <div class="clear"></div>
                      </div>
-                     <textarea row="10" name="address" ng-model="formData.address" required placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." class="height70 collabro-text-box"></textarea>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 no-padding"> &nbsp;</div>
-                  <div class="col-lg-5 col-md-5 col-sm-5 nopadding">
-                     <div class="label-text marginbottom5">
-                        Business Email <span class="text-danger" ng-if="emailerror"> (Enter a valid Email)</span>
+                     <div class="col-lg-12 col-md-12 col-sm-12 no-padding margintop10">
+                        <div class="label-text marginbottom5">
+                           Order Link (Optional)
+                        </div>
+                        <input type="text" name="orderlink" placeholder="Product order or booking link" ng-model="formData.orderlink" ng-required="formData.orderlink" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/" class="collabro-text-box">
                      </div>
-                     <input type="email" name="emailid" placeholder="email" ng-model="formData.email" required class="collabro-text-box">
-                     <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 no-padding margintop10">
-                        <div class="pretty p-image p-plain">
-                           <input type="radio" name="isprivate" value="1" ng-model="formData.isprivate">
-                           <div class="state">
-                              <i class="fa fa-check" aria-hidden="true"></i>
-                              <label>Private</label>
+                     <div class="col-lg-12 col-md-12 col-sm-12 no-padding margintop10">
+                        <div class=" col-md-5 col-lg-5 col-sm-5 no-padding">
+                           <div class="label-text marginbottom5">Contact No. <span class="text-danger" ng-if="phoneerror"> (Enter your Contact No)</span></div>
+                           <div class=" col-md-3 col-lg-3 col-sm-3 col-xs-3 no-padding">
+                              <input type="text" placeholder="+65" ng-model="formData.countrycode"  class="collabro-text-box">
+                           </div>
+                           <div class=" col-md-2 col-lg-2 col-sm-2 col-xs-1 no-padding">&nbsp;</div>
+                           <div class=" col-md-7 col-lg-7 col-sm-7 col-xs-8 no-padding">
+                              <input type="text" name="phoneno" placeholder="2358 8070" class="collabro-text-box" ng-model="formData.phoneno"
+                                 required numbers-only>
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 no-padding margintop10" >
-                        <div class="pretty p-image p-plain">
-                           <input type="radio" name="isprivate" value="0" ng-model="formData.isprivate">
-                           <div class="state">
-                              <i class="fa fa-check" aria-hidden="true"></i>
-                              <label>Public</label>
-                           </div>
+                     <div class="clear"></div>
+                     <div class="col-lg-12 col-md-12 no-padding margintop25 mmargintop10" >
+                        <div class="col-md-7 col-sm-7 col-lg-7 nopadding ">
                         </div>
-                     </div>
-                  </div>
-                  <div class="clear"></div>
-               </div>
-               <div class="col-lg-12 col-md-12 col-sm-12 no-padding margintop10">
-                  <div class="col-lg-5 col-md-5 col-sm-5 nopadding">
-                     <div class="col-lg-8 col-md-8 col-sm-8 no-padding-left mobile-no-padding">
-                        <div class="label-text marginbottom5">Postal Code <span class="text-danger" ng-if="postalcodeerror"> (Enter Postal Code)</span></div>
-                        <input type="text" name="postalcode" ng-model="formData.postalcode" required numbers-only required class="collabro-text-box">
-                     </div>
-                     <div class="col-lg-4 col-md-4 col-sm-4 no-padding text-right mmargintop10" ng-if="currentdevice == 'desktop'">
-                        <div class="label-text marginbottom5">&nbsp;</div>
-                        <div class="pretty p-image p-plain">
-                           <input type="checkbox" name="showmap" ng-true-value="1" ng-false-value="0" ng-model="formData.showmap">
-                           <div class="state" >
-                              <i class="fa fa-check" aria-hidden="true"></i>
-                              <label>Show map</label>
-                           </div>
+                        <div class="col-md-5 col-sm-5 col-lg-5 nopadding ">
+                           <div class="label-text marginbottom5 ">Collection and Physical Store Address </div>
+                           <button type="button" class="collabro_btn gradient-button button-width-100" ng-click="changeactiveDiv('info');" ng-disabled="!formData.type" >Back to Info</button>
                         </div>
-                     </div>
-                  </div>
-                  <div class="companynum" ng-if="currentdevice == 'mobile'">
-                     <div class="checktext marginlefttop mmargintop10" >
-                        <div class="pretty p-image p-plain">
-                           <input type="checkbox" name="showmap" ng-true-value="1" ng-false-value="0" ng-model="formData.showmap">
-                           <div class="state" >
-                              <i class="fa fa-check" aria-hidden="true"></i>
-                              <label>Show map</label>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="clear"></div>
-               </div>
-               <div class="col-lg-12 col-md-12 col-sm-12 no-padding margintop10" ng-if="user.iscompany == 1">
-                  <div class="col-lg-5 col-md-5 col-sm-5 nopadding">
-                     <div class="label-text marginbottom5">Organisation <span class="text-danger" ng-if="organisationerror"> (Enter your Organization Name)</span></div>
-                     <input type="text" name="organisation" placeholder="Name of company or organiser" ng-model="formData.organisation" required class="collabro-text-box">
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 no-padding"> &nbsp;</div>
-                  <div class="col-lg-5 col-md-5 col-sm-5 nopadding">
-                     <div class="label-text marginbottom5"> Company UEN No. <span class="text-danger" ng-if="companyuenerror"> (Enter your Company UEN)</span></div>
-                     <input type="text" name="company_uen" placeholder="Company registrtion No." ng-model="formData.company_uen" class="collabro-text-box">
-                  </div>
-                  <div class="clear"></div>
-               </div>
-               <div class="col-lg-12 col-md-12 col-sm-12 no-padding margintop10">
-                  <div class="label-text marginbottom5">
-                     Order Link (Optional)
-                  </div>
-                  <input type="text" name="orderlink" placeholder="Product order or booking link" ng-model="formData.orderlink" ng-required="formData.orderlink" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/" class="collabro-text-box">
-               </div>
-               <div class="col-lg-12 col-md-12 col-sm-12 no-padding margintop10">
-                  <div class=" col-md-5 col-lg-5 col-sm-5 no-padding">
-                     <div class="label-text marginbottom5">Contact No. <span class="text-danger" ng-if="phoneerror"> (Enter your Contact No)</span></div>
-                     <div class=" col-md-3 col-lg-3 col-sm-3 col-xs-3 no-padding">
-                        <input type="text" placeholder="+65" ng-model="formData.countrycode"  class="collabro-text-box">
-                     </div>
-                     <div class=" col-md-2 col-lg-2 col-sm-2 col-xs-1 no-padding">&nbsp;</div>
-                     <div class=" col-md-7 col-lg-7 col-sm-7 col-xs-8 no-padding">
-                        <input type="text" name="phoneno" placeholder="2358 8070" class="collabro-text-box" ng-model="formData.phoneno"
-                           required numbers-only>
                      </div>
                   </div>
                </div>
                <div class="clear"></div>
-               <div class="col-lg-12 col-md-12 no-padding margintop25 mmargintop10" >
-                  <div class="col-md-7 col-sm-7 col-lg-7 nopadding ">
-                  </div>
-                  <div class="col-md-5 col-sm-5 col-lg-5 nopadding ">
-                     <div class="label-text marginbottom5 ">Collection and Physical Store Address </div>
-                     <button type="button" class="collabro_btn gradient-button button-width-100" ng-click="changeactiveDiv('info');" ng-disabled="!formData.type" >Back to Info</button>
-                  </div>
+            </div>
+         </div>
+         
+         <!-- Modal footer -->
+         <div class="custom-modal-footer">
+            <div class="modal-footer mt-20">
+               <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-right no-padding-right button_right">
+                  <button type="submit" class="collabro_btn commision-button button-width-100 button_right" ng-if="!isedit" button-spinner="loading" ng-disabled="loading||!formData.type">Publish Item</button>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-left no-padding-left button_right">
+                  <button type="button" class="collabro_btn btn-default cancel button-width-100 " ng-click="closeproductModal();">Cancel</button>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 no-padding-left">    
+                  <button type="submit" class="collabro_btn btn-primary" ng-if="isedit" button-spinner="loading" ng-disabled="loading">Update</button>
                </div>
             </div>
          </div>
-         <div class="clear"></div>
-      </div>
-      <div class="clear"></div>
-      <div class="modal-footer mt-20">
-         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-right no-padding-right button_right">
-            <button type="submit" class="collabro_btn commision-button button-width-100 button_right" ng-if="!isedit" button-spinner="loading" ng-disabled="loading||!formData.type">Publish Item</button>
-         </div>
-         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mobile-no-padding-left no-padding-left button_right">
-            <button type="button" class="collabro_btn btn-default cancel button-width-100 " ng-click="closeproductModal();">Cancel</button>
-         </div>
-         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 no-padding-left">    
-            <button type="submit" class="collabro_btn btn-primary" ng-if="isedit" button-spinner="loading" ng-disabled="loading">Update</button>
-         </div>
+
       </div>
    </form>
 </div>

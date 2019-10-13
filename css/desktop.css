@@ -152,7 +152,7 @@ div {
    text-decoration: none;
    font-size: 14px;
    font-weight: 600;
-   padding: 0 25px;
+   padding: 0 20px 0 30px;
    display: inline-flex;
    align-items: center;
    justify-content: center;
@@ -178,13 +178,15 @@ div {
    color: #fff;
    border-radius: 22px;
    position: absolute;
-   top: 12px;
-   right: 7px;
+   top: 0px;
+   right: 15px;
    padding: 3px;
    font-size: 10px;
    width: 18px;
    height: 18px;
-   text-align: center;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
 }
 
 .forgotform {
@@ -5894,6 +5896,17 @@ h6 {
 
 .colorwhite {
    color: #fff;
+}
+
+.modal_title{
+   width: 100%;
+   float: left;
+   margin-bottom: 25px;
+   height: 60px;
+}
+
+.modal_grey{
+   background: #F4F4F4;
 }
 
 .modal_orange {
