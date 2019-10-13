@@ -131,9 +131,6 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
                         }else{
                             $scope.coverslickConfig.method.slickPlay();
                         }
-                        // $('iframe').each(function(){
-                        //     $(this)[0].contentWindow.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*');    
-                        // });
                         if($scope.sliders[previous].isloaded)
                         {   if($scope.sliders[previous].filetype == 2){
                                 if($scope.sliders[previous].file.includes('vimeo')){   
@@ -146,14 +143,6 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
                                 }
                             }
                         }
-                        
-                        // if($scope.sliders[previous].filetype == 2){
-                        //     // if($scope.sliders[previous].file.includes('youtu')){
-                        //     //     $('.videoClass')[0].contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
-                        //     // }
-                        //     // $('iframe').attr('src', $('iframe').attr('src'));
-                        // }
-
                     },
                     init: function(event, slick) {
                         slick.slickGoTo($scope.currentIndex); // slide to correct index when init
@@ -201,7 +190,11 @@ app.controller('UserMainCtrl', ['$scope', '$http', '$state', 'authServices', 'we
 
         webServices.put('updatewish', obj).then(function(getData) {
             if (getData.status == 200) {
-                $scope.products[type][key].wishstatus = obj.wishstatus;
+                if($scope.activetab == 'All'){
+                    $scope.products[type][key].wishstatus = obj.wishstatus;
+                }else{
+                    $scope.typeproductdata.data[key].wishstatus = obj.wishstatus;
+                }
                 $rootScope.$emit("showsuccessmsg", getData.data.message);
             }
         });
