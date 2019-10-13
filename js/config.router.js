@@ -24,9 +24,11 @@ angular.module('app')
                     var folderpath = 'mobile';
                     if(!current_url.includes('mobile')){
                         var parts = current_url.split('/');
-                        window.open(current_url.replace('responsive','responsive/mobile'),"_self")
+                        if(current_url.includes('responsive')){
+                            window.open(current_url.replace('responsive','responsive/mobile'),"_self");
+                        }
                     }
-                    $urlRouterProvider.otherwise(base + '/mobilemain');
+                    $urlRouterProvider.otherwise('mobile/mobilemain');
                 } else {
                     var base = '';
                     var folderpath = 'desktop';
