@@ -557,7 +557,7 @@ p {
   margin-right: 10px;
   font-size: 11px;
   font-weight: 600;
-  text-align: right;
+  text-align: center;
 }
 .custom-modal .custom-modal-title .ui-select-bootstrap {
   width: 100%;
@@ -588,6 +588,23 @@ p {
 .custom-checkbox .pretty .state {
   float: left;
   position: relative;
+}
+
+.ui-select-bootstrap .selected-item {
+  padding: 10px 15px !important;
+}
+.ui-select-bootstrap .ui-select-choices-row a {
+  padding-left: 15px !important;
+}
+
+.custom-modal-title {
+  width: 100%;
+}
+.custom-modal-title .ui-select-bootstrap .selected-item {
+  padding: 10px !important;
+}
+.custom-modal-title .ui-select-bootstrap .ui-select-choices-row a {
+  padding-left: 35px !important;
 }
 
 /*# sourceMappingURL=collabro.css.map */

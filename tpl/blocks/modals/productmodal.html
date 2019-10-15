@@ -375,7 +375,7 @@
                         </div>
                         <div class="clear"></div>
                         <div class="col-lg-12 col-md-12 no-padding margintop10">
-                           <div class="col-md-4 col-sm-4 col-lg-3 col-xs-6 no-padding-left mobile-no-padding-left no-right-arrow">
+                           <div class="col-md-5 col-sm-5 col-lg-4 col-xs-6 no-padding-left mobile-no-padding-left no-right-arrow">
                               <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5 nopadd display">
                                  <div class="label-text marginbottom5">From</div>
                                  <ui-select name="starttime" ng-model="formData.starttime" theme="bootstrap" search-enabled="false" onkeypress="return false;" onfocus="blur();">
@@ -404,7 +404,7 @@
                                  </ui-select>
                               </div>
                            </div>
-                           <div class="col-md-3 col-sm-3 col-lg-4 col-xs-2 no-padding-left">
+                           <div class="col-md-3 col-sm-3 col-lg-3 col-xs-2 no-padding-left">
                               <div>&nbsp;</div>
                               <div class="custom-checkbox">
                                     <div class="pretty p-image p-plain">
@@ -468,20 +468,24 @@
                            </div>
                            <input type="email" name="emailid" placeholder="email" ng-model="formData.email" required class="collabro-text-box">
                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 no-padding margintop10">
-                              <div class="pretty p-image p-plain">
-                                 <input type="radio" name="isprivate" value="1" ng-model="formData.isprivate">
-                                 <div class="state">
-                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                    <label>Private</label>
+                              <div class="custom-checkbox">
+                                 <div class="pretty p-image p-plain">
+                                    <input type="radio" name="isprivate" value="1" ng-model="formData.isprivate">
+                                    <div class="state">
+                                       <label class="yesorno">Private</label>
+                                       <i class="fa fa-check" aria-hidden="true"></i>
+                                    </div>
                                  </div>
                               </div>
                            </div>
                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 no-padding margintop10" >
-                              <div class="pretty p-image p-plain">
-                                 <input type="radio" name="isprivate" value="0" ng-model="formData.isprivate">
-                                 <div class="state">
-                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                    <label>Public</label>
+                              <div class="custom-checkbox">
+                                 <div class="pretty p-image p-plain">
+                                    <input type="radio" name="isprivate" value="0" ng-model="formData.isprivate">
+                                    <div class="state">
+                                       <label class="yesorno">Public</label>
+                                       <i class="fa fa-check" aria-hidden="true"></i>
+                                    </div>
                                  </div>
                               </div>
                            </div>
@@ -496,13 +500,16 @@
                            </div>
                            <div class="col-lg-4 col-md-4 col-sm-4 no-padding text-right mmargintop10" ng-if="currentdevice == 'desktop'">
                               <div class="label-text marginbottom5">&nbsp;</div>
-                              <div class="pretty p-image p-plain">
-                                 <input type="checkbox" name="showmap" ng-true-value="1" ng-false-value="0" ng-model="formData.showmap">
-                                 <div class="state" >
-                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                    <label>Show map</label>
+                              <div class="custom-checkbox">
+                                 <div class="pretty p-image p-plain">
+                                    <input type="checkbox" name="showmap" ng-true-value="1" ng-false-value="0" ng-model="formData.showmap">
+                                    <div class="state" >
+                                       <label class="yesorno">Show map</label>
+                                       <i class="fa fa-check" aria-hidden="true"></i>
+                                    </div>
                                  </div>
                               </div>
+                              
                            </div>
                         </div>
                         <div class="companynum" ng-if="currentdevice == 'mobile'">
@@ -538,11 +545,11 @@
                      </div>
                      <div class="col-lg-12 col-md-12 col-sm-12 no-padding margintop10">
                         <div class=" col-md-5 col-lg-5 col-sm-5 no-padding">
-                           <div class="label-text marginbottom5">Contact No. <span class="text-danger" ng-if="phoneerror"> (Enter your Contact No)</span></div>
+                           <div class="label-text marginbottom5 block wd-100">Contact No. <span class="text-danger" ng-if="phoneerror"> (Enter your Contact No)</span></div>
                            <div class=" col-md-3 col-lg-3 col-sm-3 col-xs-3 no-padding">
                               <input type="text" placeholder="+65" ng-model="formData.countrycode"  class="collabro-text-box">
                            </div>
-                           <div class=" col-md-2 col-lg-2 col-sm-2 col-xs-1 no-padding">&nbsp;</div>
+                           <div class=" col-md-1 col-lg-1 col-sm-1 col-xs-1 no-padding">&nbsp;</div>
                            <div class=" col-md-7 col-lg-7 col-sm-7 col-xs-8 no-padding">
                               <input type="text" name="phoneno" placeholder="2358 8070" class="collabro-text-box" ng-model="formData.phoneno"
                                  required numbers-only>

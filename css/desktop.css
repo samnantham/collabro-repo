@@ -4119,7 +4119,7 @@ blockquote p {
 
 .ui-select-bootstrap>.ui-select-match i {
    color: #32CCFE !important;
-   margin: 5px;
+   margin: 5px 3px;
 }
 
 .leftercontainer ul {
@@ -5388,6 +5388,7 @@ blockquote p {
 }
 
 .modal-dialog .pretty .state label {
+   padding-left: 5px;
    color: #344051;
 }
 .pretty.p-default input:checked~.state label:after {
@@ -6425,6 +6426,13 @@ textarea:focus {
    color: #00B322;
    border: 1px solid #ccc;
    padding: 0px;
+   align-items: center;
+   display: inline-flex;
+   justify-content: center;
+}
+
+.pretty.p-image input:checked~.state i:before{
+   font-size: 11px;
 }
 
 .ui-state-active,
