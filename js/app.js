@@ -34,5 +34,6 @@ angular.module('app', [
     'ui.select',
     'AnimatedScroll',
     'duScroll',
-    'skitter'
+    'skitter',
+    'angular-web-notification',
 ]);

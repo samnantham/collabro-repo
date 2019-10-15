@@ -15,8 +15,9 @@ angular.module('app')
     .config(
         ['$stateProvider', '$urlRouterProvider', '$locationProvider', 'JQ_CONFIG', 'MODULE_CONFIG', 'isMobileProvider',
             function($stateProvider, $urlRouterProvider, $locationProvider, JQ_CONFIG, MODULE_CONFIG, isMobile) {
+                
+                var base = '';
                 var layout = "tpl/blocks/app.html";
-
                 var current_url = window.location.href;
                 
                 if (isMobile.phone) {
@@ -28,9 +29,8 @@ angular.module('app')
                             window.open(current_url.replace('responsive','responsive/mobile'),"_self");
                         }
                     }
-                    $urlRouterProvider.otherwise('mobile/mobilemain');
+                    $urlRouterProvider.otherwise('/mobile/mobilemain');
                 } else {
-                    var base = '';
                     var folderpath = 'desktop';
                     $urlRouterProvider.otherwise(base + '/home');
                 }
@@ -51,19 +51,19 @@ angular.module('app')
 
                     .state('app.htmlcomponent', {
                         url: '/htmlcomponent',
-                        templateUrl: 'tpl/htmlcomponent.html',
+                        templateUrl: 'tpl/desktop/htmlcomponent.html',
                         resolve: load(['js/controllers/htmlcomponent.js'])
                     })
 
                     .state('app.main', {
                         url: '/main',
-                        templateUrl: 'tpl/main.html',
+                        templateUrl: 'tpl/desktop/main.html',
                         resolve: load(['js/controllers/main.js'])
                     })
 
                     .state('app.searchitems', {
                         url: '/searchitems/:keyword',
-                        templateUrl: 'tpl/searchitem.html',
+                        templateUrl: 'tpl/desktop/searchitem.html',
                         resolve: load(['js/controllers/searchitem.js'])
                     })
 
