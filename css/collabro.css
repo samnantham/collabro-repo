@@ -607,4 +607,18 @@ p {
   padding-left: 35px !important;
 }
 
+.topbar {
+  width: 100%;
+  float: left;
+  padding: 25px;
+  height: 80px;
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.16);
+  -webkit-box-shadow: 0 0px 5px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0 0px 5px rgba(0, 0, 0, 0.16);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 /*# sourceMappingURL=collabro.css.map */
