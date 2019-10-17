@@ -255,6 +255,11 @@
   justify-content: space-between;
 }
 
+@media (max-width: 768px) {
+  .flex-align-center, .flex-center, .inline-flex-center, .flex-center-space, .flex-center-right {
+    display: block;
+  }
+}
 .label-xs {
   font-size: 11px;
 }
@@ -537,6 +542,7 @@ p {
 .custom-modal {
   width: 100%;
   float: left;
+  background: #fff;
 }
 .custom-modal .custom-modal-title {
   width: 100%;
@@ -562,7 +568,7 @@ p {
 .custom-modal .custom-modal-title .ui-select-bootstrap {
   width: 100%;
   float: right;
-  min-width: 210px;
+  min-width: 240px;
 }
 .custom-modal .custom-modal-body {
   width: 100%;
@@ -574,6 +580,16 @@ p {
   margin-top: 25px;
 }
 
+@media (max-width: 768px) {
+  .custom-modal .custom-modal-title .dropdown-label {
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  .custom-modal .custom-modal-footer {
+    margin-top: 15px;
+  }
+}
 .custom-checkbox {
   width: 100%;
   float: left;
@@ -619,6 +635,23 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+/* msg count */
+.msg-count {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  background: #FF1561;
+  color: #fff;
+  font-size: 11px;
 }
 
 /*# sourceMappingURL=collabro.css.map */

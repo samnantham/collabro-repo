@@ -1,6 +1,7 @@
 .custom-modal{
     width: 100%;
     float: left;
+    background: $white;
     .custom-modal-title{
         width: 100%;
         float: left;
@@ -24,7 +25,7 @@
         .ui-select-bootstrap{
             width: 100%;
             float: right;
-            min-width: 210px;
+            min-width: 240px;
         }
     }
     .custom-modal-body{
@@ -35,5 +36,21 @@
         width: 100%;
         float: left;
         margin-top: 25px;
+    }
+}
+
+
+@media (max-width: 768px){
+    .custom-modal{
+        .custom-modal-title{
+            .dropdown-label{
+                text-align: left;
+                margin-top: 10px;
+                margin-bottom: 5px;
+            }
+        }
+        .custom-modal-footer{
+            margin-top: 15px;
+        }
     }
 }

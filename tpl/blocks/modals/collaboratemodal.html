@@ -1,218 +1,219 @@
 <div>
 <form class="form-horizontal" name="addForm" novalidate ng-submit="createProject(addForm);">
-   <div class="modal_title modal_orange col-lg-12 col-md-12 col-sm-12 deskmargin-25 flex-align">
-      <div class="leftercontainer col-lg-12 col-md-12 col-sm-12  no-padding">
-         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mobile_text_center no-padding subjecttitle mmarginbottom10"> COLLABORATION PROJECT</div>
-         <div class=" col-lg-5 col-md-5 col-sm-5 col-xs-12 mobile_text_center no-padding text-left flex-align">
-            <div class="label-text display_inline_block float_left no-padding  col-lg-3 col-md-3 col-sm-3 colorwhite ">Types of Service</div>
-            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 no-padding">
-               <ui-select ng-model="formData.type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false">
-                  <ui-select-match allow-clear="true" class="selected-item float-lt">
-                     <p><i class="fa fa-circle-o"></i> {{formData.type ? formData.type : 'Select Category'}}</p>
-                  </ui-select-match>
-                  <ui-select-choices repeat="type in projecttypes| filter: $select.search  track by $index ">
-                     <span ng-bind-html="type | highlight: $select.search"></span>
-                  </ui-select-choices>
-               </ui-select>
+   <div class="custom-modal">
+      <div class="custom-modal-title modal_orange">
+         <div class="row flex-align-center">
+               <div class="col-lg-4 col-md-4 col-xs-12"><h3>COLLABORATION PROJECT</h3></div> 
+               <div class="col-lg-4 col-md-4 col-xs-12 flex-center-space">
+                  <div class="dropdown-label">Service</div>
+                  <ui-select ng-model="formData.type" theme="bootstrap" ng-change="resetProductItems()" search-enabled="false">
+                     <ui-select-match allow-clear="true" class="selected-item float-lt">
+                        <p><i class="fa fa-circle-o"></i> {{formData.type ? formData.type : 'Select Category'}}</p>
+                     </ui-select-match>
+                     <ui-select-choices repeat="type in projecttypes| filter: $select.search  track by $index ">
+                        <span ng-bind-html="type | highlight: $select.search"></span>
+                     </ui-select-choices>
+                  </ui-select>
             </div>
+            <!-- <div class="col-lg-3 col-md-3 col-sm-3 no-padding titlebutton text-right">
+               <ul class="cursor float-rt" ng-if="currentdevice == 'desktop'">
+                  <li ng-class="{'borderact':activediv == 'info'}"><button type="button" class="toptabbutton" ng-click="changeactiveDiv('info');" ng-disabled="!formData.type">INFO</button></li>
+                  <li ng-class="{'borderact':activediv == 'members'}"><button type="button" class="toptabbutton" ng-click="changeactiveDiv('members');" ng-disabled="!formData.type">MEMBERS</button></li>
+               </ul>
+            </div> -->
          </div>
-         <!-- <div class="col-lg-3 col-md-3 col-sm-3 no-padding titlebutton text-right">
-            <ul class="cursor float-rt" ng-if="currentdevice == 'desktop'">
-               <li ng-class="{'borderact':activediv == 'info'}"><button type="button" class="toptabbutton" ng-click="changeactiveDiv('info');" ng-disabled="!formData.type">INFO</button></li>
-               <li ng-class="{'borderact':activediv == 'members'}"><button type="button" class="toptabbutton" ng-click="changeactiveDiv('members');" ng-disabled="!formData.type">MEMBERS</button></li>
-            </ul>
-         </div> -->
       </div>
-   </div>
-   <div tooltip="Please select any of service type" tooltip-trigger="mouseenter" tooltip-class="tooltip-error" tooltip-placement="right"  tooltip-enable="!formData.type">
-      <div class="mobiledec" ng-if="currentdevice == 'mobile'">&nbsp;</div>
-      <div class="leftimage">
-         <div class="col-lg-12 col-md-12 dottedborder"  ng-class="{'opacity_5': !formData.type}">
-            NOTE: The is a <a>Tripartite Standard Agreement</a> form to protect both parties against any issues in the future. Read for more info<a> here</a>.
-            <br><br>
-            <div class="bottomnewtext">Read and agreed to the TSA Protection Scheme</div>
-            <div class="pretty p-image p-plain floatleft ticker mobile-no-margin-right" >
-               <input type="checkbox" name="isaccept" ng-true-value="1" ng-false-value="0" ng-model="formData.isaccept" class="ng-pristine ng-untouched ng-valid" tabindex="0" aria-checked="false" aria-invalid="false" ng-disabled="!formData.type">
-               <div class="state">
-                  <i class="fa fa-check" aria-hidden="true"></i>
-                  <label>&nbsp;&nbsp;</label>
-               </div>
-            </div>
-            <div class="clear"></div>
-         </div>
-         <div class="col-lg-12 col-md-12 nopadding margintop10">
-            <div class="label-text marginbottom5">Add Images <span class="text-danger" ng-if="imageerror"> {{imageerrormsg}}</span></div>
-            <div class="previewholder">
-            <div class="preview-img" ng-if="viewingThumb.file" ng-if="viewingThumb.file" background-image="{{viewingThumb.isfile ? '' : IMGURL}}{{viewingThumb.isfile ? viewingThumb.base64 : viewingThumb.file}}">
-               <!-- <img ngf-src="viewingThumb.file" ng-if="viewingThumb.filetype == 1"> -->
-               <anguvideo ng-model="viewingThumb.file" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && !viewingThumb.file.includes('soundcloud')"></anguvideo>
-               <sound-cloud-player url="{{viewingThumb.file}}" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && viewingThumb.file.includes('soundcloud')"></sound-cloud-player>
-            </div>
-            </div>
-            <div ng-if="!viewingThumb.file" class="uploadcontainer show" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-disabled="!formData.type" ng-class="{'upload-btn-disabled': !formData.type}">
-               <div class="uploadinnercontainer" >
-                  <ul>
-                     <li class="borderright flex-align"><img src="img/u1.png"></li>
-                     <li class="borderright flex-align"><img src="img/u2.png"></li>
-                     <li class="flex-align"><img src="img/u3.png"></li>
-                  </ul>
-                  <div class="clear"></div>
-                  <div class="uploadertext">Add images, video from the web or take photos 
-                     to upload to your page
-                  </div>
-               </div>
-            </div>
-            <input name="productfile" type="hidden"  ng-model="formData.productfile" ng-required="formData.images.length == 0 && !formData.videourl">
-            <div class="col-lg-12 col-md-12 nopadding margintop5" ng-class="{'opacity_5': !formData.type}"><i class="fa fa-info-circle" aria-hidden="true"></i><span class="marginleft5">Up to 6 representative Image and video 640 x 360.</span> </div>
-         </div>
-         <div class="col-lg-12 col-md-12 margintop10 no-padding">
-               <div class="label-text marginbottom5">Embed Video </div>
-               <div class="col-lg-12 col-md-12 col-sm-12 no-padding">
-                  <div class="col-md-8 col-lg-8 col-sm-8 col-xs-9 no-padding "><input type="text" name="videourl" ng-model="formData.embedvideo" placeholder="Youtube / Vimeo / Soundcloud" ng-required="formData.embedvideo" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/" ng-disabled="!formData.type || (formData.images.length == 6 && editkey == null)" class="collabro-text-box">
-                  </div>
-                  <div class="col-md-4 col-lg-4 col-sm-4 col-xs-3 no-padding-right mobile-no-padding-right text-right smallpading ">
-                     <button ng-class="{'videobtn-disabled': !formData.type}"
-                        type="button" ng-click="uploadvideo();" ng-disabled="!formData.type || (formData.images.length == 6 && editkey == null)" class="collabro_btn gradient-button button-width-100"> Add </button>
+      <div tooltip="Please select any of service type" tooltip-trigger="mouseenter" tooltip-class="tooltip-error" tooltip-placement="right"  tooltip-enable="!formData.type">
+         <div class="mobiledec" ng-if="currentdevice == 'mobile'">&nbsp;</div>
+         <div class="leftimage">
+            <div class="col-lg-12 col-md-12 dottedborder"  ng-class="{'opacity_5': !formData.type}">
+               NOTE: The is a <a>Tripartite Standard Agreement</a> form to protect both parties against any issues in the future. Read for more info<a> here</a>.
+               <br><br>
+               <!-- <div class="bottomnewtext">Read and agreed to the TSA Protection Scheme</div> -->
+               <div class="custom-checkbox">
+                     <div class="pretty p-image p-plain">
+                     <input type="checkbox" name="isaccept" ng-true-value="1" ng-false-value="0" ng-model="formData.isaccept" class="ng-pristine ng-untouched ng-valid" tabindex="0" aria-checked="false" aria-invalid="false" ng-disabled="!formData.type">
+                     <div class="state">
+                        <label class="yesorno">Read and agreed to the TSA Protection Scheme</label>
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                     </div>
                   </div>
                </div>
                <div class="clear"></div>
-               <div class="bordercontainer"></div>
             </div>
-         <div class="col-md-12 col-lg-12 no-padding img-disparea">
-            <span class="imager" ng-class="{'activeborder' : key == formData.thumbimage}" ng-repeat="(key,data) in formData.images" ng-click="chooseItem(key);" tooltip-template="'tpl/blocks/desktop/thumbnailpopover.html'" tooltip-trigger="click" ng-if="formData.images.length > 0" tooltip-is-open="ismodalPopover && (key == selectedKey)" tooltip-class="preview-tooltip">
-               <div ng-if="data.filetype == 1 && data.isfile"ngf-background="data.file"></div>
-               <div ng-if="data.filetype == 1 && !data.isfile" background-image="{{IMGURL}}{{data.file}}"></div>
-               <div ng-if="data.filetype == 2" background-image="{{data.thumbnail}}"></div>
-            </span>
-            <button class="imager_add" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6"
-               ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="formData.images.length < 6" ng-disabled="!formData.type"><i class="fa fa-plus" aria-hidden="true"></i></button>
-            <div class="clear"></div>
-            <div class="marginer margintop5" ng-if="formData.images.length < 6" ng-class="{'opacity_5': !formData.type}"><span class="color01B221" ><i class="fa fa-info-circle" aria-hidden="true"></i><span class="marginleft5">Select the item you want as featured as thumbnail</span> </span>
-            </div>
-         </div>
-      </div>
-      <div class="rightimage">
-         <!-- <ul class="cursor tabcon" ng-if="currentdevice == 'mobile'">
-            <li ng-class="{'borderact':activediv == 'info'}"><button type="button" class="toptabbutton" ng-click="changeactiveDiv('info');" ng-disabled="!formData.type">INFO</button></li>
-            <li ng-class="{'borderact':activediv == 'members'}"><button type="button" class="toptabbutton" ng-click="changeactiveDiv('members');" ng-disabled="!formData.type">MEMBERS</button></li>
-         </ul>
-         <div class="mobiledec" ng-if="currentdevice == 'mobile'">&nbsp;</div> -->
-         <div class="infodiv" ng-show="activediv =='info'">
-            <!-- info start -->
-            <div class="common-itmes">
-               <div class="col-lg-12 col-md-12 nopadding mmargintop10">
-                  <div class="label-text marginbottom5">
-                     Title <span class="text-danger" ng-if="titleerror"> (Enter Project Title)</span>
-                  </div>
-                  <input type="text" name="title" placeholder="e.g. Image of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-disabled="!formData.type" maxlength="100" class="collabro-text-box">
-                  <div class="pinklimit">{{formData.title.length ? formData.title.length : 0 }} / 100 Char</div>
+            <div class="col-lg-12 col-md-12 nopadding margintop10">
+               <div class="label-text marginbottom5">Add Images <span class="text-danger" ng-if="imageerror"> {{imageerrormsg}}</span></div>
+               <div class="previewholder">
+               <div class="preview-img" ng-if="viewingThumb.file" ng-if="viewingThumb.file" background-image="{{viewingThumb.isfile ? '' : IMGURL}}{{viewingThumb.isfile ? viewingThumb.base64 : viewingThumb.file}}">
+                  <!-- <img ngf-src="viewingThumb.file" ng-if="viewingThumb.filetype == 1"> -->
+                  <anguvideo ng-model="viewingThumb.file" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && !viewingThumb.file.includes('soundcloud')"></anguvideo>
+                  <sound-cloud-player url="{{viewingThumb.file}}" width="100%" height="100%" ng-if="viewingThumb.filetype == 2 && viewingThumb.file.includes('soundcloud')"></sound-cloud-player>
                </div>
-               <div class="col-lg-12 col-md-12 nopadding margintop10">
-                  <div class="label-text marginbottom5">
-                     Project Description <span class="text-danger" ng-if="descriptionerror"> (Enter Project Description)</span>
-                  </div>
-                  <textarea row="10" name="description" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." class="height170 collabro-text-box" ng-model="formData.description" required ng-disabled="!formData.type" maxlength="1000"></textarea>
-                  <div class="pinklimit">{{formData.description.length ? formData.description.length : 0 }} / 1000 Char</div>
                </div>
-               <!--   <div class="conta marginer">
-                  <input name="features" type="hidden"  ng-model="formData.featurelength" ng-required="formData.features.length == 0">
-                  Features / Offers / Specialisations <span class="text-danger" ng-if="featureerror"> (Add some project features)</span>
-                  <div class="listcontainer">
-                     <ul class="itemholder" style="height: 63px;overflow-y: auto;">
-                        <li class="checlistfont" ng-repeat="(no,feature) in formData.features" ng-if="feature.feature"><i class="green fa fa-check-circle"></i> {{feature.feature}} <i class="pink fa fa-minus-circle cursor" ng-click="removeFeature(no)"></i></li>
+               <div ng-if="!viewingThumb.file" class="uploadcontainer show" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-disabled="!formData.type" ng-class="{'upload-btn-disabled': !formData.type}">
+                  <div class="uploadinnercontainer" >
+                     <ul>
+                        <li class="borderright flex-align"><img src="img/u1.png"></li>
+                        <li class="borderright flex-align"><img src="img/u2.png"></li>
+                        <li class="flex-align"><img src="img/u3.png"></li>
                      </ul>
-                     <div class="buttonholder">
-                        <input style="width: 88%;" type="text" name="feature" placeholder="Speacialization of your service" ng-model="formData.featuretext" my-enter="addFeature()" maxlength="35" ng-disabled="!formData.type"><button type="button" ng-click="addFeature(feature)" ng-disabled="!formData.type"> Add </button>
-                     </div>
-                  </div>
-                  </div> -->
-            </div>
-            <!-- Service Info Start-->
-            <div class="service-items" >
-               <div class="col-lg-12 col-md-12 no-padding margintop10" >
-                  <div class="col-md-3 col-sm-3 col-lg-3 col-xs-6 no-padding-left mobile-no-padding-left display">
-                     <div class="label-text marginbottom5">Location</div>
-                     <ui-select name="location" ng-model="formData.location" theme="bootstrap" search-enabled="false" ng-disabled="!formData.type">
-                        <ui-select-match allow-clear="true" class="selected-item float-lt">
-                           <p>
-                              <!-- <i class="fa fa-circle-o"></i>  -->{{formData.location ? formData.location : 'Select Location'}}
-                           </p>
-                        </ui-select-match>
-                        <ui-select-choices repeat="location in locations">
-                           <span ng-bind-html="location | highlight: $select.search"></span>
-                        </ui-select-choices>
-                     </ui-select>
-                  </div>
-                  <div class="col-lg-6 col-md-6 col-sm-6" ng-if="currentdevice != 'mobile'"> &nbsp;</div>
-                  <div class="col-md-3 col-sm-3 col-lg-3 col-xs-6 no-padding-right mobile-no-padding-right">
-                     <div class="label-text marginbottom5">Deadline <span class="text-danger" ng-if="deadlineerror"> (Required)</span></div>
-                     <div class='add-on col-lg-12 nopadding date datepicker p_relative'>
-                        <div class="input-group-btn">
-                           <button class="collabro_btn btn-default" type="button" ng-disabled="!formData.type">
-                           <i class="fa fa-calendar"></i>
-                           </button>
-                        </div>
-                        <input type="text" datepicker size="16" placeholder="Deadline" name="deadline" required readonly ng-model='formData.projectdeadline' readonly ng-disabled="!formData.type" class="collabro-text-box" />
+                     <div class="clear"></div>
+                     <div class="uploadertext">Add images, video from the web or take photos 
+                        to upload to your page
                      </div>
                   </div>
                </div>
+               <input name="productfile" type="hidden"  ng-model="formData.productfile" ng-required="formData.images.length == 0 && !formData.videourl">
+               <div class="col-lg-12 col-md-12 nopadding margintop5" ng-class="{'opacity_5': !formData.type}"><i class="fa fa-info-circle" aria-hidden="true"></i><span class="marginleft5">Up to 6 representative Image and video 640 x 360.</span> </div>
             </div>
-            <div class="clear"></div>
-                     <div class="col-lg-12 col-md-12 nopadding margintop10" ng-if="formData.type!='Service'">
-                        <div class="col-md-7 col-sm-7 col-lg-7 nopadding">
+            <div class="col-lg-12 col-md-12 margintop10 no-padding">
+                  <div class="label-text marginbottom5">Embed Video </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 no-padding">
+                     <div class="col-md-8 col-lg-8 col-sm-8 col-xs-9 no-padding "><input type="text" name="videourl" ng-model="formData.embedvideo" placeholder="Youtube / Vimeo / Soundcloud" ng-required="formData.embedvideo" ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/" ng-disabled="!formData.type || (formData.images.length == 6 && editkey == null)" class="collabro-text-box">
+                     </div>
+                     <div class="col-md-4 col-lg-4 col-sm-4 col-xs-3 no-padding-right mobile-no-padding-right text-right smallpading ">
+                        <button ng-class="{'videobtn-disabled': !formData.type}"
+                           type="button" ng-click="uploadvideo();" ng-disabled="!formData.type || (formData.images.length == 6 && editkey == null)" class="collabro_btn gradient-button button-width-100"> Add </button>
+                     </div>
+                  </div>
+                  <div class="clear"></div>
+                  <div class="bordercontainer"></div>
+               </div>
+            <div class="col-md-12 col-lg-12 no-padding img-disparea">
+               <span class="imager" ng-class="{'activeborder' : key == formData.thumbimage}" ng-repeat="(key,data) in formData.images" ng-click="chooseItem(key);" tooltip-template="'tpl/blocks/desktop/thumbnailpopover.html'" tooltip-trigger="click" ng-if="formData.images.length > 0" tooltip-is-open="ismodalPopover && (key == selectedKey)" tooltip-class="preview-tooltip">
+                  <div ng-if="data.filetype == 1 && data.isfile"ngf-background="data.file"></div>
+                  <div ng-if="data.filetype == 1 && !data.isfile" background-image="{{IMGURL}}{{data.file}}"></div>
+                  <div ng-if="data.filetype == 2" background-image="{{data.thumbnail}}"></div>
+               </span>
+               <button class="imager_add" ngf-select ngf-drop ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6"
+                  ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1" ngf-drop-available="dropAvailable" ngf-change="addImages($files);" ng-if="formData.images.length < 6" ng-disabled="!formData.type"><i class="fa fa-plus" aria-hidden="true"></i></button>
+               <div class="clear"></div>
+               <div class="marginer margintop5" ng-if="formData.images.length < 6" ng-class="{'opacity_5': !formData.type}"><span class="color01B221" ><i class="fa fa-info-circle" aria-hidden="true"></i><span class="marginleft5">Select the item you want as featured as thumbnail</span> </span>
+               </div>
+            </div>
+         </div>
+         <div class="rightimage">
+            <!-- <ul class="cursor tabcon" ng-if="currentdevice == 'mobile'">
+               <li ng-class="{'borderact':activediv == 'info'}"><button type="button" class="toptabbutton" ng-click="changeactiveDiv('info');" ng-disabled="!formData.type">INFO</button></li>
+               <li ng-class="{'borderact':activediv == 'members'}"><button type="button" class="toptabbutton" ng-click="changeactiveDiv('members');" ng-disabled="!formData.type">MEMBERS</button></li>
+            </ul>
+            <div class="mobiledec" ng-if="currentdevice == 'mobile'">&nbsp;</div> -->
+            <div class="infodiv" ng-show="activediv =='info'">
+               <!-- info start -->
+               <div class="common-itmes">
+                  <div class="col-lg-12 col-md-12 nopadding mmargintop10">
+                     <div class="label-text marginbottom5">
+                        Title <span class="text-danger" ng-if="titleerror"> (Enter Project Title)</span>
+                     </div>
+                     <input type="text" name="title" placeholder="e.g. Image of the product that you want to sell or a services that you want to offer" ng-model="formData.title" required ng-disabled="!formData.type" maxlength="100" class="collabro-text-box">
+                     <div class="pinklimit">{{formData.title.length ? formData.title.length : 0 }} / 100 Char</div>
+                  </div>
+                  <div class="col-lg-12 col-md-12 nopadding margintop10">
+                     <div class="label-text marginbottom5">
+                        Project Description <span class="text-danger" ng-if="descriptionerror"> (Enter Project Description)</span>
+                     </div>
+                     <textarea row="10" name="description" placeholder="This is where you can put a description of your item. It can be a product to sell, portfolio work or services to hire or to rent." class="height170 collabro-text-box" ng-model="formData.description" required ng-disabled="!formData.type" maxlength="1000"></textarea>
+                     <div class="pinklimit">{{formData.description.length ? formData.description.length : 0 }} / 1000 Char</div>
+                  </div>
+                  <!--   <div class="conta marginer">
+                     <input name="features" type="hidden"  ng-model="formData.featurelength" ng-required="formData.features.length == 0">
+                     Features / Offers / Specialisations <span class="text-danger" ng-if="featureerror"> (Add some project features)</span>
+                     <div class="listcontainer">
+                        <ul class="itemholder" style="height: 63px;overflow-y: auto;">
+                           <li class="checlistfont" ng-repeat="(no,feature) in formData.features" ng-if="feature.feature"><i class="green fa fa-check-circle"></i> {{feature.feature}} <i class="pink fa fa-minus-circle cursor" ng-click="removeFeature(no)"></i></li>
+                        </ul>
+                        <div class="buttonholder">
+                           <input style="width: 88%;" type="text" name="feature" placeholder="Speacialization of your service" ng-model="formData.featuretext" my-enter="addFeature()" maxlength="35" ng-disabled="!formData.type"><button type="button" ng-click="addFeature(feature)" ng-disabled="!formData.type"> Add </button>
                         </div>
-                        <div class="col-md-5 col-sm-5 col-lg-5 nopadding">
-                          <div class="col-md-12 col-lg-12 nopadding">
-                              <button type="button" class="collabro_btn gradient-button button-width-100" ng-click="changeactiveDiv('members');" ng-disabled="!formData.type">Add Members</button>
+                     </div>
+                     </div> -->
+               </div>
+               <!-- Service Info Start-->
+               <div class="service-items" >
+                  <div class="col-lg-12 col-md-12 no-padding margintop10" >
+                     <div class="col-md-3 col-sm-3 col-lg-3 col-xs-6 no-padding-left mobile-no-padding-left display">
+                        <div class="label-text marginbottom5">Location</div>
+                        <ui-select name="location" ng-model="formData.location" theme="bootstrap" search-enabled="false" ng-disabled="!formData.type">
+                           <ui-select-match allow-clear="true" class="selected-item float-lt">
+                              <p>
+                                 <!-- <i class="fa fa-circle-o"></i>  -->{{formData.location ? formData.location : 'Select Location'}}
+                              </p>
+                           </ui-select-match>
+                           <ui-select-choices repeat="location in locations">
+                              <span ng-bind-html="location | highlight: $select.search"></span>
+                           </ui-select-choices>
+                        </ui-select>
+                     </div>
+                     <div class="col-lg-6 col-md-6 col-sm-6" ng-if="currentdevice != 'mobile'"> &nbsp;</div>
+                     <div class="col-md-3 col-sm-3 col-lg-3 col-xs-6 no-padding-right mobile-no-padding-right">
+                        <div class="label-text marginbottom5">Deadline <span class="text-danger" ng-if="deadlineerror"> (Required)</span></div>
+                        <div class='add-on col-lg-12 nopadding date datepicker p_relative'>
+                           <div class="input-group-btn">
+                              <button class="collabro_btn btn-default" type="button" ng-disabled="!formData.type">
+                              <i class="fa fa-calendar"></i>
+                              </button>
+                           </div>
+                           <input type="text" datepicker size="16" placeholder="Deadline" name="deadline" required readonly ng-model='formData.projectdeadline' readonly ng-disabled="!formData.type" class="collabro-text-box" />
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="clear"></div>
+                        <div class="col-lg-12 col-md-12 nopadding margintop10" ng-if="formData.type!='Service'">
+                           <div class="col-md-7 col-sm-7 col-lg-7 nopadding">
+                           </div>
+                           <div class="col-md-5 col-sm-5 col-lg-5 nopadding">
+                           <div class="col-md-12 col-lg-12 nopadding">
+                                 <button type="button" class="collabro_btn gradient-button button-width-100" ng-click="changeactiveDiv('members');" ng-disabled="!formData.type">Add Members</button>
+                              </div>
+                           </div>
+                        </div>
+            </div>
+               <div class="addressdiv" ng-show="activediv =='members' ">
+                  <div class="col-lg-12 col-md-12 no-padding mmargintop10">
+                     <div class="label-text marginbottom5">Choose from Friendlist </div>
+                     <input type="text"  class="form-control collabro-text-box" placeholder="Search Friends" focus-me="opened" ng-focus="onFocus($event)" ng-show="opened" ng-trim="false" ng-model="selected" empty-typeahead typeahead="friend as friend.username for friend in myfriends | filter:$viewValue:stateComparator" typeahead-on-select="addprojectfriend(selected); selected = '';">
+                     <!-- <input type="text" name="friend" placeholder="Search Friends" ng-model="formData.friend" ng-change="complete(formData.friend)" class="form-control collabro-text-box" ng-focus="focused = true" ng-blur="focused = false"/>
+                     <ul class="list-group userlist" ng-if="focused || formData.friend.length > 0">
+                        <li class="list-group-item" ng-repeat="(key,friend) in friends" ng-click="addprojectfriend(key,friend)">{{friend.username}}</li>
+                     </ul> -->
+                  </div>
+                  <div class="col-lg-12 col-md-12 no-padding margintop10 member-min-height">
+                     <div class="label-text marginbottom5">
+                     Added Project Members <span class="text-danger" ng-if="membererror"> (Please add project members)</span>
+                  </div>
+                     <div class="friendslistholder ">
+                        <input name="members" type="hidden"  ng-model="formData.memberlength" ng-required="formData.projectmembers.length == 0">
+                        <div ng-if="formData.projectmembers.length == 0"> Currently No Members added.</div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 no-padding-left text-center margintop10 backgroundnewgray" ng-repeat="(key,member) in formData.projectmembers" ng-class-even="'mobile-no-padding-right'" ng-class-odd="'mobile-no-padding-left'">
+                           <div class="border-1px p_relative">
+                           <i class=" fa fa-minus-circle cursor float-rt miniholder" ng-click="removeprojectfriend(key,member)"></i>
+                           <div>
+                              <div class="friendimg" background-image="{{IMGURL}}{{member.avatar}}"></div>
+                           </div>
+                           <div class="amountallocated font-weight-bold border-bar">{{member.username}}</div>
+                           <div class="amountallocated">Amount Allocated <span class="text-danger" ng-if="!member.price"> (Required)</span></div>
+                           <div class="rate_holder ">
+                              <div class="rate_currency">$</div>
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding mobile-no-padding" > <input type="tex" class="collabro-text-box no-margin percost" placeholder="0.00" name="amount" ng-model="member.price"></div>
+                           
+                           </div>
                            </div>
                         </div>
                      </div>
-         </div>
-            <div class="addressdiv" ng-show="activediv =='members' ">
-               <div class="col-lg-12 col-md-12 no-padding mmargintop10">
-                  <div class="label-text marginbottom5">Choose from Friendlist </div>
-                  <input type="text"  class="form-control collabro-text-box" placeholder="Search Friends" focus-me="opened" ng-focus="onFocus($event)" ng-show="opened" ng-trim="false" ng-model="selected" empty-typeahead typeahead="friend as friend.username for friend in myfriends | filter:$viewValue:stateComparator" typeahead-on-select="addprojectfriend(selected); selected = '';">
-                  <!-- <input type="text" name="friend" placeholder="Search Friends" ng-model="formData.friend" ng-change="complete(formData.friend)" class="form-control collabro-text-box" ng-focus="focused = true" ng-blur="focused = false"/>
-                  <ul class="list-group userlist" ng-if="focused || formData.friend.length > 0">
-                     <li class="list-group-item" ng-repeat="(key,friend) in friends" ng-click="addprojectfriend(key,friend)">{{friend.username}}</li>
-                  </ul> -->
-               </div>
-               <div class="col-lg-12 col-md-12 no-padding margintop10 member-min-height">
-                  <div class="label-text marginbottom5">
-                  Added Project Members <span class="text-danger" ng-if="membererror"> (Please add project members)</span>
-               </div>
-                  <div class="friendslistholder ">
-                     <input name="members" type="hidden"  ng-model="formData.memberlength" ng-required="formData.projectmembers.length == 0">
-                     <div ng-if="formData.projectmembers.length == 0"> Currently No Members added.</div>
-                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 no-padding-left text-center margintop10 backgroundnewgray" ng-repeat="(key,member) in formData.projectmembers" ng-class-even="'mobile-no-padding-right'" ng-class-odd="'mobile-no-padding-left'">
-                        <div class="border-1px p_relative">
-                        <i class=" fa fa-minus-circle cursor float-rt miniholder" ng-click="removeprojectfriend(key,member)"></i>
-                        <div>
-                           <div class="friendimg" background-image="{{IMGURL}}{{member.avatar}}"></div>
-                        </div>
-                        <div class="amountallocated font-weight-bold border-bar">{{member.username}}</div>
-                        <div class="amountallocated">Amount Allocated <span class="text-danger" ng-if="!member.price"> (Required)</span></div>
-                        <div class="rate_holder ">
-                           <div class="rate_currency">$</div>
-                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding mobile-no-padding" > <input type="tex" class="collabro-text-box no-margin percost" placeholder="0.00" name="amount" ng-model="member.price"></div>
-                        
-                        </div>
-                        </div>
-                     </div>
                   </div>
-               </div>
-                <div class="clear"></div>
-                     <div class="col-lg-12 col-md-12 nopadding margintop10 marginbottom50" ng-if="formData.type!='Service'">
-                        <div class="col-md-7 col-sm-7 col-lg-7 nopadding">
-                        </div>
-                        <div class="col-md-5 col-sm-5 col-lg-5 nopadding ">
-                          <div class="col-md-12 col-lg-12 nopadding">
-                              <button type="button" class="collabro_btn gradient-button button-width-100" ng-click="changeactiveDiv('info');" ng-disabled="!formData.type" cl >Back to Info</button>
+                  <div class="clear"></div>
+                        <div class="col-lg-12 col-md-12 nopadding margintop10 marginbottom50" ng-if="formData.type!='Service'">
+                           <div class="col-md-7 col-sm-7 col-lg-7 nopadding">
+                           </div>
+                           <div class="col-md-5 col-sm-5 col-lg-5 nopadding ">
+                           <div class="col-md-12 col-lg-12 nopadding">
+                                 <button type="button" class="collabro_btn gradient-button button-width-100" ng-click="changeactiveDiv('info');" ng-disabled="!formData.type" cl >Back to Info</button>
+                              </div>
                            </div>
                         </div>
-                     </div>
+               </div>
             </div>
-         </div>
       </div>
       <div class="clear"></div>
       <div class="modal-footer">
@@ -225,6 +226,7 @@
 
          <!-- <button type="submit" class="btn btn-primary" ng-if="isedit" button-spinner="loading" ng-disabled="loading">Update</button> -->
       </div>
+   </div>
 </form>
 <script type="text/ng-template" id="thumbnail-popover.html">
    <div data-ng-include="'tpl/blocks/desktop/thumbnailpopover.html'"></div>

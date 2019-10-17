@@ -5,14 +5,9 @@
          <!-- Modal title -->
          <div class="custom-modal-title modal_orange">
             <div class="row flex-align-center">
-               <div class="col-lg-4 col-md-4">
+               <div class="col-lg-4 col-md-4 col-xs-12">
                   <h3><i class="fa fa-bolt"></i> Broadcast</h3>
                </div>
-               <!-- <div
-                  class="label-text display_inline_block float_left marginright30 colorwhite nopadding mobilemarginright15 text-center ">
-                  <span class="colatitle flex-align" ng-if="currentdevice != 'mobile'"><i class="fa fa-bolt"
-                        style="font-size: 1.5rem;"></i> Broadcast</span> <i class="fa fa-bolt"
-                     ng-if="currentdevice == 'mobile'" style="font-size: 1.5rem;"></i></div> -->
                <div class="col-lg-4 col-md-4 col-xs-12 flex-center-space">
                   <div class="dropdown-label">Category</div>
                   <ui-select ng-model="broadcastData.category" theme="bootstrap" ng-change="resetFeedItems()"
@@ -31,125 +26,127 @@
          </div>
 
          <!-- Modal body -->
-         <div tooltip="Please select any of service type" tooltip-trigger="mouseenter" tooltip-class="tooltip-error"
-            tooltip-placement="right" tooltip-enable="!broadcastData.category">
-            <div class="mmargintop10">
-               <div class="leftimage">
-                  <div class="col-lg-12 col-md-12 nopadding">
-                     <div class="label-text marginbottom5">Add Images <span class="text-danger" ng-if="imageerror">
-                           {{imageerrormsg}}</span></div>
-                     <div class="previewholder">
-                        <div class="preview-img" ng-if="viewingThumb.file"
-                           background-image="{{viewingThumb.isfile ? '' : IMGURL}}{{viewingThumb.isfile ? viewingThumb.base64 : viewingThumb.file}}">
-                           <anguvideo ng-model="viewingThumb.file" width="100%" height="100%"
-                              ng-if="viewingThumb.filetype == 2 && !viewingThumb.file.includes('soundcloud')">
-                           </anguvideo>
-                           <sound-cloud-player url="{{viewingThumb.file}}" width="100%" height="100%"
-                              ng-if="viewingThumb.filetype == 2 && viewingThumb.file.includes('soundcloud')">
-                           </sound-cloud-player>
-                        </div>
-                     </div>
-                     <div ng-if="!viewingThumb.file" class="uploadcontainer show" ngf-select ngf-drop
-                        ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true"
-                        ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj"
-                        ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1"
-                        ngf-drop-available="dropAvailable" ngf-change="addImages($files);"
-                        ng-disabled="!broadcastData.category"
-                        ng-class="{'upload-btn-disabled': !broadcastData.category}">
-                        <div class="uploadinnercontainer">
-                           <ul>
-                              <li class="borderright flex-align"><img src="img/u1.png"></li>
-                              <li class="borderright flex-align"><img src="img/u2.png"></li>
-                              <li class="flex-align"><img src="img/u3.png"></li>
-                           </ul>
-                           <div class="clear"></div>
-                           <div class="uploadertext ">Add images, video from the web or take photos to upload to your
-                              page
+         <div class="custom-modal-body">
+            <div tooltip="Please select any of service type" tooltip-trigger="mouseenter" tooltip-class="tooltip-error"
+               tooltip-placement="right" tooltip-enable="!broadcastData.category">
+               <div class="mmargintop10">
+                  <div class="leftimage">
+                     <div class="col-lg-12 col-md-12 nopadding">
+                        <div class="label-text marginbottom5">Add Images <span class="text-danger" ng-if="imageerror">
+                              {{imageerrormsg}}</span></div>
+                        <div class="previewholder">
+                           <div class="preview-img" ng-if="viewingThumb.file"
+                              background-image="{{viewingThumb.isfile ? '' : IMGURL}}{{viewingThumb.isfile ? viewingThumb.base64 : viewingThumb.file}}">
+                              <anguvideo ng-model="viewingThumb.file" width="100%" height="100%"
+                                 ng-if="viewingThumb.filetype == 2 && !viewingThumb.file.includes('soundcloud')">
+                              </anguvideo>
+                              <sound-cloud-player url="{{viewingThumb.file}}" width="100%" height="100%"
+                                 ng-if="viewingThumb.filetype == 2 && viewingThumb.file.includes('soundcloud')">
+                              </sound-cloud-player>
                            </div>
                         </div>
-                     </div>
-                     <input name="productfile" type="hidden" ng-model="broadcastData.productfile"
-                        ng-required="broadcastData.images.length == 0 && !broadcastData.videourl">
-                     <div class="col-lg-12 col-md-12 nopadding margintop5"
-                        ng-class="{'opacity_5': !broadcastData.category}"><i class="fa fa-info-circle"
-                           aria-hidden="true" ng-class="{'text-danger':broadcastData.images.length == 6 }"></i><span
-                           class="marginleft5" ng-class="{'text-danger':broadcastData.images.length == 6 }">Up to 6
-                           representative Image and
-                           video 640 x 360.</span> </div>
-                  </div>
-                  <div class="col-lg-12 col-md-12 margintop10 no-padding">
-                     <div class="label-text marginbottom5">Embed Video </div>
-                     <div class="col-lg-12 col-md-12 col-sm-12 no-padding">
-                        <div class="col-md-8 col-lg-8 col-sm-8 col-xs-9 no-padding "><input type="text" name="videourl"
-                              ng-model="broadcastData.embedvideo" placeholder="Youtube / Vimeo / Soundcloud"
-                              ng-required="broadcastData.embedvideo"
-                              ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/"
-                              ng-disabled="!broadcastData.category || (broadcastData.images.length == 6 && editkey == null)"
-                              class="collabro-text-box">
+                        <div ng-if="!viewingThumb.file" class="uploadcontainer show" ngf-select ngf-drop
+                           ngf-model-invalid="invalidFiles" ngf-model-options="modelOptionsObj" ngf-multiple="true"
+                           ngf-accept="'image/*'" ngf-capture="capture" ngf-drag-over-class="dragOverClassObj"
+                           ngf-max-files="6" ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1"
+                           ngf-drop-available="dropAvailable" ngf-change="addImages($files);"
+                           ng-disabled="!broadcastData.category"
+                           ng-class="{'upload-btn-disabled': !broadcastData.category}">
+                           <div class="uploadinnercontainer">
+                              <ul>
+                                 <li class="borderright flex-align"><img src="img/u1.png"></li>
+                                 <li class="borderright flex-align"><img src="img/u2.png"></li>
+                                 <li class="flex-align"><img src="img/u3.png"></li>
+                              </ul>
+                              <div class="clear"></div>
+                              <div class="uploadertext ">Add images, video from the web or take photos to upload to your
+                                 page
+                              </div>
+                           </div>
                         </div>
-                        <div
-                           class="col-md-4 col-lg-4 col-sm-4 col-xs-3 no-padding-right mobile-no-padding-right text-right smallpading ">
-                           <button ng-class="{'videobtn-disabled': !broadcastData.category}" type="button"
-                              ng-click="uploadvideo();"
-                              ng-disabled="!broadcastData.category || (broadcastData.images.length == 6 && editkey == null)"
-                              class="collabro_btn gradient-button button-width-100"> Add </button>
+                        <input name="productfile" type="hidden" ng-model="broadcastData.productfile"
+                           ng-required="broadcastData.images.length == 0 && !broadcastData.videourl">
+                        <div class="col-lg-12 col-md-12 nopadding margintop5"
+                           ng-class="{'opacity_5': !broadcastData.category}"><i class="fa fa-info-circle"
+                              aria-hidden="true" ng-class="{'text-danger':broadcastData.images.length == 6 }"></i><span
+                              class="marginleft5" ng-class="{'text-danger':broadcastData.images.length == 6 }">Up to 6
+                              representative Image and
+                              video 640 x 360.</span> </div>
+                     </div>
+                     <div class="col-lg-12 col-md-12 margintop10 no-padding">
+                        <div class="label-text marginbottom5">Embed Video </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 no-padding">
+                           <div class="col-md-8 col-lg-8 col-sm-8 col-xs-9 no-padding "><input type="text" name="videourl"
+                                 ng-model="broadcastData.embedvideo" placeholder="Youtube / Vimeo / Soundcloud"
+                                 ng-required="broadcastData.embedvideo"
+                                 ng-pattern="/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/"
+                                 ng-disabled="!broadcastData.category || (broadcastData.images.length == 6 && editkey == null)"
+                                 class="collabro-text-box">
+                           </div>
+                           <div
+                              class="col-md-4 col-lg-4 col-sm-4 col-xs-3 no-padding-right mobile-no-padding-right text-right smallpading ">
+                              <button ng-class="{'videobtn-disabled': !broadcastData.category}" type="button"
+                                 ng-click="uploadvideo();"
+                                 ng-disabled="!broadcastData.category || (broadcastData.images.length == 6 && editkey == null)"
+                                 class="collabro_btn gradient-button button-width-100"> Add </button>
+                           </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="bordercontainer"></div>
+                     </div>
+                     <!-- <div class="conta videocontainer" ng-if="broadcastData.videourl">
+                  <anguvideo ng-model="broadcastData.videourl" width="100%" height="100%" ng-if="!broadcastData.videourl.includes('soundcloud')"></anguvideo>
+                  <sound-cloud-player url="{{broadcastData.videourl}}" width="100%" height="100%" ng-if="broadcastData.videourl.includes('soundcloud')"></sound-cloud-player>
+                  </div> -->
+                     <div class="col-md-12 col-lg-12 no-padding img-disparea">
+                        <span class="imager" ng-class="{'activeborder' : key == broadcastData.thumbimage}"
+                           ng-repeat="(key,data) in broadcastData.images" ng-click="chooseItem(key);"
+                           tooltip-template="'tpl/blocks/desktop/thumbnailpopover.html'" tooltip-trigger="click"
+                           ng-if="broadcastData.images.length > 0" tooltip-is-open="ismodalPopover && (key == selectedKey)"
+                           tooltip-class="preview-tooltip">
+                           <div ng-if="data.filetype == 1 && data.isfile" ngf-background="data.file"></div>
+                           <div ng-if="data.filetype == 1 && !data.isfile" background-image="{{IMGURL}}{{data.file}}">
+                           </div>
+                           <div ng-if="data.filetype == 2" background-image="{{data.thumbnail}}"></div>
+                        </span>
+                        <button class="imager_add" ngf-select ngf-drop ngf-model-invalid="invalidFiles"
+                           ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'"
+                           ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6"
+                           ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1"
+                           ngf-drop-available="dropAvailable" ngf-change="addImages($files);"
+                           ng-if="broadcastData.images.length < 6" ng-disabled="!broadcastData.category"><i
+                              class="fa fa-plus" aria-hidden="true"></i></button>
+                        <div class="clear"></div>
+                        <div class="marginer margintop5" ng-class="{'opacity_5': !broadcastData.category}"><span
+                              class="color01B221"><i class="fa fa-info-circle" aria-hidden="true"></i><span
+                                 class="marginleft5">Select the item you want as featured as thumbnail</span> </span>
                         </div>
                      </div>
                      <div class="clear"></div>
-                     <div class="bordercontainer"></div>
                   </div>
-                  <!-- <div class="conta videocontainer" ng-if="broadcastData.videourl">
-               <anguvideo ng-model="broadcastData.videourl" width="100%" height="100%" ng-if="!broadcastData.videourl.includes('soundcloud')"></anguvideo>
-               <sound-cloud-player url="{{broadcastData.videourl}}" width="100%" height="100%" ng-if="broadcastData.videourl.includes('soundcloud')"></sound-cloud-player>
-               </div> -->
-                  <div class="col-md-12 col-lg-12 no-padding img-disparea">
-                     <span class="imager" ng-class="{'activeborder' : key == broadcastData.thumbimage}"
-                        ng-repeat="(key,data) in broadcastData.images" ng-click="chooseItem(key);"
-                        tooltip-template="'tpl/blocks/desktop/thumbnailpopover.html'" tooltip-trigger="click"
-                        ng-if="broadcastData.images.length > 0" tooltip-is-open="ismodalPopover && (key == selectedKey)"
-                        tooltip-class="preview-tooltip">
-                        <div ng-if="data.filetype == 1 && data.isfile" ngf-background="data.file"></div>
-                        <div ng-if="data.filetype == 1 && !data.isfile" background-image="{{IMGURL}}{{data.file}}">
-                        </div>
-                        <div ng-if="data.filetype == 2" background-image="{{data.thumbnail}}"></div>
-                     </span>
-                     <button class="imager_add" ngf-select ngf-drop ngf-model-invalid="invalidFiles"
-                        ngf-model-options="modelOptionsObj" ngf-multiple="true" ngf-accept="'image/*'"
-                        ngf-capture="capture" ngf-drag-over-class="dragOverClassObj" ngf-max-files="6"
-                        ngf-ignore-invalid="ignoreInvalid" ngf-allow-dir="allowDir" class="drop-box1"
-                        ngf-drop-available="dropAvailable" ngf-change="addImages($files);"
-                        ng-if="broadcastData.images.length < 6" ng-disabled="!broadcastData.category"><i
-                           class="fa fa-plus" aria-hidden="true"></i></button>
-                     <div class="clear"></div>
-                     <div class="marginer margintop5" ng-class="{'opacity_5': !broadcastData.category}"><span
-                           class="color01B221"><i class="fa fa-info-circle" aria-hidden="true"></i><span
-                              class="marginleft5">Select the item you want as featured as thumbnail</span> </span>
-                     </div>
-                  </div>
-                  <div class="clear"></div>
-               </div>
-               <div class="rightimage ">
-                  <div class="infodiv">
-                     <div class="common-itmes ing">
-                        <div class="col-lg-12 col-md-12 nopadd ">
-                           <div class="label-text marginbottom5">Title <span class="text-danger"
-                                 ng-if="broadcasttitleerror"> (Enter Feed Title)</span></div>
-                           <input type="text" name="title"
-                              placeholder="e.g. Title of the feed that you want to send to your friends"
-                              ng-model="broadcastData.title" required ng-disabled="!broadcastData.category"
-                              maxlength="100" class="collabro-text-box">
-                           <div class="pinklimit">{{broadcastData.title.length ? broadcastData.title.length : 0 }} / 100
-                              Char</div>
-                        </div>
-                        <div class="col-lg-12 col-md-12 nopadding margintop10">
-                           <div class="label-text marginbottom5"> Feed Description <span class="text-danger"
-                                 ng-if="broadcastdescriptionerror"> (Enter Feed Description)</span></div>
-                           <textarea row="10" name="description"
-                              placeholder="This is where you can put a description of your feed."
-                              class="collabro-text-box height170" ng-model="broadcastData.description" required
-                              ng-disabled="!broadcastData.category" maxlength="1000"></textarea>
-                           <div class="pinklimit">
-                              {{broadcastData.description.length ? broadcastData.description.length : 0 }} / 1000 Char
+                  <div class="rightimage ">
+                     <div class="infodiv">
+                        <div class="common-itmes ing">
+                           <div class="col-lg-12 col-md-12 nopadd ">
+                              <div class="label-text marginbottom5">Title <span class="text-danger"
+                                    ng-if="broadcasttitleerror"> (Enter Feed Title)</span></div>
+                              <input type="text" name="title"
+                                 placeholder="e.g. Title of the feed that you want to send to your friends"
+                                 ng-model="broadcastData.title" required ng-disabled="!broadcastData.category"
+                                 maxlength="100" class="collabro-text-box">
+                              <div class="pinklimit">{{broadcastData.title.length ? broadcastData.title.length : 0 }} / 100
+                                 Char</div>
+                           </div>
+                           <div class="col-lg-12 col-md-12 nopadding margintop10">
+                              <div class="label-text marginbottom5"> Feed Description <span class="text-danger"
+                                    ng-if="broadcastdescriptionerror"> (Enter Feed Description)</span></div>
+                              <textarea row="10" name="description"
+                                 placeholder="This is where you can put a description of your feed."
+                                 class="collabro-text-box height170" ng-model="broadcastData.description" required
+                                 ng-disabled="!broadcastData.category" maxlength="1000"></textarea>
+                              <div class="pinklimit">
+                                 {{broadcastData.description.length ? broadcastData.description.length : 0 }} / 1000 Char
+                              </div>
                            </div>
                         </div>
                      </div>
@@ -159,16 +156,18 @@
          </div>
 
          <!-- Modal footer -->
-         <div class="modal-footer margintop10">
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 mobile-no-padding-right no-padding-right button_right">
-               <button type="submit" class="collabro_btn btn-primary button-width-100" ng-if="!isedit"
-                  button-spinner="loading" ng-disabled="loading||!broadcastData.category">Broadcast Feed</button>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 mobile-no-padding-left no-padding-left button_right">
-               <button type="button" class="collabro_btn btn-default cancel button-width-100"
-                  ng-click="closebroadcastModal();">Cancel</button>
-            </div>
+         <div class="custom-modal-footer">
+            <div class="modal-footer margintop10">
+               <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 mobile-no-padding-right no-padding-right button_right">
+                  <button type="submit" class="collabro_btn btn-primary button-width-100" ng-if="!isedit"
+                     button-spinner="loading" ng-disabled="loading||!broadcastData.category">Broadcast Feed</button>
+               </div>
+               <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 mobile-no-padding-left no-padding-left button_right">
+                  <button type="button" class="collabro_btn btn-default cancel button-width-100"
+                     ng-click="closebroadcastModal();">Cancel</button>
+               </div>
 
+            </div>
          </div>
 
       </div>
