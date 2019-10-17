@@ -4,6 +4,9 @@
       <li><a ui-sref="app.wishlist"><img src="img/fhmenu2.png"></a></li>
       <li><a ng-click="openbroadcastModal();"><img src="img/fhmenu3.png" class="mob-home"></a></li>
       <li><a ng-click="openModal();"><img src="img/fhmenu4.png"></a></li>
-      <li><a ui-sref="app.chats"><img src="img/fhmenu5.png"></a></li>
+      <li><a ui-sref="app.chats"><img src="img/fhmenu5.png">
+      		<div class="noticount" ng-if="user.chatmessages > 0">{{user.chatmessages}}</div>
+      		</a>
+  	</li>
    </ul>
 </div>

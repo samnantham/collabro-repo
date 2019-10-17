@@ -1007,6 +1007,7 @@ angular.module('app')
                 if (granted) {
                     console.log('Permission Granted.');
                 } else {
+                     window.alert('Unable to show notification due to Permission issue');
                     console.log('Permission Not Granted.');
                 }
             });

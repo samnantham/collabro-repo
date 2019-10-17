@@ -46,8 +46,7 @@ var app = angular.module('app')
     .config([
         'FacebookProvider',
         function(FacebookProvider) {
-            var myAppId = '529496420885575';
-            FacebookProvider.init(myAppId);
+            FacebookProvider.init({ appId: "307916346432414", version: "v2.4"});
         }
     ])
     .config(['GoogleSigninProvider', function(GoogleSigninProvider) {
