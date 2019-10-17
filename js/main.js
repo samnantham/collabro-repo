@@ -973,7 +973,7 @@ angular.module('app')
             $rootScope.timeInterval = 6000;
 
             $rootScope.getnotiCount = function() {
-                if (authServices.currentUser()) {
+                if ($rootScope.user.username) {
                     $rootScope.getmyunreads();
                 }
                 $timeout($rootScope.getnotiCount, $rootScope.timeInterval);
