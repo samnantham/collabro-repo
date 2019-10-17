@@ -290,7 +290,6 @@ app.controller('ProductModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
                     $rootScope.formData = {};
                     $rootScope.viewingThumb = {};
                 } else if (getData.status == 401) {
-                    console.log(getData)
                     $rootScope.$emit("showerror", getData);
                 } else {
                     $rootScope.$emit("showerror", getData);
