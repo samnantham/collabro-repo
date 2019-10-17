@@ -1,0 +1,23 @@
+.ui-select-bootstrap{
+    .selected-item{
+        padding: 10px 15px !important;
+    }
+    .ui-select-choices-row{
+        a{
+            padding-left: 15px !important;
+        }
+    }
+}
+.custom-modal-title{
+    width: 100%;
+    .ui-select-bootstrap{
+        .selected-item{
+            padding: 10px !important;
+        }
+        .ui-select-choices-row{
+            a{
+                padding-left: 35px !important;
+            }
+        }
+    }
+}

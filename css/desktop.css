@@ -1310,6 +1310,7 @@ input:checked+.slider:before {
    position: relative;
    border: 1px solid #e1dbd7;
    outline: none;
+   padding: 0 5px;
 }
 
 .actions i {
@@ -1670,7 +1671,6 @@ blockquote p {
 }
 
 .wishlistheader .float-rt {
-   margin-top: 5px;
    color: #6C777D;
 }
 
@@ -4119,7 +4119,7 @@ blockquote p {
 
 .ui-select-bootstrap>.ui-select-match i {
    color: #32CCFE !important;
-   margin: 5px;
+   margin: 5px 3px;
 }
 
 .leftercontainer ul {
@@ -5388,6 +5388,7 @@ blockquote p {
 }
 
 .modal-dialog .pretty .state label {
+   padding-left: 5px;
    color: #344051;
 }
 .pretty.p-default input:checked~.state label:after {
@@ -5615,7 +5616,7 @@ blockquote p {
 
 .collabro_btn {
    font-size: 14px;
-   min-height: 40px;
+   min-height: 35px;
    margin: 0rem;
    border: 0;
    border-radius: 4px;
@@ -5720,6 +5721,7 @@ blockquote p {
 
 .pretty .state label:after, .pretty .state label:before{
    top: auto;
+   border-radius: 3px;
 }
 
 .collabro-counter {
@@ -5746,7 +5748,6 @@ blockquote p {
    border: 1px solid #DEE3E9;
    padding: .54rem .5rem;
    border-radius: 4px;
-   line-height: 1.42857143;
 }
 
 .display .ui-select-bootstrap>.ui-select-match {
@@ -6425,6 +6426,14 @@ textarea:focus {
    color: #00B322;
    border: 1px solid #ccc;
    padding: 0px;
+   align-items: center;
+   display: inline-flex;
+   justify-content: center;
+   border-radius: 3px;
+}
+
+.pretty.p-image input:checked~.state i:before{
+   font-size: 11px;
 }
 
 .ui-state-active,
@@ -6662,7 +6671,8 @@ html .ui-button.ui-state-disabled:active {
 	margin-left: 0;
 }
 .selected-item.float-lt.btn.btn-default.form-control.ui-select-match {
-	padding: 10px 7px;
+   padding: 10px 7px;
+   height: 35px;
 }
 .min_max_height {
 	min-height: 265px;
