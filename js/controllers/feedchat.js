@@ -11,15 +11,11 @@ app.controller('FeedChatCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
             $rootScope.formLoading = false;
             if (getData.status == 200) {
                 $scope.feedchat = getData.data;
-                console.log($scope.feedchat)
                 $scope.feedData = getData.data.feed;
                 if (($rootScope.user.id == $scope.feedchat.userid) || ($rootScope.user.id == $scope.feedchat.feed.owner.id)) {
                     $scope.chattype = 'feedchat';
                     $scope.firebaseurl = '/feed-' + $scope.feedchat.id + '/';
                     $rootScope.getChatContent();
-                    // $timeout(function() {
-                    //     $scope.scrollTo();  
-                    // }, 4000);
                 } else {
                     $state.go('app.usermain');
                 }
@@ -28,14 +24,6 @@ app.controller('FeedChatCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
             }
         
         });
-    }
-    
-    $scope.scrollTo = function() {
-        $('html').animate({scrollTop: 700}, 'slow');
-        if($rootScope.currentdevice == 'mobile'){
-            $scope.windowheight = ($(window).height()) - 350;
-            $('.chatmessagecontainer').css('min-height', $scope.windowheight + 'px');
-        }
     }
 
     $scope.updatefeedwish = function(feed, key) {
@@ -57,9 +45,6 @@ app.controller('FeedChatCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
             } else if (user.uid == $rootScope.user.firebaseid) {
                 $rootScope.ref = firebase.database().ref().child($scope.chattype).child($scope.firebaseurl);
                 $rootScope.chatData = $firebaseArray($rootScope.ref);
-                $timeout(function() {
-                    //$rootScope.scrollMsgBody();
-                }, 2000);
             }
         });
     }
@@ -71,10 +56,6 @@ app.controller('FeedChatCtrl', ['$scope', '$sce', '$http', '$state', '$statePara
             console.log(error);
         });
     }
-
-    $rootScope.$watchCollection('chatData', function (newVal, oldVal) {  $timeout(function() {
-                    //$rootScope.scrollMsgBody();
-                }, 2000); });
 
     $rootScope.senduserchatattachment = function(files) {
         if (files && files.length) {

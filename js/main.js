@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('AppCtrl', ['$scope', '$location', '$sce', '$sessionStorage', '$window', 'webServices', 'utility', '$rootScope', '$state', '$timeout', '$aside', 'Facebook', 'GoogleSignin', 'authServices', 'isMobile', '$modal', '$filter', 'ngNotify', 'bowser', '$document',
-        function($scope, $location, $sce, $sessionStorage, $window, webServices, utility, $rootScope, $state, $timeout, $aside, Facebook, GoogleSignin, authServices, isMobile, $modal, $filter, ngNotify, bowser, $modalInstance, $document) {
+    .controller('AppCtrl', ['$scope', '$location', '$sce', '$sessionStorage', '$window', 'webServices', 'utility', '$rootScope', '$state', '$timeout', '$aside', 'Facebook', 'GoogleSignin', 'authServices', 'isMobile', '$modal', '$filter', 'ngNotify', 'webNotification', 'bowser', '$document',
+        function($scope, $location, $sce, $sessionStorage, $window, webServices, utility, $rootScope, $state, $timeout, $aside, Facebook, GoogleSignin, authServices, isMobile, $modal, $filter, ngNotify, webNotification, bowser, $modalInstance, $document) {
             $rootScope.formLoading = true;
             $rootScope.pageloading = true;
             if (isMobile.phone) {
@@ -610,6 +610,19 @@ angular.module('app')
                 });
             }
 
+            $rootScope.getmyunreads = function() {
+                webServices.get('myunreads').then(function(getData) {
+                    if (getData.status == 200) {
+                        $rootScope.countData = getData.data;
+                        if(($rootScope.countData.chatmessages > $rootScope.user.chatmessages) || ($rootScope.countData.notifications > $rootScope.user.notifications)){
+                            $scope.showwebnotification();
+                        }
+                    }else{
+                        $rootScope.logout();
+                    }
+                });
+            }
+
             $rootScope.getSettings = function() {
                 webServices.get('getsettings').then(function(getData) {
                     if (getData.status == 200) {
@@ -956,6 +969,58 @@ angular.module('app')
                     });
                 }
             });
+
+            $rootScope.timeInterval = 6000;
+
+            $rootScope.getnotiCount = function() {
+                if ($rootScope.user.username) {
+                    $rootScope.getmyunreads();
+                }
+                $timeout($rootScope.getnotiCount, $rootScope.timeInterval);
+            }
+            
+            $timeout($rootScope.getnotiCount, $scope.timeInterval);
+
+            $scope.showwebnotification = function() {
+                var title = '';
+                var message = '';
+                if($rootScope.countData.chatmessages > $rootScope.user.chatmessages){
+                    title += $rootScope.countData.chatmessages +' new chats';
+                }if($rootScope.countData.notifications > $rootScope.user.notifications){
+                    if($rootScope.countData.chatmessages > $rootScope.user.chatmessages){
+                        title += ' & '
+                    }
+                    title += $rootScope.countData.notifications +' new notifications';       
+                }
+                $rootScope.getUserInfo();
+                        
+                webNotification.showNotification(title, {
+                    body: 'You have a new message',
+                    icon: 'img/favicon.ico',
+                    onClick: function onNotificationClicked() {
+                        console.log('Notification clicked.');
+                    },
+                    autoClose: 4000 
+                }, function onShow(error, hide) {
+        if (error) {
+            webNotification.requestPermission(function onRequest(granted) {
+                if (granted) {
+                    console.log('Permission Granted.');
+                } else {
+                     window.alert('Unable to show notification due to Permission issue');
+                    console.log('Permission Not Granted.');
+                }
+            });
+        } else {
+            console.log('Notification Shown.');
+ 
+            setTimeout(function hideNotification() {
+                console.log('Hiding notification....');
+                hide(); //manually close the notification (you can skip this if you use the autoClose option)
+            }, 5000);
+        }
+    });
+            }
 
             $rootScope.$on("showerrors", function(event, errors) {
                 angular.forEach(errors, function(errormsg, no) {

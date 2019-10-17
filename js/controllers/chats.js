@@ -18,7 +18,6 @@ app.controller('UserChatsCtrl', ['$scope', '$http', '$state', 'authServices', '$
             if (getData.status == 200) {
                 $scope.totalData = getData.data.total;
                 $scope.chatusers = $scope.chatusers.concat(getData.data.data);
-                console.log($scope.chatusers)
                 $rootScope.formLoading = false;
             } else {
                 $rootScope.logout();

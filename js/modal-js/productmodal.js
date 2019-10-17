@@ -290,7 +290,6 @@ app.controller('ProductModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
                     $rootScope.formData = {};
                     $rootScope.viewingThumb = {};
                 } else if (getData.status == 401) {
-                    console.log(getData)
                     $rootScope.$emit("showerror", getData);
                 } else {
                     $rootScope.$emit("showerror", getData);
@@ -495,10 +494,10 @@ app.controller('ProductModalCtrl', ['$scope', '$timeout', '$state', '$stateParam
                 }
                 $rootScope.formData = getData.data;
                 if ($rootScope.formData.startdate) {
-                    $rootScope.formData.productstartdate = new Date($rootScope.formData.startdate);
+                    $rootScope.formData.productstartdate = $filter('date')(new Date($rootScope.formData.startdate), 'MM/dd/yy');
                 }
                 if ($rootScope.formData.enddate) {
-                    $rootScope.formData.productenddate = new Date($rootScope.formData.enddate);
+                    $rootScope.formData.productenddate = $filter('date')(new Date($rootScope.formData.enddate), 'MM/dd/yy');
                 }
                 if ($rootScope.formData.type == 'Event') {
                     if ($rootScope.formData.hasstartdate) {

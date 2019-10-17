@@ -44,14 +44,13 @@ app.controller('ProductChatCtrl', ['$scope', '$sce', '$state', '$stateParams', '
                 $rootScope.ref = firebase.database().ref().child('productchat').child('/'+$rootScope.ProductViewData.id+'-'+$rootScope.ProductViewData.ownerid+'-'+$rootScope.ProductViewData.buyer.id+'/');
                 $rootScope.chatData = $firebaseArray($rootScope.ref);
                 $rootScope.formLoading = false;
-                if($rootScope.currentdevice == 'mobile')
+                /*if($rootScope.currentdevice == 'mobile')
                 {
-                    // $timeout(function() {
-                    //     var objDiv = document.getElementById("chatbody");
-                    //     console.log(objDiv)
-                    //     objDiv.scrollTop = objDiv.scrollHeight;
-                    // }, 4000);
-                }
+                    $timeout(function() {
+                        var objDiv = document.getElementById("chatbody");
+                        objDiv.scrollTop = objDiv.scrollHeight;
+                    }, 4000);
+                }*/
             }
         });
     }

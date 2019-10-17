@@ -10,8 +10,6 @@ var app = angular.module('app')
                 app.service = $provide.service;
                 app.constant = $provide.constant;
                 app.value = $provide.value;
-              /*  app.apiurl = "http://localhost/project/MahadeerProjects/Collabro/Laravel-API/api/";
-                app.imageurl = "http://localhost/project/MahadeerProjects/Collabro/Laravel-API/";*/
                 app.apiurl = "http://mswebsg.info/server/api/";
                 app.imageurl = "http://mswebsg.info/server/";
                 app.productshareurl = "http://mswebsg.info/server/shareproduct/";
@@ -48,8 +46,7 @@ var app = angular.module('app')
     .config([
         'FacebookProvider',
         function(FacebookProvider) {
-            var myAppId = '529496420885575';
-            FacebookProvider.init(myAppId);
+            FacebookProvider.init({ appId: "307916346432414", version: "v2.4"});
         }
     ])
     .config(['GoogleSigninProvider', function(GoogleSigninProvider) {
