@@ -1,0 +1,41 @@
+/* Common sass */
+
+.avatar{ 
+    display: inline-block;   
+    img{
+        @include img-100();
+        @include border-radius(50%);
+    }
+    span{
+        width: 100%;
+        height: 100%;
+        @include border-radius(50%);
+        background: $avatar-bg;
+        color: $white;
+        @extend .inline-flex-center; 
+        text-transform: uppercase;
+    }
+}
+
+.avatar-xs{
+    @include avatar($avatar-xs);    
+}
+
+.avatar-s{
+    @include avatar($avatar-s);
+}
+
+.avatar-r{
+    @include avatar($avatar-r);
+}
+
+.avatar-m{
+    @include avatar($avatar-m);
+}
+
+.avatar-l{
+    @include avatar($avatar-l);
+}
+
+
+

@@ -1,0 +1,68 @@
+.topbar{
+    width: 100%;
+    float: left;
+    padding: 25px;
+    height: 80px;
+    @include box-shadow($box-shadow-default);
+    background: $white;
+    @extend .flex-center-space;
+    &.result{
+        height: 30px;
+        padding: 10px 15px;
+        .topbar-left{
+            span.lefttext{
+                color: $secondary-text;
+                font-size: $font-r;
+            }
+        }
+    }
+    .topbar-left{
+        width: auto;
+        float: left;
+        @extend .flex-center;
+        font-size: $font-xlx;
+        .avatar{
+            margin-right: 10px;
+        }
+        i{
+            margin-right: 10px;
+        }
+        h2{
+            margin: 0px;
+            font-size: $font-xlx;
+        }
+        li{
+            color: $black !important;
+            margin-left: 0px !important;
+            margin-right: 10px;
+            &:first-of-type{
+                border-right: 1px solid $black;
+                padding-right: 10px;
+            }
+        }
+    }
+    .topbar-right{
+        width: auto;
+        float: right;        
+    }
+    .topbar-list{
+        width: auto;
+        float: left;
+        margin: 0;
+        list-style: none;
+        li{
+            float: left;
+            @extend .flex-center;
+            font-size: $font-r;
+            margin-left: 20px;
+            color: $secondary-text;
+            i{
+                font-size: $font-m;
+                margin-right: 10px;
+            }
+            span{
+                color: $black;
+            }
+        }
+    }
+}

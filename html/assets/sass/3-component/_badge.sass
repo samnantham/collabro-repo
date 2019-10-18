@@ -1,0 +1,35 @@
+/* badge */
+.badge
+	padding: $p-5 $p-10
+	@include border-radius(20px)
+	font-weight: normal
+	svg
+		height: 15px
+		float: left
+		display: inline-block
+	span
+		font-size: $font-s
+		display: inline-block
+		float: left
+.badge-secondary
+	background: $secondary-color
+	color: $black
+.badge-default
+	background: $blue
+	color: $white
+.badge-success
+	background: $green
+	color: $white
+.badge-bradius-small
+	@include border-radius(2px)
+	span
+		font-weight: $font-bold
+.badge-border
+	@include border-radius(2px)
+	color: $blue
+	background: $white
+	border: 1px solid
+	border-color: $border
+	svg
+		color: $yellow
+		fill: $yellow

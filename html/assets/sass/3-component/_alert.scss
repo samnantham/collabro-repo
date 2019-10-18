@@ -1,0 +1,30 @@
+.alert{
+    font-size: $font-m;
+    .close{
+        color: $white;
+        opacity: 1;
+    }
+    i{
+        margin-right: 10px;
+    }
+}
+.alert-warning{
+    background: $warning;
+    color: $white;
+    border-color: darken($warning, 5%);    
+}
+.alert-success{
+    background: $success;
+    color: $white;
+    border-color: darken($success, 5%);    
+}
+.alert-danger{
+    background: $danger;
+    color: $white;
+    border-color: darken($danger, 5%);    
+}
+.alert-info{
+    background: $info;
+    color: $white;
+    border-color: darken($info, 5%);    
+}

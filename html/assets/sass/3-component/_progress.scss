@@ -1,0 +1,144 @@
+// Progress Bar ------------------------------------
+.progress-wrapper{
+    width: 100%;
+    float: left;
+}
+
+.progress-con {
+  position: relative;
+  display: flex;
+
+  // Background Track
+  .progress-track {
+    position: absolute;
+    top: 8px;
+    width: 100%;
+    height: 3px;
+    @include border-radius(3px);
+    background-color: $gray;
+    z-index: -1;
+  }
+  
+  // Each Step on the Progress Bar
+  .progress-step {
+    position: relative;
+    width: 100%;
+    font-size: $font-r;
+    text-align: center;
+    
+    // Hide the final step's progress bar
+    &:last-child:after {
+      display: none;
+    }
+
+    .progress-icon{
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 0px;
+        left: 50%;
+        z-index: -1;
+        transform: translateX(-50%);
+    }
+    
+    // Step's circle in default state
+    &:before {
+      content: "";
+      display: flex;      
+      margin: 0 auto;
+      margin-bottom: 5px;
+      width: 20px;
+      height: 20px;
+      background: $white; 
+      border: 2px solid $gray;
+      border-radius: 100%;
+      color: $white;    
+      align-items: center;  
+      justify-content: center;
+    }
+    
+    // Step's progress bar in default state
+    &:after {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: calc(50% + 15px);
+      width: 0%;
+      transition: width 1s ease-in;
+      height: 3px;
+      background: $mid-gray;
+      z-index: -1;
+      @include border-radius(3px);
+    }
+
+    // Step's active state
+    &.is-active {
+      color: $black;
+      &:before {
+        content: "";
+        background: $white url(../img/inprogress.png) no-repeat center center $white;
+        border: 2px solid $default;
+        font-size: $font-xs;
+        color: $default;
+        animation: pulse 2s infinite;
+      }
+      &:first-child:after{
+          display: none;
+      }
+    }
+
+    &.is-error {
+        color: $black;
+        &:before {
+            content: "";
+            background: $white url(../img/error.png) no-repeat center center $white;
+            border: 2px solid $danger;
+            font-size: $font-xs;
+            color: $danger;
+        }
+        &:first-child:after{
+            display: none;
+        }
+    }
+    
+    // Step's complete state
+    &.is-complete {
+      color: $black;
+      
+      // Step's circle in complete state
+      &:before {
+        content: "";
+        background: $white url(../img/check.png) no-repeat center center;
+        border-color: $green;
+      }
+      
+      // Step's progress bar in complete state
+      &:after {
+        background: $green;
+        animation: nextStep 1s;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+}
+
+// Animations --------------------------------------
+// Pulse animation for Step's circle in active state
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(33,131,221, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(33,131,221, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(33,131,221, 0);
+  }
+}
+
+// Progressing to next step animation for Step's progress bar
+@keyframes nextStep {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+

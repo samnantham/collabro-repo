@@ -1,0 +1,355 @@
+// Componant: Top Navigation Bar
+
+.main-header
+	position: fixed
+	top: 0
+	right: 0
+	left: 0
+	z-index: 1030
+	background: $default !important
+	//background: $primary-color
+	// @include box-shadow($box-shadow-default)
+
+	> .navbar
+		width: 100%
+		float: left
+		margin-bottom: 0
+		border: none
+		border-radius: 0
+		padding: 0 15px
+		min-height: 60px
+		display: flex
+		align-items: center
+		.btn
+			font-size: $font-m
+			font-weight: $font-medium
+			&:active, &:focus
+				color: $white
+	.logo
+		// padding: $p-10
+		float: left
+		> img
+			height: auto
+			max-height: 40px
+			// @include border-radius(50%)
+		&.project-logo
+			//@include absolute-center()
+			width: 50%
+			text-align: center
+	.navbar-custom-menu
+		float: right
+		margin-left: auto
+	.navbar-collapse
+		width: 100%
+		float: left
+		padding: 0px 
+		.logo
+			.fa-times
+				color: black
+				font-size: $font-m
+				cursor: pointer
+				&:hover
+					color: $default
+		.back-logo
+			//	float: left
+			display: inline-flex
+			align-items: center
+			width: 25%
+			color: $default
+			img
+				display: inline-block
+				margin: 0px
+				vertical-align: initial !important
+			h4
+				display: inline-block
+				margin: 0px
+				//margin-left: 10px
+				text-transform: capitalize
+				font-size: $font-m
+				color: $mid-black
+			a
+				color: $default
+	.navbar-toggle
+		margin-right: 10px
+		margin-top: 3px
+		border: none
+		display: none
+	.navbar-brand
+		color: $white
+	.navbar-left
+		float: right !important
+	.navl
+		float: left
+		list-style : none
+		margin: 0
+		padding: 0
+
+		> li
+			float: left
+
+			>a
+				float: left
+				padding: $p-5 $p-10
+				color: $black
+				font-size: $font-s
+				text-transform: uppercase
+
+			>a:hover
+				background: $default
+				color: $white
+
+			>a:focus
+				background: $default
+				color: $white	
+
+		.dropdown a:hover
+			background: $default
+			color: $white		
+	.navbar-form
+		border: none
+		margin-top: 6px
+		.form-control
+			border: none
+			margin-top: -1px
+			padding: 6px 12px
+			font-size: 12px
+		.btn
+			margin-top: -1px
+			background: $white
+			color: $blue
+			padding: 5px 10px 6px
+
+			&:hover
+				box-shadow: none
+				transition: none
+				transform: none !important
+
+			&:active
+				box-shadow: none
+				transition: none
+				transform: none !important
+	.top-nav
+		list-style: none
+		margin: 0
+		padding: 0
+		float: right
+		display: flex
+		align-items: center
+		> li
+			min-width: 30px	
+			float: left
+			margin: 0 20px
+			position: relative
+			display: inline-flex
+			justify-content: center
+			@include border-radius(50%)
+			svg
+				min-width: 25px
+				min-height: 25px
+				vertical-align: middle	
+				.a 
+					fill: $mid-black
+			> a
+				color: $white
+				font-size: $font-m
+				font-weight: $font-medium
+				display: inline-flex
+				align-items: center
+				max-height: 40px
+				img
+					width: auto
+					height: 25px
+				i
+					vertical-align: middle
+					font-size: $font-xxl
+				.username
+					margin-left: 10px
+					i
+						margin-left: 10px
+				.user-img
+					height: 40px
+				&:hover
+					color: $white
+					background: transparent
+			&.icon-active
+				svg
+					.a
+						fill: $default
+			&:hover
+				.dropdown-toggle
+					background: transparent
+		.dropdown-app
+			min-width: 262px
+			padding: $p-10
+			margin: $m-0
+			border: 1px solid
+			border-color: $border
+			@include box-shadow($box-shadow-popup)
+			li
+				min-width: 80px
+				float: left
+				display: inline-block
+				overflow: hidden
+				margin-bottom: $m-15
+				font-size: $font-r
+				a
+					float: left
+					text-align: center
+					img
+						display: inline-block
+						height: 20px
+						text-align: center
+					span
+						display: block !important
+						width: 100%
+						text-align: center
+						margin-top: $m-10
+		.dropdown-notification
+			min-width: 350px
+			max-width: 350px
+			margin: $m-0
+			margin-top: $m-5
+			border: 1px solid
+			border-color: $border
+			@include box-shadow($box-shadow-popup)
+			padding: 0
+			li
+				padding: 0
+			.tabset >label
+				margin: 0
+				padding: 10px !important
+		.dropdown-menu
+			li a
+				width: 100%
+				min-height: 30px
+				padding: 0 10px
+				display: inline-flex
+				align-items: center
+				cursor: pointer
+				&:hover
+					background: $default
+					color: $white			
+				svg
+					display: inline-block
+					height: 15px
+					float: left
+					margin: $mr-5
+					cursor: pointer
+				i
+					font-size: $font-m
+				span
+					font-size: $font-r
+					display: inline-block
+					font-weight: $font-regular
+
+
+		.settings-menu
+			li a
+				font-weight: 500
+				text-transform: uppercase
+		.notification-menu
+			.dropdown-menu
+				min-width: 230px
+				i
+					width: auto
+				.fa-stack
+					text-align: center
+				.fa-stack-1x, .fa-stack-2x
+					width: 100%
+				.fa-stack-2x
+					font-size: 2em
+			.media
+				display: block
+				border-bottom: 1px solid #ddd
+				.block:not(.text-muted)
+					font-weight: 500
+			.not-head
+				padding: 8px 20px
+				text-align: center
+				font-weight: 500
+				background-color: transparentize($primary-color, 0.6)
+				color: #333
+			.not-footer
+				text-align: center
+				background-color: #eee
+	
+	.navbar-inverse
+		.navbar-nav 
+			.open a:hover
+				background: $blue
+				color: $white
+
+			.open a:focus
+				background: $blue
+				color: $white
+
+	.tool-bar
+		width: 100%
+		background: $blue
+		color: $white
+		padding: 6px 10px
+
+		> a
+			font-size: 12px
+			margin-right: 10px
+			color: $white
+			> i
+				font-size: 14px
+
+@media (max-width: 767px)
+	.navbar-collapse
+		display: flex !important
+		align-items: center !important
+		justify-content: space-between
+	.main-header
+		// position: relative
+		.logo
+			float: none
+		.navbar
+			float: left
+			width: 100%
+			margin: 0
+		.navl
+			float: left
+
+			> li
+				width: 100%
+
+				> a
+					width: 100%
+					padding: 10px 15px
+	.navbar-custom-menu
+		width: 100%
+		// background: #677d7d
+		float: left
+
+	.navbar-header
+		float: right
+
+@media (max-width: 768px)
+	.main-header .top-nav
+		margin-right: 0px
+
+
+.sidebar-toggle
+	float: left
+	background-color: $default
+	background-image: none
+	width: 40px
+	height: 30px
+	text-align: center
+	line-height: 30px
+	font-family: fontAwesome
+	position: relative
+	color: $white
+	transition: all 0.3s ease
+	&:before
+		content: "\f0c9"
+		font-size: $font-m
+		color: white
+	&:focus, &:active
+		background: $default
+		color: white
+
+.apps-name
+	color: $mid-black

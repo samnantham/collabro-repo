@@ -1,0 +1,465 @@
+*
+  outline: none !important
+  @include box-sizing(border-box)
+
+.primary
+  color: $primary
+.secondary
+  color: $secondary
+.success
+  color: $success
+.info
+  color: $info
+.warning
+  color: $warning
+.danger
+  color: $danger
+.default
+  color: $default
+.error
+  color: $danger
+
+.primary-bg
+  background: $primary
+.secondary-bg
+  background: $secondary
+.success-bg
+  background: $success
+.info-bg
+  background: $info
+.warning-bg
+  background: $warning
+.danger-bg
+  background: $danger
+.default-bg
+  background: $default
+
+.aqua-bg
+  background: $aqua
+.navy-bg
+  background: $navy
+.teal-bg
+  background: $teal
+.olive-bg
+  background: $olive
+.lime-bg
+  background: $lime
+.rad-red-bg
+  background: $rad-red
+
+.yellow-bg
+  background: $yellow
+.relative
+  position: relative
+
+.caps
+  text-transform: capitalize
+
+.bold
+  font-weight: $font-black
+
+.left
+  float: left
+
+.right
+  float: right
+
+.abscenter
+  @include absolute-center()
+
+.disabled
+  display: none !important  
+
+.black
+  color: $black
+.wd-100
+  width: 100%
+  float: left
+.u-case
+  text-transform: capitalize
+.block
+  display: block !important
+
+.in-block
+  display: inline-block !important
+  width: auto !important  
+
+.text-left
+  text-align: left !important
+  
+.text-right
+  text-align: right !important
+
+.text-center
+  text-align: center !important
+
+.light-text
+  font-weight: 300 !important
+
+.semibold-text
+  font-weight: 600 !important
+
+.line-head
+  padding-bottom: 10px
+  border-bottom: 1px solid #ddd
+
+.border
+  border: 1px solid
+  border-color: $border
+
+.flex-center
+  display: flex
+  align-items: center
+  justify-content: center
+
+.inline-flex-center
+  display: inline-flex
+  align-items: center
+  justify-content: center
+
+.flex-center-space
+  display: flex
+  align-items: center
+  justify-content: space-between  
+
+.flex-center-right
+  display: flex
+  align-items: center
+  justify-content: flex-end
+
+
+@media (max-width: 768px)
+  .flex-center, .inline-flex-center, .flex-center-space, .flex-center-right
+    display: block
+
+.orange-gradient
+  background: rgb(255, 161, 92)
+  /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(255, 161, 92, 1) 1%, rgba(255, 109, 65, 1) 100%)
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(255, 161, 92, 1) 1%, rgba(255, 109, 65, 1) 100%)
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(255, 161, 92, 1) 1%, rgba(255, 109, 65, 1) 100%)
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa15c', endColorstr='#ff6d41', GradientType=0)
+
+.silver-gradient
+  background: rgb(255, 255, 255)
+  /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(223, 228, 232, 1) 100%)
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(223, 228, 232, 1) 100%)
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(223, 228, 232, 1) 100%)
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dfe4e8', GradientType=0)
+
+// labels
+.label-xs
+  font-size: $font-xs
+
+// Price font
+.font-price
+  font-size: $font-large
+  color: $default
+  font-weight: $font-medium
+
+hr
+  @extend .wd-100
+
+.no-pad
+  padding: 0px !important
+
+.p-0
+  padding: 0px !important
+.p-5
+  padding: 5px !important
+.p-10
+  padding: 10px !important
+.p-15
+  padding: 15px !important
+.p-20
+  padding: 20px !important
+.p-25
+  padding: 25px !important
+.p-30
+  padding: 30px !important
+.p-35
+  padding: 35px !important
+.p-50
+  padding: 50px !important
+.p-75
+  padding: 75px 75px 0px  !important
+
+.m-0
+  margin: 0px !important
+.m-5
+  margin: 5px !important
+.m-10
+  margin: 10px !important
+.m-15
+  margin: 15px !important
+.m-20
+  margin: 20px !important
+
+.mt-0
+  margin-top: 0px !important
+.mt-5
+  margin-top: 5px !important
+.mt-10
+  margin-top: 10px !important
+.mt-15
+  margin-top: 15px !important
+.mt-20
+  margin-top: 20px !important
+.mt-25
+  margin-top: 25px !important
+.mt-30
+  margin-top: 30px !important
+.mt-35
+  margin-top: 35px !important
+.mt-40
+  margin-top: 40px !important
+.mt-50
+  margin-top: 50px !important
+
+
+.mb-0
+  margin-bottom: 0px !important
+.mb-5
+  margin-bottom: 5px !important
+.mb-10
+  margin-bottom: 10px !important
+.mb-15
+  margin-bottom: 15px !important
+.mb-20
+  margin-bottom: 20px !important
+
+.ml-0
+  margin-left: 0px !important
+.ml-5
+  margin-left: 5px !important
+.ml-10
+  margin-left: 10px !important
+.ml-15
+  margin-left: 15px !important
+.ml-20
+  margin-left: 20px !important
+.ml-30
+  margin-left: 30px !important
+
+.mr-0
+  margin-right: 0px !important
+.mr-5
+  margin-right: 5px !important
+.mr-10
+  margin-right: 10px !important
+.mr-15
+  margin-right: 15px !important
+.mr-20
+  margin-right: 20px !important
+.mr-30
+  margin-right: 30px !important
+
+// padding
+.pt-20
+  padding-top: 20px !important
+
+.ml-auto
+  margin-left: auto
+
+.mr-auto
+  margin-right: auto
+
+$p-0:                 0px
+$p-5:                 5px
+$p-10:                10px
+$p-15:                15px
+$p-20:                20px
+$p-25:                25px
+$p-30:                30px
+$p-35:                35px
+$p-40:                40px
+$p-45:                45px
+$p-50:                50px
+
+
+$pl-5:                0px 0px 0px 5px
+$pl-10:               0px 0px 0px 10px
+$pl-15:               0px 0px 0px 15px
+$pl-20:               0px 0px 0px 20px
+$pl-25:               0px 0px 0px 25px
+$pl-30:               0px 0px 0px 30px
+$pl-35:               0px 0px 0px 35px
+$pl-40:               0px 0px 0px 40px
+$pl-45:               0px 0px 0px 45px
+$pl-50:               0px 0px 0px 50px
+
+$pr-5:                0px 5px 0px 0px
+$pr-10:               0px 10px 0px 0px
+$pr-15:               0px 15px 0px 0px
+$pr-20:               0px 20px 0px 0px
+$pr-25:               0px 25px 0px 0px
+$pr-30:               0px 30px 0px 0px
+$pr-35:               0px 35px 0px 0px
+$pr-40:               0px 40px 0px 0px
+$pr-45:               0px 45px 0px 0px
+$pr-50:               0px 50px 0px 0px
+
+$pt-5:                5px 0px 0px 0px
+$pt-10:               10px 0px 0px 0px
+$pt-15:               15px 0px 0px 0px
+$pt-20:               20px 0px 0px 0px
+$pt-25:               25px 0px 0px 0px
+$pt-30:               30px 0px 0px 0px
+$pt-35:               35px 0px 0px 0px
+$pt-40:               40px 0px 0px 0px
+$pt-45:               45px 0px 0px 0px
+$pt-50:               50px 0px 0px 0px
+
+$pb-5:                0px 0px 5px 0px
+$pb-10:               0px 0px 10px 0px
+$pb-15:               0px 0px 15px 0px
+$pb-20:               0px 0px 20px 0px
+$pb-25:               0px 0px 25px 0px
+$pb-30:               0px 0px 30px 0px
+$pb-35:               0px 0px 35px 0px
+$pb-40:               0px 0px 40px 0px
+$pb-45:               0px 0px 45px 0px
+$pb-50:               0px 0px 50px 0px
+
+$pv-5:                5px 0px 
+$pv-10:               10px 0px
+$pv-15:               15px 0px
+$pv-20:               20px 0px
+$pv-25:               25px 0px
+$pv-30:               30px 0px
+$pv-35:               35px 0px
+$pv-40:               40px 0px
+$pv-45:               45px 0px
+$pv-50:               50px 0px
+
+$ph-5:                0px 5px
+$ph-10:               0px 10px
+$ph-15:               0px 15px
+$ph-20:               0px 20px
+$ph-25:               0px 25px
+$ph-30:               0px 30px
+$ph-35:               0px 35px
+$ph-40:               0px 40px
+$ph-45:               0px 45px
+$ph-50:               0px 50px
+
+// margin
+$m-0:                 0px
+$m-5:                 5px
+$m-10:                10px
+$m-15:                15px
+$m-20:                20px
+$m-25:                25px
+$m-30:                30px
+$m-35:                35px
+$m-40:                40px
+$m-45:                45px
+$m-50:                50px
+
+$ml-5:                0px 0px 0px 5px
+$ml-10:               0px 0px 0px 10px
+$ml-15:               0px 0px 0px 15px
+$ml-20:               0px 0px 0px 20px
+$ml-25:               0px 0px 0px 25px
+$ml-30:               0px 0px 0px 30px
+$ml-35:               0px 0px 0px 35px
+$ml-40:               0px 0px 0px 40px
+$ml-45:               0px 0px 0px 45px
+$ml-50:               0px 0px 0px 50px
+
+$mr-5:                0px 5px 0px 0px
+$mr-10:               0px 10px 0px 0px
+$mr-15:               0px 15px 0px 0px
+$mr-20:               0px 20px 0px 0px
+$mr-25:               0px 25px 0px 0px
+$mr-30:               0px 30px 0px 0px
+
+$mt-5:                5px 0px 0px 0px
+$mt-10:               10px 0px 0px 0px
+$mt-15:               15px 0px 0px 0px
+$mt-20:               20px 0px 0px 0px
+$mt-25:               25px 0px 0px 0px
+$mt-30:               30px 0px 0px 0px
+$mt-35:               0px 0px 0px 35px
+$mt-40:               0px 0px 0px 40px
+$mt-45:               0px 0px 0px 45px
+$mt-50:               0px 0px 0px 50px
+
+$mb-5:                0px 0px 5px 0px
+$mb-10:               0px 0px 10px 0px
+$mb-15:               0px 0px 15px 0px
+$mb-20:               0px 0px 20px 0px
+$mb-25:               0px 0px 25px 0px
+$mb-30:               0px 0px 30px 0px
+$mb-35:               0px 0px 0px 35px
+$mb-40:               0px 0px 0px 40px
+$mb-45:               0px 0px 0px 45px
+$mb-50:               0px 0px 0px 50px
+
+$mv-5:                5px 0px 
+$mv-10:               10px 0px
+$mv-15:               15px 0px
+$mv-20:               20px 0px
+$mv-25:               25px 0px
+$mv-30:               30px 0px
+$mv-35:               0px 35px
+$mv-40:               0px 40px
+$mv-45:               0px 45px
+$mv-50:               0px 50px
+
+$mh-5:                0px 5px
+$mh-10:               0px 10px
+$mh-15:               0px 15px
+$mh-20:               0px 20px
+$mh-25:               0px 25px
+$mh-30:               0px 30px
+$mh-35:               0px 35px
+$mh-40:               0px 40px
+$mh-45:               0px 45px
+$mh-50:               0px 50px
+
+.cursor-pointer
+  cursor: pointer
+.cursor-default
+  cursor: default
+.cursor-drag
+  cursor: drag
+
+.backbtn
+  background: $half-white
+  @include border-radius(2px)
+  margin-right: 10px
+  width: 36px
+  height: 36px
+  line-height: 36px
+  text-align: center
+  display: inline-block
+  color: $mid-black
+  cursor: pointer
+  font-size: $font-xxl
+
+.back-page
+  display: flex
+  align-items: center
+  cursor: pointer
+  .back-text
+    font-size: $font-m
+    color: $mid-blue
+
+//rounded circle
+.rounded 
+  @include border-radius(50%)
+
+//image
+.img-full
+  width: auto
+  max-width: 100%
+  height: auto
+  max-height: 100%

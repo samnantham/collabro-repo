@@ -1,0 +1,87 @@
+
+
+/* Custom file upload */
+.comp-wrap{
+    width: 100%;
+    float: left;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    border: 1px dashed $default;
+    @include border-radius(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 50px 0;
+    margin-bottom: 10px;
+    .file-con{
+        margin-bottom: 15px;
+        i{
+            font-size: $font-m;
+        }
+    }
+}
+
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.progress-bar-wrap{
+    width: 100%;
+    float: left;
+}
+
+.progress-wrap{
+    width: 100%;
+    float: left;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    margin: 5px 0;
+    .progress-title{
+        width: 50%;
+        float: left;
+    }
+    .progress{
+        height: 5px;
+        width: 30%;
+        margin-bottom: 0px;
+        float: left;
+        background: $silver;
+        @include border-radius(4px);
+        .progress-bar{
+            width: auto;
+            @include border-radius(4px);
+            height: 5px;
+            &.progress-bar-info{
+                background: $blue;
+            }
+            &.progress-bar-success{
+                background: $success;
+            }
+            &.progress-bar-danger{
+                background: $danger;
+            }
+        }
+    }
+    .progress-value{
+        width: 10%;
+        float: left;
+        text-align: center;
+        font-weight: $font-medium;
+        color: $gray;
+    }
+    .progress-cancel{
+        width: 10%;
+        float: left;
+        color: $danger;
+        text-align: right;
+    }
+}

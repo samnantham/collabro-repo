@@ -1,0 +1,84 @@
+// Componant: Dropdown Menu
+
+.dropdown-menu
+	right: 0
+	left: auto
+	top: calc(100% + 10px)
+	margin-top: 0
+	border-radius: 0
+	@include box-shadow($box-shadow-add)
+	border: 0
+	padding: 0
+	display: none
+	li a
+		position: relative
+		padding: 5px 10px
+		font-size: $font-s
+		i
+			width: 20px
+			font-size: $font-s
+			vertical-align: middle
+
+.open > .dropdown-menu
+	animation-name: scaleDrop
+	animation-duration: 0.3s
+	animation-fill-mode: both
+	transform-origin: 100% 0
+	border: 1px solid
+	@include border-radius(5px)
+	border-color: transparent
+	@include box-shadow($box-shadow-card)
+	padding: $p-5 $p-0
+
+@keyframes scaleDrop
+	0%
+		opacity: 0
+		transform: scale(0)
+	100%
+		opacity: 1
+		transform: scale(1)
+
+.dropdown-menu.newd
+	left: 0
+	right: auto
+	margin-top: 0
+	border-radius: 0
+	box-shadow:  0 8px 17px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19)
+	border: 0
+	padding: 0
+	li a
+		position: relative
+		padding: 5px 10px
+		i
+			width: 20px
+			font-size: $font-s
+			vertical-align: middle
+
+.open > .dropdown-menu
+	animation-name: scaleDrop
+	animation-duration: 0.3s
+	animation-fill-mode: both
+	transform-origin: 100% 0
+
+@keyframes scaleDrop
+	0%
+		opacity: 0
+		transform: scale(0)
+	100%
+		opacity: 1
+		transform: scale(1)
+
+
+.three-dot
+	.dropdown
+		.dropdown-toggle
+			width: 25px
+			height: 25px
+			line-height: 25px
+			display: block
+			text-align: center
+			@include border-radius(50%)
+		&.open,&:hover
+			.dropdown-toggle
+				background: $half-white
+		

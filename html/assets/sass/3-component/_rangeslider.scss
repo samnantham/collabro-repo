@@ -1,0 +1,141 @@
+/* Range slider */
+$height: 30px;
+$thumb-height: 14px;
+$track-height: 5px;
+
+$upper-color: $gray;
+$lower-color: $default;
+$thumb-color: $default;
+
+$upper-background: linear-gradient(to bottom, $upper-color, $upper-color) 100% 50% / 100% $track-height no-repeat transparent;
+$lower-background: linear-gradient(to bottom, $lower-color, $lower-color) 100% 50% / 100% $track-height no-repeat transparent;
+
+
+@function webkit-slider-thumb-shadow($i: 1) {
+  $val: #{$i}px 0 0 -#{($thumb-height - $track-height) / 2} #{$upper-color};
+  @if $i == 1 {
+    @for $k from 2 through 1000 {
+      $val: #{$val}, webkit-slider-thumb-shadow($k);
+    }
+  }
+  @return $val;
+}
+
+.rangeholder{
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    // margin-top: 10px;
+    @include transition(1s);
+    span{
+        font-size: $font-s;
+    }
+    .edittext{
+        width: auto;
+        max-width: 20%;
+        border: 0px;
+        font-weight: $font-medium;
+    }
+    input[type="number"]{
+      max-width: 150px;
+    }
+}
+
+.rangeslider {
+  display: block;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 90% !important;
+  margin: 0;
+  height: $height;
+  overflow: hidden;
+  cursor: default;
+  background: transparent;
+  @include border-radius(2px);
+  &:focus {
+    outline: none;
+  }
+}
+
+.rangeslider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: $height;
+  background: $lower-background;
+  @include border-radius(2px !important);
+}
+ 
+.rangeslider::-webkit-slider-thumb {
+  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  height: $thumb-height;
+  width: $thumb-height;
+  background: $white;
+  border: 2px solid $default;
+  border-radius: 100%;
+  top: 50%;
+  margin-top: (-$thumb-height/2);
+  box-shadow: webkit-slider-thumb-shadow();
+  transition: background-color 150ms;
+}
+
+// Firefox
+.rangeslider::-moz-range-track,
+.rangeslider::-moz-range-progress {
+  width: 100%;
+  height: $height;
+  background: $upper-background;
+  @include border-radius(2px);
+}
+
+.rangeslider::-moz-range-progress {
+  background: $lower-background;
+  @include border-radius(2px !important);
+}
+
+.rangeslider::-moz-range-thumb {
+  appearance: none;
+  margin: 0;
+  height: $thumb-height;
+  width: $thumb-height;
+  background: $thumb-color;
+  border-radius: 100%;
+  border: 2px solid $thumb-color;
+  transition: background-color 150ms;
+}
+
+// Internet Exploder
+.rangeslider::-ms-track {
+  width: 100%;
+  height: $height;
+  border: 0;
+  // color needed to hide track marks
+  color: transparent;
+  background: transparent;
+  @include border-radius(3px);
+}
+
+.rangeslider::-ms-fill-lower {
+  background: $lower-background;
+  @include border-radius(2px !important);
+}
+
+.rangeslider::-ms-fill-upper {
+  background: $upper-background;
+  @include border-radius(2px !important);
+}
+
+.rangeslider::-ms-thumb {
+  appearance: none;
+  height: $thumb-height;
+  width: $thumb-height;
+  background: $thumb-color;
+  border-radius: 100%;
+  border: 2px solid $thumb-color;
+  transition: background-color 150ms;
+  // IE Edge thinks it can support -webkit prefixes
+  top: 0;
+  margin: 0;
+  box-shadow: none;
+}

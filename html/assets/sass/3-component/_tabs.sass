@@ -1,0 +1,40 @@
+.model-con
+    width: 100%
+    position: fixed !important
+    bottom: 5px
+    left: 0
+    text-align: center
+    .tabs
+        margin: 0px
+        padding: 0 10px 
+        list-style: none
+        text-align: center
+        display: inline-block
+        @include border-radius(30px)
+        cursor: pointer
+        @include box-shadow($box-shadow-icon)
+        background: $white
+        li
+            background: none
+            color: $black
+            display: inline-block            
+            cursor: pointer
+            font-size: $font-l
+            padding: 5px 10px            
+            a                
+                color: $gray
+                border-bottom: 2px solid transparent
+                &:hover, &:active
+                    color: $teal
+                    border-color: $default
+            .active
+                color: $teal
+                border-color: $default
+                  
+
+
+.tab-content
+    display: none
+    @extend .wd-100
+.tab-content.current
+    display: inherit

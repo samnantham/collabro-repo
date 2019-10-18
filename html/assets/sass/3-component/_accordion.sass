@@ -1,0 +1,245 @@
+/* Simple accordion css */
+.card-tab
+  position: relative
+  width: 100%
+  color: $white
+  overflow: hidden
+  .form-checkbox
+    position: absolute
+    top: 8px
+    left: 5px
+    .text
+      padding: $p-5
+
+  input
+    position: absolute
+    opacity: 0
+    z-index: -1
+  .tabhead
+    font-size: $font-s
+    position: relative
+    display: block
+    padding: $p-5 $p-10
+    padding-left: $p-25
+    color: $black
+    font-weight: $font-medium !important
+    line-height: 2
+    cursor: pointer
+    border-bottom: 1px solid
+    border-color: $border
+    margin-bottom: $m-0
+  /* :checked */
+  input:checked ~ .card-tab-content
+    max-height: 1000px
+
+  /* Icon */
+  .tabhead::after
+    position: absolute
+    right: 5px
+    top: 15px
+    display: block
+    width: 2em
+    height: 2em
+    line-height: 2
+    text-align: center
+    @include transition($all-transition)
+    transform: rotate(90deg)
+  input[type=checkbox] + .tabhead::after
+    content: ""
+    width: 0
+    height: 0
+    border-left: 4px solid rgba(0, 0, 0, 0)
+    border-right: 4px solid rgba(0, 0, 0, 0)
+    border-bottom: 4px solid
+
+  input[type=checkbox]:checked + .tabhead::after
+    transform: rotate(180deg)
+
+.card-tab-content
+  @extend .wd-100
+  max-height: 0
+  background: $white
+  overflow: hidden
+  @include transition($transition-height)
+  .card-accordion-wrapper
+    @extend .wd-100
+    padding: $p-20
+  .card-userlist
+    padding: $p-0
+
+
+/* Tabs for notification */
+.tabset-wrapper
+  width: 100%
+  float: left
+  padding: 20px
+  border: 1px solid $border
+  background: $white
+  @include border-radius(5px)
+
+.tabset
+  @extend .wd-100
+  position: relative
+  box-sizing: border-box
+  background: $deep-white
+.tabset > input[type="radio"]
+  position: absolute
+  left: -200vw
+
+.tab-panels
+  width: 100%
+  float: left  
+  background: $white
+
+.tab-panel
+  display: none
+
+.tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+.tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
+.tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
+.tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
+.tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
+.tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6)
+  display: block
+
+.tabset > label
+  position: relative
+  display: inline-block
+  //border-bottom: 2px solid
+  //border-color: transparent
+  cursor: pointer
+  color: $gray
+  font-size: $font-l
+  text-transform: uppercase
+  font-weight: $font-regular
+  text-align: center
+  padding: 10px 35px
+  margin-bottom: 20px
+  &:first-of-type
+    margin-left: 25px
+  &:last-of-type
+    margin-right: 25px  
+.connector-tabset > label
+  margin: 0 20px 0 0
+  padding: 8px
+  svg
+    display: block
+    margin: auto
+  span
+    float: none
+    display: block
+    font-size: $font-m
+    
+
+.tabset > label:hover,
+.tabset > input:focus + label
+  color: $primary
+  @include transition($color-transition)
+.tabset > label:hover::after,
+.tabset > input:focus + label::after,
+.tabset > input:checked + label::after
+  background: #06c
+
+.tabset > input:checked + label
+  color: $black
+  font-weight: $font-medium
+.tabset > input + label::before
+  content: ""
+  height: 3px
+  position: absolute
+  bottom: 0
+  left: 0
+  width: 100%
+  background: $default
+  transform: scaleX(0)
+  @include transition($tab-transition)
+.tabset > input:checked + label::before
+  transform: scaleX(1)
+.tab-head
+  label.connect
+    text-align: center
+    span
+      display: block
+      width: 100%
+      font-size: $font-r
+
+.filters
+  @extend .wd-100
+  background: $light-bg
+  .card-tab
+    background: $light-bg
+    label
+      width: 100px
+      color: $black
+      float: right
+      border-bottom: 0
+      padding-right: $p-20
+    .card-tab-content
+      @extend .wd-100
+  .card-accordion-wrapper
+    @extend .wd-100
+    background: $light-bg
+    padding: $p-10
+    a
+      float: left !important
+      width: auto !important
+      padding: $p-0 $p-10 !important
+      font-weight: $font-bold
+      display: inline-block
+      background: $light-bg
+      @include border-radius(20px)
+      i 
+        font-size: $font-ml
+      &:hover
+        //background: $default !important
+        i
+          color: $default
+      &:focus, &:active
+        //background: $default
+        i
+          color: $default           
+
+.tab-panel
+  border: 0
+  border-radius: none
+  text-align: left
+  margin-top: 20px
+  @include transition($all-transition)
+  .notification-list
+    @extend .wd-100
+    //overflow: hidden
+    ul
+      @extend .wd-100
+      max-height: 400px
+      overflow: auto
+      li
+        @extend .wd-100
+        list-style: none
+        padding: $p-10 $p-20 !important
+        border-bottom: 1px solid
+        border-color: $border
+        .notification-left
+          width: 80%
+          float: left
+          span
+            font-size: $font-s
+          h4
+            font-weight: $font-bold
+            color: $black
+            margin: $m-0
+            font-size: $font-r
+          p
+            color: $gray
+            margin-bottom: $m-0
+            font-size: $font-s
+        .notification-right
+          width: 20%
+          float: right
+          text-align: right
+          span
+            color: $light-gray
+            font-size: $font-xs
+            display: block
+          img
+            height: 34px
+            @include border-radius(50%)

@@ -1,0 +1,356 @@
+// Componant: Dropdown
+// Updated styles for bootstrap dropdown
+
+.btn {
+	cursor: pointer;
+	font-size: $font-r;
+	font-weight: inherit;
+	padding: 0px 15px;
+	border: 1px solid transparent;
+	height: 35px;
+	display: inline-flex;
+	align-items: center;
+	@include border-radius(4px);
+	color: $white;
+	text-transform: none;
+	line-height: normal;
+	transition: all 0.3s;
+	&.btn-svg
+	{
+		span
+		{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			svg
+			{
+				margin-right: 12px;
+				width: 18px;
+				height: 18px;
+			}
+		}
+	}
+	&:hover
+	{
+		box-shadow: none;
+	}
+	&.primary-btn {
+        background: $primary-color;
+	}
+	&:not([disabled]):not(.disabled):not(.btn-link):hover,
+	&:not([disabled]):not(.disabled):not(.btn-link):focus {
+		text-decoration: none;
+		transform: none;
+		box-shadow: none;
+	}
+	&[disabled] { cursor: not-allowed; }
+	.icon,
+	.fa {
+		font-size: $font-m;
+	}
+	&.white-btn
+	{
+		background: white;
+		color: $default !important;
+	}
+		
+	&.btn-borderblure
+	{
+		background: white;
+		color: $default !important;
+		border: 1px solid $default;
+	}
+	&.skyblue-btn
+	{
+		background: $sky-blue;
+		color: $default !important;
+	}
+	&.grey-btn
+	{
+		background: $light-blue;
+	}
+}
+
+.solid-btn{
+	width: 32px;
+	height: 32px;
+	background: $white;
+	border: 1px solid $mid-blue;
+	color: $black;
+	@include border-radius(50%);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	&.active{
+		background: $primary;
+		color: $white;
+		border-color: transparent
+	}
+}
+
+/* default button */
+.default-btn, .default-btn:focus{
+	background: $default;
+	color: $white;
+	text-transform: none;
+	border: 1px solid;
+	border-color: transparent;
+	&:hover{
+		background: darken($default, 10);
+		color: $white;
+		border: 1px solid;
+		border-color: $default;
+	}
+}
+
+
+.default-btn-border, .default-btn-border:focus{
+	color: $default !important;
+	background: $white;
+	border: 1px solid;
+	border-color: $default;
+	// @include box-shadow($box-shadow-btn !important);
+	text-transform: none;
+	&:hover{
+		background: $default !important;
+		color: $white !important;
+		// @include box-shadow($box-shadow-hover !important);
+		i{
+			color: $white;
+		}
+	}
+	i{
+		margin-left: 10px;
+		color: $default;
+	}
+}
+
+.block-btn{
+	width: 100%;
+}
+
+.danger-btn, .danger-btn:focus{
+	color: $white !important;
+	background: $danger;
+	text-transform: none;
+	@include border-radius(5px);
+	&:hover{
+		background: darken($danger, 10%);
+	}
+}
+
+.loader-btn
+{
+	img
+	{
+		width: 20px;
+		height: 20px;
+		margin-right: 5px;
+	}
+}
+
+
+.danger-btn-border, .danger-btn-border:focus{
+	color: $danger;
+	background: $white;
+	border: 1px solid;
+	border-color: $danger;
+	text-transform: none;
+	&:hover{
+		background: $danger;
+		color: $white;
+	}
+}
+
+.success-btn, .success-btn:focus{
+	background: $green;
+	color: $white;
+	text-transform: none;
+	border: 1px solid;
+	border-color: transparent;
+	&:hover{
+		background: $white;
+		color: $green;
+		border: 1px solid;
+		border-color: $green;
+	}
+}
+
+.light-btn, .light-btn:focus{
+	color: $black !important;
+	background: $light-bg;
+	text-transform: none;
+	&:hover{
+		background: $silver;
+		color: $black;
+	}
+}
+
+.property-btn{
+	color: $black;
+	background: $light-bg;
+	text-transform: capitalize;
+	svg{
+		height: 22px;
+	}
+	&:hover, &.active{
+		background: $primary;
+		svg{			
+			fill: $white; 
+			filter: invert(1);
+		}
+	}
+}
+
+
+
+.secondary-btn{
+	@extend .orange-gradient;
+   border: 1px solid $orange;
+	color: $white;
+	&:hover{
+		color: $white;
+		@extend .orange-gradient;
+	}
+}
+
+.silver-btn{
+	@extend .silver-gradient;
+   border: 1px solid $gray;
+	color: $black;
+	&:hover{
+		color: $black;
+		@extend .silver-gradient;
+	}
+}
+
+.circle-btn, .circle-btn:focus{
+	width: 40px;
+	height: 40px;
+	@include border-radius(50%);
+	padding: 0px;
+	text-align: center;
+	line-height: 40px;
+	background: $white;
+	border: 1px solid $border;
+	i{
+		vertical-align: initial !important;
+		margin-right: 0px !important;
+		font-size: $font-m !important;
+		color: $black;
+	}
+	&:hover{
+		color: $black;
+	}
+}
+
+.color-btn{
+	width: 20px;
+	height: 20px;
+	@include border-radius(50%);
+	padding: 0px;
+	text-align: center;
+	line-height: 20px;
+	&:active{
+		border: 1px solid $gray;
+	}
+}
+i.color-btn{
+	color: $white;
+	font-size: 10px;
+}
+
+.back-btn{
+	float: left;
+	margin-right: $m-10;
+	color: $blue;
+	line-height: normal;
+	h1{
+		float: left;
+		font-size: $font-m;
+		margin-top: $m-5;
+		margin-bottom: 0;
+		margin-left: $m-10; 
+	}
+	a{
+		color: $blue;
+		float: left;
+		height: 30px;
+		line-height: 30px;
+	}
+}
+.btn-drag{
+	position: relative;
+	background: transparent;
+	cursor: move;
+	margin: 0px 15px;
+	span{
+		width: 40px;
+		height: 40px;
+		display: block;
+		line-height: 40px;
+		text-align: center;
+		@include border-radius(50%);
+		background: $light-bg;
+		// @include box-shadow($box-shadow-icon);
+		img{
+			height: 20px;
+			vertical-align: sub;
+		}   
+	}
+	h4{
+		font-size: $font-s;
+		display: block;
+		text-align: center;
+		margin-top: $m-5;
+	}
+	&:hover h4, &:active h4, &:focus h4{
+		color: $black;
+	}
+}
+.inactive{
+	opacity: 0.4;
+	cursor: default;
+}
+
+.back-link{
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: $half-white;
+	color: $black;
+	@include border-radius(5px);
+	i{
+		font-size: $font-xl !important;
+	}
+}
+
+.transparent-btn
+{
+	background: transparent;
+	color: $mid-black !important;
+	&.cancel
+	{
+		color: $red !important;
+		&:hover{
+			background: $red;
+			color: $white !important; 
+		}
+	}
+	
+	&:hover
+	{
+		background: transparent;
+		@include transition($all-transition);
+		color: $black !important;
+	}
+}
+.select-btn
+{
+	background: white !important;
+	color: $mid-black !important;
+	font-size: $font-s;
+	padding: 7px 8px;
+}

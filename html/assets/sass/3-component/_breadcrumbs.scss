@@ -1,0 +1,52 @@
+.bread-crumb{
+    width: auto;
+    float: left;
+    h2{
+        font-size: $font-m;
+        margin: 0px;
+        margin-bottom: 5px;
+    }
+    .bread-crumb-list{
+        width: 100%;
+        float: left;
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        li{
+            float: left;
+            list-style: none;
+            position: relative;
+            padding-left: 10px;
+            padding-right: 10px;
+            a{
+                color: $mid-gray;
+                font-size: $font-s;
+                &:hover{
+                    color: $default;
+                }
+            }
+            &:first-of-type{
+                padding-left: 0px;
+                &::before{
+                    display: none;
+                }
+            }
+            &:last-of-type{
+                a{
+                    color: $default;
+                    pointer-events: none;
+                }
+            }
+            &:before{
+                content: "";
+                width: 6px;
+                height: 10px;
+                position: absolute;
+                left: 0px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: url(./assets/img/bullet.png) no-repeat left center;
+            }
+        }
+    }
+}
