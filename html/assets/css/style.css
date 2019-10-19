@@ -8402,7 +8402,7 @@ p {
 
 .btn {
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: inherit;
   padding: 0px 15px;
   border: 1px solid transparent;
@@ -8789,32 +8789,61 @@ i.color-btn {
   -webkit-border-radius: 4px 4px 0 0;
   -moz-border-radius: 4px 4px 0 0;
 }
+.card .card-img.flat-img img {
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+}
+.card .card-close {
+  width: 100%;
+  float: left;
+  padding: 15px 30px;
+  font-size: 22px;
+  text-align: right;
+}
 .card .card-content {
   width: 100%;
   float: left;
-  padding: 15px;
+  padding: 30px;
 }
 .card .card-content h3 {
   font-size: 26px;
   color: #7E8EA4;
   margin-top: 0px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
-.card .card-content .card-info {
+.card .card-content .title-default {
+  color: #00C4E8;
+  font-size: 22px;
+  margin-bottom: 0px;
+}
+.card .card-content .sub-head {
+  font-size: 14px;
+  color: #344051;
+}
+.card .card-info {
   width: 100%;
   float: left;
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  position: relative;
+  height: 42px;
 }
-.card .card-content .card-info .price {
+.card .card-info .price {
   float: left;
   font-size: 42px;
 }
-.card .card-content .card-info .price-sub {
+.card .card-info .price-sub {
   float: left;
   font-size: 20px;
   color: #7E8EA4;
   margin-left: 10px;
+}
+.card .card-info.price-border {
+  border-top: 1px solid #dfe4e8;
+  border-bottom: 1px solid #dfe4e8;
+  padding: 30px;
+  height: auto;
 }
 .card .card-footer {
   width: 100%;
@@ -8822,7 +8851,7 @@ i.color-btn {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 15px 0;
+  padding: 20px 0;
   border: 1px solid #dfe4e8;
   border-radius: 0 0 4px 4px;
   -webkit-border-radius: 0 0 4px 4px;
@@ -8852,6 +8881,84 @@ i.color-btn {
   font-size: 34px;
   transition: all 0.2s;
 }
+.compare-card .card-footer {
+  border-top: 0px;
+  padding: 30px;
+  display: block;
+}
+.compare-card .card-footer .footer-top {
+  width: 100%;
+  float: left;
+  display: flex;
+  justify-content: space-between;
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+.compare-card .card-footer .footer-top .ratings i {
+  color: #7E8EA4;
+}
+.compare-card .card-footer .footer-top .ratings i:hover, .compare-card .card-footer .footer-top .ratings i.active {
+  color: #00C4E8;
+}
+.compare-card .card-footer .footer-top .views {
+  color: #344051;
+}
+.compare-card .card-footer .footer-top .views i {
+  color: #7E8EA4;
+}
+.compare-card .card-footer .footer-bottom {
+  width: 100%;
+  float: left;
+  /* autoprefixer: off */
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  display: block;
+  display: -webkit-box;
+  display: -moz-box;
+  -webkit-line-clamp: 2;
+  -moz-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 40px;
+}
+
+.friend-card .card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.friend-card .card-content h3.title-default {
+  color: #344051;
+}
+.friend-card .card-content .content-right {
+  position: relative;
+}
+.friend-card .card-footer {
+  justify-content: space-between;
+  padding: 20px 30px;
+  font-size: 22px;
+}
+.friend-card .card-footer a {
+  color: #7E8EA4;
+  display: inline-flex;
+  align-items: center;
+}
+.friend-card .card-footer a i {
+  font-size: 16px;
+  margin-right: 5px;
+}
+.friend-card .card-footer a:hover {
+  color: #00C4E8;
+}
+.friend-card .card-footer a.btn {
+  padding: 10px 20px;
+  color: #fff;
+}
+.friend-card .card-footer a.btn i {
+  color: #fff;
+  margin-right: 5px;
+}
+
 .table-card {
   border: 1px solid #dfe4e8;
   border-radius: 4px;
@@ -9151,7 +9258,7 @@ i.color-btn {
 .dropdown-menu {
   right: 0;
   left: auto;
-  top: calc(100% + 10px);
+  top: calc(100% + 0px);
   margin-top: 0;
   border-radius: 0;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
@@ -9164,12 +9271,16 @@ i.color-btn {
 .dropdown-menu li a {
   position: relative;
   padding: 5px 10px;
-  font-size: 12px;
+  font-size: 14px;
 }
 .dropdown-menu li a i {
   width: 20px;
   font-size: 12px;
   vertical-align: middle;
+}
+.dropdown-menu li a:hover {
+  background: #00C4E8;
+  color: #fff;
 }
 
 .open > .dropdown-menu {

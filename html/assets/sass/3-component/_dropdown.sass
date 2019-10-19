@@ -3,7 +3,7 @@
 .dropdown-menu
 	right: 0
 	left: auto
-	top: calc(100% + 10px)
+	top: calc(100% + 0px)
 	margin-top: 0
 	border-radius: 0
 	@include box-shadow($box-shadow-add)
@@ -13,12 +13,14 @@
 	li a
 		position: relative
 		padding: 5px 10px
-		font-size: $font-s
+		font-size: $font-r
 		i
 			width: 20px
 			font-size: $font-s
 			vertical-align: middle
-
+		&:hover
+			background: $default
+			color: $white
 .open > .dropdown-menu
 	animation-name: scaleDrop
 	animation-duration: 0.3s

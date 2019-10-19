@@ -14,32 +14,59 @@
             max-width: 100%;
             @include border-radius(4px 4px 0 0)
         }
+        &.flat-img img{
+            @include border-radius(0px)
+        }
+    }
+    .card-close{
+        width: 100%;
+        float: left;
+        padding: 15px 30px; 
+        font-size: $font-xl;
+        text-align: right;
     }
     .card-content{
         width: 100%;
         float: left;
-        padding: 15px;
+        padding: 30px;
         h3{
             font-size: $font-xlx;
             color: $secondary-text;
             margin-top: 0px;
-            margin-bottom: 15px;
+            margin-bottom: 30px;
+        }        
+        .title-default{
+            color: $default;
+            font-size: $font-xl;
+            margin-bottom: 0px;
         }
-        .card-info{
-            width: 100%;
+        .sub-head{
+            font-size: $font-r;
+            color: $black;
+        }
+    }
+    .card-info{
+        width: 100%;
+        float: left;
+        display: flex;
+        align-items: center;
+        position: relative;
+        height: 42px;
+        .price{
             float: left;
-            display: flex;
-            align-items: baseline;
-            .price{
-                float: left;
-                font-size: $font-price;
-            }
-            .price-sub{
-                float: left;
-                font-size: $font-l;
-                color: $secondary-text;
-                margin-left: 10px;
-            }
+            font-size: $font-price;
+        }
+        .price-sub{
+            float: left;
+            font-size: $font-l;
+            color: $secondary-text;
+            margin-left: 10px;
+        }
+        &.price-border{
+            border-top: 1px solid $border;
+            border-bottom: 1px solid $border;
+            padding: 30px;
+            height: auto;
         }
     }
     .card-footer{
@@ -48,7 +75,7 @@
         display: flex;
         align-items: center;
         justify-content: space-around;
-        padding: 15px 0;
+        padding: 20px 0;
         border: 1px solid $border;
         @include border-radius(0 0 4px 4px);
         a{
@@ -80,6 +107,81 @@
     &:hover{
         .hover-icon{
             @extend .flex-center;
+        }
+    }
+}
+
+.compare-card{
+    .card-footer{
+        border-top: 0px;
+        padding: 30px;
+        display: block;
+        .footer-top{
+            width: 100%;
+            float: left;
+            display: flex;
+            justify-content: space-between;
+            font-size: $font-xl;
+            margin-bottom: 30px;
+            .ratings{
+                i{
+                    color: $secondary-text;
+                    &:hover, &.active{
+                        color: $default;
+                    }
+                }
+            }
+            .views{
+                color: $black;
+                i{
+                    color: $secondary-text;
+                }
+            }
+        }
+        .footer-bottom{
+            width: 100%;
+            float: left;
+            @include wordlines();
+        }
+    }
+}
+
+
+.friend-card{
+    .card-content{        
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        h3.title-default{
+            color: $black;
+        }
+        .content-right{
+            position: relative;
+        }
+    }
+    .card-footer{
+        justify-content: space-between;
+        padding: 20px 30px;
+        font-size: $font-xl;
+        a{
+            color: $secondary-text;
+            display: inline-flex;
+            align-items: center;
+            i{
+                font-size: $font-m;
+                margin-right: 5px;
+            }
+            &:hover{
+                color: $default;
+            }
+            &.btn{
+                padding: 10px 20px;
+                color: $white;
+                i{
+                    color: $white;
+                    margin-right: 5px;
+                }
+            }
         }
     }
 }
