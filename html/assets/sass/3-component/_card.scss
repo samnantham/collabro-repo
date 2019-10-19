@@ -3,6 +3,85 @@
     float: left;
     @include box-shadow($box-shadow-card);
     @include border-radius(4px);
+    background: $white;
+    margin-bottom: 15px;
+    position: relative;
+    .card-img{
+        width: 100%;
+        float: left;
+        img{
+            width: auto;
+            max-width: 100%;
+            @include border-radius(4px 4px 0 0)
+        }
+    }
+    .card-content{
+        width: 100%;
+        float: left;
+        padding: 15px;
+        h3{
+            font-size: $font-xlx;
+            color: $secondary-text;
+            margin-top: 0px;
+            margin-bottom: 15px;
+        }
+        .card-info{
+            width: 100%;
+            float: left;
+            display: flex;
+            align-items: baseline;
+            .price{
+                float: left;
+                font-size: $font-price;
+            }
+            .price-sub{
+                float: left;
+                font-size: $font-l;
+                color: $secondary-text;
+                margin-left: 10px;
+            }
+        }
+    }
+    .card-footer{
+        width: 100%;
+        float: left;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 15px 0;
+        border: 1px solid $border;
+        @include border-radius(0 0 4px 4px);
+        a{
+            color: $secondary-text;
+            i{
+                font-size: $font-large;
+            }
+            &:hover{
+                color: $default;
+            }
+        }
+    }
+    .hover-icon{
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 68px;
+        height: 68px;
+        @include border-radius(50%);
+        background: $default;
+        color: $white;        
+        display: none;
+        font-size: $font-large;
+        transition: all 0.2s;
+        &.active{
+            @extend.flex-center;
+        }
+    }
+    &:hover{
+        .hover-icon{
+            @extend .flex-center;
+        }
+    }
 }
 
 .table-card{
