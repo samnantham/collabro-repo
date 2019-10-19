@@ -1,0 +1,112 @@
+.card{
+    width: 100%;
+    float: left;
+    @include box-shadow($box-shadow-card);
+    @include border-radius(4px);
+}
+
+.table-card{
+    @extend .wd-100;
+    border: 1px solid $border;
+    @include border-radius(4px);
+    @include box-shadow($box-shadow-default);
+    padding: 12px;
+    background: $white;
+    margin-bottom: 15px;
+    .table-img{
+        width: 80px;
+        float: left;
+    }
+    .table-content{
+        width: calc(100% - 300px);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .table-col{
+            width: auto;
+            float: left;
+            min-width: 25%;
+            max-width: 50%;
+            padding: 0 15px;
+            p{
+                margin-bottom: 0px;
+            }
+            h5{
+                font-size: $font-r;
+                color: $black;
+            }
+            span{
+                font-size: $font-s;
+                color: $secondary-text;
+            }
+            ul{
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                float: left;
+                padding-left: 15px;
+                li{
+                    width: 100%;
+                    float: left;
+                    a{
+                        width: 100%;
+                        float: left;
+                        color: $black;
+                    }
+                }
+            }
+        }      
+        .table-col1{
+            width: 100%;
+            float: left;
+            display: flex;
+            align-items: center;
+            i{
+                font-size: $font-xlx;
+                float: left;
+                margin-right: 10px;
+            }
+            h5{
+                float: left;
+                font-size: $font-r;
+            }
+        }  
+    }
+    .table-option{
+        width: 180px;
+        float: right;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        a{
+            color: $secondary-text;
+            font-size: $font-xxl;
+            &:hover{
+                color: $default;
+            }
+            &.option-img{
+                width: auto;
+                max-width: 80px;
+                img{
+                    width: auto;
+                    max-width: 100%;
+                }
+            }
+        }
+        &.flex-right{
+            a{
+                float: right;
+                margin-left: auto;
+                margin-right: 20px;
+            }
+        }
+    }
+    .full-col{
+        width: calc(100% - 170px);
+        display: block;
+        color: $default;
+        font-size: $font-s;
+        font-weight: $font-medium;
+        padding-left: 115px;
+    }
+}

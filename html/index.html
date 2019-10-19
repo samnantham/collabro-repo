@@ -14,6 +14,51 @@
 </head>
 
 <body>
+
+    <!-- Home header -->
+    <header class="home-header" id="dsci-header">
+        <nav class="navbar">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <a class="logo" href="#">
+                    <img src="assets/img/home-logo.png" />
+                </a>
+                <div class="row flex-center">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="search-top">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search keyword" />
+                                <button type="button" class="btn transparent-btn"><i class="fa fa-search" ></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 text-right flex-center-space-even">
+                        <ul class="top-nav">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Benefits</a></li>                    
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-2 flex-center-end">
+                        <ul class="top-nav wd-auto">
+                            <li><a class="btn btn-border-white" href="#">Signup</a></li>
+                            <li><a class="btn btn-border-white" href="#">Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- Inner header -->
     <header class="main-header hidden-print" id="dsci-header">
         <nav class="navbar">
             <div class="navbar-header">
@@ -25,13 +70,11 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
 
-                <div class="row flex-center">
-                    <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 flex-center-space">
                         <a class="logo" href="#">
                             <img src="assets/img/logo.png" />
                         </a>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-3">
                         <div class="search-top">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Search keyword" />
@@ -39,11 +82,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-3 text-right flex-center">
+                    <div class="col-lg-6 col-md-6 col-sm-6 text-right flex-center-space">
                         <a class="btn secondary-btn" href="#"><i class="fa fa-bolt mr-10"></i> BROADCAST</a>
-                        <a class="btn white-btn ml-30" href="#">POST <i class="fa fa-plus-circle ml-10"></i></a>                        
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2 flex-center-right">
+                        <a class="btn white-btn" href="#">POST <i class="fa fa-plus-circle ml-10"></i></a>                        
                         <ul class="top-nav">
                             <li class="dropdown">
                                 <a class="dropdown-toggle">
@@ -59,12 +100,11 @@
                                 <a class="dropdown-toggle">
                                     <i class="fa fa-calendar-check-o"></i>                                                
                                 </a>
-                            </li>
+                            </li>                            
                         </ul>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2 right">
+
                         <ul class="top-nav">
-                            <li class="dropdown">
+                            <li class="dropdown m-0">
                                 <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                     aria-expanded="false">
                                     <div class="avatar avatar-s">
@@ -359,6 +399,7 @@
 
         <div class="row mt-30">
             <div class="col-lg-8 col-md-8 col-lg-offset-2">
+                <h4 class="mt-30">Topbar</h4>
                 <div class="topbar">
                     <div class="topbar-left">
                         <i class="fa fa-user-circle-o"></i>
@@ -426,6 +467,136 @@
                         </ul>
                     </div>
                 </div>
+            </div>
+
+        </div>
+
+        <!-- Tables -->
+        <div class="row mt-30">
+
+            
+            <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+                <h4 class="mt-30">Tables</h4>
+                
+                <div class="table-card">
+                    <div class="flex-center-space">
+                        <div class="table-img">
+                            <img src="assets/img/img-thumb.png" />
+                        </div>
+                        <div class="table-content">
+                            <div class="table-col">
+                                <h5>Magazine Images</h5>
+                                <span>Kinfolk  |  Last Update: 20 Nov 2018</span>
+                            </div>
+                            <div class="table-col">
+                                <p>For agencies and companies, we’re hosting workshops 
+                                        to make sure you get the best out of this Design System…</p>
+                            </div>
+                            <div class="table-col">
+                                <h5>Magazine Images</h5>
+                                <span>Kinfolk  |  Last Update: 20 Nov 2018</span>
+                            </div>
+                        </div>
+                        <div class="table-option">
+                            <a href="#"><img src="assets/img/message-icon.png" /></a>
+                            <a href="#"><i class="fa fa-share"></i></a>
+                            <a href="#"><i class="fa fa-minus-circle"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="flex-center-space">
+                        <div class="table-img">
+                            <img src="assets/img/img-thumb.png" />
+                        </div>
+                        <div class="table-content">
+                            <div class="table-col">
+                                <h5>Magazine Images</h5>
+                                <span>Kinfolk  |  Last Update: 20 Nov 2018</span>
+                            </div>
+                            <div class="table-col">
+                                <h5>4,870 SGD</h5>
+                                <span>Budget / Salary</span>
+                            </div>
+                            <div class="table-col">
+                                <h5>Early Dec 2017</h5>
+                                <span class="danger">15 Days Remaining</span>
+                            </div>
+                        </div>
+                        <div class="table-option">
+                            <a href="#"><img src="assets/img/message-icon.png" /></a>
+                            <a href="#"><i class="fa fa-share"></i></a>
+                            <a href="#"><i class="fa fa-minus-circle"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="flex-center-space">
+                        <div class="table-img">
+                            <img src="assets/img/img-thumb.png" />
+                        </div>
+                        <div class="table-content">
+                            <div class="table-col">
+                                <h5>Magazine Images</h5>
+                                <span>Kinfolk  |  Last Update: 20 Nov 2018</span>
+                            </div>
+                            <div class="table-col">
+                                <h5>Explain how to use this page test page:</h5>
+                                <ul>
+                                    <li><a href="#">Item one</a></li>
+                                    <li><a href="#">Item two</a></li>
+                                    <li><a href="#">Item three</a></li>
+                                </ul>
+                            </div>
+                            <div class="table-col">
+                                <h5>Early Dec 2017</h5>
+                                <span class="danger">15 Days Remaining</span>
+                            </div>
+                        </div>
+                        <div class="table-option">
+                            <a href="#"><img src="assets/img/message-icon.png" /></a>
+                            <a href="#"><i class="fa fa-share"></i></a>
+                            <a href="#"><i class="fa fa-minus-circle"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="flex-center-space">
+                        <div class="table-img">
+                            <img src="assets/img/img-thumb.png" />
+                        </div>
+                        <div class="table-content">
+                            <div class="table-col">
+                                <h5>Magazine Images</h5>
+                                <span>Kinfolk  |  Last Update: 20 Nov 2018</span>
+                            </div>
+                        </div>
+                        <div class="table-option">
+                            <a class="option-img" href="#"><img src="assets/img/img-thumb.png" /></a>
+                            <a href="#"><i class="fa fa-minus-circle"></i></a>
+                        </div>
+                    </div>
+                    <div class="full-col mt-10">For agencies and companies, we’re hosting workshops to make sure you get the best out of this Design System…</div>
+                </div>
+
+                <div class="table-card">
+                    <div class="flex-center-space">
+                        <div class="table-content">
+                            <div class="table-col1">
+                                <i class="fa fa-check-circle success"></i>
+                                <h5>Some one (james111) wants to collaborate with You</h5>
+                            </div>
+                        </div>
+                        <div class="table-option flex-right">
+                            <a href="#"><i class="fa fa-minus-circle"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
         </div>

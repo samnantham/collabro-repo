@@ -11,13 +11,13 @@
 .info
   color: $info
 .warning
-  color: $warning
+  color: $warning !important
 .danger
-  color: $danger
+  color: $danger !important
 .default
-  color: $default
+  color: $default !important
 .error
-  color: $danger
+  color: $danger !important
 
 .primary-bg
   background: $primary
@@ -122,14 +122,23 @@
   align-items: center
   justify-content: space-between  
 
+.flex-center-space-around
+  display: flex
+  align-items: center
+  justify-content: space-around
+
+.flex-center-space-even
+  display: flex
+  align-items: center
+  justify-content: space-evenly
+
 .flex-center-right
   display: flex
   align-items: center
   justify-content: flex-end
-
-
+  
 @media (max-width: 768px)
-  .flex-center, .inline-flex-center, .flex-center-space, .flex-center-right
+  .flex-center, .inline-flex-center, .flex-center-space, .flex-center-right, .flex-center-space-around
     display: block
 
 .orange-gradient

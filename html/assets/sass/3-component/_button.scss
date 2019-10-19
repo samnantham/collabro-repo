@@ -106,7 +106,7 @@
 
 .default-btn-border, .default-btn-border:focus{
 	color: $default !important;
-	background: $white;
+	background: transparent;
 	border: 1px solid;
 	border-color: $default;
 	// @include box-shadow($box-shadow-btn !important);
@@ -124,6 +124,30 @@
 		color: $default;
 	}
 }
+
+.btn-border-white, .btn-border-white:focus{
+	color: $white !important;
+	background: transparent;
+	border: 1px solid;
+	border-color: $white;
+	// @include box-shadow($box-shadow-btn !important);
+	text-transform: none;
+	&:hover{
+		color: $white !important;
+		background: $default !important;
+		color: $white !important;
+		border-color: $default;
+		// @include box-shadow($box-shadow-hover !important);
+		i{
+			color: $white;
+		}
+	}
+	i{
+		margin-left: 10px;
+		color: $default;
+	}
+}
+
 
 .block-btn{
 	width: 100%;
