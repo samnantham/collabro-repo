@@ -1,0 +1,348 @@
+.chat-wrap
+	@extend .wd-100
+	z-index: 9999
+	background: $white
+	&.top-right
+		top: 80px
+		right: 10px
+	&.bottom-right
+		bottom: 80px
+		right: 10px
+		
+.message-head
+	width: 100%
+	float: left
+	background: $secondary-text
+	height: 40px
+	display: flex
+	align-items: center
+	padding: 0 30px
+	justify-content: space-between	
+	h2
+		font-size: $font-m
+		margin: 0px
+		color: $white
+	.option
+		width: auto
+		float: right
+		height: 30px
+		img
+			width: 30px
+			float: right
+			margin-left: 15px
+			@include border-radius(50%)
+
+.messenger
+	padding: 10px 30px !important
+	width: 100%
+	float: left
+	background: $white
+	max-height: calc(100% - 83px)
+	overflow-x: hidden
+	overflow-y: auto
+	-moz-appearance: none !important
+	&::-webkit-scrollbar
+		width: 4px		
+	&::-webkit-scrollbar-track
+		background: $half-white
+	&::-webkit-scrollbar-thumb
+		background: $dull-gray
+	.message-wrap
+		width: 100%
+		float: left
+		margin: 0
+		padding: 0px
+		font-size: $font-r
+		margin-bottom: 5px
+		.message
+			position: relative
+			width: auto
+			max-width: 80%
+			float: left
+			font-size: $font-r
+			display: flex
+			align-items: flex-end
+			margin-bottom: 5px
+			.chat-load img
+				width: auto
+				height: 25px
+				border-radius: 0
+			&:after
+				content: ""
+				clear: both
+				display: table				
+			.chat-load
+				float: left
+			.other-img
+				border-radius: 50%
+				width: 35px
+				max-width: 35px
+				height: 35px
+				line-height: 35px
+				text-align: center
+				float: left
+				background: $white
+				margin-right: 15px
+				img
+					width: 35px
+					@include border-radius(50%)
+					max-width: 100%
+
+			.info
+				margin: 0
+				width: 100%
+				float: left
+				color: $black
+				padding: 15px
+				position: relative
+				background: $silver
+				@include border-radius(7.5px)
+				img
+					width: auto
+					max-width: 100%	
+				&:before
+					position: absolute
+					left: -10px
+					bottom: 10px
+					content: ""
+					border-right: 10px solid $silver
+					border-bottom: 10px solid transparent
+				a
+					color: $blue			
+				&.content
+					display: block
+					min-width: 250px
+					text-align: center
+					float: left
+					img
+						width: auto
+						max-width: 100%					
+			&.option-content
+				width: auto
+				display: flex
+				justify-content: space-between
+				.info
+					overflow-x: hidden
+					display: flex
+					flex-direction: column
+					&::-webkit-scrollbar
+						width: 4px
+					&::-webkit-scrollbar-track
+						background: $half-white
+					&::-webkit-scrollbar-thumb
+						background: $gray
+					.option
+						width: auto
+						float: none
+						@include border-radius(25px)
+						background: darken($light-bg, 10%)
+						padding: 10px		
+						margin-bottom: 5px			
+											
+			.info-tag
+				width: 100%
+				display: block
+				float: right
+				padding: 5px
+				margin: 5px 0px
+				@include border-radius(20px)
+
+				> a
+					color: $white
+					background: $blue
+					border: 1px solid
+					border-color: $blue
+					padding: 5px 10px
+					float: left
+					margin: 5px 5px 0px 0px
+					@include border-radius(20px)
+
+				> a:hover
+					color: $white
+					background: darken($blue, 10%)
+
+			&.me
+				float: right	
+				.chat-info
+					color: $white
+					background: $default
+					margin-top: 0px
+					text-align: right
+					margin-bottom: 0px
+					float: left
+					display: block
+					right: 0px
+
+				.user-img
+					border-radius: 50%
+					min-width: 35px
+					width: 35px
+					height: 35px
+					max-width: 35px
+					float: right
+					margin-left: 15px
+					img
+						width: 35px
+						border-radius: 50%
+						max-width: 100%
+
+				.info
+					color: $white
+					display: flex
+					flex-direction: column
+					vertical-align: middle
+					background: $default
+					&:before
+						position: absolute
+						right: -10px
+						bottom: 10px
+						left: auto
+						content: ""
+						border-left: 10px solid $default
+						border-bottom: 10px solid transparent
+						border-right: 0
+					a
+						color: $white
+				.chat-msg
+					width: 85%
+					display: block
+					float: left
+					padding: 0px
+					margin-left: 40px
+					margin-top: 10px
+					margin-bottom: 10px
+
+					.chat-box
+						width: 100%
+						float: left
+			&.message-option
+				float: none !important
+				width: 90%
+				background: transparent
+				padding: 0
+				.option
+					background: $light-bg
+					float: left
+					padding: 10px 20px
+					@include border-radius(25px)
+					margin-right: 5px
+			.img-info
+				@extend .wd-100
+				margin-top: 5px
+				@include border-radius(30px 30px 0 0)
+				height: 150px
+				background-size: cover !important
+				img
+					@include border-radius(30px 30px 0 0)
+					width: 100%
+			.message-footer
+				width: 100%
+				position: relative
+				float: left
+				padding: 10px 15px
+				min-height: 30px
+				background: $blue
+				@include border-radius(0 0 30px 30px)
+				h3
+					font-size: $font-m
+					color: $white
+					margin: 5px 0
+				a
+					color: $white
+					font-size: $font-xs
+				p
+					color: $white
+					overflow: hidden
+					display: -webkit-box
+					-webkit-line-clamp: 3
+					-webkit-box-orient: vertical
+					max-height: 3.6em
+		.message-link
+			background: $mid-gray !important
+		.time-left
+			width: 100%
+			float: left
+			text-align: left
+			padding: 5px 0 0 0 
+			font-size: $font-xs
+		.time-right
+			width: 100%
+			float: right
+			text-align: right
+			font-size: $font-xs
+			padding: 5px 0 0 0		
+
+.sender
+	width: 100%
+	float: left	
+	background: $white
+	z-index: 99999
+	overflow: hidden
+	padding: 15px 30px
+	input[type="text"], input[type="password"], textarea
+		background: $white
+		border: 0
+		outline: none
+		width: 90%
+		height: 51px
+		position: relative
+		float: left
+		font-size: 12px
+		margin-bottom: $m-0
+		-moz-appearance: none
+		-webkit-appearance: none
+		resize: none
+		word-wrap: break-word
+		&::-webkit-scrollbar
+			width: 4px
+		&::-webkit-scrollbar-track
+			background: $half-white
+		&::-webkit-scrollbar-thumb
+			background: $gray
+	.chat-btn
+		width: 53px
+		height: 53px
+		float: right
+		display: inline-flex
+		align-items: center
+		justify-content: center
+		@extend .silver-gradient
+		border: 1px solid $chat-border
+		color: $default
+		@include border-radius(4px)
+		i
+			color: $secondary-text
+			font-size: $font-l
+	.msg-text
+		width: calc(100% - 68px)
+		float: left
+		height: 100%
+		position: relative
+		display: flex
+		align-items: center
+		justify-content: space-between
+		border: 1px solid $chat-border
+		@include border-radius(4px)
+		height: 53px
+		padding: 0 15px
+		.small-btn
+			width: 20px
+			float: left
+			height: 20px
+			i
+				font-size: $font-l
+	.msg-btn
+		width: 10%
+		height: 100%
+		float: right
+		font-size: 14px
+		margin-top: 0px
+		background: $white
+		text-align: center
+		color: $default
+		display: table
+		i
+			font-size: $font-l
+			display: table-cell
+			vertical-align: middle
+			cursor: pointer
