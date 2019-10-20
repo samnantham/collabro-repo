@@ -7835,6 +7835,10 @@ td.visible-print {
   max-height: 100%;
 }
 
+.font-r {
+  font-size: 14px !important;
+}
+
 /* Layouts */
 .content-wrapper {
   width: 100%;
@@ -8626,6 +8630,15 @@ p {
   color: #344051;
 }
 
+.unfollow-btn {
+  background: #7E8EA4;
+  color: #fff;
+}
+.unfollow-btn:hover {
+  color: #fff;
+  background: #63748c;
+}
+
 .circle-btn, .circle-btn:focus {
   width: 40px;
   height: 40px;
@@ -8866,6 +8879,10 @@ i.color-btn {
 .card .card-footer a:hover {
   color: #00C4E8;
 }
+.card .card-footer span {
+  color: #344051;
+  font-size: 22px;
+}
 .card .hover-icon {
   position: absolute;
   right: 20px;
@@ -8933,6 +8950,77 @@ i.color-btn {
 .friend-card .card-content .content-right {
   position: relative;
 }
+.friend-card .card-info {
+  width: 100%;
+  float: left;
+  padding: 30px !important;
+  display: flex;
+  align-items: flex-start;
+}
+.friend-card .card-info .card-left {
+  width: 50%;
+  float: left;
+  text-align: left;
+}
+.friend-card .card-info .card-left img {
+  width: auto;
+  max-width: 150px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+}
+.friend-card .card-info .card-right {
+  width: 50%;
+  float: left;
+}
+.friend-card .card-info .card-right .card-thumbs {
+  width: 100%;
+  float: left;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-bottom: 15px;
+}
+.friend-card .card-info .card-right .card-thumbs li {
+  width: 50%;
+  float: left;
+  margin-bottom: 5px;
+}
+.friend-card .card-info .card-right .card-thumbs li img {
+  width: calc(100% - 5px);
+}
+.friend-card .card-info .card-right .card-thumbs li:nth-child(odd) img {
+  margin: 0 5px 5px 0px;
+}
+.friend-card .card-info .card-right .card-thumbs li:nth-child(even) img {
+  margin: 0 0 5px 5px;
+}
+.friend-card .card-info .card-right .rewards {
+  width: 100%;
+  float: left;
+}
+.friend-card .card-info .card-right .rewards .rewards-left, .friend-card .card-info .card-right .rewards .rewards-right {
+  width: 50%;
+  float: left;
+}
+.friend-card .card-info .card-right .rewards .rewards-left i, .friend-card .card-info .card-right .rewards .rewards-right i {
+  color: #C4AC83;
+  font-size: 22px;
+}
+.friend-card .card-info .card-right .rewards .rewards-left .count, .friend-card .card-info .card-right .rewards .rewards-right .count {
+  width: 100%;
+  float: left;
+  text-align: center;
+  font-size: 22px;
+  color: #344051;
+}
+.friend-card .card-info .card-right .rewards .rewards-left .title, .friend-card .card-info .card-right .rewards .rewards-right .title {
+  width: 100%;
+  float: left;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+}
 .friend-card .card-footer {
   justify-content: space-between;
   padding: 20px 30px;
@@ -8953,8 +9041,10 @@ i.color-btn {
 .friend-card .card-footer a.btn {
   padding: 10px 20px;
   color: #fff;
+  height: auto;
 }
 .friend-card .card-footer a.btn i {
+  font-size: 20px;
   color: #fff;
   margin-right: 5px;
 }

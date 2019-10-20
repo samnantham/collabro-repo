@@ -248,6 +248,15 @@
 	}
 }
 
+.unfollow-btn{
+	background: $secondary-text;
+	color: $white;
+	&:hover{
+		color: $white;
+		background: darken($secondary-text, 10%);
+	}
+}
+
 .circle-btn, .circle-btn:focus{
 	width: 40px;
 	height: 40px;

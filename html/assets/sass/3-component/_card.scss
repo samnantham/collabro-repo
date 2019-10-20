@@ -87,6 +87,10 @@
                 color: $default;
             }
         }
+        span{
+            color: $black;
+            font-size: $font-xl;
+        }
     }
     .hover-icon{
         position: absolute;
@@ -159,6 +163,78 @@
             position: relative;
         }
     }
+    .card-info{
+        width: 100%;
+        float: left;
+        padding: 30px !important;
+        display: flex;
+        align-items: flex-start;
+        .card-left{
+            width: 50%;
+            float: left;
+            text-align: left;
+            img{
+                width: auto;
+                max-width: 150px;
+                @include border-radius(50%);
+            }
+        }
+        .card-right{
+            width: 50%;
+            float: left;
+            .card-thumbs{
+                width: 100%;
+                float: left;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                margin-bottom: 15px;
+                li{
+                    width: 50%;
+                    float: left;
+                    margin-bottom: 5px;
+                    img{
+                        width: calc(100% - 5px);                    }
+                    &:nth-child(odd){
+                        img{
+                            margin: 0 5px 5px 0px;
+                        }
+                    }
+                    &:nth-child(even){
+                        img{
+                            margin: 0 0 5px 5px;
+                        }
+                    }
+                }
+            }
+            .rewards{
+                width: 100%;
+                float: left;
+                .rewards-left, .rewards-right{
+                    width: 50%;
+                    float: left;
+                    i{
+                        color: $gold;
+                        font-size: $font-xl;
+                    }
+                    .count{
+                        width: 100%;
+                        float: left;
+                        text-align: center;
+                        font-size: $font-xl;
+                        color: $black;
+                    }
+                    .title{
+                        width: 100%;
+                        float: left;
+                        text-align: center;
+                        font-size: $font-r;
+                        font-weight: $font-medium;
+                    }
+                }
+            }
+        }
+    }
     .card-footer{
         justify-content: space-between;
         padding: 20px 30px;
@@ -177,7 +253,9 @@
             &.btn{
                 padding: 10px 20px;
                 color: $white;
+                height: auto;
                 i{
+                    font-size: $font-l;
                     color: $white;
                     margin-right: 5px;
                 }
