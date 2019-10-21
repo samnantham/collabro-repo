@@ -283,9 +283,10 @@ body {
      cursor: pointer;
      text-transform: uppercase;
      font-weight: 600;
+     height: 38px;
      text-align: center;
      border-radius: 5px;
-     width: 95%;
+     width: 100%;
 }
 
 #sign-in,
@@ -890,6 +891,7 @@ h1 {
      border: solid 5px #00c5e5;
      border-radius: 5px;
      position: fixed;
+     max-width: 420px;
      /*right:10px;
      */
      min-width: 360px;
@@ -904,7 +906,7 @@ h1 {
 
 .w3ls-subscribe {
      background: #fff;
-     padding: 1.4em;
+     padding: 30px;
 }
 
 .w3ls-subscribe h3 {
@@ -926,7 +928,7 @@ h1 {
      border-radius: 5px;
      color: #7F8EA4;
      margin: 0 0 1.5em 0;
-     width: 90%;
+     width: 100%;
      font-size: 16px;
      font-family: 'Lato';
 }
@@ -939,15 +941,23 @@ h1 {
      border-radius: 5px;
      color: #7F8EA4;
      margin: 0 0 1.5em 0;
-     width: 90%;
+     width: 100%;
      font-size: 16px;
      font-family: 'Lato';
 }
 
 .w3ls-subscribe .details {
      color: #7E8EA4;
+     width: 100%;
+     float: left;
      font-size: 14px;
      font-family: 'Lato';
+     margin-bottom: 5px;
+}
+
+.w3ls-subscribe .details .text-danger{
+     float: right;
+     font-size: 12px;
 }
 
 .w3ls-subscribe input[type="submit"] {
@@ -1001,10 +1011,10 @@ h1 {
 }
 
 .w3ls-subscribe h4 {
-     color: #7E8EA4;
-     font-size: 1em;
+     color: #3E3F42;
+     font-size: 1.375em;
      margin: 0 0 1em 0;
-     text-transform: uppercase;
+     text-transform: capitalize;
      font-weight: 700;
      letter-spacing: 2px;
 }
@@ -1584,10 +1594,12 @@ a {
 }
 
 #account {
-     font-size: 11px;
-     color: #3FA9F5;
+     width: 100%;
+     font-size: 12px;
+     text-align: center;
+     color: #6B6C6F;
      font-family: 'Lato';
-     margin-top: 5px;
+     margin-top: 15px;
 }
 
 #account>a {
