@@ -56,12 +56,19 @@
             font-size: $font-r;
             margin-left: 20px;
             color: $secondary-text;
+            position: relative;
             i{
                 font-size: $font-m;
                 margin-right: 10px;
             }
             span{
                 color: $black;
+                display: inline-flex;
+                align-items: center;
+                i{
+                    margin-right: 0px;
+                    font-size: $font-l;
+                }
             }
         }
     }

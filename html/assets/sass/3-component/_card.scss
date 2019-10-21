@@ -30,7 +30,7 @@
         float: left;
         padding: 30px;
         h3{
-            font-size: $font-xlx;
+            font-size: $font-xl;
             color: $secondary-text;
             margin-top: 0px;
             margin-bottom: 30px;
@@ -58,9 +58,10 @@
         }
         .price-sub{
             float: left;
-            font-size: $font-l;
+            font-size: $font-m;
             color: $secondary-text;
             margin-left: 10px;
+            align-self: flex-end;
         }
         &.price-border{
             border-top: 1px solid $border;
@@ -81,7 +82,7 @@
         a{
             color: $secondary-text;
             i{
-                font-size: $font-large;
+                font-size: $font-xxll;
             }
             &:hover{
                 color: $default;
@@ -170,18 +171,19 @@
         display: flex;
         align-items: flex-start;
         .card-left{
-            width: 50%;
+            width: 45%;
             float: left;
-            text-align: left;
+            text-align: center;
             img{
                 width: auto;
-                max-width: 150px;
+                max-width: 100%;
                 @include border-radius(50%);
             }
         }
         .card-right{
-            width: 50%;
-            float: left;
+            width: 45%;
+            float: right;
+            margin-left: auto;
             .card-thumbs{
                 width: 100%;
                 float: left;
@@ -194,15 +196,16 @@
                     float: left;
                     margin-bottom: 5px;
                     img{
-                        width: calc(100% - 5px);                    }
+                        width: calc(100% - 5px);                    
+                    }
                     &:nth-child(odd){
                         img{
-                            margin: 0 5px 5px 0px;
+                            margin: 0 5px 0px 0px;
                         }
                     }
                     &:nth-child(even){
                         img{
-                            margin: 0 0 5px 5px;
+                            margin: 0px;
                         }
                     }
                 }
@@ -293,6 +296,7 @@
             h5{
                 font-size: $font-r;
                 color: $black;
+                margin-top: 0px;
             }
             span{
                 font-size: $font-s;
@@ -336,12 +340,15 @@
         float: right;
         display: flex;
         justify-content: space-around;
-        align-items: center;
+        align-items: flex-start;
         a{
             color: $secondary-text;
             font-size: $font-xxl;
             &:hover{
                 color: $default;
+            }
+            img, i{
+                float: left;
             }
             &.option-img{
                 width: auto;

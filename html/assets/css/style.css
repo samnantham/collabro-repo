@@ -7543,6 +7543,12 @@ td.visible-print {
   justify-content: space-between;
 }
 
+.flex-top-space {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
 .flex-center-space-around {
   display: flex;
   align-items: center;
@@ -8036,11 +8042,11 @@ p {
   display: inline-block;
   cursor: pointer;
   color: #ccc;
-  font-size: 20px;
+  font-size: 16px;
   text-transform: uppercase;
   font-weight: 400;
   text-align: center;
-  padding: 10px 35px;
+  padding: 10px 30px;
   margin-bottom: 20px;
 }
 .tabset > label:first-of-type {
@@ -8630,6 +8636,10 @@ p {
   color: #344051;
 }
 
+button.close span {
+  font-weight: 100;
+}
+
 .unfollow-btn {
   background: #7E8EA4;
   color: #fff;
@@ -8820,7 +8830,7 @@ i.color-btn {
   padding: 30px;
 }
 .card .card-content h3 {
-  font-size: 26px;
+  font-size: 22px;
   color: #7E8EA4;
   margin-top: 0px;
   margin-bottom: 30px;
@@ -8844,13 +8854,14 @@ i.color-btn {
 }
 .card .card-info .price {
   float: left;
-  font-size: 42px;
+  font-size: 36px;
 }
 .card .card-info .price-sub {
   float: left;
-  font-size: 20px;
+  font-size: 16px;
   color: #7E8EA4;
   margin-left: 10px;
+  align-self: flex-end;
 }
 .card .card-info.price-border {
   border-top: 1px solid #dfe4e8;
@@ -8874,7 +8885,7 @@ i.color-btn {
   color: #7E8EA4;
 }
 .card .card-footer a i {
-  font-size: 34px;
+  font-size: 30px;
 }
 .card .card-footer a:hover {
   color: #00C4E8;
@@ -8958,20 +8969,21 @@ i.color-btn {
   align-items: flex-start;
 }
 .friend-card .card-info .card-left {
-  width: 50%;
+  width: 45%;
   float: left;
-  text-align: left;
+  text-align: center;
 }
 .friend-card .card-info .card-left img {
   width: auto;
-  max-width: 150px;
+  max-width: 100%;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
 }
 .friend-card .card-info .card-right {
-  width: 50%;
-  float: left;
+  width: 45%;
+  float: right;
+  margin-left: auto;
 }
 .friend-card .card-info .card-right .card-thumbs {
   width: 100%;
@@ -8990,10 +9002,10 @@ i.color-btn {
   width: calc(100% - 5px);
 }
 .friend-card .card-info .card-right .card-thumbs li:nth-child(odd) img {
-  margin: 0 5px 5px 0px;
+  margin: 0 5px 0px 0px;
 }
 .friend-card .card-info .card-right .card-thumbs li:nth-child(even) img {
-  margin: 0 0 5px 5px;
+  margin: 0px;
 }
 .friend-card .card-info .card-right .rewards {
   width: 100%;
@@ -9084,6 +9096,7 @@ i.color-btn {
 .table-card .table-content .table-col h5 {
   font-size: 14px;
   color: #344051;
+  margin-top: 0px;
 }
 .table-card .table-content .table-col span {
   font-size: 12px;
@@ -9125,7 +9138,7 @@ i.color-btn {
   float: right;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
 }
 .table-card .table-option a {
   color: #7E8EA4;
@@ -9133,6 +9146,9 @@ i.color-btn {
 }
 .table-card .table-option a:hover {
   color: #00C4E8;
+}
+.table-card .table-option a img, .table-card .table-option a i {
+  float: left;
 }
 .table-card .table-option a.option-img {
   width: auto;
@@ -11160,6 +11176,7 @@ input[type=checkbox]:checked ~ .switch-tog {
   font-size: 14px;
   margin-left: 20px;
   color: #7E8EA4;
+  position: relative;
 }
 .topbar .topbar-list li i {
   font-size: 16px;
@@ -11167,6 +11184,12 @@ input[type=checkbox]:checked ~ .switch-tog {
 }
 .topbar .topbar-list li span {
   color: #344051;
+  display: inline-flex;
+  align-items: center;
+}
+.topbar .topbar-list li span i {
+  margin-right: 0px;
+  font-size: 20px;
 }
 
 .form-group {
@@ -11449,7 +11472,7 @@ label .checkmark .checkmark__check {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   box-shadow: none;
-  background: #fff;
+  background: transparent;
   background-image: none;
   -webkit-appearance: none;
 }
@@ -11464,7 +11487,7 @@ label .checkmark .checkmark__check {
 .custom-arrow {
   width: 100%;
   float: left;
-  background: url(../img/dropdown.png) no-repeat center right 10px;
+  background: url(../img/dropdown.png) #fff no-repeat center right 10px;
 }
 
 /* check box */
