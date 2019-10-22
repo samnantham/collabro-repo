@@ -7384,6 +7384,10 @@ td.visible-print {
   color: #FF1561 !important;
 }
 
+.gold {
+  color: #C4AC83 !important;
+}
+
 .primary-bg {
   background: #00C4E8;
 }
@@ -7896,8 +7900,8 @@ body.nothome {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Lato";
-  font-weight: 600;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
 }
 
 p {
@@ -8046,14 +8050,14 @@ p {
   text-transform: uppercase;
   font-weight: 400;
   text-align: center;
-  padding: 10px 30px;
+  padding: 10px 25px;
   margin-bottom: 20px;
 }
 .tabset > label:first-of-type {
-  margin-left: 25px;
+  margin-left: 15px;
 }
 .tabset > label:last-of-type {
-  margin-right: 25px;
+  margin-right: 15px;
 }
 
 .connector-tabset > label {
@@ -8820,24 +8824,24 @@ i.color-btn {
 .card .card-close {
   width: 100%;
   float: left;
-  padding: 15px 30px;
+  padding: 15px 20px;
   font-size: 22px;
   text-align: right;
 }
 .card .card-content {
   width: 100%;
   float: left;
-  padding: 30px;
+  padding: 20px;
 }
 .card .card-content h3 {
-  font-size: 22px;
+  font-size: 20px;
   color: #7E8EA4;
   margin-top: 0px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 .card .card-content .title-default {
   color: #00C4E8;
-  font-size: 22px;
+  font-size: 20px;
   margin-bottom: 0px;
 }
 .card .card-content .sub-head {
@@ -8854,11 +8858,13 @@ i.color-btn {
 }
 .card .card-info .price {
   float: left;
-  font-size: 36px;
+  font-family: "Lato";
+  font-size: 30px;
+  font-weight: 600;
 }
 .card .card-info .price-sub {
   float: left;
-  font-size: 16px;
+  font-size: 12px;
   color: #7E8EA4;
   margin-left: 10px;
   align-self: flex-end;
@@ -8866,7 +8872,7 @@ i.color-btn {
 .card .card-info.price-border {
   border-top: 1px solid #dfe4e8;
   border-bottom: 1px solid #dfe4e8;
-  padding: 30px;
+  padding: 20px;
   height: auto;
 }
 .card .card-footer {
@@ -8885,33 +8891,33 @@ i.color-btn {
   color: #7E8EA4;
 }
 .card .card-footer a i {
-  font-size: 30px;
+  font-size: 24px;
 }
 .card .card-footer a:hover {
   color: #00C4E8;
 }
 .card .card-footer span {
   color: #344051;
-  font-size: 22px;
+  font-size: 16px;
 }
 .card .hover-icon {
   position: absolute;
   right: 20px;
   top: 20px;
-  width: 68px;
-  height: 68px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   background: #00C4E8;
   color: #fff;
   display: none;
-  font-size: 34px;
+  font-size: 30px;
   transition: all 0.2s;
 }
 .compare-card .card-footer {
   border-top: 0px;
-  padding: 30px;
+  padding: 20px;
   display: block;
 }
 .compare-card .card-footer .footer-top {
@@ -8920,7 +8926,7 @@ i.color-btn {
   display: flex;
   justify-content: space-between;
   font-size: 22px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 .compare-card .card-footer .footer-top .ratings i {
   color: #7E8EA4;
@@ -8964,12 +8970,13 @@ i.color-btn {
 .friend-card .card-info {
   width: 100%;
   float: left;
-  padding: 30px !important;
+  padding: 20px !important;
   display: flex;
   align-items: flex-start;
+  min-height: 190px;
 }
 .friend-card .card-info .card-left {
-  width: 45%;
+  width: 48%;
   float: left;
   text-align: center;
 }
@@ -8981,7 +8988,7 @@ i.color-btn {
   -moz-border-radius: 50%;
 }
 .friend-card .card-info .card-right {
-  width: 45%;
+  width: 48%;
   float: right;
   margin-left: auto;
 }
@@ -9023,7 +9030,7 @@ i.color-btn {
   width: 100%;
   float: left;
   text-align: center;
-  font-size: 22px;
+  font-size: 20px;
   color: #344051;
 }
 .friend-card .card-info .card-right .rewards .rewards-left .title, .friend-card .card-info .card-right .rewards .rewards-right .title {
@@ -9031,12 +9038,12 @@ i.color-btn {
   float: left;
   text-align: center;
   font-size: 14px;
-  font-weight: 500;
 }
 .friend-card .card-footer {
   justify-content: space-between;
-  padding: 20px 30px;
+  padding: 20px 20px;
   font-size: 22px;
+  min-height: 85px;
 }
 .friend-card .card-footer a {
   color: #7E8EA4;
@@ -9239,7 +9246,7 @@ i.color-btn {
   margin: 0;
   padding: 0px;
   font-size: 14px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 .messenger .message-wrap .message {
   position: relative;

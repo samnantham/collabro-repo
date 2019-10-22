@@ -21,23 +21,23 @@
     .card-close{
         width: 100%;
         float: left;
-        padding: 15px 30px; 
+        padding: 15px 20px; 
         font-size: $font-xl;
         text-align: right;
     }
     .card-content{
         width: 100%;
         float: left;
-        padding: 30px;
+        padding: 20px;
         h3{
-            font-size: $font-xl;
+            font-size: $font-l;
             color: $secondary-text;
             margin-top: 0px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }        
         .title-default{
             color: $default;
-            font-size: $font-xl;
+            font-size: $font-l;
             margin-bottom: 0px;
         }
         .sub-head{
@@ -54,11 +54,13 @@
         height: 42px;
         .price{
             float: left;
+            font-family: $font-special;
             font-size: $font-price;
+            font-weight: $font-semibold;
         }
         .price-sub{
             float: left;
-            font-size: $font-m;
+            font-size: $font-s;
             color: $secondary-text;
             margin-left: 10px;
             align-self: flex-end;
@@ -66,7 +68,7 @@
         &.price-border{
             border-top: 1px solid $border;
             border-bottom: 1px solid $border;
-            padding: 30px;
+            padding: 20px;
             height: auto;
         }
     }
@@ -82,7 +84,7 @@
         a{
             color: $secondary-text;
             i{
-                font-size: $font-xxll;
+                font-size: $font-xxl;
             }
             &:hover{
                 color: $default;
@@ -90,20 +92,20 @@
         }
         span{
             color: $black;
-            font-size: $font-xl;
+            font-size: $font-m;
         }
     }
     .hover-icon{
         position: absolute;
         right: 20px;
         top: 20px;
-        width: 68px;
-        height: 68px;
+        width: 50px;
+        height: 50px;
         @include border-radius(50%);
         background: $default;
         color: $white;        
         display: none;
-        font-size: $font-large;
+        font-size: $font-xxll;
         transition: all 0.2s;
         &.active{
             @extend.flex-center;
@@ -119,7 +121,7 @@
 .compare-card{
     .card-footer{
         border-top: 0px;
-        padding: 30px;
+        padding: 20px;
         display: block;
         .footer-top{
             width: 100%;
@@ -127,7 +129,7 @@
             display: flex;
             justify-content: space-between;
             font-size: $font-xl;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             .ratings{
                 i{
                     color: $secondary-text;
@@ -167,11 +169,12 @@
     .card-info{
         width: 100%;
         float: left;
-        padding: 30px !important;
+        padding: 20px !important;
         display: flex;
         align-items: flex-start;
+        min-height: 190px;
         .card-left{
-            width: 45%;
+            width: 48%;
             float: left;
             text-align: center;
             img{
@@ -181,7 +184,7 @@
             }
         }
         .card-right{
-            width: 45%;
+            width: 48%;
             float: right;
             margin-left: auto;
             .card-thumbs{
@@ -224,7 +227,7 @@
                         width: 100%;
                         float: left;
                         text-align: center;
-                        font-size: $font-xl;
+                        font-size: $font-l;
                         color: $black;
                     }
                     .title{
@@ -232,7 +235,6 @@
                         float: left;
                         text-align: center;
                         font-size: $font-r;
-                        font-weight: $font-medium;
                     }
                 }
             }
@@ -240,8 +242,9 @@
     }
     .card-footer{
         justify-content: space-between;
-        padding: 20px 30px;
+        padding: 20px 20px;
         font-size: $font-xl;
+        min-height: 85px;
         a{
             color: $secondary-text;
             display: inline-flex;
