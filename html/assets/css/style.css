@@ -7887,7 +7887,7 @@ a:hover, a:focus {
 body {
   background-color: #eff1f3;
   font-size: 14px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lato";
   padding-top: 250px;
 }
 body.nothome {
@@ -7900,22 +7900,22 @@ body.nothome {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
+  font-family: "Lato";
+  font-weight: 600;
 }
 
 p {
-  font-family: "Roboto", sans-serif;
+  font-family: "Lato";
   font-weight: normal;
   font-size: 14px;
 }
 
 .form-control {
-  font-family: "Roboto", sans-serif;
+  font-family: "Lato";
   font-weight: normal;
 }
 .form-control::placeholder, .form-control::moz-placeholder, .form-control:-ms-input-placeholder, .form-control::-ms-input-placeholder {
-  font-family: "Roboto", sans-serif;
+  font-family: "Lato";
   font-weight: normal;
 }
 
@@ -8834,19 +8834,22 @@ i.color-btn {
   padding: 20px;
 }
 .card .card-content h3 {
-  font-size: 20px;
+  font-size: 16px;
   color: #7E8EA4;
   margin-top: 0px;
   margin-bottom: 20px;
 }
 .card .card-content .title-default {
   color: #00C4E8;
-  font-size: 20px;
+  font-size: 16px;
   margin-bottom: 0px;
 }
 .card .card-content .sub-head {
-  font-size: 14px;
+  font-size: 12px;
   color: #344051;
+  width: 100%;
+  float: left;
+  margin-top: 5px;
 }
 .card .card-info {
   width: 100%;
@@ -8858,16 +8861,16 @@ i.color-btn {
 }
 .card .card-info .price {
   float: left;
-  font-family: "Lato";
+  font-family: "Roboto", sans-serif;
   font-size: 30px;
-  font-weight: 600;
+  font-weight: 400;
 }
 .card .card-info .price-sub {
   float: left;
   font-size: 12px;
   color: #7E8EA4;
-  margin-left: 10px;
-  align-self: flex-end;
+  margin-left: 5px;
+  margin-bottom: -10px;
 }
 .card .card-info.price-border {
   border-top: 1px solid #dfe4e8;
@@ -8925,7 +8928,7 @@ i.color-btn {
   float: left;
   display: flex;
   justify-content: space-between;
-  font-size: 22px;
+  font-size: 16px;
   margin-bottom: 20px;
 }
 .compare-card .card-footer .footer-top .ratings i {
@@ -9222,7 +9225,7 @@ i.color-btn {
 }
 
 .messenger {
-  padding: 10px 30px !important;
+  padding: 20px 30px !important;
   width: 100%;
   float: left;
   background: #fff;
