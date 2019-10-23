@@ -7901,7 +7901,7 @@ body.nothome {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Lato";
-  font-weight: 600;
+  font-weight: 500;
 }
 
 p {
@@ -8213,7 +8213,7 @@ p {
 }
 
 .alert {
-  font-size: 18px;
+  font-size: 16px;
 }
 .alert .close {
   color: #fff;
@@ -9152,13 +9152,14 @@ i.color-btn {
 }
 .table-card .table-option a {
   color: #7E8EA4;
-  font-size: 24px;
+  font-size: 20px;
 }
 .table-card .table-option a:hover {
   color: #00C4E8;
 }
 .table-card .table-option a img, .table-card .table-option a i {
   float: left;
+  height: 20px;
 }
 .table-card .table-option a.option-img {
   width: auto;
@@ -9167,6 +9168,7 @@ i.color-btn {
 .table-card .table-option a.option-img img {
   width: auto;
   max-width: 100%;
+  height: auto;
 }
 .table-card .table-option.flex-right a {
   float: right;
@@ -9840,6 +9842,7 @@ i.color-btn {
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   padding: 5px 0px;
+  min-width: 140px;
 }
 
 @keyframes scaleDrop {
@@ -10485,6 +10488,9 @@ i.color-btn {
 @media (max-width: 1440px) {
   .main-header .top-nav li {
     margin: 0 15px;
+  }
+  .main-header .top-nav .dropdown-menu li {
+    margin: 0px;
   }
 }
 .sidebar-toggle {
@@ -11161,7 +11167,7 @@ input[type=checkbox]:checked ~ .switch-tog {
 }
 .topbar .topbar-left h2 {
   margin: 0px;
-  font-size: 26px;
+  font-size: 24px;
 }
 .topbar .topbar-left li {
   color: #344051 !important;
