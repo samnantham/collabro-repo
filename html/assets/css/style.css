@@ -7529,7 +7529,7 @@ td.visible-print {
   border-color: #dfe4e8;
 }
 
-.flex-center, .topbar .topbar-list li, .topbar .topbar-left, .card:hover .hover-icon, .card .hover-icon.active {
+.flex-center, .topbar-list li, .topbar .topbar-left, .card:hover .hover-icon, .card .hover-icon.active {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7572,7 +7572,7 @@ td.visible-print {
 }
 
 @media (max-width: 768px) {
-  .flex-center, .topbar .topbar-list li, .topbar .topbar-left, .card:hover .hover-icon, .card .hover-icon.active, .inline-flex-center, .avatar span, .flex-center-space, .topbar, .flex-center-right, .flex-center-space-around {
+  .flex-center, .topbar-list li, .topbar .topbar-left, .card:hover .hover-icon, .card .hover-icon.active, .inline-flex-center, .avatar span, .flex-center-space, .topbar, .flex-center-right, .flex-center-space-around {
     display: block;
   }
 }
@@ -11139,6 +11139,7 @@ input[type=checkbox]:checked ~ .switch-tog {
 .topbar.result {
   height: 30px;
   padding: 10px 15px;
+  position: relative;
 }
 .topbar.result .topbar-left span.lefttext {
   color: #7E8EA4;
@@ -11172,29 +11173,33 @@ input[type=checkbox]:checked ~ .switch-tog {
   width: auto;
   float: right;
 }
-.topbar .topbar-list {
+.topbar .topbar-right .dropdown-toggle {
+  cursor: pointer;
+}
+
+.topbar-list {
   width: auto;
   float: left;
   margin: 0;
   list-style: none;
 }
-.topbar .topbar-list li {
+.topbar-list li {
   float: left;
   font-size: 14px;
   margin-left: 20px;
   color: #7E8EA4;
   position: relative;
 }
-.topbar .topbar-list li i {
+.topbar-list li i {
   font-size: 16px;
   margin-right: 10px;
 }
-.topbar .topbar-list li span {
+.topbar-list li span {
   color: #344051;
   display: inline-flex;
   align-items: center;
 }
-.topbar .topbar-list li span i {
+.topbar-list li span i {
   margin-right: 0px;
   font-size: 20px;
 }

@@ -9,6 +9,7 @@
     &.result{
         height: 30px;
         padding: 10px 15px;
+        position: relative;
         .topbar-left{
             span.lefttext{
                 color: $secondary-text;
@@ -43,32 +44,35 @@
     }
     .topbar-right{
         width: auto;
-        float: right;        
+        float: right;  
+        .dropdown-toggle{
+            cursor: pointer;
+        }     
     }
-    .topbar-list{
-        width: auto;
+}
+.topbar-list{
+    width: auto;
+    float: left;
+    margin: 0;
+    list-style: none;
+    li{
         float: left;
-        margin: 0;
-        list-style: none;
-        li{
-            float: left;
-            @extend .flex-center;
-            font-size: $font-r;
-            margin-left: 20px;
-            color: $secondary-text;
-            position: relative;
+        @extend .flex-center;
+        font-size: $font-r;
+        margin-left: 20px;
+        color: $secondary-text;
+        position: relative;
+        i{
+            font-size: $font-m;
+            margin-right: 10px;
+        }
+        span{
+            color: $black;
+            display: inline-flex;
+            align-items: center;
             i{
-                font-size: $font-m;
-                margin-right: 10px;
-            }
-            span{
-                color: $black;
-                display: inline-flex;
-                align-items: center;
-                i{
-                    margin-right: 0px;
-                    font-size: $font-l;
-                }
+                margin-right: 0px;
+                font-size: $font-l;
             }
         }
     }
