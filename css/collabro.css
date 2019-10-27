@@ -623,6 +623,15 @@ p {
   padding-left: 35px !important;
 }
 
+.caret {
+  width: 12px;
+  height: 7px;
+  border: 0px;
+  background: url(../img/down-arrow.png) no-repeat;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
 .topbar {
   width: 100%;
   float: left;

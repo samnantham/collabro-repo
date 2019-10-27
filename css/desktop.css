@@ -6688,7 +6688,7 @@ html .ui-button.ui-state-disabled:active {
 
 .tooltip-error .tooltip-inner,
 .agreementerror .tooltip-inner{
-   background-color: red!important;
+   background-color: #D60046 !important;
    color: #fff;
 }
 
