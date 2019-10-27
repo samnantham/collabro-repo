@@ -7,13 +7,14 @@
 	font-weight: inherit;
 	padding: 0px 15px;
 	border: 1px solid transparent;
-	height: 35px;
+	height: 38px;
 	display: inline-flex;
 	align-items: center;
+	justify-content: center;
 	@include border-radius(4px);
 	color: $white;
 	text-transform: none;
-	line-height: normal;
+	line-height: unset;
 	transition: all 0.3s;
 	&.btn-svg
 	{
@@ -43,7 +44,7 @@
 		transform: none;
 		box-shadow: none;
 	}
-	&[disabled] { cursor: not-allowed; }
+	&[disabled] { cursor: not-allowed; pointer-events: none; background: $silver; color: $secondary-text; }
 	.icon,
 	.fa {
 		font-size: $font-m;
@@ -193,10 +194,24 @@
 	border: 1px solid;
 	border-color: transparent;
 	&:hover{
-		background: $white;
-		color: $green;
+		background: darken($green, 10%);
+		color: $white;
 		border: 1px solid;
 		border-color: $green;
+	}
+}
+
+.blue-btn, .blue-btn:focus{
+	background: $dark-blue;
+	color: $white;
+	text-transform: none;
+	border: 1px solid;
+	border-color: transparent;
+	&:hover{
+		background: darken($dark-blue, 10%);
+		color: $white;
+		border: 1px solid;
+		border-color: $dark-blue;
 	}
 }
 

@@ -33,7 +33,7 @@
 @import "3-component/file-upload.scss";
 @import "3-component/footer.scss";
 @import "3-component/main-header.sass";
-@import "3-component/modal.sass";
+@import "3-component/modal.scss";
 @import "3-component/progress.scss";
 @import "3-component/rangeslider.scss";
 @import "3-component/_sidebar-list.sass";
@@ -44,3 +44,4 @@
 // 4 -Pages
 //---------------------------------------------------
 @import "4-pages/ui.sass";
+@import "4-pages/login.scss";

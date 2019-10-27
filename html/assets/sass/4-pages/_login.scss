@@ -1,0 +1,28 @@
+.login-modal{
+    width: 100%;
+    float: left;
+    border: 5px solid $default;
+    @include border-radius(4px);
+    background: $white;
+    padding: 30px;
+    max-width: 420px;
+    h1{
+        margin-top: 0px;
+        margin-bottom: 30px;
+    }
+    .text{
+        font-weight: $font-bold;
+        font-size: $font-s;
+    }
+    .forgot-password{
+        color: $default;
+        font-size: $font-s;
+        font-weight: $font-bold;
+    }
+    a{
+        color: $default;
+    }
+    .btn{
+        text-transform: uppercase !important;
+    }
+}

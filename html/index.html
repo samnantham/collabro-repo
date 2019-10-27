@@ -135,8 +135,31 @@
     </header>
 
     <div class="container-fluid">
+        <div class="row mb-20">
+            <div class="col-lg-3 col-md-3">
+                <ul class="colorcode">
+                    <li class="primary-bg">Primary color - #00C4E8 </li>
+                    <li class="secondary-bg">Secondary color - #7E8EA4 </li>
+                    <li class="success-bg">Success color - #34AA44</li>
+                    <li class="warning-bg">Warning color - #ffc114</li>
+                    <li class="info-bg">Info color - #00C4E8</li>
+                    <li class="danger-bg">Danger color - #FF1561</li>
+                    <li class="orange-gradient">Orange gradient </li>
+                    <li class="silver-gradient">Silver gradient</li>
+                    <li class="gold-bg">Gold color</li>
+                </ul>
+            </div>
+            <div class="col-lg-9 col-md-9">
+                <h1>H1 - Heading one - Font family - Lato - Font weight - Medium - 26px</h1>
+                <h2>H2 - Heading two - Font family - Lato - Font weight - Medium - 22px</h2>
+                <h3>H3 - Heading three - Font family - Lato - Font weight - Medium - 18px</h3>
+                <h4>H4 - Heading four - Font family - Lato - Font weight - Medium - 16px</h4>
+                <h5>H5 - Heading five - Font family - Lato - Font weight - Medium - 14px</h5>
+                <h6>H6 - Heading six - Font family - Lato - Font weight - Medium - 12px</h6>
+            </div>            
+        </div>
 
-        <div class="row">
+        <div class="row mt-30">
             <div class="col-lg-4 col-md-4 mt-10">
                 <div class="form-group">
                     <label class="control-label">Label name</label>
@@ -193,6 +216,8 @@
                 </div>
                 <div class="form-group">
                     <input type="button" class="btn default-btn-border" value="Border button" />
+                </div>
+                <div class="form-group">
                     <input type="button" class="btn silver-btn" value="Silver button" />
                     <a class="btn secondary-btn" href="#"><i class="fa fa-bolt mr-10"></i> BROADCAST</a>
                 </div>
@@ -201,15 +226,15 @@
                 </div>
                 <div class="form-group">
                     <label class="custom-toggle" for="switch-toggle1">
-                      <div class="toggle-con">
-                        <input
-                          type="checkbox"
-                          id="switch-toggle1"
-                        />
-                        <span class="switch-tog"></span>
-                        <span class="toggle-s"></span>
-                    </div>
-                    <span>Switch value</span>
+                        <span>Switch value</span>
+                        <div class="toggle-con">
+                            <input
+                            type="checkbox"
+                            id="switch-toggle1"
+                            />
+                            <span class="switch-tog"></span>
+                            <span class="toggle-s"></span>
+                        </div>
                     </label>
                 </div>
                 <div class="form-group">
@@ -672,32 +697,6 @@
                 </div>
             </div>
 
-        </div>
-
-        <div class="row mt-30">
-            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4">
-                <div class="card">
-                    <div class="card-img">
-                        <img src="assets/img/card-img.png" />
-                    </div>
-                    <div class="card-content">
-                        <h3>Product thumbnail</h3>
-                        <div class="card-info">
-                            <span class="price">$5400</span>
-                            <span class="price-sub">Per Week</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#"><i class="fa fa-heart"></i></a>
-                        <a href="#"><i class="fa fa-share"></i></a>
-                        <a href="#"><i class="fa fa-plus"></i></a>
-                    </div>
-                    <div class="hover-icon">
-                        <i class="fa fa-bookmark"></i>
-                    </div>
-                </div>
-            </div>
-
             <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4">
                 <div class="card">
                     <div class="card-img">
@@ -726,6 +725,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
         <div class="row mt-30">
@@ -1034,6 +1034,149 @@
             </div>
         </div>
 
+
+        <div class="row mb-20 mt-20">
+            <div class="col-lg-4 col-md-4">
+                <div class="login-modal">
+                    <h1>Sign In</h1>
+                    <form>
+                        <div class="form-group">
+                            <label class="control-label">E-mail address</label>
+                            <input type="text" class="form-control" placeholder="email@address.com" />
+                            <span class="error error-text">Invalid format</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Password</label>
+                            <input type="password" class="form-control" placeholder="password" />
+                            <span class="eye-icon">
+                                <i class="fa fa-eye"></i>
+                            </span>
+                            <span class="error error-text">Invalid format</span>
+                        </div>
+                        <div class="form-group flex-center-space mt-10">
+                            <input
+                                class="magic-checkbox"
+                                type="checkbox"
+                                name="layout"
+                                id="remember"
+                                value="option"
+                            />
+                            <label class="text" for="remember">Remember Me</label>
+                            <a class="forgot-password right" href="#">Forgot Password?</a>
+                        </div>
+                        <div class="form-group mt-20">
+                            <input type="button" disabled class="btn success-btn block-btn" value="Sign in" />
+                        </div>
+                        <div class="form-group">
+                            <input type="button" class="btn blue-btn block-btn" value="Sign in with Facebook" />
+                        </div>
+                        <div class="form-group">
+                            <input type="button" class="btn danger-btn block-btn" value="Sign in width Google" />
+                        </div>
+                        <div class="form-group mt-20">
+                            <input type="button" class="btn silver-btn block-btn" value="Create an Account" />
+                        </div>
+                        <p class="text-center">Create an account if you do not have an account yet</p>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4">
+                <div class="login-modal">
+                    <h1>Create Your Account</h1>
+                    <form>
+                        <div class="form-group">
+                            <label class="control-label">Username</label>
+                            <input type="text" class="form-control" placeholder="username" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">E-mail address</label>
+                            <input type="text" class="form-control" placeholder="email@address.com" />
+                            <span class="error error-text">Invalid format</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Password</label>
+                            <input type="password" class="form-control" placeholder="password" />
+                            <span class="eye-icon">
+                                <i class="fa fa-eye"></i>
+                            </span>
+                            <span class="error error-text">Invalid format</span>
+                        </div>
+                        <div class="form-group custom-dropdown">
+                            <label class="control-label">Who you are?</label>
+                            <div class="custom-arrow">
+                                <select class="select-form-control">
+                                    <option value="option">Individual</option>
+                                    <option value="option">Company</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group mt-10">
+                            <input type="button" disabled class="btn success-btn block-btn" value="Proceed" />
+                        </div>
+                        <p class="text-center">Create an account to buy and sell in our community! If you already have an account <a href="#">Login in here</a></p>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4">
+                <div class="login-modal">
+                    <h1>Forgot Password</h1>
+                    <form>
+                        <div class="form-group">
+                            <label class="control-label">E-mail address</label>
+                            <input type="text" class="form-control" placeholder="email@address.com" />
+                            <span class="error error-text">Invalid format</span>
+                        </div>
+                        <div class="form-group mt-10">
+                            <input type="button" disabled class="btn success-btn block-btn" value="Proceed" />
+                        </div>
+                        <div class="form-group">
+                            <input type="button" class="btn silver-btn block-btn" value="Create an Account" />
+                        </div>
+                        <div class="form-group">
+                            <input type="button" class="btn silver-btn block-btn" value="Go to Sign in" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Modals -->
+        <div class="row mb-20 mt-20">
+            <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+                <div class="custom-modal">
+                    <!-- Modal title -->
+                    <div class="custom-modal-title modal-gray">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                <h3><i class="fa fa-bolt"></i> Broadcast</h3>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <div class="dropdown-label">Category</div>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                            
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="custom-modal-body">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4"></div>
+                            <div class="col-lg-8 col-md-8"></div>
+                        </div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="custom-modal-footer">
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
     </div>
 

@@ -12,15 +12,16 @@
 		width: 100%
 		color: $mid-gray
 		background-color: transparent
-		font-size: $font-r
-		font-weight: $font-regular
+		font-size: $font-s
+		font-weight: $font-bold
 		z-index: 10
 		margin-bottom: 5px
-		text-transform: capitalize
+		text-transform: uppercase
 	.error
-		float: left
-		margin-top: 5px
-		margin-bottom: 0
+		position: absolute
+		top: 0px
+		right: 0px
+		font-size: $font-s
 		.count-letter
 			color: $light-blue
 			padding: $pl-5
@@ -85,6 +86,22 @@
 	h2
 		color: $black
 		margin: $mv-10
+
+input[type="password"]
+	padding-right: 30px
+
+.eye-icon
+	width: 15px
+	height: 15px
+	position: absolute
+	display: inline-flex
+	align-items: center
+	justify-content: center
+	bottom: 10px
+	right: 10px
+	z-index: 9999
+	i
+		color: $secondary-text
 
 /* Search top */
 .search-top
