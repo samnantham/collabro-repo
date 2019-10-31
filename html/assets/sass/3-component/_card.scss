@@ -30,10 +30,8 @@
         float: left;
         padding: 20px;
         h3{
-            font-size: $font-m;
             color: $secondary-text;
             margin-top: 0px;
-            margin-bottom: 20px;
         }        
         .title-default{
             color: $default;
@@ -245,7 +243,7 @@
     }
     .card-footer{
         justify-content: space-between;
-        padding: 20px 20px;
+        padding: 20px;
         font-size: $font-xl;
         min-height: 85px;
         a{
@@ -300,7 +298,6 @@
                 margin-bottom: 0px;
             }
             h5{
-                font-size: $font-r;
                 color: $black;
                 margin-top: 0px;
             }
@@ -337,7 +334,6 @@
             }
             h5{
                 float: left;
-                font-size: $font-r;
             }
         }  
     }

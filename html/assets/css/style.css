@@ -7927,6 +7927,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   margin: 10px 0;
   line-height: unset;
+  color: #7E8EA4;
 }
 
 h1 {
@@ -8901,10 +8902,8 @@ i.color-btn {
   padding: 20px;
 }
 .card .card-content h3 {
-  font-size: 16px;
   color: #7E8EA4;
   margin-top: 0px;
-  margin-bottom: 20px;
 }
 .card .card-content .title-default {
   color: #00C4E8;
@@ -9111,7 +9110,7 @@ i.color-btn {
 }
 .friend-card .card-footer {
   justify-content: space-between;
-  padding: 20px 20px;
+  padding: 20px;
   font-size: 22px;
   min-height: 85px;
 }
@@ -9171,7 +9170,6 @@ i.color-btn {
   margin-bottom: 0px;
 }
 .table-card .table-content .table-col h5 {
-  font-size: 14px;
   color: #344051;
   margin-top: 0px;
 }
@@ -9208,7 +9206,6 @@ i.color-btn {
 }
 .table-card .table-content .table-col1 h5 {
   float: left;
-  font-size: 14px;
 }
 .table-card .table-option {
   width: 180px;
@@ -9761,6 +9758,7 @@ i.color-btn {
   color: #344051;
   align-items: center;
   padding-left: 25px;
+  height: 20px;
   cursor: pointer;
   transition: all 0.25s;
 }
@@ -10631,6 +10629,10 @@ i.color-btn {
   width: 100%;
   float: left;
 }
+.custom-modal .custom-modal-body .modal-left {
+  width: 100%;
+  float: left;
+}
 .custom-modal .custom-modal-footer {
   width: 100%;
   float: left;
@@ -11162,7 +11164,6 @@ input[type=checkbox]:checked ~ .switch-tog {
 }
 .topbar .topbar-left h2 {
   margin: 0px;
-  font-size: 24px;
 }
 .topbar .topbar-left li {
   color: #344051 !important;
@@ -11523,6 +11524,7 @@ label .checkmark .checkmark__check {
 .custom-arrow {
   width: 100%;
   float: left;
+  height: 42px;
   background: url(../img/dropdown.png) #fff no-repeat center right 10px;
 }
 
@@ -11634,7 +11636,7 @@ input:checked + .slider:before {
   color: #00C4E8;
 }
 .login-modal .btn {
-  text-transform: uppercase !important;
+  text-transform: capitalize !important;
 }
 
 /*# sourceMappingURL=style.css.map */
