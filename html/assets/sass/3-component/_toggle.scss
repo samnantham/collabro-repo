@@ -6,14 +6,14 @@ input[type='checkbox'] {
   display: none;
   
   &:checked ~ .toggle-s {
-    background: $success;
-    border: 1px solid $white;
+    background: $white;
+    border: 1px solid $success;
     left: 31px;
     transition: .2s;
   }
   
   &:checked ~ .switch-tog {
-    background: $default-silver;  
+    background: $green;  
     transition: .2s;
     // border-color: $default;
   }
@@ -41,7 +41,7 @@ input[type='checkbox'] {
   display: block;
   width: 45px;
   height: 14px;
-  background: $gray;
+  background: $danger;
   border: 1px solid $input-border;
   border-radius: 20px;
   position: absolute;
@@ -54,12 +54,12 @@ input[type='checkbox'] {
   height: 12px;
   width: 12px;
   border-radius: 50%;
-  background: $danger;
+  background: $white;
   position: absolute;
   left: 2px;
   top: 1px;
   transition: .2s;
-  border: 1px solid $white;
+  border: 1px solid $danger;
 }
 
 .toggle-con{

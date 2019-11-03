@@ -3,24 +3,34 @@
 .dropdown-menu
 	right: 0
 	left: auto
-	top: calc(100% + 0px)
+	top: calc(100% + 5px)
 	margin-top: 0
 	border-radius: 0
 	@include box-shadow($box-shadow-add)
 	border: 0
 	padding: 0
 	display: none
-	li a
-		position: relative
-		padding: 5px 10px
-		font-size: $font-r
-		i
-			width: 20px
-			font-size: $font-s
-			vertical-align: middle
-		&:hover
-			background: $default
-			color: $white
+	li 
+		@include border-radius(5px)
+		a
+			position: relative
+			padding: 0px 10px
+			font-size: $font-r
+			min-height: 36px
+			line-height: 36px
+			i
+				width: 20px
+				font-size: $font-s
+				vertical-align: middle
+			&:hover
+				background: $default
+				color: $white
+		&:first-of-type
+			a
+				@include border-radius(5px 5px 0 0)
+		&:last-of-type
+			a
+				@include border-radius(0 0 5px 5px)
 .open > .dropdown-menu
 	animation-name: scaleDrop
 	animation-duration: 0.3s
@@ -30,7 +40,7 @@
 	@include border-radius(5px)
 	border-color: transparent
 	@include box-shadow($box-shadow-card)
-	padding: $p-5
+	padding: 0
 	min-width: 140px
 
 @keyframes scaleDrop
@@ -49,13 +59,17 @@
 	box-shadow:  0 8px 17px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19)
 	border: 0
 	padding: 0
-	li a
-		position: relative
-		padding: 5px 10px
-		i
-			width: 20px
-			font-size: $font-s
-			vertical-align: middle
+	li 
+		@include border-radius(5px)
+		a
+			position: relative
+			padding: 0px 10px
+			min-height: 36px
+			line-height: 36px
+			i
+				width: 20px
+				font-size: $font-s
+				vertical-align: middle
 
 .open > .dropdown-menu
 	animation-name: scaleDrop

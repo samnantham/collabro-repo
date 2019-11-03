@@ -9868,7 +9868,7 @@ i.color-btn {
 .dropdown-menu {
   right: 0;
   left: auto;
-  top: calc(100% + 0px);
+  top: calc(100% + 5px);
   margin-top: 0;
   border-radius: 0;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.14);
@@ -9878,10 +9878,17 @@ i.color-btn {
   padding: 0;
   display: none;
 }
+.dropdown-menu li {
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
 .dropdown-menu li a {
   position: relative;
-  padding: 5px 10px;
+  padding: 0px 10px;
   font-size: 14px;
+  min-height: 36px;
+  line-height: 36px;
 }
 .dropdown-menu li a i {
   width: 20px;
@@ -9891,6 +9898,16 @@ i.color-btn {
 .dropdown-menu li a:hover {
   background: #00C4E8;
   color: #fff;
+}
+.dropdown-menu li:first-of-type a {
+  border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+}
+.dropdown-menu li:last-of-type a {
+  border-radius: 0 0 5px 5px;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
 }
 
 .open > .dropdown-menu {
@@ -9906,7 +9923,7 @@ i.color-btn {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-  padding: 5px;
+  padding: 0;
   min-width: 140px;
 }
 
@@ -9929,9 +9946,16 @@ i.color-btn {
   border: 0;
   padding: 0;
 }
+.dropdown-menu.newd li {
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
 .dropdown-menu.newd li a {
   position: relative;
-  padding: 5px 10px;
+  padding: 0px 10px;
+  min-height: 36px;
+  line-height: 36px;
 }
 .dropdown-menu.newd li a i {
   width: 20px;
@@ -11009,13 +11033,13 @@ input[type=checkbox] {
   display: none;
 }
 input[type=checkbox]:checked ~ .toggle-s {
-  background: #34AA44;
-  border: 1px solid #fff;
+  background: #fff;
+  border: 1px solid #34AA44;
   left: 31px;
   transition: 0.2s;
 }
 input[type=checkbox]:checked ~ .switch-tog {
-  background: #959DA8;
+  background: #34AA44;
   transition: 0.2s;
 }
 
@@ -11041,7 +11065,7 @@ input[type=checkbox]:checked ~ .switch-tog {
   display: block;
   width: 45px;
   height: 14px;
-  background: #ccc;
+  background: #FF1561;
   border: 1px solid #E2E5ED;
   border-radius: 20px;
   position: absolute;
@@ -11054,12 +11078,12 @@ input[type=checkbox]:checked ~ .switch-tog {
   height: 12px;
   width: 12px;
   border-radius: 50%;
-  background: #FF1561;
+  background: #fff;
   position: absolute;
   left: 2px;
   top: 1px;
   transition: 0.2s;
-  border: 1px solid #fff;
+  border: 1px solid #FF1561;
 }
 
 .toggle-con {
