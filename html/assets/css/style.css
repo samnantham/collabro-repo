@@ -9896,7 +9896,7 @@ i.color-btn {
   vertical-align: middle;
 }
 .dropdown-menu li a:hover {
-  background: #00C4E8;
+  background: #00d7ff;
   color: #fff;
 }
 .dropdown-menu li:first-of-type a {
@@ -10454,7 +10454,7 @@ i.color-btn {
   cursor: pointer;
 }
 .top-nav .dropdown-menu li a:hover {
-  background: #00C4E8;
+  background: #00d7ff;
   color: #fff;
 }
 .top-nav .dropdown-menu li a svg {
@@ -10511,11 +10511,11 @@ i.color-btn {
 }
 
 .navbar-inverse .navbar-nav .open a:hover {
-  background: #00C4E8;
+  background: #F4F6FB;
   color: #fff;
 }
 .navbar-inverse .navbar-nav .open a:focus {
-  background: #00C4E8;
+  background: #F4F6FB;
   color: #fff;
 }
 
@@ -11035,7 +11035,7 @@ input[type=checkbox] {
 input[type=checkbox]:checked ~ .toggle-s {
   background: #fff;
   border: 1px solid #34AA44;
-  left: 31px;
+  left: 33px;
   transition: 0.2s;
 }
 input[type=checkbox]:checked ~ .switch-tog {
@@ -11080,7 +11080,7 @@ input[type=checkbox]:checked ~ .switch-tog {
   border-radius: 50%;
   background: #fff;
   position: absolute;
-  left: 2px;
+  left: 1px;
   top: 1px;
   transition: 0.2s;
   border: 1px solid #FF1561;

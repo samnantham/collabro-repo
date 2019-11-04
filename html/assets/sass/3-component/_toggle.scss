@@ -8,7 +8,7 @@ input[type='checkbox'] {
   &:checked ~ .toggle-s {
     background: $white;
     border: 1px solid $success;
-    left: 31px;
+    left: 33px;
     transition: .2s;
   }
   
@@ -56,7 +56,7 @@ input[type='checkbox'] {
   border-radius: 50%;
   background: $white;
   position: absolute;
-  left: 2px;
+  left: 1px;
   top: 1px;
   transition: .2s;
   border: 1px solid $danger;
