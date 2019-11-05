@@ -137,6 +137,7 @@
     <div class="container-fluid">
         <div class="row mb-20">
             <div class="col-lg-2 col-md-2">
+                <h4>Colorcode</h4>
                 <ul class="colorcode">
                     <li class="primary-bg">Primary color - #00C4E8 </li>
                     <li class="secondary-bg">Secondary color - #7E8EA4 </li>
@@ -150,6 +151,7 @@
                 </ul>
             </div>
             <div class="col-lg-5 col-md-5">
+                <h4>Typography</h4>
                 <h1>H1 - Heading one - Lato - Font weight - Medium - 26px</h1>
                 <h2>H2 - Heading two - Lato - Font weight - Medium - 22px</h2>
                 <h3>H3 - Heading three - Lato - Font weight - Medium - 18px</h3>
@@ -158,6 +160,7 @@
                 <h6>H6 - Heading six - Lato - Font weight - Medium - 12px</h6>
             </div> 
             <div class="col-lg-5 col-md-5">
+                <h4>Typography</h4>
                 <h1 class="black">H1 - Heading one - Lato - Font weight - Medium - 26px</h1>
                 <h2 class="black">H2 - Heading two - Lato - Font weight - Medium - 22px</h2>
                 <h3 class="black">H3 - Heading three - Lato - Font weight - Medium - 18px</h3>
@@ -169,6 +172,7 @@
 
         <div class="row mt-30">
             <div class="col-lg-4 col-md-4 mt-10">
+                <h4>Forms</h4>
                 <div class="form-group">
                     <label class="control-label">Label name</label>
                     <input type="text" class="form-control" placeholder="form value" />
@@ -401,6 +405,7 @@
 
         <div class="row mt-20">
             <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-2">
+                <h4>Alerts</h4>
                 <div class="alert alert-warning alert-dismissible show" role="alert">
                         Warning. Loading of this page taking a way too long.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -507,6 +512,8 @@
             </div>
 
         </div>
+
+
 
         <!-- Tables -->
         <div class="row mt-30">
@@ -638,7 +645,21 @@
 
         </div>
 
+        <!-- Tooltip -->
+        <div class="row mb-50 mt-20">
+            <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-2">    
+                <h4>Tooltip</h4>            
+                <button type="button" class="btn default-btn" data-toggle="tooltip" data-placement="left" title="Tooltip on left">Tooltip on left</button>
+                <button type="button" class="btn default-btn" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Tooltip on top</button>
+                <button type="button" class="btn default-btn" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Tooltip on bottom</button>
+                <button type="button" class="btn default-btn" data-toggle="tooltip" data-placement="right" title="Tooltip on right">Tooltip on right</button>
+            </div>
+        </div>
+
         <div class="row mt-30">
+            <div class="col-lg-12 col-md-12">
+                <h4>Cards</h4>
+            </div>
             <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4">
                 <div class="card">
                     <div class="card-img">
@@ -857,6 +878,7 @@
 
         <div class="row mt-30 mb-20">
             <div class="col-lg-6 col-md-6">
+                <h4>Group Messenger</h4>
                 <!-- chatbot starts here -->
                 <div class="chat-wrap">
                     <div class="message-head">
@@ -965,6 +987,7 @@
 
 
             <div class="col-lg-6 col-md-6">
+                <h4>One to one Messenger</h4>
                 <!-- chatbot starts here -->
                 <div class="chat-wrap">
                     <div class="message-head">
@@ -1044,7 +1067,7 @@
         </div>
 
 
-        <div class="row mb-20 mt-20">
+        <div class="row mb-30 mt-30">
             <div class="col-lg-4 col-md-4">
                 <div class="login-modal">
                     <h1>Sign In</h1>
@@ -1152,9 +1175,11 @@
 
         </div>
 
+
         <!-- Modals -->
         <div class="row mb-20 mt-20">
             <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+                <h4>Modals</h4>
                 <div class="custom-modal">
                     <!-- Modal title -->
                     <div class="custom-modal-title modal-gray">
@@ -1304,6 +1329,13 @@
                 step1.classList.add("is-active");
             }
         }
+    </script>
+
+    <!-- Toottip -->
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
     </script>
 
 </body>

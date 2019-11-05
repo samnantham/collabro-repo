@@ -7738,6 +7738,26 @@ td.visible-print {
   margin-bottom: 20px !important;
 }
 
+.mb-30 {
+  margin-bottom: 30px !important;
+}
+
+.mb-35 {
+  margin-bottom: 35px !important;
+}
+
+.mb-40 {
+  margin-bottom: 40px !important;
+}
+
+.mb-45 {
+  margin-bottom: 45px !important;
+}
+
+.mb-50 {
+  margin-bottom: 50px !important;
+}
+
 .ml-0 {
   margin-left: 0px !important;
 }
@@ -11231,6 +11251,24 @@ input[type=checkbox]:checked ~ .switch-tog {
 .topbar-list li span i {
   margin-right: 0px;
   font-size: 20px;
+}
+
+.tooltip .tooltip-inner {
+  padding: 10px;
+  font-size: 12px;
+  background: #FF1561;
+}
+.tooltip.left .tooltip-arrow {
+  border-left-color: #FF1561;
+}
+.tooltip.right .tooltip-arrow {
+  border-right-color: #FF1561;
+}
+.tooltip.bottom .tooltip-arrow {
+  border-bottom-color: #FF1561;
+}
+.tooltip.top .tooltip-arrow {
+  border-top-color: #FF1561;
 }
 
 .form-group {
