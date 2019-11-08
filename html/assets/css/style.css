@@ -8960,7 +8960,6 @@ i.color-btn {
 }
 .card .card-info.price-border {
   border-top: 1px solid #dfe4e8;
-  border-bottom: 1px solid #dfe4e8;
   padding: 20px;
   height: auto;
 }
@@ -8971,7 +8970,7 @@ i.color-btn {
   align-items: center;
   justify-content: space-around;
   padding: 20px 0;
-  border: 1px solid #dfe4e8;
+  border-top: 1px solid #dfe4e8;
   border-radius: 0 0 4px 4px;
   -webkit-border-radius: 0 0 4px 4px;
   -moz-border-radius: 0 0 4px 4px;

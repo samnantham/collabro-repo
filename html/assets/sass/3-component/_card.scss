@@ -68,7 +68,6 @@
         }
         &.price-border{
             border-top: 1px solid $border;
-            border-bottom: 1px solid $border;
             padding: 20px;
             height: auto;
         }
@@ -80,7 +79,7 @@
         align-items: center;
         justify-content: space-around;
         padding: 20px 0;
-        border: 1px solid $border;
+        border-top: 1px solid $border;
         @include border-radius(0 0 4px 4px);
         a{
             color: $secondary-text;
