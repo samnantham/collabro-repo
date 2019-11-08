@@ -2,26 +2,26 @@
     .tooltip-inner{
         padding: 10px;
         font-size: $font-r;
-        background: $danger;
+        background: $tooltip;
     }
     &.left{
         .tooltip-arrow{
-            border-left-color: $danger;
+            border-left-color: $tooltip;
         }
     }
     &.right{
         .tooltip-arrow{
-            border-right-color: $danger;
+            border-right-color: $tooltip;
         }
     } 
     &.bottom{
         .tooltip-arrow{
-            border-bottom-color: $danger;
+            border-bottom-color: $tooltip;
         }
     }  
     &.top{
         .tooltip-arrow{
-            border-top-color: $danger;
+            border-top-color: $tooltip;
         }
     }    
 }
