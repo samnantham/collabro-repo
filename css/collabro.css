@@ -609,8 +609,18 @@ p {
 .ui-select-bootstrap .selected-item {
   padding: 10px 15px !important;
 }
+.ui-select-bootstrap .ui-select-choices {
+  top: calc(100% + 5px);
+  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0px 4px rgba(0, 0, 0, 0.1);
+}
 .ui-select-bootstrap .ui-select-choices-row a {
+  padding: 0px !important;
   padding-left: 15px !important;
+  height: 36px;
+  line-height: 36px !important;
+  font-size: 14px !important;
 }
 
 .custom-modal-title {

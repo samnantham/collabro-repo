@@ -2,9 +2,17 @@
     .selected-item{
         padding: 10px 15px !important;
     }
+    .ui-select-choices{
+        top: calc(100% + 5px);
+        @include box-shadow($box-shadow-card);
+    }
     .ui-select-choices-row{
         a{
+            padding: 0px !important;
             padding-left: 15px !important;
+            height: 36px;
+            line-height: 36px !important;
+            font-size: $font-r !important;
         }
     }
 }
