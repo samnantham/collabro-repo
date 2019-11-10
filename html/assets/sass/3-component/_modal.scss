@@ -9,7 +9,7 @@
         width: 100%;
         float: left;
         padding: 13px 15px;
-        margin-bottom: 25px;
+        margin-bottom: 30px;
         &.modal-gray{
             background: $modal-gray;
         }
@@ -42,7 +42,10 @@
     .custom-modal-footer{
         width: 100%;
         float: left;
-        margin-top: 25px;
+        margin-top: 30px;
+        .btn{
+            min-width: 155px;
+        }
     }
 }
 

@@ -1,0 +1,148 @@
+.modal-left{
+    width: 100%;
+    float: left;
+    padding-right: 15px;
+}
+
+.modal-right{
+    width: 100%;
+    float: left;
+    padding-left: 15px;
+}
+
+.upload-container{
+    width: 100%;
+    height: 180px;
+    float: left;
+    @extend .upload-gradient;
+    @include border-radius(4px);
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    .upload-file{
+        width: 100%;
+        height: 100%;
+        float: left;
+        opacity: 0;
+        z-index: 1;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .upload-inner{
+        border: 1px solid $white;
+        background: transparent;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        @include border-radius(4px);
+        .icon-container{
+            width: 100%;
+            float: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            .img-holder{
+                width: 33.3333333333%;
+                border-right: 1px solid $white;
+                text-align: center;
+                img{
+                    width: auto;
+                    max-width: 40px;                    
+                }
+                &:last-of-type{
+                    border-right: 0px;
+                }
+            }
+            
+        }
+        .upload-content{
+            width: 90%;
+            text-align: center;
+            color: $white;
+            font-size: $font-xs;
+            margin-top: 10px;
+        }
+    }
+}
+
+.upload-info{
+    width: 100%;
+    float: left;
+    font-size: $font-s;
+    color: $secondary-text;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    i{
+        font-size: $font-m;
+        margin-right: 5px;
+    }
+}
+
+.thumb-wrapper{
+    width: 100%;
+    float: left;
+    border-top: 1px solid $border;
+    padding-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .thumbs{
+        float: left;
+        width: 31%;
+        flex-basis: 31%;
+        min-height: 60px;
+        border: 1px solid $border;
+        @include border-radius(4px);
+        background: $white;
+        transition: all 0.2s;
+        margin-bottom: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        &:hover, &.active{
+            background: $success;
+            border: 5px solid $success;
+        }
+        .add-thumb{
+            width: 38px;
+            height: 38px;
+            @include border-radius(50%);
+            background: $silver;
+            color: $secondary-text;
+            text-align: center;
+            line-height: 38px;
+            cursor: pointer;
+        }
+    }
+}
+
+.form-row{
+    width: 100%;
+    float: left;
+    display: flex;
+    .form-column{
+        width: 25%;
+        flex-basis: 25%;
+        float: left;
+        .form-group{
+            width: auto;
+        }
+    }
+    .form-column-50{
+        width: 50%;
+        flex-basis: 50%;
+        float: right;
+        text-align: right;
+        margin-left: auto;
+        justify-content: flex-end;
+        .form-group{
+            width: auto;
+        }
+    }
+}

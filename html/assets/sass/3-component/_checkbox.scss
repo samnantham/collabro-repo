@@ -125,7 +125,7 @@ $magic-disabled-checked-color: lighten($magic-main-color, 30%) !default;
     width: $magic-checkbox-size;
     height: $magic-checkbox-size;
     content: '';
-    border: 1px solid $mid-gray;
+    border: 1px solid $input-border;
   }
   &:after {
     position: absolute;
