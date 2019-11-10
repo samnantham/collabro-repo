@@ -7457,7 +7457,7 @@ td.visible-print {
 }
 
 .bold {
-  font-weight: 900;
+  font-weight: 700 !important;
 }
 
 .left {
@@ -9790,7 +9790,7 @@ i.color-btn {
   display: inline-flex;
   font-size: 14px;
   font-weight: 500;
-  color: #344051;
+  color: #7E8EA4;
   align-items: center;
   padding-left: 25px;
   height: 20px;
@@ -10178,6 +10178,20 @@ i.color-btn {
   width: 100%;
   float: left;
   padding-left: 15px;
+}
+
+.notes {
+  width: 100%;
+  float: left;
+  border: 1px dashed #dfe4e8;
+  padding: 15px;
+  color: #7E8EA4;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+.notes p {
+  margin-bottom: 0px;
 }
 
 .upload-container {
