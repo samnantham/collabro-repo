@@ -8512,12 +8512,9 @@ p {
   cursor: pointer;
   font-size: 16px;
   font-weight: inherit;
-  padding: 0px 15px;
+  padding: 7px 15px;
   border: 1px solid transparent;
-  height: 38px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -9641,7 +9638,7 @@ i.color-btn {
   border: 0;
   outline: none;
   width: 90%;
-  height: 51px;
+  max-height: 51px;
   position: relative;
   float: left;
   font-size: 12px;
@@ -10348,7 +10345,7 @@ i.color-btn {
 /* Home header */
 .home-header {
   width: 100%;
-  position: fixed;
+  position: absolute;
   top: 90px;
   height: 72px;
   left: 0px;
@@ -10415,7 +10412,7 @@ i.color-btn {
 
 /* Inner header */
 .main-header {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   left: 0;

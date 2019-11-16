@@ -5,12 +5,9 @@
 	cursor: pointer;
 	font-size: $font-m;
 	font-weight: inherit;
-	padding: 0px 15px;
+	padding: 7px 15px;
 	border: 1px solid transparent;
-	height: 38px;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
+	display: inline-block;
 	@include border-radius(4px);
 	color: $white;
 	text-transform: none;
