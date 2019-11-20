@@ -1,0 +1,192 @@
+.content-section{
+    width: 100%;
+    float: left;
+}
+.about-section{
+    width: 100%;
+    float: left;
+    padding: 50px;
+    background: $secondary-color;
+    text-align: center;
+    @include border-radius(5px);
+
+    h2{
+        color: $white;
+    }
+    p{
+        color: $white;
+        margin-top: 25px;
+        font-size: $font-xxl;
+    }
+}
+
+.about-content{
+    width: 100%;
+    float: left;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: $default;
+    @include border-radius(5px);
+    padding: 50px;
+    height: 450px;
+    h3{
+        color: $white;
+        font-size: $font-home-subtitle;
+        margin: 0px;
+    }
+    p{
+        font-size: $font-m;
+        color: $white;
+        margin-top: 10px;
+        margin-bottom: 25px;
+    }
+    span{
+        font-size: $font-s;
+        color: $white;
+        display: inline-block;
+    }
+    &.editable{
+        border: 2px dashed $secondary-color;
+        h3, p, span{
+            border: 1px dashed $white;
+            @include border-radius(5px);
+            padding: 5px;
+        }
+    }
+
+}
+
+.feature-card{
+    width: 100%;
+    float: left;
+    -webkit-background-size: auto;
+    -moz-background-size: auto;
+    -o-background-size: auto;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: $default;
+    @include border-radius(5px);
+    padding: 25px;
+    height: 350px;
+    .icon-wrapper{
+        width: 100%;
+        float: left;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .icon{
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+        text-align: center;
+        line-height: 100px;
+        background: $secondary-text;
+        @include border-radius(50%);
+        i{
+            font-size: 36px;
+            color: $white;
+            vertical-align: middle;
+        }
+    }
+    h3{
+        color: $white;
+        float: left;
+        margin: 0px;
+    }
+    p{
+        font-size: $font-r;
+        color: $white;
+        margin-top: 10px;
+        margin-bottom: 0px;
+        float: left;
+    }
+    &.editable{
+        border: 2px dashed $secondary-color;
+        .icon-wrapper, h3, p{
+            border: 1px dashed $white;
+            @include border-radius(5px);
+            padding: 5px;
+        }
+    }
+
+}
+
+.more-feature{
+    background: $secondary-color;
+    padding: 50px;
+    h1{
+        color: $white;
+        font-size: $font-home;
+        margin: 0px;
+    }
+    .subtitle{
+        font-size: $font-xxl;
+        color: $white;
+        margin-top: 0px;
+        margin-bottom: 25px;
+    }
+}
+
+.more-feature-card{
+    width: 100%;
+    float: left;  
+    @include border-radius(5px);  
+    .img-wrapper{
+        width: 100%;
+        float: left;
+        -webkit-background-size: auto;
+        -moz-background-size: auto;
+        -o-background-size: auto;
+        background-size: auto;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-color: $white;
+        @include border-radius(5px 5px 0 0);
+        height: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .card-content{
+        width: 100%;
+        float: left;
+        padding: 25px;
+        background: $white;
+        @include border-radius(0 0 5px 5px);
+    }
+    h3{
+        color: $black;
+        float: left;
+        margin: 0px;
+    }
+    p{
+        font-size: $font-r;
+        color: $secondary-text;
+        margin-top: 10px;
+        margin-bottom: 0px;
+        float: left;
+    }
+    &.editable{
+        border: 2px dashed $default;
+        h3, p{
+            width: 100%;
+            display: block;
+            color: $default;
+            border: 1px dashed $default;
+            @include border-radius(5px);
+            padding: 5px;
+        }
+        .img-wrapper{
+            border-bottom: 1px dashed $default;
+        }
+        h4{
+            color: $default;
+        }
+    }
+
+}

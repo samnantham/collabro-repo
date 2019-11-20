@@ -16,9 +16,27 @@
         float: left;
         padding: 13px 15px;
         margin-bottom: 30px;
-        &.modal-gray{
+        &.modal-default{
             background: $modal-gray;
         }
+        &.modal-orange{
+            @extend .orange-gradient;
+            color: $white;
+            h3{
+                color: $white !important;
+            }
+        }
+        &.modal-gray{
+            @extend .silver-gradient;
+            color: $black;
+        } 
+        &.modal-green{
+            background: $green;
+            color: $white;
+            h3{
+                color: $white !important;
+            }
+        }       
         h3{
             font-size: $font-l;
             text-transform: uppercase;

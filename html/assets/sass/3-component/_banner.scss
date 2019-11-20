@@ -1,0 +1,32 @@
+.banner-section{
+    width: 100%;
+    height: 100vh;
+    float: left;
+    background: $default;
+    position: relative;
+    .banner{
+        width: 100%;
+        height: 100%;
+        float: left;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+        .banner-content{
+            width: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 150px;
+            h1{
+                font-size: $font-home;
+                color: $white;
+            }
+            p{
+                font-size: $font-m;
+                color: $white;
+                margin-bottom: 85px;
+            }
+        }
+    }
+}
