@@ -1,21 +1,30 @@
 /* Toggle */
 $width: 100px; // Change Me
 $height: $width / 8;
+.custom-toggle{
+  input[type='checkbox'] {
+    display: none;
+    
+    &:checked ~ .toggle-s {
+      background: $white;
+      border: 1px solid $success;
+      left: 33px;
+      transition: .2s;
+    }
+    
+    &:checked ~ .switch-tog {
+      background: $green;  
+      transition: .2s;
+      // border-color: $default;
+    }
 
-input[type='checkbox'] {
-  display: none;
-  
-  &:checked ~ .toggle-s {
-    background: $white;
-    border: 1px solid $success;
-    left: 33px;
-    transition: .2s;
-  }
-  
-  &:checked ~ .switch-tog {
-    background: $green;  
-    transition: .2s;
-    // border-color: $default;
+    &:checked ~ .status:before{
+      content: "ONLINE";
+      color: $success;
+    }
+    &:checked ~ i{
+      color: $success;
+    }
   }
 }
 
@@ -27,12 +36,30 @@ input[type='checkbox'] {
   margin-bottom: 0px;
   display: flex;
   align-items: center;
-  padding: 0;
+  padding: 0 20px;
   color: $primary-text;
   font-size: $font-r;
+  cursor: pointer;
+  i{
+    width: 15px;
+    position: absolute;
+    left: -115px;
+    color: $danger;
+  }
   span{
-    font-size: $font-r;
+    font-size: $font-s;
     color: $black;
+    line-height: initial;
+  }
+  .status{
+    margin-left: 10px;
+    position: absolute;
+    left: -100px;
+    &:before{
+      content: "OFFLINE";
+      color: $danger;
+      display: inline-block;
+    }
   }
 }
 
@@ -67,6 +94,7 @@ input[type='checkbox'] {
   float: right;
   height: 15px;
   position: relative;
+  margin-left: auto;
 }
 .switch-toggle {
   position: relative;

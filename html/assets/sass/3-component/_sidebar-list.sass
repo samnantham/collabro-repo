@@ -2,8 +2,8 @@
     width: 100%
     float: left
     background: $white
-    border-bottom: 2px solid $border
-    padding: 10px
+    border-bottom: 1px solid $border
+    padding: 20px
     h6
         text-transform: uppercase
         color: $primary-text
@@ -12,17 +12,17 @@ ul.simple-list
     width: 100%
     float: left
     margin: 0px
-    padding: 0px
+    padding: 0px 20px 20px 20px
     list-style: none
     background: $white
     li
         width: 100%
         float: left     
-        border-bottom: 2px solid $border       
+        border-bottom: 1px solid $border       
         a
             width: 100%
             float: left
-            padding: 10px
+            padding: 10px 0
             display: flex
             align-items: center
             font-size: $font-s
@@ -36,3 +36,215 @@ ul.simple-list
                 margin-right: 10px
                 font-size: $font-r
                 min-width: 15px
+        &:last-of-type
+            border-bottom: 0px
+
+.right-wrapper
+    width: 100%
+    float: left
+    padding: 20px
+    padding-bottom: 10px
+    &:last-of-type
+        padding-bottom: 20px
+        .right-content
+            border: 0px
+    .ads
+        width: 100%
+        float: left
+        margin-bottom: 20px
+        img
+            width: 100%
+    .right-title
+        width: 100%
+        float: left
+        display: flex
+        align-items: center
+        justify-content: space-between
+        h4
+            display: inline-block
+            color: $default
+            margin: 0px
+        i
+            color: $primary-text
+    .right-title-new
+        width: 100%
+        float: left
+        display: flex
+        flex-direction: column
+        border-bottom: 1px solid $right-border
+        padding-bottom: 15px
+        h2
+            color: $black
+            margin: 0px
+        h5
+            margin: 0px
+    .right-content
+        width: 100%
+        float: left
+        border-bottom: 1px solid $right-border
+        padding: 20px 0
+        canvas, svg, img
+            width: 100%
+.member-list
+    width: 100%
+    float: left
+    padding: 0px
+    margin: 0px
+    list-style: none
+    li
+        width: 100%
+        float: left
+        list-style: none
+        padding-bottom: 15px
+        border-bottom: 1px solid $right-border
+        margin-bottom: 15px
+        &:last-of-type
+            margin-bottom: 0px
+            padding-bottom: 0px
+            border-bottom: 0px
+        a
+            width: 100%
+            float: left
+            display: flex
+            align-items: center
+            justify-content: space-between
+            .list-left
+                width: calc(100% - 43px)
+                float: left
+                display: inline-flex
+                flex-direction: column
+                h5
+                    color: $black
+                    margin: 0px
+                    @include word(95%)
+                    i
+                        font-size: $font-s
+                p
+                    color: $light-gray
+                    font-size: $font-xs
+                    margin: 0px
+            .list-right
+                img
+                    @include avatar($avatar-s)
+                    @include border-radius(50%)
+            .list-right
+                &.self-top
+                    align-self: flex-start
+                .icon-holder
+                    width: 38px
+                    text-align: right
+                    img
+                        width: auto !important
+                        height: auto !important
+                        max-width: 38px
+                        @include border-radius(0px)
+
+.right-no-project
+    width: 100%
+    float: left
+    min-height: calc(100vh - 190px)
+    position: relative
+    .empty-msg
+        width: 100%
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+.msg-top
+    width: 100%
+    float: left
+    border: 1px solid $right-border
+    @include border-radius(4px)
+    padding: 10px
+    margin-bottom: 30px
+    i
+        font-size: $font-r
+        margin-right: 10px
+    p
+        font-size: $font-xs
+        margin-bottom: 0px
+    .msg-title
+        width: 100%
+        float: left
+        display: flex
+        align-items: center
+        margin: 0px
+        img
+            margin-right: 10px
+    ul
+        width: 100%
+        float: left
+        list-style: none
+        display: flex
+        margin: 0px
+        margin-top: 10px
+        justify-content: space-between
+        li
+            float: left
+            img
+                width: 100%
+                @include border-radius(5px)
+            
+.msg-bottom
+    width: 100%
+    float: left
+    position: relative
+    background: $yellow
+    color: $white
+    padding: 10px
+    @include border-radius(4px)
+    &::after
+        position: absolute
+        content: ""
+        display: inline-block
+        bottom: -15px
+        right: 10px
+        border-bottom: 20px solid transparent
+        border-left: 20px solid $yellow
+        transform: rotate(10deg)
+    p
+        margin: 0px
+        font-size: $font-xs
+        
+.msg-post
+    width: 80px
+    height: 80px
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    @include border-radius(50%)
+    background: $default
+    position: absolute
+    bottom: 20px
+    left: 50%
+    transform: translateX(-50%)
+    svg
+        width: 30px
+
+.post-content
+    width: 100%
+    float: left
+    .member-list
+        li
+            padding-bottom: 15px
+            margin-bottom: 15px
+            border-bottom: 1px solid $right-border
+            a
+                flex-direction: row-reverse
+                .list-left
+                    text-align: right
+                .list-right
+                    color: $secondary-color
+                    font-size: $font-r
+                    p
+                        margin-bottom: 0px
+                        font-size: $font-xs
+
+.user-list-wrapper
+    width: 100%
+    float: left
+    .user-title
+        width: 100%
+        float: left
+        padding: 10px
+        background: $secondary-color

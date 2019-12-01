@@ -269,6 +269,9 @@ button.close{
 .unfollow-btn{
 	background: $secondary-text;
 	color: $white;
+	i{
+		color: $white !important;
+	}
 	&:hover{
 		color: $white;
 		background: darken($secondary-text, 10%);
