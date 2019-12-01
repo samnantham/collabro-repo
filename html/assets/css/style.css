@@ -7937,6 +7937,9 @@ td.visible-print {
   height: 100%;
   min-height: 200px;
   max-width: 200px;
+  box-shadow: 1px 1px 0px #dfe4e8;
+  -webkit-box-shadow: 1px 1px 0px #dfe4e8;
+  -moz-box-shadow: 1px 1px 0px #dfe4e8;
 }
 
 .left-sidebar {
@@ -8583,11 +8586,6 @@ p {
 }
 .btn.primary-btn {
   background: #00C4E8;
-}
-.btn:not([disabled]):not(.disabled):not(.btn-link):hover, .btn:not([disabled]):not(.disabled):not(.btn-link):focus {
-  text-decoration: none;
-  transform: none;
-  box-shadow: none;
 }
 .btn[disabled] {
   cursor: not-allowed;
@@ -10638,11 +10636,11 @@ i.color-btn {
 }
 .top-nav > li > a img {
   width: auto;
-  height: 25px;
+  height: 20px;
 }
 .top-nav > li > a i {
   vertical-align: middle;
-  font-size: 24px;
+  font-size: 20px;
 }
 .top-nav > li > a .username {
   margin-left: 10px;
@@ -11256,7 +11254,7 @@ ul.simple-list li {
 ul.simple-list li a {
   width: 100%;
   float: left;
-  padding: 10px 0;
+  padding: 15px 0;
   display: flex;
   align-items: center;
   font-size: 12px;
@@ -11267,6 +11265,7 @@ ul.simple-list li a:hover {
 }
 ul.simple-list li a span {
   height: 14px;
+  line-height: initial;
 }
 ul.simple-list li a i, ul.simple-list li a img, ul.simple-list li a svg {
   float: left;
@@ -11383,7 +11382,7 @@ ul.simple-list li:last-of-type {
   font-size: 12px;
 }
 .member-list li a .list-left p {
-  color: #383838;
+  color: #77869A;
   font-size: 11px;
   margin: 0px;
 }
@@ -11437,12 +11436,14 @@ ul.simple-list li:last-of-type {
   margin-bottom: 30px;
 }
 .msg-top i {
+  color: #77869A;
   font-size: 14px;
   margin-right: 10px;
 }
 .msg-top p {
   font-size: 11px;
   margin-bottom: 0px;
+  color: #77869A;
 }
 .msg-top .msg-title {
   width: 100%;
@@ -11637,6 +11638,7 @@ ul.simple-list li:last-of-type {
   padding: 0 20px;
   color: #77869A;
   font-size: 14px;
+  background: #f8f8f8;
   cursor: pointer;
 }
 .custom-toggle i {

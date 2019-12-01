@@ -35,12 +35,6 @@
 	&.primary-btn {
         background: $primary-color;
 	}
-	&:not([disabled]):not(.disabled):not(.btn-link):hover,
-	&:not([disabled]):not(.disabled):not(.btn-link):focus {
-		text-decoration: none;
-		transform: none;
-		box-shadow: none;
-	}
 	&[disabled] { cursor: not-allowed; pointer-events: none; background: $silver; color: $secondary-text; }
 	.icon,
 	.fa {
