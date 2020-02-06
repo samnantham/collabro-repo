@@ -77,6 +77,13 @@ angular.module('app')
                 $rootScope.activemenu = menu;
             }
 
+            $rootScope.closeItem = function() {
+                $rootScope.ismodalPopover = false;
+                $rootScope.viewingThumb = {};
+                $rootScope.selectedKey = null;
+                $rootScope.editkey = null;
+            }
+
             $rootScope.$watch('formLoading', function() {
                 if (!$rootScope.formLoading) {
                     if ($rootScope.pageloading) {

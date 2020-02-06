@@ -128,7 +128,7 @@ app.controller('FriendsCtrl', ['$scope', '$http', '$state', 'authServices', '$ti
         $rootScope.formData = {};
         $rootScope.formData.projectmembers = [];
         $rootScope.formData.projectmembers.push(user);
-        $rootScope.opencollaboratemodal();
+        $rootScope.openCollaborateModal();
     }
 
     $scope.changefollowstatus = function(key, user) {

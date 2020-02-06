@@ -1,8 +1,7 @@
 app.controller('BroadcastModalCtrl', ['$scope', '$timeout', '$state', '$stateParams', 'webServices', 'utility', '$rootScope', '$filter', function($scope, $timeout, $state, $stateParams, webServices, utility, $rootScope, $filter) {
-	$rootScope.broadcastData = {};
-    $rootScope.broadcastData.images = [];
-
-	$rootScope.resetFeedItems = function() {
+	
+    $rootScope.resetFeedItems = function() {
+        $rootScope.broadcastData = {};
         $rootScope.broadcastData.title = "";
         $rootScope.broadcastData.description = "";
         $rootScope.broadcastData.images = [];

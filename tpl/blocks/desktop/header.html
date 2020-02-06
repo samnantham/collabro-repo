@@ -105,8 +105,7 @@
       </div>
       <div class="search search-input">
          <form novalidate name="searchform" ng-submit="gotosearch(searchData.keyword)" class="search-keyword-form">
-            <input type="text" placeholder="Search for anything" placeholder="Search for anything"
-               ng-model="searchData.keyword" ng-change="searchedit()"
+            <input type="text" placeholder="Search for anything" ng-model="searchData.keyword" ng-change="searchedit()"
                typeahead="data as data for data in keywords | filter:$viewValue"
                typeahead-on-select="gotosearch(searchData.keyword)">
             <input type="submit" value="">

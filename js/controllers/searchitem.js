@@ -10,6 +10,7 @@ app.controller('SearchItemPageCtrl', ['$scope', '$modal', '$http', '$state', '$t
         }
     }
     $scope.activetab = 'All';
+    
     $scope.url = 'searchhomeproducts/' + $stateParams.keyword;
 
     $rootScope.searchData.keyword = $stateParams.keyword
